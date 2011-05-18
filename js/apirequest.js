@@ -96,10 +96,6 @@ function ApiRequest(controller, action)
     
     this.execute = function(data)
     {
-        if (!ApiRequest.ready)
-        {
-            return null;
-        }
         var requestData = $data;
         if (data && data instanceof Object)
         {
@@ -116,7 +112,7 @@ function ApiRequest(controller, action)
             beforeSend: $onBeforeSend,
             complete: $onComplete
         }
-        if (options.async)
+        if (!options.async)
         {
             options.timeout = 2;
         }

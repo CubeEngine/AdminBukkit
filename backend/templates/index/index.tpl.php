@@ -24,15 +24,16 @@
         <script type="text/javascript" src="js/main.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/apirequest.js" charset="utf-8"></script>
         <script type="text/javascript">
-            var request = new ApiRequest('server', 'info');
-            request.method('POST')
-            request.onBeforeSend(null)
-            request.onComplete(null)
-            request.onSuccess(function(data){
-                alert(data);
-            })
-            request.execute({format: 'json'});
-            //throw 'STOP HERE';
+            $(function(){
+                var request = new ApiRequest('server', 'info');
+                request.method('POST');
+                request.onBeforeSend(null);
+                request.onComplete(null);
+                request.onSuccess(function(data){
+                    alert(data);
+                })
+                request.execute({format: 'json'});
+            });
         </script>
     </head>
     <body>
