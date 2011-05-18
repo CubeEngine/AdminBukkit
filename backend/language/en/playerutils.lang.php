@@ -1,0 +1,37 @@
+<?php
+    return array(
+        'kick_confirm'              => 'Do you really want to kick this Player?',
+        'kick_reason'               => 'Why do you want to kick him? (not important)',
+        'kick_success'              => 'The player was successfully kicked!',
+        'kill_confirm'              => 'Do you really want to kill this Player?',
+        'kill_success'              => 'The player was successfully killed!',
+        'burn_duration'             => 'How long (in seconds) should the player burn?',
+        'burn_nonumber'             => 'You have to enter a number!',
+        'burn_success'              => 'The Player was successfully lid!',
+        'heal_confirm'              => 'Do you really want to heal this Player?',
+        'heal_success'              => 'The player was successfully healed!',
+        'tell_message'              => 'Enter a message (max. 100 characters):',
+        'tell_success'              => 'Message was successfully sent!',
+        'clearinv_confirm'          => 'Do you really want to clear the inventory?',
+        'clearinv_success'          => 'The inventory was successfully cleared!',
+        'give_item'                 => 'Enter the Block ID (format: blockid[:blockdata]):',
+        'give_formatfail'           => 'You have to regard the Format!',
+        'give_amount'               => 'How many?',
+        'give_success'              => 'Item successfully delivered!',
+        'teleport_target'           => 'Enter the target (Playername or coordinate (x,y,z[,orientiation]):',
+        'teleport_invalidtarget'    => 'You entered a invalid target!',
+        'teleport_success'          => 'The player was successfully teleported!',
+        
+        'infos'                     => 'Information',
+        'ban'                       => 'Ban',
+        'kick'                      => 'Kick',
+        'kill'                      => 'Kill',
+        'heal'                      => 'Heal',
+        'teleport'                  => 'Teleport',
+        'burn'                      => 'Burn',
+        'give'                      => 'Give',
+        'clearinv'                  => 'Clear inventory',
+        'tell'                      => 'Send a message',
+        'close'                     => 'Close'
+    );
+?>

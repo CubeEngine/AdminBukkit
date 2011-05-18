@@ -1,0 +1,37 @@
+<?php
+    return array(
+        'kick_confirm'              => 'Willst du diesen Spieler wirklich kicken?',
+        'kick_reason'               => 'Warum kickst du ihn? (nicht wichtig)',
+        'kick_success'              => 'Der Spieler wurde erfolgreich gekickt!',
+        'kill_confirm'              => 'Willst du diesen Spieler wirklich töten?',
+        'kill_success'              => 'Der Spieler wurde erfolgreich getötet!',
+        'burn_duration'             => 'Wie lange (in Sekunden) soll der Spieler brennen?',
+        'burn_nonumber'             => 'Du musst eine Zahl eingeben!',
+        'burn_success'              => 'Der Spieler wurde erfolgreich angezündet!',
+        'heal_confirm'              => 'Willst du diesen Spieler wirklich heilen?',
+        'heal_success'              => 'Der Spieler wurde erfolgreich geheilt!',
+        'tell_message'              => 'Gib die Nachricht ein (max 100 Zeichen):',
+        'tell_success'              => 'Nachricht erfolgreich versendet!',
+        'clearinv_confirm'          => 'Willst du das Inventar dieses Spielers wirklich leeren?',
+        'clearinv_success'          => 'Inventar erfolgreich geleert!',
+        'give_item'                 => 'Gib die Block ID (Format: blockid[:blockdata]) ein:',
+        'give_formatfail'           => 'Du musst das Format einhalten!',
+        'give_amount'               => 'Wie viele sollen es sein?',
+        'give_success'              => 'Item erfolgreich abgeliefert!',
+        'teleport_target'           => 'Gib das Ziel (Spielername oder Koordinate (x,y,z[,ausrichtung]) ein:',
+        'teleport_invalidtarget'    => 'Es wurde kein gültiges Ziel angegeben!',
+        'teleport_success'          => 'Der Spieler wurde erfolgreich teleportiert!',
+        
+        'infos'                     => 'Informationen',
+        'ban'                       => 'Verbannen',
+        'kick'                      => 'Kicken',
+        'kill'                      => 'Töten',
+        'heal'                      => 'Heilen',
+        'teleport'                  => 'Teleportieren',
+        'burn'                      => 'Anzünden',
+        'give'                      => 'Etwas geben',
+        'clearinv'                  => 'Inventar leeren',
+        'tell'                      => 'Eine Nachricht schicken',
+        'close'                     => 'Schließen'
+    );
+?>
