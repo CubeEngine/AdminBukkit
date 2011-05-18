@@ -232,12 +232,9 @@ $(window).bind('touchstart', touchHandler);
 
 $(function(){
     ready = true;
-    if (typeof init !== 'undefined')
+    if (init && init instanceof Function)
     {
-        if (init instanceof Function)
-        {
-            init();
-        }
+        init();
     }
     $('a[href=\\#]').click(function(e){
         e.preventDefault();
