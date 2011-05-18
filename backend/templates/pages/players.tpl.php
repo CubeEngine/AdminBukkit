@@ -23,40 +23,44 @@
         dataSource = ['world', 'players'];
     }
     
-    $('div.toolbar a.button').click(function(){
-        refreshData();
-        return false;
+    var list = document.getElementById('players_list');
+    var request = new ApiRequest(dataSource[0], dataSource[1]);
+    request.method('GET');
+    request.data({world: world});
+    request.onSuccess(function(data){
+        alert('List loaded!');
+        refreshData(data);
+    });
+    request.onFailure(function(){
+        alert('Fail while loading list!');
     });
 
-    function refreshData()
+    function refreshData(data)
     {
-        var list = document.getElementById('players_list');
-        apiCall(dataSource[0], dataSource[1], function(data){
-            list.innerHTML = '';
-            if (data == '')
+        list.innerHTML = '';
+        if (data == '')
+        {
+            $('#players_online').html(0);
+            var li = document.createElement('li');
+            li.innerHTML = '<?php $lang->noplayers ?>';
+            list.appendChild(li);
+        }
+        else
+        {
+            var players = data.split(',');
+            $('#players_online').html(players.length);
+            for (var i = 0; i < players.length; i++)
             {
-                $('#players_online').html(0);
                 var li = document.createElement('li');
-                li.innerHTML = '<?php $lang->noplayers ?>';
+                li.setAttribute('class', 'arrow');
+                var a = document.createElement('a');
+                a.innerHTML = players[i];
+                a.href = '#';
+                $(a).click(overlayHandler);
+                li.appendChild(a);
                 list.appendChild(li);
             }
-            else
-            {
-                var players = data.split(',');
-                $('#players_online').html(players.length);
-                for (var i = 0; i < players.length; i++)
-                {
-                    var li = document.createElement('li');
-                    li.setAttribute('class', 'arrow');
-                    var a = document.createElement('a');
-                    a.innerHTML = players[i];
-                    a.href = '#';
-                    $(a).click(overlayHandler);
-                    li.appendChild(a);
-                    list.appendChild(li);
-                }
-            }
-        }, {world: world});
+        }
     }
     
     function overlayHandler(e)
@@ -65,6 +69,11 @@
         toggleOverlay('#player_overlay');
         e.preventDefault();
     }
+    
+    $('div.toolbar a.button').click(function(){
+        request.execute();
+        return false;
+    });
 
     function init()
     {
@@ -72,8 +81,8 @@
         apiCall("server", "maxplayers", function(data){
             $('#players_limit').html(data);
         });
-        refreshData();
-        setInterval(refreshData, 10000);
+        request.execute();
+        setInterval(request.execute, 10000);
     }
 
     
