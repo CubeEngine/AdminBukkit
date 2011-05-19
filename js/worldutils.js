@@ -1,6 +1,6 @@
 var worldutilsLang = new WorldutilsLang();
 
-function world_create()
+function world_create(onSuccess)
 {
     alert(genericLang.function_disabled);
     return false;
@@ -35,10 +35,15 @@ function world_create()
     }
     if (confirm(worldutilsLang.create_warning))
     {
-        apiCall('world', 'create', function(data){
+        var request = new ApiRequest('world', 'create');
+        request.onSuccess(function(){
             alert(worldutilsLang.create_success);
-            refreshData();
-        }, data);
+            if (onSuccess && onSuccess instanceof Function)
+            {
+                onSuccess();
+            }
+        });
+        request.execute(data);
     }
     return false;
 }
@@ -50,43 +55,65 @@ function world_time(world)
     {
         return;
     }
-    time = $.trim(time);
+    time = time.replace(/\s/g, '');
     if (time.match(/^\d+$/))
     {} // leave as is
-    else if (time.match(/^\d{1,2}:\d{1,2}$/))
+    else if (time.match(/^\d{1,2}:\d{2}$/))
     {
         var timeParts = time.split(':');
+        var hours = parseInt(timeParts[0]);
+        var minutes = parseInt(timeParts[1]);
+        if (minutes > 59)
+        {
+            minutes = 59;
+        }
+        if (minutes > 0 && hours > 23)
+        {
+            hours = 23;
+        }
+        else if (hours > 24)
+        {
+            hours = 24;
+        }
         var hourTicks = 24000 / 24;
         var minuteTicks = hourTicks / 60;
-        time = timeParts[0] * hourTicks;
-        time += Math.round(timeParts[1] * minuteTicks);
+        time = hours * hourTicks;
+        time += Math.round(minutes * minuteTicks);
+        time -= 6000;
     }
     else
     {
         alert(worldutilsLang.time_invalidformat);
         return;
     }
-    apiCall('world', 'time', function(data){
+    
+    var request = new ApiRequest('world', 'time');
+    request.onSuccess(function(){
         alert(worldutilsLang.time_success);
-    }, {world: world, time: time});
+    });
+    request.execute({world: world, time: time});
 }
 
 function world_pvp(world)
 {
     var state = confirm(worldutilsLang.pvp_state);
     state = (state ? 'on' : 'off');
-    apiCall('world', 'pvp', function(data){
+    var request = new ApiRequest('world', 'pvp');
+    request.onSuccess(function(){
         alert(state == 'on' ? worldutilsLang.pvp_success_on : worldutilsLang.pvp_success_off);
-    }, {world: world, pvp: state});
+    });
+    request.execute({world: world, pvp: state});
 }
 
 function world_storm(world)
 {
     var state = confirm(worldutilsLang.storm_state);
     state = (state ? 'on' : 'off');
-    apiCall('world', 'storm', function(data){
+    var request = new ApiRequest('world', 'storm');
+    request.onSuccess(function(){
         alert(state == 'on' ? worldutilsLang.storm_success_on : worldutilsLang.storm_success_off);
-    }, {world: world, storm: state});
+    });
+    request.execute({world: world, storm: state});
 }
 
 function world_spawn(world)
@@ -102,7 +129,10 @@ function world_spawn(world)
         alert(worldutilsLang.spawn_invalidformat);
         return;
     }
-    apiCall('world', 'spawn', function(data){
+    var request = new ApiRequest('world', 'spawn');
+    request.onSuccess(function(){
         alert(worldutilsLang.spawn_success);
-    }, {world: world, location: location}, 'POST');
+    });
+    request.method('POST');
+    request.execute({world: world, location: location});
 }
