@@ -21,41 +21,55 @@
 </ul>
 <?php $this->displayTemplateFile('generic/playerutils') ?>
 <script type="text/javascript">
-    function refreshData()
+    var request = new ApiRequest('player', 'info');
+    request.method('GET');
+    request.data({player: player, format:'json'});
+    request.onSuccess(function(data){
+        refreshData(data);
+    });
+    request.onFailure(function(){
+        alert('Failed to load infos');
+    });
+    
+    function refreshData(raw)
     {
-        apiCall('player', 'info', function(raw){
-            var data = eval('(' + raw + ')');
-            document.getElementById('player_name').innerHTML = data.name;
-            document.getElementById('player_displayname').innerHTML = data.displayName;
-            document.getElementById('player_health').innerHTML = data.health;
-            var world = document.getElementById('player_world');
-            world.setAttribute('href', 'world.html?world=' + data.world);
-            world.getElementsByTagName('span')[0].innerHTML = data.world;
-            for (var index in data.position)
+        var data = eval('(' + raw + ')');
+        document.getElementById('player_name').innerHTML = data.name;
+        document.getElementById('player_displayname').innerHTML = data.displayName;
+        document.getElementById('player_health').innerHTML = data.health;
+        var world = document.getElementById('player_world');
+        world.setAttribute('href', 'world.html?world=' + data.world);
+        world.getElementsByTagName('span')[0].innerHTML = data.world;
+        for (var index in data.position)
+        {
+            var elem = document.getElementById('player_pos' + index);
+            var parts = (data.position[index] + '').split('.');
+            var shortened = '';
+            if (parts.length > 1)
             {
-                var elem = document.getElementById('player_pos' + index);
-                var parts = (data.position[index] + '').split('.');
-                if (parts.length > 1)
-                {
-                    elem.innerHTML = parts[0] + '.' + parts[1].substr(0, 3);
-                }
-                else
-                {
-                    elem.innerHTML = parts[0];
-                }
+                shortened = parts[0] + '.' + parts[1].substr(0, 3);
             }
-        }, {player: player, format:'json'});
+            else
+            {
+                shortened = elem.innerHTML = parts[0];
+            }
+            elem.innerHTML = shortened;
+            elem.setAttribute('title', data.position[index]);
+        }
     }
     
     function init()
     {
         $('#player_info').parent('li').remove();
         prepareOverlay('#player_overlay');
-        refreshData();
-        setInterval(refreshData, 10000);
+        request.execute();
+        setInterval(request.execute, 10000);
     }
 
-    
+    $('.toolbar a.button').click(function(){
+        request.execute();
+        return false;
+    });
     /**** Overlay Handler ****/
     $('#player_ban').click(function(){
         if (ban_player(player, true))
@@ -77,17 +91,17 @@
     });
     $('#player_kill').click(function(){
         player_kill(player);
-        refreshData();
+        request.execute();
         return false;
     });
     $('#player_burn').click(function(){
         player_burn(player);
-        refreshData();
+        request.execute();
         return false;
     });
     $('#player_heal').click(function(){
         player_heal(player);
-        refreshData();
+        request.execute();
         return false;
     });
     $('#player_clearinv').click(function(){
@@ -100,7 +114,7 @@
     });
     $('#player_teleport').click(function(){
         player_teleport(player);
-        refreshData();
+        request.execute();
         return false;
     });
     
