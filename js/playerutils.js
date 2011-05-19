@@ -9,24 +9,34 @@ var items = {
 
 function player_kick(player, sync)
 {
+    var $result = false;
     if (confirm(playerutilsLang.kick_confirm))
     {
         var reason = prompt(playerutilsLang.kick_reason, '');
-        apiCall('player', 'kick', function(){
+        if (!reason)
+        {
+            reason = '';
+        }
+        var request = new ApiRequest('player', 'kick');
+        request.onSuccess(function(){
             alert(playerutilsLang.kick_success);
-        }, {player: player, reason: reason}, 'GET', false, !!sync);
-        return true;
+            $result = true;
+        });
+        request.sync(!!sync);
+        request.execute({player: player, reason: reason});
     }
-    return false;
+    return $result;
 }
 
 function player_kill(player)
 {
     if (confirm(playerutilsLang.kill_confirm))
     {
-        apiCall('player', 'kill', function(){
+        var request = new ApiRequest('player', 'kill');
+        request.onSuccess(function(){
             alert(playerutilsLang.kill_success);
-        }, {player: player});
+        });
+        request.execute({player: player});
     }
 }
 
@@ -43,18 +53,22 @@ function player_burn(player)
         alert(playerutilsLang.burn_nonumber);
         return;
     }
-    apiCall('player', 'burn', function(){
+    var request = new ApiRequest('player', 'burn');
+    request.onSuccess(function(){
         alert(playerutilsLang.burn_success);
-    }, {player: player, duration: duration});
+    });
+    request.execute({player: player, duration: duration});
 }
 
 function player_heal(player)
 {
     if (confirm(playerutilsLang.heal_confirm))
     {
-        apiCall('player', 'heal', function(){
+        var request = new ApiRequest('player', 'heal');
+        request.onSuccess(function(){
             alert(playerutilsLang.heal_success);
-        }, {player: player});
+        });
+        request.execute({player: player});
     }
 }
 
@@ -65,18 +79,22 @@ function player_tell(player)
     {
         return;
     }
-    apiCall('player', 'tell', function(){
+    var request = new ApiRequest('player', 'tell');
+    request.onSuccess(function(){
         alert(playerutilsLang.tell_success);
-    }, {player: player, message: message.substr(0, 100)});
+    });
+    request.execute({player: player, message: message.substr(0, 100)});
 }
 
 function player_clearinv(player)
 {
     if (confirm(playerutilsLang.clearinv_confirm))
     {
-        apiCall('player', 'clearinventory', function(){
+        var request = new ApiRequest('player', 'clearinventory');
+        request.onSuccess(function(){
             alert(playerutilsLang.clearinv_success);
-        }, {player: player});
+        });
+        request.execute({player: player});
     }
 }
 
@@ -107,14 +125,13 @@ function player_give(player)
         amount = '64';
     }
     amount = amount.replace(/\s/g, '');
-    apiCall('player', 'give', function(){
+    var request = new ApiRequest('player', 'give');
+    request.onSuccess(function(){
         alert(playerutilsLang.give_success);
-    }, {player: player, itemid: item, data: data, amount: amount});
+    });
+    request.execute({player: player, itemid: item, data: data, amount: amount});
 }
 
-/**
- * @todo player-to-player teleportation
- */
 function player_teleport(player)
 {
     var target = prompt(playerutilsLang.teleport_target, '');
@@ -138,7 +155,9 @@ function player_teleport(player)
         alert(playerutilsLang.teleport_invalidtarget);
         return;
     }
-    apiCall('player', 'teleport', function(){
+    var request = new ApiRequest('player', 'teleport');
+    request.onSuccess(function(){
         alert(playerutilsLang.teleport_success);
-    }, data);
+    });
+    request.execute(data);
 }
