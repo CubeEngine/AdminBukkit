@@ -120,11 +120,3 @@ function ApiRequest(controller, action)
         return $.ajax(options);
     }
 }
-
-ApiRequest.prototype.ready = false;
-
-jQuery(function(){
-    ApiRequest.ready = true;
-}).bind('unload', function(){
-    ApiRequest.ready = false;
-});
