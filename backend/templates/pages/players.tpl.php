@@ -25,7 +25,6 @@
     
     var list = document.getElementById('players_list');
     var request = new ApiRequest(dataSource[0], dataSource[1]);
-    request.method('GET');
     request.data({world: world});
     request.onSuccess(function(data){
         refreshData(data);
