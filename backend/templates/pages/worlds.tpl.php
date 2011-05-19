@@ -8,38 +8,37 @@
 </ul>
 <?php $this->displayTemplateFile('generic/worldutils') ?>
 <script type="text/javascript">
-    $('div.toolbar a.button').click(function(){
-        refreshData();
-        return false;
+    var list = document.getElementById('worldlist');
+    var request = new ApiRequest('world', 'list');
+    request.onSuccess(refreshData);
+    request.onFailure(function(){
+        alert('failed to load list');
     });
     
-    function refreshData()
+    function refreshData(data)
     {
-        var list = document.getElementById('worldlist');
-        apiCall('world', 'list', function(data){
-            list.innerHTML = '';
-            if (data == '')
+        list.innerHTML = '';
+        if (data == '')
+        {
+            var li = document.createElement('li');
+            li.innerHTML = '<?php $lang->noworlds ?>';
+            list.appendChild(li)
+        }
+        else
+        {
+            var worlds = data.split(',');
+            for (var i = 0; i < worlds.length; i++)
             {
                 var li = document.createElement('li');
-                li.innerHTML = '<?php $lang->noworlds ?>';
-                list.appendChild(li)
+                li.setAttribute('class', 'arrow');
+                var a = document.createElement('a');
+                a.innerHTML = worlds[i];
+                a.href = '#';
+                $(a).click(overlayHandler);
+                li.appendChild(a);
+                list.appendChild(li);
             }
-            else
-            {
-                var worlds = data.split(',');
-                for (var i = 0; i < worlds.length; i++)
-                {
-                    var li = document.createElement('li');
-                    li.setAttribute('class', 'arrow');
-                    var a = document.createElement('a');
-                    a.innerHTML = worlds[i];
-                    a.href = '#';
-                    $(a).click(overlayHandler);
-                    li.appendChild(a);
-                    list.appendChild(li);
-                }
-            }
-        });
+        }
     }
     
     function overlayHandler(e)
@@ -52,10 +51,16 @@
     function init()
     {
         prepareOverlay('#world_overlay');
-        refreshData();
+        request.execute();
     }
 
-    $('#world_create').click(world_create);
+    $('div.toolbar a.button').click(function(){
+        request.execute();
+        return false;
+    });
+    $('#world_create').click(function(){
+        world_create(request.execute);
+    });
     $('#world_time').click(function(){
         world_time(world);
         return false;
