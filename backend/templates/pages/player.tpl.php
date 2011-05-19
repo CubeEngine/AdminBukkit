@@ -22,7 +22,6 @@
 <?php $this->displayTemplateFile('generic/playerutils') ?>
 <script type="text/javascript">
     var request = new ApiRequest('player', 'info');
-    request.method('GET');
     request.data({player: player, format:'json'});
     request.onSuccess(function(data){
         refreshData(data);
@@ -31,9 +30,9 @@
         alert('Failed to load infos');
     });
     
-    function refreshData(raw)
+    function refreshData(data)
     {
-        var data = eval('(' + raw + ')');
+        data = eval('(' + data + ')');
         document.getElementById('player_name').innerHTML = data.name;
         document.getElementById('player_displayname').innerHTML = data.displayName;
         document.getElementById('player_health').innerHTML = data.health;
