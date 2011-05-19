@@ -28,11 +28,10 @@
     request.method('GET');
     request.data({world: world});
     request.onSuccess(function(data){
-        alert('List loaded!');
         refreshData(data);
     });
     request.onFailure(function(){
-        alert('Fail while loading list!');
+        alert('Failed to load the list');
     });
 
     function refreshData(data)
