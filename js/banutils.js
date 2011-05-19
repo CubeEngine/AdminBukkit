@@ -2,6 +2,7 @@ var banutilsLang = new BanutilsLang();
 
 function ban_player(player, sync)
 {
+    var $result = false;
     if (!player)
     {
         player = prompt(banutilsLang.banplayer_prompt);
@@ -10,18 +11,18 @@ function ban_player(player, sync)
     {
         if (!confirm(banutilsLang.banplayer_confirm))
         {
-            return false;
+            return $result;
         }
     }
     if (!player)
     {
-        return false;
+        return $result;
     }
     player = player.replace(/\s/g, '');
     if (!player.match(/^[\w\d\.]+$/i))
     {
         alert(banutilsLang.name_invalid);
-        return false;
+        return $result;
     }
     var data = Object();
     data.player = player;
@@ -30,10 +31,14 @@ function ban_player(player, sync)
     {
         data.reason = reason;
     }
-    apiCall('server', 'ban', function(){
+    var request = new ApiRequest('server', 'ban');
+    request.onSuccess(function(){
         alert(banutilsLang.banplayer_success);
-    }, data, 'GET', false, !!sync);
-    return true;
+        $result = true;
+    });
+    request.sync(!!sync);
+    request.execute(data);
+    return $result;
 }
 function ban_ip(ip)
 {
@@ -58,9 +63,11 @@ function ban_ip(ip)
         alert(banutilsLang.ip_invalid);
         return;
     }
-    apiCall('server', 'ban', function(){
+    var request = new ApiRequest('server', 'ban');
+    request.onSuccess(function(){
         alert(banutilsLang.banip_success);
-    }, {ip: ip});
+    });
+    request.execute({ip: ip});
 }
 
 function unban_player(player)
@@ -79,9 +86,11 @@ function unban_player(player)
         alert(banutilsLang.name_invalid);
         return;
     }
-    apiCall('server', 'unban', function(){
+    var request = new ApiRequest('server', 'unban');
+    request.onSuccess(function(){
         alert(banutilsLang.unbanplayer_success);
-    }, {player: player});
+    });
+    request.execute({player: player});
 }
 function unban_ip(ip)
 {
@@ -99,7 +108,9 @@ function unban_ip(ip)
         alert(banutilsLang.ip_invalid);
         return;
     }
-    apiCall('server', 'unban', function(){
+    var request = new ApiRequest('server', 'unban');
+    request.onSuccess(function(){
         alert(banutilsLang.unbanip_success);
-    }, {ip: ip});
+    });
+    request.execute({ip: ip});
 }
