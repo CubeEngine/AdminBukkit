@@ -21,59 +21,64 @@
 </ul>
 <?php $this->displayTemplateFile('generic/worldutils') ?>
 <script type="text/javascript">
-    
-    $('.toolbar a.button').click(function(){
-        refreshData();
-        return false;
-    });
-    
     var world = '<?php echo $world ?>';
-    function refreshData()
+    
+    var request = new ApiRequest('world', 'info');
+    request.onSuccess(refreshData);
+    request.onFailure(function(){
+        alert('failed to load infos');
+    });
+    request.data({world: world, format: 'json'});
+    
+    function refreshData(data)
     {
-        apiCall('world', 'info', function(raw){
-            var data = eval('(' + raw + ')');
-            document.getElementById('world_name').innerHTML = data.name;
-            document.getElementById('world_type').innerHTML = data.environment.toLowerCase();
-            document.getElementById('world_seed').innerHTML = data.seed;
-            document.getElementById('world_pvp_display').innerHTML = (data.pvp ? '<?php $genericLang->Yes ?>' : '<?php $genericLang->No ?>');
-            for (var i = 0; i < data.spawnLocation.length; i++)
-            {
-                document.getElementById('world_spawn' + i).innerHTML = data.spawnLocation[i];
-            }
-            var time = document.getElementById('world_time_display');
-            time.innerHTML = data.time;
-            time.setAttribute('title', data.fullTime);
-            document.getElementById('world_weather').innerHTML = data.weatherDuration;
-            document.getElementById('world_thunder').innerHTML = data.thunderDuration;
-            document.getElementById('world_players').innerHTML = data.players;
-        }, {world: world, format:'json'});
+        data = eval('(' + data + ')');
+        document.getElementById('world_name').innerHTML = data.name;
+        document.getElementById('world_type').innerHTML = data.environment.toLowerCase();
+        document.getElementById('world_seed').innerHTML = data.seed;
+        document.getElementById('world_pvp_display').innerHTML = (data.pvp ? '<?php $genericLang->Yes ?>' : '<?php $genericLang->No ?>');
+        for (var i = 0; i < data.spawnLocation.length; i++)
+        {
+            document.getElementById('world_spawn' + i).innerHTML = data.spawnLocation[i];
+        }
+        var time = document.getElementById('world_time_display');
+        time.innerHTML = data.time;
+        time.setAttribute('title', data.fullTime);
+        document.getElementById('world_weather').innerHTML = data.weatherDuration;
+        document.getElementById('world_thunder').innerHTML = data.thunderDuration;
+        document.getElementById('world_players').innerHTML = data.players;
     }
     
     function init()
     {
         $('#world_info').parent('li').remove();
         prepareOverlay('#world_overlay');
-        refreshData();
+        request.execute();
     }
+    
+    $('.toolbar a.button').click(function(){
+        request.execute();
+        return false;
+    });
     
     $('#world_time').click(function(){
         world_time(world);
-        refreshData();
+        request.execute();
         return false;
     });
     $('#world_pvp').click(function(){
         world_pvp(world);
-        refreshData();
+        request.execute();
         return false;
     });
     $('#world_storm').click(function(){
         world_storm(world);
-        refreshData();
+        request.execute();
         return false;
     });
     $('#world_spawn').click(function(){
         world_spawn(world);
-        refreshData();
+        request.execute();
         return false;
     });
     $('#world_playerlist').click(function(){
