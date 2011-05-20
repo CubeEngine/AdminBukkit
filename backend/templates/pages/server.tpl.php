@@ -34,67 +34,84 @@
 <script type="text/javascript" src="backend/javascriptlang.php?file=banutils"></script>
 <script type="text/javascript" src="js/banutils.js"></script>
 <script type="text/javascript">
-    $('.toolbar a.button').click(function(){
-        if (confirm('<?php $lang->confirm_reload ?>'))
-        {
-            apiCall('server', 'reload', function(){
-                alert('<?php $lang->reload_success ?>');
-                refreshData();
-            });
-        }
-        return false;
+    var infoRequest = new ApiRequest('server', 'info');
+    infoRequest.onSuccess(refreshData);
+    infoRequest.onFailure(function(){
+        alert('failed to load infos');
+    });
+    infoRequest.data({format: 'json'});
+    
+    var statsRequest = new ApiRequest('server', 'stats');
+    statsRequest.onSuccess(refreshMemStats);
+    statsRequest.onBeforeSend(null);
+    statsRequest.onComplete(null);
+    statsRequest.data({format: 'json'});
+    statsRequest.onFailure(function(){
+        alert('failed to load stats');
     });
     
-    function refreshData()
+    function refreshData(data)
     {
-        apiCall('server', 'info', function(raw){
-            var data = eval('(' + raw + ')');
-            $('#server_name').html(data.name);
-            $('#server_name').attr('title', 'ID: ' + data.id);
-            $('#server_ip').html(data.ip);
-            $('#server_port').html(data.port);
-            $('#server_online').html(data.players);
-            $('#server_maxplayers').html(data.maxplayers);
-            $('#server_worlds').html(data.worlds);
-            $('#server_plugins').html(data.plugins);
-            
-            var minutes = Math.floor(data.uptime / 60);
-            var seconds = data.uptime % 60;
-            var hours = Math.floor(minutes / 60);
-            minutes = minutes % 60;
-            var days = Math.floor(hours / 24);
-            hours = hours % 24;
-            var format = '<?php $lang->uptime_format ?>';
-            $('#server_uptime').html(format.replace('{0}', days).replace('{1}', hours).replace('{2}', minutes).replace('{3}', seconds));
-        }, {format: 'json'});
+        data = eval('(' + data + ')');
+        $('#server_name').html(data.name);
+        $('#server_name').attr('title', 'ID: ' + data.id);
+        $('#server_ip').html(data.ip);
+        $('#server_port').html(data.port);
+        $('#server_online').html(data.players);
+        $('#server_maxplayers').html(data.maxplayers);
+        $('#server_worlds').html(data.worlds);
+        $('#server_plugins').html(data.plugins);
+
+        var minutes = Math.floor(data.uptime / 60);
+        var seconds = data.uptime % 60;
+        var hours = Math.floor(minutes / 60);
+        minutes = minutes % 60;
+        var days = Math.floor(hours / 24);
+        hours = hours % 24;
+        var format = '<?php $lang->uptime_format ?>';
+        $('#server_uptime').html(format.replace('{0}', days).replace('{1}', hours).replace('{2}', minutes).replace('{3}', seconds));
     }
     
-    function refreshMemStats()
+    function refreshMemStats(data)
     {
-        apiCall('server', 'stats', function(data){
-            data = eval('(' + data + ')');
-            $('#stats_ram_free').html(Math.round(data.freememory / 1024 / 1024));
-            $('#stats_ram_max').html(Math.round(data.maxmemory / 1024 / 1024));
-        }, {format: 'json'}, 'GET', true);
+        data = eval('(' + data + ')');
+        $('#stats_ram_free').html(Math.round(data.freememory / 1024 / 1024));
+        $('#stats_ram_max').html(Math.round(data.maxmemory / 1024 / 1024));
     }
     
     $('#stats_ram').click(function(e){
         e.preventDefault();
         if (confirm('<?php $lang->gc_confirm ?>'))
         {
-            apiCall('server', 'garbagecollect', function(){
+            var request = new ApiRequest('server', 'garbagecollect');
+            request.onSuccess(function(){
                 alert('<?php $lang->gc_success ?>');
             });
+            request.execute();
         }
+    });
+    $('.toolbar a.button').click(function(){
+        if (confirm('<?php $lang->confirm_reload ?>'))
+        {
+            var request = new ApiRequest('server', 'reload');
+            request.onSuccess(function(){
+                alert('<?php $lang->reload_success ?>');
+                infoRequest.execute();
+            });
+            request.execute();
+        }
+        return false;
     });
     $('#stop').click(function(){
         if (confirm('<?php $lang->stop_confirm ?>'))
         {
             if (confirm('<?php $lang->stop_confirm2 ?>'))
             {
-                apiCall('server', 'stop', function(){
+                var request = new ApiRequest('server', 'stop');
+                request.onSuccess(function(){
                     alert('<?php $lang->stop_success ?>');
                 });
+                request.execute();
             }
         }
     });
@@ -104,9 +121,11 @@
         {
             return false;
         }
-        apiCall('server', 'broadcast', function(){
+        var request = new ApiRequest('server', 'broadcast')
+        request.onSuccess(function(){
             alert('<?php $lang->broadcast_success ?>');
-        }, {message: message});
+        });
+        request.execute({message: message.substr(0, 100)});
         return false;
     });
     prepareOverlay('#ban_overlay');
@@ -116,8 +135,10 @@
     });
     $('#ban_player').click(function(e){
         e.preventDefault();
-        ban_player();
-        refreshData();
+        if (ban_player())
+        {
+            refreshData();
+        }
     });
     $('#ban_ip').click(function(e){
         e.preventDefault();
@@ -134,8 +155,8 @@
     
     function init()
     {
-        refreshData();
-        refreshMemStats();
-        setInterval(refreshMemStats, 5000);
+        infoRequest.execute();
+        statsRequest.execute();
+        setInterval(statsRequest.execute, 5000);
     }
 </script>
