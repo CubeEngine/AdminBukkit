@@ -47,15 +47,19 @@
     <li><a href="#" id="plugin_reload"><?php $lang->reloadplugin ?></a></li>
 </ul>
 <script type="text/javascript">
+    var plugin = '<?php echo $pluginName ?>';
+    
     $('#plugin_disable').click(function(){
         alert(genericLang.function_disabled);
         return false;
         
         if (confirm('<?php $lang->confirmdisable ?>'))
         {
-            apiCall('plugin', '', function(){
+            var request = new ApiRequest('plugin', 'disable');
+            request.onSuccess(function(){
                 alert('<?php $lang->disablesuccess ?>');
-            })
+            });
+            request.execute({plugin: plugin});
         }
         return false;
     });
@@ -66,9 +70,11 @@
         
         if (confirm('<?php $lang->confirmenable ?>'))
         {
-            apiCall('plugin', '', function(){
+            var request = new ApiRequest('plugin', 'enable');
+            request.onSuccess(function(){
                 alert('<?php $lang->enabledsuccess ?>');
-            })
+            });
+            request.execute({plugin: plugin});
         }
         return false;
     });
@@ -79,9 +85,11 @@
         
         if (confirm('<?php $lang->confirmreload ?>'))
         {
-            apiCall('plugin', '', function(){
+            var request = new ApiRequest('plugin', 'reload');
+            request.onSuccess(function(){
                 alert('<?php $lang->reloadsuccess ?>');
-            })
+            });
+            request.execute({plugin: plugin});
         }
         return false;
     });
