@@ -76,9 +76,11 @@
     function init()
     {
         prepareOverlay('#player_overlay');
-        apiCall("server", "maxplayers", function(data){
+        var maxPlayersRequest = new ApiRequest('server', 'maxplayers');
+        maxPlayersRequest.onSuccess(function(data){
             $('#players_limit').html(data);
         });
+        maxPlayersRequest.execute();
         request.execute();
         setInterval(request.execute, 10000);
     }
