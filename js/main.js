@@ -69,30 +69,38 @@ function linkHandler(e)
     return false;
 }
 
-function touchHandler(e)
+function touchTooltipHandler(e)
 {
     e.preventDefault();
-    $('.toolbar h1').html('touch started');
-    var target = $(e.target);
-    var moved = false;
+    var $target = $(e.target);
+    var $timeout = setTimeout(attachTooltip, 200);
+    var $tooltip = null;
     
-    function touchMove()
+    function attachTooltip()
     {
-        $('.toolbar h1').html('touch moved');
-        moved = true;
+        $tooltip = $('<div class="touchTooltip">' + $target.attr('title') + '</div>');
+        var pos = $target.position();
+        $tooltip.css('top', pos.top + e.target.offsetHeight + 'px');
+        $tooltip.css('left', pos.left + 'px');
+        $tooltip.bind('touchstart', function(){
+            $tooltip.remove();
+        });
+        $(document.body).append($tooltip);
     }
     
-    function touchEnd()
+    function removeTooltip()
     {
-        $('.toolbar h1').html('touch ended');
-        if (!moved)
+        $target.unbind('touchmove', removeTooltip).unbind('touchend', removeTooltip);
+        clearTimeout($timeout);
+        if ($tooltip != null)
         {
-            target.trigger('tap', e);
+            setTimeout(function(){
+                $tooltip.remove();
+            }, 2000);
         }
-        target.unbind('touchmove', touchMove).unbind('touchend', touchEnd);
     }
     
-    target.bind('touchend', touchMove).bind('touchmove', touchEnd);
+    $target.bind('touchend', removeTooltip).bind('touchmove', removeTooltip);
 }
 
 function historyBack(e)
@@ -144,26 +152,10 @@ function toggleOverlay(query)
     }
 }
 
-function touchEventsSupported()
-{
-    if (typeof TouchEvent != 'undefined')
-    {
-        alert('touch supported!');
-        return true;
-    }
-    else
-    {
-        alert('touch NOT supported!');
-        return false;
-}
-}
-
 $(window).unload(function(){
     ready = false;
     setProgress(true);
 });
-
-$(window).bind('touchstart', touchHandler);
 
 $(function(){
     ready = true;
@@ -183,4 +175,5 @@ $(function(){
     });
     $('a[href]:not(a[target=_blank])').click(linkHandler);
     $('.toolbar a.back').click(historyBack);
+    $('*[title]').bind('touchstart', touchTooltipHandler);
 });

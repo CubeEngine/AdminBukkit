@@ -67,3 +67,13 @@ a.back:hover {
 #plugin .contentSlide div {
     display: none;
 }
+
+div.touchTooltip {
+    position: absolute;
+    z-index: 110;
+    background: rgba(0, 0, 0, .7);
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #FFF;
+    padding: 3px;
+}
