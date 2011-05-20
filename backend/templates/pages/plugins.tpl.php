@@ -9,65 +9,76 @@
 </ul>
 
 <script type="text/javascript">
+    var list = document.getElementById('pluginlist');
+    var request = new ApiRequest('plugin', 'list');
+    request.onSuccess(refreshData);
+    request.onFailure(function(){
+        alert('failed to load list!');
+    });
+    
+    function refreshData(data)
+    {
+        list.innerHTML = '';
+        if (data == '')
+        {
+            var li = document.createElement('li');
+            li.innerHTML = '<?php $lang->noplugins ?>';
+            list.appendChild(li)
+        }
+        else
+        {
+            var plugins = data.split(',');
+            for (var i = 0; i < plugins.length; i++)
+            {
+                var li = document.createElement('li');
+                li.setAttribute('class', 'arrow');
+                var a = document.createElement('a');
+                a.innerHTML = plugins[i];
+                a.href = 'plugin.html?plugin=' + plugins[i];
+                $(a).click(linkHandler);
+                li.appendChild(a);
+                list.appendChild(li);
+            }
+        }
+    }
+    
+    function init()
+    {
+        request.execute();
+    }
     
     $('div.toolbar a.button').click(function(){
-        refreshData();
+        request.execute();
         return false;
     });
     
     $('#plugins_load').click(function(){
         alert(genericLang.function_disabled);
         return false;
+        
         var pluginName = prompt('<?php $lang->pluginfilename ?>', '');
         if (!pluginName)
         {
             return false;
         }
         pluginName = pluginName.replace(/\.jar$/i, '');
-        apiCall('plugin', 'load', function(){}, {plugin: pluginName});
+        var loadRequest = new ApiRequest('plugin', 'load');
+        loadRequest.onSuccess(function(){
+            request.execute();
+        });
+        loadRequest.execute({plugin: pluginName});
         return false;
     });
     $('#plugins_reloadall').click(function(){
         if (confirm('<?php $lang->confirm_reloadall ?>'))
         {
-            apiCall('plugin', 'reloadall', function(){
+            var reloadAllRequest = new ApiRequest('plugin', 'reload');
+            reloadAllRequest.onSuccess(function(){
                 alert('<?php $lang->reload_success ?>');
+                request.execute();
             });
+            reloadAllRequest.execute();
         }
         return false;
     });
-    
-    function refreshData()
-    {
-        var list = document.getElementById('pluginlist');
-        apiCall('plugin', 'list', function(data){
-            list.innerHTML = '';
-            if (data == '')
-            {
-                var li = document.createElement('li');
-                li.innerHTML = '<?php $lang->noplugins ?>';
-                list.appendChild(li)
-            }
-            else
-            {
-                var plugins = data.split(',');
-                for (var i = 0; i < plugins.length; i++)
-                {
-                    var li = document.createElement('li');
-                    li.setAttribute('class', 'arrow');
-                    var a = document.createElement('a');
-                    a.innerHTML = plugins[i];
-                    a.href = 'plugin.html?plugin=' + plugins[i];
-                    $(a).click(linkHandler);
-                    li.appendChild(a);
-                    list.appendChild(li);
-                }
-            }
-        });
-    }
-    
-    function init()
-    {
-        refreshData();
-    }
 </script>
