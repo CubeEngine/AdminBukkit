@@ -45,7 +45,8 @@
             'SessIDFilter'                      => 'SessIDFilter.php',
             'Request'                           => 'Request.php',
             'Lang'                              => 'lang.php',
-            'Logger'                            => 'Logger.php'
+            'Logger'                            => 'Logger.php',
+            'Statistics'                        => 'Statistics.php'
         );
         
         if (isset($classmap[$classname]))
