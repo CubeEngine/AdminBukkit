@@ -23,7 +23,7 @@ function ApiRequest(controller, action)
     
     this.onSuccess = function(callback)
     {
-        if (callback && (callback instanceof Function))
+        if (typeof callback == 'function' || callback == null)
         {
             $onSuccess = callback;
         }
@@ -31,7 +31,7 @@ function ApiRequest(controller, action)
     
     this.onFailure = function(callback)
     {
-        if (callback && (callback instanceof Function))
+        if (typeof callback == 'function' || callback == null)
         {
             $onFailure = callback;
         }
@@ -39,7 +39,7 @@ function ApiRequest(controller, action)
     
     this.onBeforeSend = function(callback)
     {
-        if (callback && (callback instanceof Function))
+        if (typeof callback == 'function' || callback == null)
         {
             $onBeforeSend = callback;
         }
@@ -47,7 +47,7 @@ function ApiRequest(controller, action)
     
     this.onComplete = function(callback)
     {
-        if (callback && (callback instanceof Function))
+        if (typeof callback == 'function' || callback == null)
         {
             $onComplete = callback;
         }
