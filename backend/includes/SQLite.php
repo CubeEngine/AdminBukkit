@@ -16,6 +16,15 @@
   "serveraddress" text(500) NOT NULL,
   "apiport" text(500) NOT NULL,
   "apipassword" text(500) NOT NULL
+);
+CREATE TABLE "statistics" (
+  "index" text(50) NOT NULL PRIMARY KEY,
+  "value" integer NOT NULL
+);
+CREATE TABLE "servers" (
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "uid" integer NOT NULL,
+  "serverdata" text NOT NULL
 )';
 
         private function __construct()
