@@ -42,7 +42,6 @@
             'User'                              => 'User.php',
             'Text'                              => 'Text.php',
             'ApiValidator'                      => 'ApiValidator.php',
-            //'History'                           => 'History.php',
             'SessIDFilter'                      => 'SessIDFilter.php',
             'Request'                           => 'Request.php',
             'Lang'                              => 'lang.php',
@@ -128,9 +127,4 @@
     session_name(Config::instance('bukkitweb')->get('sessionName', 'sid'));
     //session_set_cookie_params(Config::instance('bukkitweb')->get('sessionCookieLiftime', 3600));
     session_start();
-    
-    /*if (!isset($_SESSION['history']) || $_SESSION['history'] === null)
-    {
-        $_SESSION['history'] = new History();
-    }*/
 ?>
