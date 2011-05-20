@@ -1,6 +1,5 @@
-<?php
-    $lang = Lang::instance('generic');
-?><div id="<?php echo $pageName ?>" class="current">
+<?php $lang = Lang::instance('generic') ?>
+<div id="<?php echo $pageName ?>" class="current">
     <?php $this->subTemplate('toolbar') ?>
     <?php if (isset($_GET['msg'])): ?>
     <h2><?php $lang->message ?>:</h2>
