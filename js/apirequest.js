@@ -8,6 +8,10 @@ function ApiRequest(controller, action)
     var $controller = controller;
     var $action = (!!action ? action : '');
     var $url = 'backend/apiproxy.php/' + $controller + '/' + $action;
+    if (SESS_APPEND)
+    {
+        $url = appendSession($url);
+    }
     var $data = null;
     var $sync = false;
     var $method = 'GET';
