@@ -64,3 +64,6 @@ a.back:hover {
     cursor: pointer;
 }
 
+#plugin .contentSlide div {
+    display: none;
+}

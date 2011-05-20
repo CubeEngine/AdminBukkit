@@ -12,29 +12,35 @@
     <?php if ($authors !== null): ?>
     <li class="contentSlide">
         <?php $lang->authors ?>:<br>
+        <div>
         <?php foreach ($authors as $command): ?>
         &nbsp;&nbsp;- <?php echo $command ?><br>
         <?php endforeach ?>
+        </div>
     </li>
     <?php endif ?>
     <?php if ($commands !== null): ?>
     <li class="contentSlide">
         <?php $lang->commands ?>:<br>
+        <div>
         <?php foreach ($commands as $command => $infos): ?>
         &nbsp;&nbsp;- <?php echo $command ?><br>
         <?php endforeach ?>
+        </div>
     </li>
     <?php endif ?>
     <?php if ($depend !== null): ?>
     <li class="contentSlide">
         <?php $lang->dependencies ?>:<br>
+        <div>
         <?php foreach ($depend as $dependency): ?>
         &nbsp;&nbsp;- <?php echo $dependency ?><br>
         <?php endforeach ?>
+        </div>
     </li>
     <?php endif ?>
     <?php
-        $offset = strlen($dataFolder) - 40;
+        $offset = strlen($dataFolder) - 30;
     ?>
     <li><?php $lang->datafolder ?>: <span title="<?php echo $dataFolder ?>"><?php echo '...' . substr($dataFolder, $offset) ?></span></li>
 </ul>
@@ -92,5 +98,9 @@
             request.execute({plugin: plugin});
         }
         return false;
+    });
+    
+    $('#plugin .contentSlide').click(function(e){
+        $(e.target).children('div').toggle('fast');
     });
 </script>
