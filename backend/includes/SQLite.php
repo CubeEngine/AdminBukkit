@@ -70,6 +70,7 @@ CREATE TABLE "servers" (
                 {
                     throw new Exception('Failed to connect to the database!');
                 }
+                $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->connected = true;
             }
             if ($init)
