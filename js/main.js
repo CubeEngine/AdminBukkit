@@ -232,7 +232,7 @@ $(window).bind('touchstart', touchHandler);
 
 $(function(){
     ready = true;
-    if (init && init instanceof Function)
+    if (typeof init == 'function')
     {
         init();
     }
