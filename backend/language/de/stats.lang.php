@@ -17,7 +17,7 @@
         'stat_api.succeeded.server_version'         => '{0} Mal wurde die Serverversion abgefragt.',
         'stat_api.succeeded.server_ban'             => '{0} Mal wurde jemand gebannt.',
         'stat_api.succeeded.server_bans'            => '{0} Mal wurden die Bannlisten abgefragt.',
-        'stat_api.succeeded.server_unban'           => '{0} Mal wurde jedem entbannt.',
+        'stat_api.succeeded.server_unban'           => '{0} Mal wurde jemand entbannt.',
         'stat_api.succeeded.server_garbagecollect'  => '{0} Mal wurde der Garbage Collector ausgeführt.',
         'stat_api.succeeded.server_kill'            => '{0} Mal wurde der Server gekillt.',
         'stat_api.succeeded.server_stop'            => '{0} Mal wurde der Server beendet',
