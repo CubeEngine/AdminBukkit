@@ -30,6 +30,9 @@
                 $result['apipassword'] = $crypter->decrypt($result['apipassword']);
                 unset($result['password']);
                 $this->userdata = $result;
+                
+                // Stats
+                Statistics::increment('user.login');
             }
             catch (PDOException $e)
             {
@@ -112,6 +115,9 @@
                     $crypter->encrypt($apiport),
                     $crypter->encrypt($apipass)
                 ), false);
+                
+                // Stats
+                Statistics::increment('user.register');
             }
             catch (PDOException $e)
             {
@@ -177,6 +183,9 @@
         public static function logout()
         {
             unset($_SESSION['user']);
+                
+            // Stats
+            Statistics::increment('user.logout');
         }
         
         public static function loggedIn()

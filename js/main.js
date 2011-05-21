@@ -175,5 +175,5 @@ $(function(){
     });
     $('a[href]:not(a[target=_blank])').click(linkHandler);
     $('.toolbar a.back').click(historyBack);
-    $('*[title]').bind('touchstart', touchTooltipHandler);
+    $('*[title]').live('touchstart', touchTooltipHandler);
 });

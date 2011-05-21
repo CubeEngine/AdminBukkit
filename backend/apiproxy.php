@@ -36,6 +36,17 @@
         $http->setRequestBody($params);
 
         $responseStatus = $http->executeRequest();
+        
+        // Stats
+        $parts = explode('/', trim($_SERVER['PATH_INFO'], '/'));
+        if ($responseStatus == 200 || $responseStatus == 204)
+        {
+            Statistics::increment('api.succeeded.' . $parts[0] . '_' . $parts[1]);
+        }
+        else
+        {
+            Statistics::increment('api.failed.' . $parts[0] . '_' . $parts[1]);
+        }
         header($http->getResponseProtocol(). ' ' . $responseStatus . ' ' . $http->getResponseStatusText());
         echo $http->getResponseBody();
     }
