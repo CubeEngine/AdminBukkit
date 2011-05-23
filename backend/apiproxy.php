@@ -21,21 +21,8 @@
     
     try
     {
-        $http = new HttpClient();
-        $target = 'http://' . $_SESSION['user']->getServerAddress() . ':' . $_SESSION['user']->getApiPort() . $_SERVER['PATH_INFO'];
-        $params = $_POST;
-        $params['password'] = $_SESSION['user']->getApiPassword();
-        $params = $http->generateQueryString($params);
-        $http->setMethod(new PostRequestMethod());
-        if (count($_GET))
-        {
-            $target .= '?' . $http->generateQueryString($_GET);
-        }
-        $http->setTarget($target);
-        $http->addHeader(new HttpHeader('Connection', 'close'));
-        $http->setRequestBody($params);
-
-        $response = $http->executeRequest();
+        $api = new ApiBukkit($_SESSION['user']->getServerAddress(), $_SESSION['user']->getApiPort(), $_SESSION['user']->getApiPassword());
+        $response = $api->requestPath($_SERVER['PATH_INFO'], array_merge($_POST, $_GET));
         $responseStatus = $response->getStatus();
         
         // Stats

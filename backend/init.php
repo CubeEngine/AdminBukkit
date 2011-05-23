@@ -47,7 +47,8 @@
             'Request'                           => 'Request.php',
             'Lang'                              => 'lang.php',
             'Logger'                            => 'Logger.php',
-            'Statistics'                        => 'Statistics.php'
+            'Statistics'                        => 'Statistics.php',
+            'ApiBukkit'                         => 'ApiBukkit.php'
         );
         
         if (isset($classmap[$classname]))

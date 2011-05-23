@@ -19,13 +19,10 @@
         }
         
         public static function validApiPass($host, $port, $pass)
-        {   
-            $target = "http://$host:$port/pass/";
-            $http = new HttpClient();
-            $http->setTarget($target);
-            $http->setRequestBody($http->generateQueryString(array('password' => $pass)));
-            $http->addHeader(new HttpHeader('Connection', 'close'));
-            return ($http->executeRequest(new PostRequestMethod()) == 204);
+        {
+            $api = new ApiBukkit($host, $port, $pass);
+            $response = $api->request('validate', 'password');
+            return ($response->getStatus() == 204);
         }
     }
 ?>
