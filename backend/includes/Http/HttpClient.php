@@ -753,8 +753,17 @@
                     $target .= '/';
                 }
                 $pos = strpos($target, '/');
-                $this->host = substr($target, 0, $pos);
-                $this->hostIp = gethostbyname(substr($target, 0, $pos));
+                $tmp = explode(':', substr($target, 0, $pos));
+                $this->host = $tmp[0];
+                if (count($tmp) > 1)
+                {
+                    $port = intval($tmp[1]);
+                    if ($port > 0)
+                    {
+                        $this->port = $port;
+                    }
+                }
+                $this->hostIp = gethostbyname($this->host);
                 $this->file = substr($target, $pos);
                 $this->dir = substr($this->file, 0, strrpos($this->file, '/') + 1);
             }
