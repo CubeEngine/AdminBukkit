@@ -37,13 +37,6 @@
         protected $requestHeaders;
         protected $requestMethod;
 
-        protected $rawResponseHeader;
-        protected $responseBody;
-        protected $responseHeaders;
-        protected $responseProtocol;
-        protected $responseStatusCode;
-        protected $responseStatusText;
-
         public function serialize()
         {
             $data = array(
@@ -117,12 +110,6 @@
             $this->cookies = array();
             $this->requestHeaders = array();
             $this->requestMethod = new GetRequestMethod();
-
-            $this->rawResponseHeader = '';
-            $this->responseBody = '';
-            $this->responseProtocol = '';
-            $this->responseStatusCode = 0;
-            $this->responseHeaders = array();
         }
 
         /**
@@ -143,7 +130,22 @@
          */
         public function __toString()
         {
-            return $this->responseBody;
+            $target = 'http';
+            if ($this->ssl)
+            {
+                $target .= 's';
+            }
+            $target .= $this->host;
+            if ($this->ssl && $this->port != 443)
+            {
+                $target .= ':' . $this->port;
+            }
+            elseif (!$this->ssl && $this->port != 80)
+            {
+                $target .= ':' . $this->port;
+            }
+            $target .= $this->file;
+            return $target;
         }
 
         /**
@@ -283,8 +285,8 @@
             {
                 $this->setTarget($page);
             }
-            $this->executeRequest(new GetRequestMethod());
-            return $this->responseBody;
+            $response = $this->executeRequest(new GetRequestMethod());
+            return $response->getBody();
         }
 
         /**
@@ -736,9 +738,7 @@
         public function setTarget($target)
         {
             if (preg_match('/^https?:\/\//si', trim($target)))
-            {
-                $this->debug_print_important('HTTP::setTarget() => absolutes Ziel (mit Protokoll)');
-
+            {  // absolute
                 $target = strtolower(trim($target));
                 $pos = strpos($target, '://');
                 $this->port = 80;
@@ -768,9 +768,7 @@
                 $this->dir = substr($this->file, 0, strrpos($this->file, '/') + 1);
             }
             elseif (strpos(trim($target), '/') === 0)
-            {
-                $this->debug_print_important('HTTP::setTarget() => absolutes Ziel (ohne Protokoll)');
-
+            { // host relative
                 if (!$this->host || !$this->hostIp)
                 {
                     throw new Exception('There was no host set while setting a absolute target without protocol or host!');
@@ -778,10 +776,8 @@
                 $this->file = trim($target);
                 $this->dir = substr($this->file, 0, strrpos($this->file, '/') + 1);
             }
-            else
+            else // path relative
             {
-                $this->debug_print_important('HTTP::setTarget() => relatives Ziel');
-
                 if ($this->dir)
                 {
                     $this->file = $this->dir . $target;
@@ -928,91 +924,6 @@
             return $this->authPass;
         }
 
-        /**
-         * Returns the named response header or null if not found
-         *
-         * @access public
-         * @param string $name the name
-         * @return HttpHeader the response header
-         */
-        public function getResponseHeader($name)
-        {
-            $name = strtolower($name);
-            if (isset($this->responseHeaders[$name]))
-            {
-                return $this->responseHeaders[$name];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /**
-         * Return all response headers
-         *
-         * @access public
-         * @return HttpHeader[] the response headers
-         */
-        public function getResponseHeaders()
-        {
-            return $this->responseHeaders;
-        }
-
-        /**
-         * Returns the protocol with which the server responded on the last request
-         *
-         * @access public
-         * @return string the protocal
-         */
-        public function getResponseProtocol()
-        {
-            return $this->responseProtocol;
-        }
-
-        /**
-         * Returns the status code of the last request
-         *
-         * @access public
-         * @return int the status code
-         */
-        public function getResponseStatusCode()
-        {
-            return $this->responseStatusCode;
-        }
-
-        /**
-         * Returns the status text of the last request
-         *
-         * @access public
-         * @return int the status code
-         */
-        public function getResponseStatusText()
-        {
-            return $this->responseStatusText;
-        }
-
-        /**
-         * Returns the response header as a string
-         *
-         * @access public
-         * @return string the raw response header
-         */
-        public function getRawResponseHeader()
-        {
-            return $this->rawResponseHeader;
-        }
-
-        /**
-         * Returns the response body of the last response
-         *
-         * @access public
-         * @return string the response body
-         */
-        public function getResponseBody()
-        {
-            return $this->responseBody;
-        }
 
         /**
          * Sets the data to send with the request
@@ -1120,18 +1031,20 @@
          * Reads the response Header
          *
          * @access protected
+         * @return string the response head
          */
         protected function readResponseHeader()
         {
-            $this->rawResponseHeader = '';
+            $responseHead = '';
             while (($tmp = fgets($this->connection, 256)))
             {
-                $this->rawResponseHeader .= $tmp;
+                $responseHead .= $tmp;
                 if (trim($tmp) == '')
                 {
                     break;
                 }
             }
+            return $responseHead;
         }
 
         /**
@@ -1142,6 +1055,7 @@
          */
         public function parseCookies($cookieHeaders)
         {
+            $cookies = array();
             foreach ($cookieHeaders as $line)
             {
                 $parts = explode(';', $line);
@@ -1179,8 +1093,9 @@
                         }
                     }
                 }
-                $this->cookies[$cookie->get('name')] = $cookie;
+                $cookies[$cookie->get('name')] = $cookie;
             }
+            return $cookies;
         }
 
         /**
@@ -1190,9 +1105,8 @@
          */
         protected function parseResponseHeader()
         {
-            $this->debug_print_block('Response-Header', $this->rawResponseHeader);
-
-            $responseHeaderLines = explode(HttpClient::LINE_ENDING, trim($this->rawResponseHeader));
+            $rawResponseHead = $this->readResponseHeader();
+            $responseHeaderLines = explode(HttpClient::LINE_ENDING, trim($rawResponseHead));
 
             $responseHeaders = array();
             $cookieHeaders = array();
@@ -1215,9 +1129,11 @@
                     $responseHeaders[strtolower($name)] = new HttpHeader($name, $value);
                 }
             }
-
-            $this->parseCookies($cookieHeaders);
-            $this->responseHeaders = $responseHeaders;
+            
+            $cookies = $this->parseCookies($cookieHeaders);
+            array_merge($this->cookies, $cookies);
+            
+            $responseHead['cookies'] = $cookies;
 
             $proto_end = @strpos($responseHeaderLines[0], ' ');
             if ($proto_end === false)
@@ -1230,43 +1146,46 @@
                 throw new Exception("Failed to parse the protocol header");
             }
 
-            $this->responseProtocol = substr($responseHeaderLines[0], 0, $proto_end);
-            $this->responseStatusCode = intval(substr($responseHeaderLines[0], $proto_end + 1, $code_end - $proto_end));
-            $this->responseStatusText = trim(substr($responseHeaderLines[0], $code_end + 1));
-
-            $this->debug_print_block('Protocol-Header', "responseProtocoll: {$this->responseProtocol}\nresponseStatusCode: {$this->responseStatusCode}\nresponseStatusText: {$this->responseStatusText}");
+            return array(
+                // Protocol
+                substr($responseHeaderLines[0], 0, $proto_end),
+                // Status
+                intval(substr($responseHeaderLines[0], $proto_end + 1, $code_end - $proto_end)),
+                // Message
+                trim(substr($responseHeaderLines[0], $code_end + 1)),
+                // Headers
+                $responseHeaders,
+                // Cookies
+                $cookies
+            );
         }
 
         /**
          * reads the response body
          *
+         * @param &string[] a reference to the response head array returned by HttpClient::parseResponseHeader
          * @access protected
+         * @return string the response body
          */
-        protected function readResponseBody()
+        protected function readResponseBody(&$responseHead)
         {
             static $redirectCodes   = array(300, 301, 302, 303, 305, 307);
 
-            $this->responseBody = '';
+            $responseBody = '';
             $BUFSIZE = 4096;
-            if (!in_array($this->responseStatusCode, $redirectCodes))
-            {
-                $this->debug_print_important('HTTP::readResponseContent() => readCode: ' . $this->responseStatusCode);
-                if (isset($this->responseHeaders['content-length']))
-                {
-                    $this->debug_print_important('HTTP::readResponseContent() => Content-Length given: ' . $this->responseHeaders['content-length']);
-
+            if (!in_array($responseHead[1], $redirectCodes))
+            { // Read
+                if (isset($responseHead[3]['content-length']))
+                { // content-length -> read the given length
                     if ($this->connectionKeepAlive)
-                    {
-                        $this->debug_print_important('Connection will be kept alive! Setting the connection non-blocking to avoid deadlocks...');
+                    { // set non blocking to avoid dead locks
                         stream_set_blocking($this->connection, 0);
                     }
 
-                    $this->responseBody = stream_get_contents($this->connection, intval($this->responseHeaders['content-length']->value));
+                    $responseBody = stream_get_contents($this->connection, intval($responseHead[3]['content-length']->value));
                 }
-                elseif (isset($this->responseHeaders['transfer-encoding']) && strcasecmp ($this->responseHeaders['transfer-encoding']->value, 'chunked') === 0)
-                {
-                    $this->debug_print_important('HTTP::readResponseContent() => Transefer-encoding is chunked');
-
+                elseif (isset($responseHead[3]['transfer-encoding']) && strcasecmp ($responseHead[3]['transfer-encoding']->value, 'chunked') === 0)
+                { // transfer-encoding: chunked -> read chunk for chunk
                     stream_set_blocking($this->connection, 1);
                     do
                     {
@@ -1282,33 +1201,29 @@
                         {
                             $tmp = substr($tmp, 0, $tmpLength - 2);
                         }
-                        $this->responseBody .= $tmp;
+                        $responseBody .= $tmp;
 
-                        //$this->responseBody .= stream_get_contents($this->connection, $chunkLength);
+                        //$responseBody .= stream_get_contents($this->connection, $chunkLength);
                     }
                     while ($chunkLength > 0);
                 }
                 else
-                {
-                    $this->debug_print_important('HTTP::readResponseContent() => Just reading everything i can get');
-
+                { // no known headers -> read everthing
                     if ($this->connectionKeepAlive)
-                    {
-                        $this->debug_print_important('Connection will be kept alive! Setting the connection non-blocking to avoid deadlocks...');
+                    { // set non blocking to avoid dead locks
                         stream_set_blocking($this->connection, 0);
                     }
                     
-                    $this->responseBody = stream_get_contents($this->connection);
+                    $responseBody = stream_get_contents($this->connection);
                 }
             }
             else
-            {
-                $this->debug_print_important('HTTP::readResponseContent() => redirectCode: ' . $this->responseStatusCode);
+            { // Redirect
                 if ($this->handleRedirects)
                 {
-                    if (isset($this->responseHeaders['location']))
+                    if (isset($responseHead[3]['location']))
                     {
-                        $this->setTarget($this->responseHeaders['location']->value);
+                        $this->setTarget($responseHead[3]['location']->value);
                         $this->executeRequest();
                     }
                     else
@@ -1320,18 +1235,19 @@
 
             stream_set_blocking($this->connection, 1);
 
-            if (isset($this->responseHeaders['content-encoding']) && strcasecmp($this->responseHeaders['content-encoding']->value, 'gzip') === 0)
-            {
-                $this->debug_print_important('HTTP::readResponseContent() => Content-Encoding is gzip, decoding...');
-                $this->responseBody = gzinflate($this->responseBody);
+            if (isset($responseHead[3]['content-encoding']) && strcasecmp($responseHead[3]['content-encoding']->value, 'gzip') === 0)
+            { // content-encoding: gzip -> decode
+                $responseBody = gzinflate($responseBody);
             }
+            
+            return $responseBody;
         }
 
         /**
          * Performes the request with the set data
          *
          * @access public
-         * @return int HTTP return code
+         * @return HttpResponse a response object
          */
         public function executeRequest(AbstractHttpRequestMethod $method = null)
         {
@@ -1345,55 +1261,21 @@
                 $this->setMethod($method);
             }
 
-            $this->debug_print_block('HTTP-Members', "Host: {$this->host}\nHost-IP: {$this->hostIp}\nSSL: " . ($this->ssl ? 'true' : 'false') . "\nPort: {$this->port}\nVerzeichnis: {$this->dir}\nDatei: {$this->file}\nCookies:\n" . print_r($this->cookies, true));
-
-
             $request = $this->requestMethod->getHeader($this) . HttpClient::LINE_ENDING . HttpClient::LINE_ENDING;
-
-            $this->debug_print_block('Request-Header', $request);
 
             $this->connect();
             $this->send($request);
-            $this->readResponseHeader();
-            $this->parseResponseHeader();
-
+            $responseHead = $this->parseResponseHeader();
+            
+            $responseBody = null;
             if ($this->requestMethod->content())
             {
-                $this->readResponseBody();
+                $responseBody = $this->readResponseBody($responseHead);
             }
 
             $this->disconnect();
 
-            return $this->responseStatusCode;
-        }
-
-        /**
-         * prints out a pre-formated box with the given title and text
-         *
-         * @access protected
-         * @param string $title the title
-         * @param string $text the text
-         */
-        protected function debug_print_block($title, $text)
-        {
-            if ($this->debug)
-            {
-                echo '<div style="background-color:white !important;"><pre><strong>' . $title . '</strong><br />' . $text . '</pre></div>';
-            }
-        }
-
-        /**
-         * prints out the given text in red
-         *
-         * @access protected
-         * @param string $text the text
-         */
-        protected function debug_print_important($text)
-        {
-            if ($this->debug)
-            {
-                echo '<div style="color:red !important;">' . $text . '</div>';
-            }
+            return new HttpReply($responseHead[0], $responseHead[1], $responseHead[2], $responseBody, $responseHead, $responseHead[3], $responseHead[4]);
         }
     }
 ?>

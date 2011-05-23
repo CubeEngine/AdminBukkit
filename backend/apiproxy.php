@@ -35,7 +35,8 @@
         $http->addHeader(new HttpHeader('Connection', 'close'));
         $http->setRequestBody($params);
 
-        $responseStatus = $http->executeRequest();
+        $response = $http->executeRequest();
+        $responseStatus = $response->getStatus();
         
         // Stats
         $parts = explode('/', trim($_SERVER['PATH_INFO'], '/'));
@@ -47,8 +48,8 @@
         {
             Statistics::increment('api.failed.' . $parts[0] . '_' . $parts[1]);
         }
-        header($http->getResponseProtocol(). ' ' . $responseStatus . ' ' . $http->getResponseStatusText());
-        echo $http->getResponseBody();
+        header(strval($response));
+        echo $response->getBody();
     }
     catch (Exception $e)
     {

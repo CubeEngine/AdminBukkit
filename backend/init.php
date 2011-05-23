@@ -29,6 +29,7 @@
             'HttpClient'                        => 'Http/HttpClient.php',
             'HttpHeader'                        => 'Http/HttpHeader.php',
             'HttpCookie'                        => 'Http/HttpCookie.php',
+            'HttpReply'                         => 'Http/HttpReply.php',
             'AbstractHttpRequestMethod'         => 'Http/AbstractHttpRequestMethod.php',
             'AbstractHttpAuthentication'        => 'Http/AbstractHttpAuthentication.php',
             'BasicAuthentication'               => 'Http/AuthenticationMethods/BasicAuthentication.php',
