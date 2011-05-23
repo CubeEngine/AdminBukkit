@@ -1131,7 +1131,7 @@
             }
             
             $cookies = $this->parseCookies($cookieHeaders);
-            array_merge($this->cookies, $cookies);
+            $this->cookies = array_merge($this->cookies, $cookies);
             
             $responseHead['cookies'] = $cookies;
 
