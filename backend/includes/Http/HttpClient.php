@@ -1132,8 +1132,6 @@
             
             $cookies = $this->parseCookies($cookieHeaders);
             $this->cookies = array_merge($this->cookies, $cookies);
-            
-            $responseHead['cookies'] = $cookies;
 
             $proto_end = @strpos($responseHeaderLines[0], ' ');
             if ($proto_end === false)

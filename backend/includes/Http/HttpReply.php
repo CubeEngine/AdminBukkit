@@ -8,7 +8,7 @@
         protected $responseHead;
         protected $responseHeaders;
         
-        public function __construct($status, $message, $protocol, $body, $responseHead, array $responseHeaders, array $cookies)
+        public function __construct($protocol, $status, $message, $body, $responseHead, array $responseHeaders, array $cookies)
         {
             $this->status = $status;
             $this->message = $message;
