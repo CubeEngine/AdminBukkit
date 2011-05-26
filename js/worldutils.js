@@ -43,6 +43,20 @@ function world_create(onSuccess)
                 onSuccess();
             }
         });
+        request.onFailure(function(code){
+            switch (code)
+            {
+                case 1:
+                    alert(worldutilsLang.create_noname);
+                    break;
+                case 2:
+                    alert(worldutilsLang.create_alreadyexists);
+                    break;
+                case 3:
+                    alert(worldutilsLang.create_invalidenv);
+                    break;
+            }
+        });
         request.execute(data);
     }
     return false;
@@ -91,6 +105,19 @@ function world_time(world)
     request.onSuccess(function(){
         alert(worldutilsLang.time_success);
     });
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+            case 2:
+                alert(worldutilsLang.world_notfound)
+                break;
+            case 3:
+            case 4:
+                alert(worldutilsLang.time_invalid);
+                break;
+        }
+    });
     request.execute({world: world, time: time});
 }
 
@@ -102,6 +129,18 @@ function world_pvp(world)
     request.onSuccess(function(){
         alert(state == 'on' ? worldutilsLang.pvp_success_on : worldutilsLang.pvp_success_off);
     });
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+            case 2:
+                alert(worldutilsLang.world_notfound);
+                break;
+            case 3:
+                alert(worldutilsLang.world_invalidstate);
+                break;
+        }
+    });
     request.execute({world: world, pvp: state});
 }
 
@@ -112,6 +151,18 @@ function world_storm(world)
     var request = new ApiRequest('world', 'storm');
     request.onSuccess(function(){
         alert(state == 'on' ? worldutilsLang.storm_success_on : worldutilsLang.storm_success_off);
+    });
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+            case 2:
+                alert(worldutilsLang.world_notfound);
+                break;
+            case 3:
+                alert(worldutilsLang.world_invalidstate);
+                break;
+        }
     });
     request.execute({world: world, storm: state});
 }
@@ -132,6 +183,19 @@ function world_spawn(world)
     var request = new ApiRequest('world', 'spawn');
     request.onSuccess(function(){
         alert(worldutilsLang.spawn_success);
+    });
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+            case 2:
+                alert(worldutilsLang.world_notfound);
+                break;
+            case 3:
+            case 4:
+                alert(worldutilsLang.spawn_invalidlocation);
+                break;
+        }
     });
     request.method('POST');
     request.execute({world: world, location: location});
