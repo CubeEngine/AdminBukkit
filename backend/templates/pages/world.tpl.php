@@ -23,15 +23,34 @@
 <script type="text/javascript">
     var world = '<?php echo $world ?>';
     
+    var succeeded = false;
     var request = new ApiRequest('world', 'info');
     request.onSuccess(refreshData);
-    request.onFailure(function(){
-        alert('failed to load infos');
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+            case 2:
+                if (succeeded)
+                {
+                    clearInterval(intervalID);
+                    $('.toggleoverlay, .toolbar a.button').unbind('click').click(function(){
+                        alert('<?php $lang->disabled ?>');
+                        return false;
+                    });
+                    alert('<?php $lang->worldremoved_alert ?>');
+                }
+                else
+                {
+                    redirectTo('worlds.html?msg=' + urlencode('<?php $lang->worldremoved_msg ?>'));
+                }
+        }
     });
     request.data({world: world, format: 'json'});
     
     function refreshData(data)
     {
+        succeeded = true;
         data = eval('(' + data + ')');
         document.getElementById('world_name').innerHTML = data.name;
         document.getElementById('world_type').innerHTML = data.environment.toLowerCase();

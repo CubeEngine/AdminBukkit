@@ -24,10 +24,7 @@
     var succeeded = false;
     var request = new ApiRequest('player', 'info');
     request.data({player: player, format:'json'});
-    request.onSuccess(function(data){
-        refreshData(data);
-        succeeded = true;
-    });
+    request.onSuccess(refreshData);
     request.onFailure(function(error){
         switch(error)
         {
@@ -51,6 +48,7 @@
     
     function refreshData(data)
     {
+        succeeded = true;
         data = eval('(' + data + ')');
         document.getElementById('player_name').innerHTML = data.name;
         document.getElementById('player_displayname').innerHTML = data.displayName;
