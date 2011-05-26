@@ -3,7 +3,7 @@
 ?><!DOCTYPE html>
 <html>
     <head>
-        <title>Bukkit Web Admin</title>
+        <title>AdminBukkit</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,9 +21,9 @@
         </script>
         <script type="text/javascript" src="backend/javascriptlang.php?file=generic" charset="utf-8"></script>
         <script type="text/javascript" src="js/jquery.min.js" charset="utf-8"></script>
-        <script type="text/javascript" src="js/main.js" charset="utf-8"></script>
-        <script type="text/javascript" src="js/apirequest.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/wkshake.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/apirequest.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/main.js" charset="utf-8"></script>
     </head>
     <body>
         <div id="jqt">
