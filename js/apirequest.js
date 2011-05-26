@@ -64,6 +64,8 @@ function ApiRequest(controller, action)
                     alert(genericLang.error_apinotfound);
                     break;
                 default:
+                    //debug
+                    alert('Failed: ' + jqXHR.responseText);
                     //do nothing
                     break;
             }
