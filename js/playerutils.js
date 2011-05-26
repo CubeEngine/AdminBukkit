@@ -22,6 +22,18 @@ function player_kick(player, sync)
             alert(playerutilsLang.kick_success);
             $result = true;
         });
+        request.onFailure(function(error){
+            switch(error)
+            {
+                case 1:
+                    alert(playerutilsLang.kick_noplayer);
+                    break;
+                case 2:
+                    alert(playerutilsLang.kick_playernotfound);
+                    break;
+            }
+            $result = false;
+        });
         request.sync(!!sync);
         request.execute({player: player, reason: reason});
     }
@@ -35,6 +47,17 @@ function player_kill(player)
         var request = new ApiRequest('player', 'kill');
         request.onSuccess(function(){
             alert(playerutilsLang.kill_success);
+        });
+        request.onFailure(function(error){
+            switch(error)
+            {
+                case 1:
+                    alert(playerutilsLang.kill_noplayer);
+                    break;
+                case 2:
+                    alert(playerutilsLang.kill_playernotfound);
+                    break;
+            }
         });
         request.execute({player: player});
     }
@@ -57,6 +80,20 @@ function player_burn(player)
     request.onSuccess(function(){
         alert(playerutilsLang.burn_success);
     });
+    request.onFailure(function(error){
+        switch(error)
+        {
+            case 1:
+                alert(playerutilsLang.burn_noplayer);
+                break;
+            case 2:
+                alert(playerutilsLang.burn_playernotfound);
+                break;
+            case 3:
+                alert(playerutilsLang.burn_nonumber);
+                break;
+        }
+    });
     request.execute({player: player, duration: duration});
 }
 
@@ -67,6 +104,17 @@ function player_heal(player)
         var request = new ApiRequest('player', 'heal');
         request.onSuccess(function(){
             alert(playerutilsLang.heal_success);
+        });
+        request.onFailure(function(error){
+            switch(error)
+            {
+                case 1:
+                    alert(playerutilsLang.heal_noplayer);
+                    break;
+                case 2:
+                    alert(playerutilsLang.heal_playernotfound);
+                    break;
+            }
         });
         request.execute({player: player});
     }
@@ -83,6 +131,20 @@ function player_tell(player)
     request.onSuccess(function(){
         alert(playerutilsLang.tell_success);
     });
+    request.onFailure(function(error){
+        switch(error)
+        {
+            case 1:
+                alert(playerutilsLang.tell_noplayer);
+                break;
+            case 2:
+                alert(playerutilsLang.tell_playernotfound);
+                break;
+            case 3:
+                alert(playerutilsLang.tell_nomessage);
+                break;
+        }
+    });
     request.execute({player: player, message: message.substr(0, 100)});
 }
 
@@ -93,6 +155,17 @@ function player_clearinv(player)
         var request = new ApiRequest('player', 'clearinventory');
         request.onSuccess(function(){
             alert(playerutilsLang.clearinv_success);
+        });
+        request.onFailure(function(error){
+            switch(error)
+            {
+                case 1:
+                    alert(playerutilsLang.clearinv_noplayer);
+                    break;
+                case 2:
+                    alert(playerutilsLang.clearinv_playernotfound);
+                    break;
+            }
         });
         request.execute({player: player});
     }
@@ -129,6 +202,23 @@ function player_give(player)
     request.onSuccess(function(){
         alert(playerutilsLang.give_success);
     });
+    request.onFailure(function(error){
+        switch(error)
+        {
+            case 1:
+                alert(playerutilsLang.give_noplayer);
+                break;
+            case 2:
+                alert(playerutilsLang.give_playernotfound);
+                break;
+            case 3:
+                alert(playerutilsLang.give_formatfail);
+                break;
+            case 4:
+                alert(playerutilsLang.give_unknownitem);
+                break;
+        }
+    });
     request.execute({player: player, itemid: item, data: data, amount: amount});
 }
 
@@ -158,6 +248,24 @@ function player_teleport(player)
     var request = new ApiRequest('player', 'teleport');
     request.onSuccess(function(){
         alert(playerutilsLang.teleport_success);
+    });
+    request.onFailure(function(error){
+        switch(error)
+        {
+            case 1:
+                alert(playerutilsLang.teleport_noplayer);
+                break;
+            case 2:
+                alert(playerutilsLang.teleport_playernotfound);
+                break;
+            case 3:
+                alert(playerutilsLang.teleport_worldnotfound);
+                break;
+            case 4:
+            case 5:
+                alert(playerutilsLang.teleport_invalidtarget);
+                break;
+        }
     });
     request.execute(data);
 }
