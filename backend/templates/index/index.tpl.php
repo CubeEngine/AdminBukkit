@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon" media="screen and (resolution: 163dpi)" href="gfx/icon-iphone.png">
+        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 163dpi)" href="gfx/icon-iphone.png">
         <!--<link rel="apple-touch-icon" media="screen and (resolution: 132dpi)" href="gfx/icon-ipad.png">
         <link rel="apple-touch-icon" media="screen and (resolution: 326dpi)" href="gfx/icon-iphone4.png">-->
         <link rel="apple-touch-startup-image" media="screen and (resolution: 163dpi)" href="gfx/startup-iphone.png">
