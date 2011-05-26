@@ -36,6 +36,10 @@
                 if (succeeded)
                 {
                     clearInterval(intervalID);
+                    $('.toggleoverlay, .toolbar a.button').unbind('click').click(function(){
+                        alert('<?php $lang->disabled ?>');
+                        return false;
+                    });
                     alert('<?php $lang->playerleft_alert ?>');
                 }
                 else
@@ -57,17 +61,7 @@
         for (var index in data.position)
         {
             var elem = document.getElementById('player_pos' + index);
-            var parts = (data.position[index] + '').split('.');
-            var shortened = '';
-            if (parts.length > 1)
-            {
-                shortened = parts[0] + '.' + parts[1].substr(0, 3);
-            }
-            else
-            {
-                shortened = elem.innerHTML = parts[0];
-            }
-            elem.innerHTML = shortened;
+            elem.innerHTML = (Math.round(data.position[index] * 1000) / 1000);
             elem.setAttribute('title', data.position[index]);
         }
     }
