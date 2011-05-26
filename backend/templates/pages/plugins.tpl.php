@@ -66,6 +66,26 @@
         loadRequest.onSuccess(function(){
             request.execute();
         });
+        request.onFailure(function(code){
+            switch (code)
+            {
+                case 1:
+                    alert('<?php $lang->noplugin ?>');
+                    break;
+                case 2:
+                    alert('<?php $lang->failedtoload ?>');
+                    break;
+                case 3:
+                    alert('<?php $lang->invalidplugin ?>');
+                    break;
+                case 4:
+                    alert('<?php $lang->invaliddescription ?>');
+                    break;
+                case 5:
+                    alert('<?php $lang->missingdependency ?>');
+                    break;
+            }
+        });
         loadRequest.execute({plugin: pluginName});
         return false;
     });

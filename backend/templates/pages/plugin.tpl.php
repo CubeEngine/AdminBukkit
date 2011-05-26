@@ -65,6 +65,15 @@
             request.onSuccess(function(){
                 alert('<?php $lang->disablesuccess ?>');
             });
+            request.onFailure(function(code){
+                switch (code)
+                {
+                    case 1:
+                    case 2:
+                        alert('<?php $lang->pluginunavailable ?>');
+                        break;
+                }
+            });
             request.execute({plugin: plugin});
         }
         return false;
@@ -80,6 +89,15 @@
             request.onSuccess(function(){
                 alert('<?php $lang->enabledsuccess ?>');
             });
+            request.onFailure(function(code){
+                switch (code)
+                {
+                    case 1:
+                    case 2:
+                        alert('<?php $lang->pluginunavailable ?>');
+                        break;
+                }
+            });
             request.execute({plugin: plugin});
         }
         return false;
@@ -94,6 +112,15 @@
             var request = new ApiRequest('plugin', 'reload');
             request.onSuccess(function(){
                 alert('<?php $lang->reloadsuccess ?>');
+            });
+            request.onFailure(function(code){
+                switch (code)
+                {
+                    case 1:
+                    case 2:
+                        alert('<?php $lang->pluginunavailable ?>');
+                        break;
+                }
             });
             request.execute({plugin: plugin});
         }

@@ -19,6 +19,8 @@
         'confirmenable'         => 'Willst du das Plugin wirklich aktivieren?',
         'enablesuccess'         => 'Plugin erfolgreich aktiviert!',
         'confirmreload'         => 'Willst du das Plugin wirklich neuladen?',
-        'reloadsuccess'         => 'Plugin erfolgreich neugeladen!'
+        'reloadsuccess'         => 'Plugin erfolgreich neugeladen!',
+        'pluginunavailable'     => 'Das Plugin ist nicht (mehr) verfügbar.',
+        'failedtoload'          => 'Die Plugininformationen konnten nicht geladen werden.'
     );
 ?>

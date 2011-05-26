@@ -16,6 +16,19 @@
         'format' => 'json',
         'plugin' => $plugin
     ));
+    if ($response->getStatus() > 204)
+    {
+        $error = explode(',', $response->getBody());
+        if ($error[0] == '3')
+        {
+            $err = $lang['pluginunavailable'];
+        }
+        else
+        {
+            $err = $lang['failedtoload'];
+        }
+        Router::redirectToPage('plugins', $err);
+    }
     $data = json_decode($response->getBody());
     if ($data === null)
     {
