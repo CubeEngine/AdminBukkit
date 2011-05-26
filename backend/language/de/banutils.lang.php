@@ -6,7 +6,9 @@
         'unbanip_success'       => 'IP erfolgreich entbannt!',
         
         'name_invalid'          => "Die Eingabe ist kein gültiger Name!\nErlaubt: A-Z, a-z, 0-9, _, .",
+        'name_missing'          => 'Es wurde kein Spielername angegeben!',
         'ip_invalid'            => 'Die Eingabe ist keine IP(v4)!',
+        'ip_missing'            => 'Es wurde keine IP angegeben!',
         
         'banplayer_prompt'      => 'Gib den zu bannenden Spielernamen ein:',
         'banplayer_confirm'     => 'Möchtest du diesen Spieler wirklich bannen?',

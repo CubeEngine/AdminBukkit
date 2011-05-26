@@ -36,6 +36,14 @@ function ban_player(player, sync)
         alert(banutilsLang.banplayer_success);
         $result = true;
     });
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+                alert(banutilsLang.name_missing);
+                break;
+        }
+    });
     request.sync(!!sync);
     request.execute(data);
     return $result;
@@ -67,6 +75,17 @@ function ban_ip(ip)
     request.onSuccess(function(){
         alert(banutilsLang.banip_success);
     });
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+                alert(banutilsLang.ip_missing);
+                break;
+            case 2:
+                alert(banutilsLang.ip_invalid);
+                break;
+        }
+    });
     request.execute({ip: ip});
 }
 
@@ -90,6 +109,14 @@ function unban_player(player)
     request.onSuccess(function(){
         alert(banutilsLang.unbanplayer_success);
     });
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+                alert(banutilsLang.name_missing);
+                break;
+        }
+    });
     request.execute({player: player});
 }
 function unban_ip(ip)
@@ -111,6 +138,17 @@ function unban_ip(ip)
     var request = new ApiRequest('server', 'unban');
     request.onSuccess(function(){
         alert(banutilsLang.unbanip_success);
+    });
+    request.onFailure(function(code){
+        switch (code)
+        {
+            case 1:
+                alert(banutilsLang.ip_missing);
+                break;
+            case 2:
+                alert(banutilsLang.ip_invalid);
+                break;
+        }
     });
     request.execute({ip: ip});
 }
