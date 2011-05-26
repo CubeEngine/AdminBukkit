@@ -25,6 +25,51 @@ function ApiRequest(controller, action)
         setProgress(false);
     };
     
+    function onError(jqXHR, textStatus, thrownError)
+    {
+        var errCode = $.trim(jqXHR.responseText);
+        // only process errors with a response
+        if (errCode)
+        {
+            errCode = errCode.split(',');
+            var major = parseInt(errCode[0]);
+            var minor = 0;
+            if (errCode.length > 1)
+            {
+                minor = parseInt(errCode[1]);
+            }
+            switch (major)
+            {
+                case -1:
+                    alert(genericLang.error_unknown);
+                    break;
+                case 1:
+                    alert(genericLang.error_invalidpath);
+                    break;
+                case 2:
+                    alert(genericLang.error_authfailed);
+                    redirectTo('home.html?msg=' + urlencode(genericLang.redirect_msg));
+                    break;
+                case 3:
+                    // execute onFailure if set
+                    if (typeof $onFailure == 'function')
+                    {
+                        $onFailure(minor);
+                    }
+                    break;
+                case 4:
+                    alert(genericLang.error_notimplemented);
+                    break;
+                case 5:
+                    alert(genericLang.error_apinotfound);
+                    break;
+                default:
+                    //do nothing
+                    break;
+            }
+        }
+    }
+    
     this.onSuccess = function(callback)
     {
         if (typeof callback == 'function' || callback == null)
@@ -112,10 +157,10 @@ function ApiRequest(controller, action)
             data: requestData,
             async: !$sync,
             success: $onSuccess,
-            error: $onFailure,
+            error: onError,
             beforeSend: $onBeforeSend,
             complete: $onComplete
-        }
+        };
         if (!options.async)
         {
             options.timeout = 2;

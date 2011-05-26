@@ -21,6 +21,21 @@ function isDefined(target)
     return (typeof target !== 'undefined');
 }
 
+function urlencode(str)
+{
+    function parse(match)
+    {
+        var dec = parseInt(match.substr(1), 16)
+        if (dec > 127)
+        {
+            return String.fromCharCode(dec);
+        }
+        return match;
+    }
+    
+    return escape(str).replace(/%[a-f0-9]{2}/ig, parse);
+}
+
 function setProgress(state)
 {
     if (state)
