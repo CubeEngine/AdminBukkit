@@ -9,6 +9,8 @@
         'orientation'       => 'Ausrichtung',
         'utils'             => 'Werkzeuge',
         'refresh'           => 'Erneuern',
+        'playerleft_alert'  => 'Der Spieler hat Spiel das verlassen.\nDie Daten wird nun nicht mehr erneuert.',
+        'playerleft_msg'    => 'Der Spieler hat Spiel das verlassen.',
         
         // Controller
         'playerinfos'       => 'Spielerinfos',

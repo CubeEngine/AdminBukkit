@@ -21,13 +21,28 @@
 </ul>
 <?php $this->displayTemplateFile('generic/playerutils') ?>
 <script type="text/javascript">
+    var succeeded = false;
     var request = new ApiRequest('player', 'info');
     request.data({player: player, format:'json'});
     request.onSuccess(function(data){
         refreshData(data);
+        succeeded = true;
     });
-    request.onFailure(function(){
-        alert('Failed to load infos');
+    request.onFailure(function(error){
+        switch(error)
+        {
+            case 1:
+            case 2:
+                if (succeeded)
+                {
+                    clearInterval(intervalID);
+                    alert('<?php $lang->playerleft_alert ?>');
+                }
+                else
+                {
+                    redirectTo('players.html?msg=' + urlencode('<?php $lang->playerleft_msg ?>'));
+                }
+        }
     });
     
     function refreshData(data)
@@ -57,18 +72,20 @@
         }
     }
     
+    var intervalID = null;
     function init()
     {
         $('#player_info').parent('li').remove();
         prepareOverlay('#player_overlay');
         request.execute();
-        setInterval(request.execute, 10000);
+        intervalID = setInterval(request.execute, 10000);
     }
 
     $('.toolbar a.button').click(function(){
         request.execute();
         return false;
     });
+    
     /**** Overlay Handler ****/
     $('#player_ban').click(function(){
         if (ban_player(player, true))
