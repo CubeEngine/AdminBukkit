@@ -251,6 +251,7 @@
 
         /**
          * Sets the state of the debug mode
+         * unsed at the moment
          *
          * @access public
          * @param bool $state whether to enable or disable the debug mode
@@ -527,6 +528,40 @@
                 unset($this->cookies[$name]);
             }
         }
+        
+        public function isCookieValid($cookie)
+        {
+            if (!$cookie instanceof HttpCookie)
+            {
+                $cookie = $this->getCookie(strval($cookie));
+                if (!$cookie instanceof HttpCookie)
+                {
+                    return false;
+                }
+            }
+            if ($this->useCookieRules)
+            {
+                if ($cookie->getExpiresAsLong() <= time())
+                {
+                    return false;
+                }
+                $domainregex = '/' . preg_replace('/^\.', '[^\.]*\.', preg_quote($cookie->get('domain', $http->getHost()), '/') . '/');
+                if (!preg_match($domainregex, $http->getHost()))
+                {
+                    return false;
+                }
+                $pathregex = '/^' . preg_quote($cookie->get('path', $http->getDir()), '/') . '/';
+                if (!preg_match($pathregex, $http->getDir()))
+                {
+                    return false;
+                }
+                if ($cookie->get('secure') && !$http->getSsl())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         /**
          * Sets whether to keep the connection alive
@@ -579,7 +614,7 @@
          */
         public function setTimeout($timeout)
         {
-            $this->TIMEOUT = (float) $timeout;
+            $this->TIMEOUT = floatval($timeout);
         }
 
         /**

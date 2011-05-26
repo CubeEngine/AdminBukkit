@@ -46,26 +46,9 @@
             {
                 if (is_object($cookie) && $cookie instanceof HttpCookie)
                 {
-                    if ($http->getUseCookieRules())
+                    if (!$http->isCookieValid($cookie))
                     {
-                        if ($cookie->getExpiresAsLong() <= time())
-                        {
-                            continue;
-                        }
-                        $domainregex = '/' . preg_replace('/^\.', '[^\.]*\.', preg_quote($cookie->get('domain', $http->getHost()), '/') . '/');
-                        if (!preg_match($domainregex, $http->getHost()))
-                        {
-                            continue;
-                        }
-                        $pathregex = '/^' . preg_quote($cookie->get('path', $http->getDir()), '/') . '/';
-                        if (!preg_match($pathregex, $http->getDir()))
-                        {
-                            continue;
-                        }
-                        if ($cookie->get('secure') && !$http->getSsl())
-                        {
-                            continue;
-                        }
+                        continue;
                     }
                     $headerStr .= '; ' . $cookie->get('name') . '=' . $cookie->get('value');
                 }
