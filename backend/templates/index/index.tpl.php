@@ -23,6 +23,7 @@
         <script type="text/javascript" src="js/jquery.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/main.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/apirequest.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/wkshake.js" charset="utf-8"></script>
     </head>
     <body>
         <div id="jqt">

@@ -172,6 +172,9 @@ $(window).unload(function(){
     setProgress(true);
 });
 
+var shakeListener = new WKShake();
+shakeListener.start();
+
 $(function(){
     ready = true;
     if (typeof init == 'function')
