@@ -7,6 +7,7 @@
         protected $body;
         protected $responseHead;
         protected $responseHeaders;
+        protected $cookies;
         
         public function __construct($protocol, $status, $message, $body, $responseHead, array $responseHeaders, array $cookies)
         {
@@ -16,6 +17,7 @@
             $this->body = $body;
             $this->responseHead = $responseHead;
             $this->responseHeaders = $responseHeaders;
+            $this->cookies = $cookies;
         }
         
         public function __toString()
@@ -106,6 +108,45 @@
         public function getResponseHeaders()
         {
             return $this->responseHeaders;
+        }        /**
+         * Returns the named cookie or null if it does not exist
+         *
+         * @access public
+         * @param string $name the name
+         * @return HttpCookie the cookie
+         */
+        public function getCookie($name)
+        {
+            if (isset($this->cookies[$name]))
+            {
+                return $this->cookies[$name];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /**
+         * Returns all cookies
+         *
+         * @access public
+         * @return HttpCookie[] all the cookies
+         */
+        public function getCookies()
+        {
+            return $this->cookies;
+        }
+
+        /**
+         * Counts all set cookies
+         *
+         * @access public
+         * @return int the count of the cookies
+         */
+        public function countCookies()
+        {
+            return count($this->cookies);
         }
     }
 ?>

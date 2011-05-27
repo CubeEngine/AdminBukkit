@@ -15,7 +15,7 @@
         protected $debug;
         protected $ERRNO;
         protected $ERRSTR;
-        protected $TIMEOUT;
+        protected $timeout;
 
         protected $host;
         protected $hostIp;
@@ -40,20 +40,23 @@
         public function serialize()
         {
             $data = array(
-                'connection' => array($this->connectionKeepAlive, $this->tryReconnectOnSendFailure),
+                'connection' => array($this->timeout, $this->connectionKeepAlive, $this->tryReconnectOnSendFailure),
                 'connectionData' => array($this->host, $this->hostIp, $this->port, $this->file, $this->dir, $this->ssl),
                 'auth' => array($this->authUse, $this->authMethod, $this->authUser, $this->authPass),
                 'requestData' => array($this->handleRedirects, $this->useCookieRules, $this->cookies, $this->requestBody, $this->requestHeaders, $this->requestMethod),
             );
+            $this->__destruct();
             return serialize($data);
         }
 
         public function unserialize($serialized)
         {
+            $this->__construct();
             $data = unserialize($serialized);
 
-            $this->connectionKeepAlive = $data['connection'][0];
-            $this->tryReconnectOnSendFailure = $data['connection'][1];
+            $this->timeout = $data['connection'][0];
+            $this->connectionKeepAlive = $data['connection'][1];
+            $this->tryReconnectOnSendFailure = $data['connection'][2];
 
             $this->host = $data['connectionData'][0];
             $this->hostIp = $data['connectionData'][1];
@@ -90,7 +93,7 @@
             $this->debug = false;
             $this->ERRNO = 0;
             $this->ERRSTR = '';
-            $this->TIMEOUT = 3.0;
+            $this->timeout = 3.0;
 
             $this->host = '';
             $this->hostIp = '';
@@ -162,7 +165,7 @@
                 {
                     throw new Exception('This request requires a SSL connection, but the SSL stream transport was not found!');
                 }
-                $this->connection = @fsockopen(($this->ssl ? 'ssl://' : '') . $this->hostIp, $this->port, $this->ERRNO, $this->ERRSTR, $this->TIMEOUT);
+                $this->connection = @fsockopen(($this->ssl ? 'ssl://' : '') . $this->hostIp, $this->port, $this->ERRNO, $this->ERRSTR, $this->timeout);
                 if ($this->connection === false)
                 {
                     throw new Exception('Failed to connect to the remote host! Error: ' . $this->ERRSTR);
@@ -541,21 +544,39 @@
             }
             if ($this->useCookieRules)
             {
-                if ($cookie->getExpiresAsLong() <= time())
+                $expires = $cookie->get('expires');
+                $domain  = $cookie->get('domain');
+                $path    = $cookie->get('path');
+                if ($expires !== null)
                 {
-                    return false;
+                    if ($cookie->getExpiresAsLong() <= time())
+                    {
+                        return false;
+                    }
                 }
-                $domainregex = '/' . preg_replace('/^\.', '[^\.]*\.', preg_quote($cookie->get('domain', $http->getHost()), '/') . '/');
-                if (!preg_match($domainregex, $http->getHost()))
+                if ($domain !== null)
                 {
-                    return false;
+                    $regex = '/^';
+                    if ($domain[0] == '.')
+                    {
+                        $regex .= '([a-z0-9-]+\.)?';
+                        $domain = substr($domain, 1);
+                    }
+                    $regex .= preg_quote($domain, '/') . '/i';
+                    if (!preg_match($regex, $this->host))
+                    {
+                        return false;
+                    }
                 }
-                $pathregex = '/^' . preg_quote($cookie->get('path', $http->getDir()), '/') . '/';
-                if (!preg_match($pathregex, $http->getDir()))
+                if ($path !== null)
                 {
-                    return false;
+                    $pathregex = '/^' . preg_quote($path, '/') . '/';
+                    if (!preg_match($pathregex, $this->dir))
+                    {
+                        return false;
+                    }
                 }
-                if ($cookie->get('secure') && !$http->getSsl())
+                if ($cookie->get('secure') && !$this->ssl)
                 {
                     return false;
                 }
@@ -614,7 +635,7 @@
          */
         public function setTimeout($timeout)
         {
-            $this->TIMEOUT = floatval($timeout);
+            $this->timeout = floatval($timeout);
         }
 
         /**
@@ -625,7 +646,7 @@
          */
         public function getTimeout()
         {
-            return $this->TIMEOUT;
+            return $this->timeout;
         }
 
         /**
@@ -1241,7 +1262,7 @@
                     while ($chunkLength > 0);
                 }
                 else
-                { // no known headers -> read everthing
+                { // no known headers -> read everything
                     if ($this->connectionKeepAlive)
                     { // set non blocking to avoid dead locks
                         stream_set_blocking($this->connection, 0);

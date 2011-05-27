@@ -68,16 +68,11 @@
 
             if ($this->data['expires'] !== null)
             {
-                /**
-                 * @todo rewrite to use preg_match instead of preg_replace and explode
-                 */
-                $stamp = preg_replace('/[a-z]{3}, (\d{2})\-([a-z]{3})\-(\d{4}) (\d{2})\:(\d{2})\:(\d{2}) GMT/i', '$1|$2|$3|$4|$5|$6', $this->data['expires']);
-                $parts = explode('|', $stamp);
-                if (count($parts) != 6)
+                if (!preg_match('/[a-z]{3}, (\d{2})\-([a-z]{3})\-(\d{4}) (\d{2})\:(\d{2})\:(\d{2}) GMT/i', $this->data['expires'], $parts))
                 {
                     throw new Exception('Failed to parse the expires value of this cookie!');
                 }
-                $cache = mktime($parts[3], $parts[4], $parts[5], $months[$parts[1]], intval($parts[0]), $parts[2]);
+                $cache = mktime($parts[4], $parts[5], $parts[6], $months[$parts[2]], intval($parts[1]), $parts[3]);
                 return $cache;
             }
             else

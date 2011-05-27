@@ -42,7 +42,7 @@
 
         public function serialize()
         {
-            return serialize($this->name, $this->value);
+            return serialize(array($this->name, $this->value));
         }
 
         public function unserialize($serialized)
