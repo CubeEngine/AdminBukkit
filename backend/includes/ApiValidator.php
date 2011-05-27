@@ -24,5 +24,16 @@
             $response = $api->request('validate', 'password');
             return ($response->getStatus() == 204);
         }
+        
+        /**
+         * @todo server side implementation & testing
+         */
+        public static function allActionsAvailable($host, $port, $pass, array $map)
+        {
+            $map = json_encode($map);
+            $api = new ApiBukkit($host, $port, $pass);
+            $response = $api->request('validate', 'actions', array('actions', $map));
+            return ($response->getStatus() == 204);
+        }
     }
 ?>
