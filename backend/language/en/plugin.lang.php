@@ -12,13 +12,15 @@
         'dependencies'          => 'Dependencies',
         'datafolder'            => 'Datafolder',
         'disableplugin'         => 'Disable plugin',
-        'enableplugin'          => 'Activate plugin',
+        'enableplugin'          => 'Enable plugin',
         'reloadplugin'          => 'Reload plugin',
-        'confirmdisable'        => 'Are you sure to disable the plugin?',
+        'confirmdisable'        => 'Are you sure you want to disable the plugin?',
         'disablesuccess'        => 'Plugin successfully disabled!',
-        'confirmenable'         => 'Are you sure to enable the plugin?',
+        'confirmenable'         => 'Are you sure you want to enable the plugin?',
         'enablesuccess'         => 'Plugin successfully enabled!',
         'confirmreload'         => 'Are you sure to reload the plugin?',
-        'reloadsuccess'         => 'Plugin successfully reloaded!'
+        'reloadsuccess'         => 'Plugin successfully reloaded!',
+        'pluginunavailable'     => 'Plugin no longer available.',
+        'failedtoload'          => 'Could not load the plugin information.'
     );
 ?>

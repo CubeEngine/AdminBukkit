@@ -18,7 +18,7 @@
         'alreadyregistered'         => 'You are already registered!',
         'user_missing'              => 'The username is missing!',
         'user_invalid'              => 'The username is invalid! Please use 5-40 characters (A-Z, a-z, 0-9, _ and -).',
-        'user_alreadyexists'        => 'The chosen username does already exist!',
+        'user_alreadyexists'        => 'The chosen username already exists!',
         'email_missing'             => 'The email is missing!',
         'email_invalid'             => 'The entered email is invalid!',
         'pass_missing'              => 'The password is missing!',

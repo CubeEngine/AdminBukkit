@@ -25,9 +25,13 @@
         'broadcast'             => 'A message to the server',
         'broadcast_prompt'      => 'Please enter a message:',
         'broadcast_success'     => 'Message was successfully sent!',
+        'stop'                  => 'Stop server',
+        'stop_confirm'          => 'Are you sure you want to stop the server?',
+        'stop_confirm2'         => 'Are you really really sure??',
+        'stop_success'          => 'The server was successfully stopped!',
         
         // Controller
-        'serverinfos'           => 'Serverinfos',
+        'serverinfos'           => 'Serverinfo',
         'reload'                => 'Reload'
     );
 ?>

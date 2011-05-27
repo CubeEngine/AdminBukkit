@@ -1,7 +1,7 @@
 <?php
     return array(
         // Template
-        'loadinglist'       => 'List of players is loading...',
+        'loadinglist'       => 'Playerlist is loading...',
         'noplayers'         => 'No players available',
         'playersworld'      => 'Players of the world "{0}"',
         'allplayers'        => 'All players',

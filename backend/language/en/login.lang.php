@@ -15,9 +15,9 @@
         'alreadyloggedin'       => 'You are already logged in!',
         'user_missing'          => 'No username has been entered!',
         'pass_missing'          => 'No password has been entered!',
-        'login_failed'          => 'Login failed, please check your input!',
+        'login_failed'          => 'Login failed, please check the entered information!',
         'login_success'         => 'Successfully logged in!',
-        'internalerror'         => 'An internal error occured, please inform the administrator.',
+        'internalerror'         => 'An internal error occured, please inform an administrator.',
         
         // Languages
         'lang_de'               => 'German',

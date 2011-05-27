@@ -1,12 +1,12 @@
 <?php
     return array(
         // Template
-        'baseplugin'    => 'Basisplugin',
+        'baseplugin'    => 'Base plugin',
         'apiplugins'    => 'API Plugins',
         
         // Controller
         'downloads'     => 'Downloads',
         'home'          => 'Home',
-        'downloaded'    => 'Der Download wurde gestartet.'
+        'downloaded'    => 'The download has been started.'
     );
 ?>

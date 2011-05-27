@@ -9,6 +9,7 @@
         'manworlds'         => 'World-Management',
         'manplugins'        => 'Plugin-Management',
         'stats'             => 'Statistics',
+        'downloads'         => 'Downloads',
         'profile'           => 'Profile',
         'logout'            => 'Logout',
         'confirm_logout'    => 'Do you really want to logout?',

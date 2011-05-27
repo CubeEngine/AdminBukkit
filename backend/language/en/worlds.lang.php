@@ -2,7 +2,7 @@
     return array(
         // Template
         'loadinglist'       => 'List is loading...',
-        'noworlds'          => 'No world available',
+        'noworlds'          => 'No worlds are available',
         'create'            => 'Create a new world',
         
         // Controller

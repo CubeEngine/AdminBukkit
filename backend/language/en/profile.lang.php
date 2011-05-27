@@ -1,7 +1,7 @@
 <?php
     return array(
         // Template
-        'userinfos'         => 'Userinfos',
+        'userinfos'         => 'Userinfo',
         'username'          => 'Username',
         'email'             => 'Email-address',
         'apiaddr'           => 'API address',

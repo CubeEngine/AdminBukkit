@@ -7,13 +7,16 @@
         'pvp'                   => 'PVP',
         'spawnpoint'            => 'Spawn',
         'time'                  => 'Time',
-        'weatherduration'       => 'Wetherduration',
-        'thunderduration'       => 'Thunderduration',
+        'weatherduration'       => 'Weather duration',
+        'thunderduration'       => 'Thunder duration',
         'players'               => 'Players',
         'utils'                 => 'Utilities',
+        'worldremoved_alert'    => 'The world was deleted.\nThe data can no longer be refreshed.',
+        'worldremoved_msg'      => 'The world no longer exists.',
+        'disabled'              => 'Invalid function, the world no longer exists.\nReload the page to try again.',
         
         // Controller
-        'worldinfo'             => 'Worldinfos',
+        'worldinfo'             => 'Worldinfo',
         'refresh'               => 'Refresh',
         'noworld'               => 'No world given!'
     );

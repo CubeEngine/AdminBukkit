@@ -9,7 +9,7 @@
         'orientation'       => 'Ausrichtung',
         'utils'             => 'Werkzeuge',
         'refresh'           => 'Erneuern',
-        'playerleft_alert'  => 'Der Spieler hat Spiel das verlassen.\nDie Daten wird nun nicht mehr erneuert.',
+        'playerleft_alert'  => 'Der Spieler hat Spiel das verlassen.\nDie Daten werden nun nicht mehr erneuert.',
         'playerleft_msg'    => 'Der Spieler hat Spiel das verlassen.',
         'disabled'          => 'Diese Funktion ist nicht mehr aktiv, da der Spieler nicht mehr verfügbar ist.\nLade die Seite neu um es erneut zu versuchen.',
         

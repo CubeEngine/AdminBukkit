@@ -17,7 +17,7 @@
         'pass_missing'          => 'Es wurde kein Passwort eingeben!',
         'login_failed'          => 'Login fehlgeschlagen, prüfen sie ihre Eingaben!',
         'login_success'         => 'Erfolgreich eingeloggt!',
-        'internalerror'         => 'Ein interner Fehler ist aufgetreten, bitte informieren sie den Administrator.',
+        'internalerror'         => 'Ein interner Fehler ist aufgetreten, bitte informiere einen Administrator.',
         
         // Languages
         'lang_de'               => 'Deutsch',
