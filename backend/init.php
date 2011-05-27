@@ -45,7 +45,7 @@
             'ApiValidator'                      => 'ApiValidator.php',
             'SessIDFilter'                      => 'SessIDFilter.php',
             'Request'                           => 'Request.php',
-            'Lang'                              => 'lang.php',
+            'Lang'                              => 'Lang.php',
             'Logger'                            => 'Logger.php',
             'Statistics'                        => 'Statistics.php',
             'ApiBukkit'                         => 'ApiBukkit.php'
@@ -128,6 +128,6 @@
     set_exception_handler('onException');
 
     session_name(Config::instance('bukkitweb')->get('sessionName', 'sid'));
-    //session_set_cookie_params(Config::instance('bukkitweb')->get('sessionCookieLiftime', 3600));
+    session_set_cookie_params(Config::instance('bukkitweb')->get('sessionCookieLiftime', 3600));
     session_start();
 ?>
