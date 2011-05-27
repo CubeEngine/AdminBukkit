@@ -6,7 +6,7 @@
     $toolbar->setBack($lang['home'], './');
     $page->addSubtemplate('toolbar', $toolbar);
     $template = new Template('pages/downloads');
-    if (!empty($file) && !preg_match('\.\.', $file))
+    if (!empty($file) && !preg_match('/\.\./', $file))
     {
         $path = DOWNLOAD_PATH . DS . $file;
         if (is_readable($path))
