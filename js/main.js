@@ -1,20 +1,4 @@
 var genericLang = new GenericLang();
-
-var errors = {
-    '-1': genericLang.error_unknown,
-    1: genericLang.error_invalidpath,
-    2: genericLang.error_wrongpass,
-    3: genericLang.error_ctlrerror,
-    4: genericLang.error_notimplemented,
-    5: genericLang.error_apinotfound
-}
-
-var ready = false;
-
-$.fn.tap = function(callback)
-{
-    $(this).bind('tap', callback);
-}
  
 function isDefined(target)
 {
