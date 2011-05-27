@@ -93,10 +93,11 @@ function touchTooltipHandler(e)
     
     function attachTooltip()
     {
-        $tooltip = $('<div class="touchTooltip">' + $target.attr('title') + '</div>');
+        $tooltip = $('<div class="touchTooltip"><div>' + $target.attr('title') + '</div></div>');
         var pos = $target.position();
         $tooltip.css('top', pos.top + e.target.offsetHeight + 'px');
         $tooltip.css('left', pos.left + 'px');
+        $tooltip.css('max-width', (window.innerWidth - pos.left - 5) + 'px');
         $tooltip.bind('touchstart', function(){
             $tooltip.remove();
         });
