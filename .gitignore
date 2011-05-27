@@ -2,4 +2,5 @@ backend/configs/users.db
 js/jqtouch.js
 js/jquery-1.6.1.js
 backend/logs/
+backend/downloads/
 test.php

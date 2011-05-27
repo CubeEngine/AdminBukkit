@@ -9,6 +9,7 @@
     defined('CONFIG_PATH')      or define('CONFIG_PATH',    BACKEND_PATH . DS . 'configs');
     defined('LANG_PATH')        or define('LANG_PATH',      BACKEND_PATH . DS . 'language');
     defined('LOG_PATH')         or define('LOG_PATH',       BACKEND_PATH . DS . 'logs');
+    defined('DOWNLOAD_PATH')    or define('DOWNLOAD_PATH',  BACKEND_PATH . DS . 'downloads');
 
     function __autoload($classname)
     {

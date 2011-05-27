@@ -5,6 +5,8 @@
         'userstats'                                 => 'Benutzerstatistiken',
         'failed_requests'                           => '{0} Anfragen sind fehlgeschlagen.',
         
+        'filedownloaded'                            => 'Die Datei "{0}" wurde {1} runtergeladen.',
+        
         'stat_user.login'                           => '{0} Mal wurde sich eingeloggt.',
         'stat_user.register'                        => '{0} Benutzer wurde(n) registriert.',
         'stat_user.logout'                          => '{0} Mal wurde sich ausgeloggt.',

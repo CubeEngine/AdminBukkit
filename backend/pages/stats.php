@@ -15,6 +15,12 @@
         $failcount += $fail['value'];
     }
     $stats['api_fails'] = $failcount;
+    $stats['downloaded'] = Statistics::getValues('downloads.*');
+    foreach ($stats['downloaded'] as &$entry)
+    {
+        preg_match('/\.((.*(\\\.)*)*)$/', $entry['index'], $match);
+        $entry['index'] = str_replace('\.', '.', $match[1]);
+    }
     $tpl->assign('stats', $stats);
     $page->setContent($tpl);
     
