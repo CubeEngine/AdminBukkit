@@ -12,7 +12,7 @@
 </ul>
 <h2><?php $lang->stats ?>:</h2>
 <ul class="rounded">
-    <li><a href="#" id="stats_ram"><?php $lang->ram ?>: <span id="stats_ram_free"><?php $genericLang->progress ?></span> / <span id="stats_ram_max"><?php $genericLang->progress ?></span> MB</a></li>
+    <li class="arrow"><a href="#" id="stats_ram"><?php $lang->ram ?>: <span id="stats_ram_free"><?php $genericLang->progress ?></span> / <span id="stats_ram_max"><?php $genericLang->progress ?></span> MB</a></li>
 </ul>
 <h2><?php $lang->utils ?></h2>
 <ul class="rounded">
