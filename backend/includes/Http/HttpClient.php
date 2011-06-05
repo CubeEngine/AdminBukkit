@@ -1,4 +1,9 @@
 <?php
+    class NetworkException extends Exception
+    {}
+
+    class HttpException extends NetworkException
+    {}
 
 
     //Loader::addSysDirectoryToMap('lib/Network/Http/RequestMethods');
@@ -163,12 +168,12 @@
             {
                 if ($this->ssl && !in_array('ssl', stream_get_transports()))
                 {
-                    throw new Exception('This request requires a SSL connection, but the SSL stream transport was not found!');
+                    throw new HttpException('This request requires a SSL connection, but the SSL stream transport was not found!');
                 }
                 $this->connection = @fsockopen(($this->ssl ? 'ssl://' : '') . $this->hostIp, $this->port, $this->ERRNO, $this->ERRSTR, $this->timeout);
                 if ($this->connection === false)
                 {
-                    throw new Exception('Failed to connect to the remote host! Error: ' . $this->ERRSTR);
+                    throw new NetworkException('Failed to connect to the remote host! Error: ' . $this->ERRSTR);
                 }
                 $this->connected = true;
 
@@ -245,7 +250,7 @@
                 else
                 {
                     $reconnectTried = false;
-                    throw new Exception('Failed to send the given data!');
+                    throw new NetworkException('Failed to send the given data!');
                 }
             }
             $reconnectTried = false;
@@ -453,10 +458,6 @@
          */
         public function addCookies(array $cookies)
         {
-            if (count($names) !== count($cookies))
-            {
-                throw new Exception('The the name count must equal the cookie count');
-            }
             foreach ($cookies as $cookie)
             {
                 if (is_object($cookie) && $cookie instanceof HttpCookie)
@@ -710,7 +711,7 @@
             $file = trim($file);
             if (substr($file, 0, 1) != '/')
             {
-                throw new Exception('A absolute path is required to set the file!');
+                throw new HttpException('A absolute path is required to set the file!');
             }
             $this->file = $file;
             if ($getDirFromFile)
@@ -827,7 +828,7 @@
             { // host relative
                 if (!$this->host || !$this->hostIp)
                 {
-                    throw new Exception('There was no host set while setting a absolute target without protocol or host!');
+                    throw new HttpException('There was no host set while setting a absolute target without protocol or host!');
                 }
                 $this->file = trim($target);
                 $this->dir = substr($this->file, 0, strrpos($this->file, '/') + 1);
@@ -840,7 +841,7 @@
                 }
                 else
                 {
-                    throw new Exception('There was no path set while setting a relative target!');
+                    throw new HttpException('There was no path set while setting a relative target!');
                 }
             }
         }
@@ -1192,12 +1193,12 @@
             $proto_end = @strpos($responseHeaderLines[0], ' ');
             if ($proto_end === false)
             {
-                throw new Exception("Failed to parse the protocol header");
+                throw new HttpException("Failed to parse the protocol header");
             }
             $code_end = @strpos($responseHeaderLines[0], ' ', $proto_end + 1);
             if ($code_end === false)
             {
-                throw new Exception("Failed to parse the protocol header");
+                throw new HttpException("Failed to parse the protocol header");
             }
 
             return array(
@@ -1282,7 +1283,7 @@
                     }
                     else
                     {
-                        throw new Exception('Tried to redirect, but there was no Location-header in the response.');
+                        throw new HttpException('Tried to redirect, but there was no Location-header in the response.');
                     }
                 }
             }
@@ -1307,7 +1308,7 @@
         {
             if (!$this->validateVars())
             {
-                throw new Exception('Not all needed informations were found.');
+                throw new HttpException('Not all needed informations were found.');
             }
 
             if ($method !== null)
