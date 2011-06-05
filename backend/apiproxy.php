@@ -38,14 +38,14 @@
         header(strval($response));
         echo $response->getBody();
     }
-    catch (PDOException $e)
+    catch (NetworkException $e)
     {
         header('HTTP/1.1 503 Internal Server Error');
-        die('-1');
+        die('0');
     }
     catch (Exception $e)
     {
         header('HTTP/1.1 503 Internal Server Error');
-        die('0');
+        die('-1');
     }
 ?>

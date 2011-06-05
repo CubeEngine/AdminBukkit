@@ -2,7 +2,7 @@
     class NetworkException extends Exception
     {}
 
-    class HttpException extends NetworkException
+    class HttpException extends Exception
     {}
 
 
