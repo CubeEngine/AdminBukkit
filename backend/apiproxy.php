@@ -46,6 +46,6 @@
     catch (Exception $e)
     {
         header('HTTP/1.1 503 Internal Server Error');
-        die('-2');
+        die('0');
     }
 ?>

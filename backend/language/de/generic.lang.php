@@ -9,6 +9,8 @@
         'no'                        => 'nein',
         'No'                        => 'Nein',
         
+        'error_serverunavailable'   => "Der Server ist nicht (mehr) erreichbar.\nÜberprüfe die Serverdaten und den Server.",
+        'error_gotohome'            => 'Willst du zur Hauptseite zurück?',
         'error_unknown'             => "Es ist ein unbekannter Fehler aufgetreten.\nBitte informiere einen Administrator über diesen Fehler.",
         'error_invalidpath'         => "Die ausgeführte API Anfrage war ungültig.\nBitte informiere einen Administrator über diesen Fehler.",
         'error_authfailed'          => "Die Authentifizierung am API Server ist fehlgeschlagen.\nBitte kontrollieren sie ihre Server-Daten.",

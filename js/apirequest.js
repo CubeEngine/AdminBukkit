@@ -1,5 +1,11 @@
+var __APIREQUESTS_ENABLED = true;
+
 function ApiRequest(controller, action)
 {
+    if (!__APIREQUESTS_ENABLED)
+    {
+        throw "ApiRequest is disabled!";
+    }
     if (!controller || !action)
     {
         throw "Controller and action are required!";
@@ -27,6 +33,10 @@ function ApiRequest(controller, action)
     
     function onError(jqXHR, textStatus, thrownError)
     {
+        if (!__APIREQUESTS_ENABLED)
+        {
+            return;
+        }
         var errCode = $.trim(jqXHR.responseText);
         // only process errors with a response
         if (errCode)
@@ -42,6 +52,14 @@ function ApiRequest(controller, action)
             {
                 case -1:
                     alert(genericLang.error_unknown);
+                    break;
+                case 0:
+                    __APIREQUESTS_ENABLED = false;
+                    alert(genericLang.error_serverunavailable);
+                    if (confirm(genericLang.error_gotohome))
+                    {
+                        redirectTo('home.html');
+                    }
                     break;
                 case 1:
                     alert(genericLang.error_invalidpath);
@@ -147,6 +165,10 @@ function ApiRequest(controller, action)
     
     this.execute = function(data)
     {
+        if (!__APIREQUESTS_ENABLED)
+        {
+            return null;
+        }
         var requestData = $data;
         if (data && data instanceof Object)
         {

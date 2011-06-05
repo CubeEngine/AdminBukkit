@@ -8,7 +8,9 @@
         'Yes'                       => 'Yes',
         'no'                        => 'no',
         'No'                        => 'No',
-        
+
+        'error_serverunavailable'   => "The server isn't reachable (anymore).\nCheck your server info and the server.",
+        'error_gotohome'            => 'Back to the main page?',
         'error_unknown'             => 'An unknown error occured.\nPlease inform an administrator about this error',
         'error_invalidpath'         => 'An invalid path was entered!\nPlease inform an administrator about this error',
         'error_authfailed'          => 'The given API password was invalid!\nPlease check your server data.',
