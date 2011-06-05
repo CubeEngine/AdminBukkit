@@ -1,9 +1,4 @@
 var genericLang = new GenericLang();
- 
-function isDefined(target)
-{
-    return (typeof target !== 'undefined');
-}
 
 function urlencode(str)
 {
