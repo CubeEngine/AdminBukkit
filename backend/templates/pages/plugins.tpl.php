@@ -27,7 +27,7 @@
         }
         else
         {
-            var plugins = data.split(',');
+            var plugins = data.split(',').sort(realSort);
             for (var i = 0; i < plugins.length; i++)
             {
                 var li = document.createElement('li');

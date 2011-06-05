@@ -26,7 +26,7 @@
         }
         else
         {
-            var worlds = data.split(',');
+            var worlds = data.split(',').sort(realSort);
             for (var i = 0; i < worlds.length; i++)
             {
                 var li = document.createElement('li');

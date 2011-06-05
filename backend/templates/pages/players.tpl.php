@@ -45,16 +45,20 @@
         }
         else
         {
-            var players = data.split(',');
+            var players = data.split(',').sort(realSort);
             $('#players_online').html(players.length);
             for (var i = 0; i < players.length; i++)
             {
                 var li = document.createElement('li');
                 li.setAttribute('class', 'arrow');
+                //var div = document.createElement('div');
+                //$(div).addClass('playerhead');
+                //$(div).css('background-image', 'url(\'http://s3.amazonaws.com/MinecraftSkins/' + players[i] + '.png\')')
                 var a = document.createElement('a');
                 a.innerHTML = players[i];
                 a.href = '#';
                 $(a).click(overlayHandler);
+                //li.appendChild(div);
                 li.appendChild(a);
                 list.appendChild(li);
             }
