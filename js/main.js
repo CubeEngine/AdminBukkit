@@ -151,14 +151,7 @@ function realSort(a, b)
 {
     a = a.toLowerCase();
     var array = new Array(a, b.toLowerCase());
-    if (array.sort()[0] == a)
-    {
-        return -1;
-    }
-    else
-    {
-        return 1;
-    }
+    return (array.sort()[0] == a ? -1 : 1);
 }
 
 $(window).unload(function(){
