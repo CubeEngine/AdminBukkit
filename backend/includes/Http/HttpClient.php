@@ -113,7 +113,7 @@
             $this->authPass = '';
 
             $this->handleRedirects = true;
-            $this->postData = '';
+            $this->requestBody = '';
             $this->useCookieRules = true;
             $this->cookies = array();
             $this->requestHeaders = array();
