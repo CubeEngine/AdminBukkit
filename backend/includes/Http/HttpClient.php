@@ -92,7 +92,7 @@
         {
             $this->connection = null;
             $this->connected = false;
-            $this->connectionKeepAlive = false;
+            $this->connectionKeepAlive = true;
             $this->tryReconnectOnSendFailure = false;
 
             $this->debug = false;
@@ -1056,7 +1056,7 @@
                 }
                 else
                 {
-                    $vars[] = urlencode($index) . '=' . urlencode(strval($value));
+                    $vars[] = rawurlencode($index) . '=' . rawurlencode(strval($value));
                 }
             }
 
@@ -1175,9 +1175,9 @@
                 {
                     continue;
                 }
-                $name = trim(substr($responseHeaderLines[$i], 0, $strpos));
+                $name = strtolower(trim(substr($responseHeaderLines[$i], 0, $strpos)));
                 $value = trim(substr($responseHeaderLines[$i], $strpos + 1));
-                if (strcasecmp($name, 'set-cookie') == 0)
+                if ($name == 'set-cookie')
                 {
                     $cookieHeaders[] = $value;
                 }
@@ -1224,7 +1224,7 @@
          */
         protected function readResponseBody(&$responseHead)
         {
-            static $redirectCodes   = array(300, 301, 302, 303, 305, 307);
+            static $redirectCodes = array(300, 301, 302, 303, 305, 307);
 
             $responseBody = '';
             $BUFSIZE = 4096;
@@ -1289,7 +1289,7 @@
             }
 
             if (!@stream_set_blocking($this->connection, 1))
-            {
+            { // force-disconnect
                 $this->disconnect(true);
             }
 
