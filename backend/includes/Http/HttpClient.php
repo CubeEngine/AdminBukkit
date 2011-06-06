@@ -739,7 +739,7 @@
          * @param string $dir sets the directory
          */
   
-      public function setDir($dir = null)
+        public function setDir($dir = null)
         {
             if ($dir === null)
             {
@@ -1288,7 +1288,10 @@
                 }
             }
 
-            stream_set_blocking($this->connection, 1);
+            if (!@stream_set_blocking($this->connection, 1))
+            {
+                $this->disconnect(true);
+            }
 
             if (isset($responseHead[3]['content-encoding']) && strcasecmp($responseHead[3]['content-encoding']->value, 'gzip') === 0)
             { // content-encoding: gzip -> decode
