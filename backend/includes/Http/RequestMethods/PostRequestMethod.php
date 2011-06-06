@@ -8,8 +8,9 @@
 
         public function getHeader(HttpClient $http)
         {
-            $http->setConnectionKeepAlive(false);
+            //$http->setConnectionKeepAlive(false);
             $requestBody = $http->getRequestBody();
+            $headerLines = array();
             $headerLines[] = 'POST ' . $http->getFile() . ' HTTP/1.1';
             $headerLines[] = 'Host: ' . $http->getHost();
             $headerLines[] = 'Content-type: application/x-www-form-urlencoded';
@@ -18,7 +19,7 @@
             {
                 $headerLines[] = strval($header);
             }
-            $headerLines[] = 'Connection: close';
+            //$headerLines[] = 'Connection: close';
             if ($http->countCookies() > 0)
             {
                 $headerLines[] = $this->buildCookieHeader($http);

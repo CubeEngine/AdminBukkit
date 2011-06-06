@@ -9,6 +9,7 @@
         public function getHeader(HttpClient $http)
         {
             $http->setConnectionKeepAlive(true);
+            $headerLines = array();
             $headerLines[] = 'GET ' . $http->getFile() . ' HTTP/1.1';
             $headerLines[] = 'Host: ' . $http->getHost();
             foreach ($http->getHeaders() as $index => $header)

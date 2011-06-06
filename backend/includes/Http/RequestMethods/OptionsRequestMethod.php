@@ -9,6 +9,7 @@
         public function getHeader(HttpClient $http)
         {
             $http->setConnectionKeepAlive(false);
+            $headerLines = array();
             $headerLines[] = 'OPTIONS ' . $http->getFile() . ' HTTP/1.1';
             $headerLines[] = 'Host: ' . $http->getHost();
             $headerLines[] = 'Connection: close';
