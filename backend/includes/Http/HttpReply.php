@@ -5,18 +5,18 @@
         protected $message;
         protected $protocol;
         protected $body;
-        protected $responseHead;
-        protected $responseHeaders;
+        protected $head;
+        protected $headers;
         protected $cookies;
         
-        public function __construct($protocol, $status, $message, $body, $responseHead, array $responseHeaders, array $cookies)
+        public function __construct($protocol, $status, $message, $body, $head, array $headers, array $cookies)
         {
             $this->status = $status;
             $this->message = $message;
             $this->protocol = $protocol;
             $this->body = $body;
-            $this->responseHead = $responseHead;
-            $this->responseHeaders = $responseHeaders;
+            $this->head = $head;
+            $this->headers = $headers;
             $this->cookies = $cookies;
         }
         
@@ -75,9 +75,9 @@
          * @access public
          * @return string the raw response header
          */
-        public function getResponseHead()
+        public function getHead()
         {
-            return $this->responseHead;
+            return $this->head;
         }
         
         /**
@@ -87,11 +87,11 @@
          * @param string $name the name
          * @return HttpHeader the response header
          */
-        public function getResponseHeader($name)
+        public function getHeader($name)
         {
-            if (isset($this->responseHeaders[$name]))
+            if (isset($this->headers[$name]))
             {
-                return $this->responseHeaders[$name];
+                return $this->headers[$name];
             }
             else
             {
@@ -105,9 +105,9 @@
          * @access public
          * @return HttpHeader[] the response headers
          */
-        public function getResponseHeaders()
+        public function getHeaders()
         {
-            return $this->responseHeaders;
+            return $this->headers;
         }        /**
          * Returns the named cookie or null if it does not exist
          *
