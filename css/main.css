@@ -62,3 +62,23 @@ div.playerhead {
     background-position: -8px -8px;
     float: left;
 }
+#player_health {
+    display: inline-block;
+    margin-bottom: -2px;
+}
+#player_health span.heart {
+    margin-right: 2px;
+}
+#player_health span.heart, span.heart span {
+    display: block;
+    float: left;
+    height: 15px;
+    width: 15px;
+    background-image: url('../gfx/health/heart_empty.png');
+}
+span.heart span.full {
+    background-image: url('../gfx/health/heart_full.png');
+}
+span.heart span.half {
+    background-image: url('../gfx/health/heart_half.png');
+}

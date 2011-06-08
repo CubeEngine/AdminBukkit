@@ -6,7 +6,20 @@
 <ul class="rounded">
     <li><?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span></li>
     <li><?php $lang->displayname ?>: <span id="player_displayname"><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->lifes ?>: <span id="player_health"><?php $genericLang->progress ?></span> / 20</li>
+    <li><?php $lang->lifes ?>:
+        <div id="player_health">
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+            <span class="heart"><span></span></span>
+        </div>
+        <!--<span id="player_health"><?php $genericLang->progress ?></span> / 20</li>-->
     <li class="arrow"><a href="" id="player_world"><?php $lang->world ?>: <span><?php $genericLang->progress ?></span></a></li>
     <li>
         <?php $lang->position ?>:<br>
@@ -53,7 +66,15 @@
         data = eval('(' + data + ')');
         document.getElementById('player_name').innerHTML = data.name;
         document.getElementById('player_displayname').innerHTML = data.displayName;
-        document.getElementById('player_health').innerHTML = data.health;
+        var hearts = Math.floor(data.health / 2);
+        $('#player_health').attr('title', data.health);
+        $('#player_health span.heart span').removeClass('full');
+        $('#player_health span.heart span').removeClass('half');
+        $('#player_health span.heart:lt(' + hearts + ') span').addClass('full');
+        if (data.health % 2 == 1)
+        {
+            $('#player_health span.heart:eq(' + hearts + ') span').addClass('half');
+        }
         var world = document.getElementById('player_world');
         world.setAttribute('href', 'world.html?world=' + data.world);
         world.getElementsByTagName('span')[0].innerHTML = data.world;
