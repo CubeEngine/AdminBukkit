@@ -263,10 +263,12 @@
          *
          * @access public
          * @param bool $state whether to enable or disable the debug mode
+         * @return HttpClient fluent interface
          */
         public function setDebug($state)
         {
             $this->debug = ($state ? true : false);
+            return $this;
         }
 
         /**
@@ -303,10 +305,12 @@
          *
          * @access public
          * @param HttpHeader $header the header to add
+         * @return HttpClient fluent interface
          */
         public function addHeader(HttpHeader $header)
         {
             $this->requestHeaders[strtolower($header->name)] = $header;
+            return $this;
         }
 
         /**
@@ -314,6 +318,7 @@
          *
          * @access public
          * @param HttpHeader[] $headers the headers to add
+         * @return HttpClient fluent interface
          */
         public function addHeaders(array $headers)
         {
@@ -324,6 +329,7 @@
                     $this->requestHeaders[strtolower($header->name)] = $header;
                 }
             }
+            return $this;
         }
 
         /**
@@ -362,10 +368,12 @@
          *
          * @access public
          * @param string $name the name of the header to remove
+         * @return HttpClient fluent interface
          */
         public function removeHeader($name)
         {
             unset($this->requestHeaders[strtolower($header->name)]);
+            return $this;
         }
 
         /**
@@ -373,6 +381,7 @@
          *
          * @access public
          * @param string[] $names the names of the headers to remove
+         * @return HttpClient fluent interface
          */
         public function removeHeaders(array $names)
         {
@@ -380,6 +389,7 @@
             {
                 unset($this->requestHeaders[strtolower($header->name)]);
             }
+            return $this;
         }
 
         /**
@@ -387,10 +397,12 @@
          *
          * @access public
          * @param bool $state the state to set
+         * @return HttpClient fluent interface
          */
         public function setUseCookieRules($state)
         {
             $this->useCookieRules = ($state ? true : false);
+            return $this;
         }
 
         /**
@@ -415,6 +427,7 @@
          * @param string $domain the domain on which the cookie is valid
          * @param bool $secure whether the cookie is only valid on secure connections
          * @param bool $httponly whether the cookie can only be used for HTTP connections (the Http class ingnores this)
+         * @return HttpClient fluent interface
          */
         public function createCookie($name, $value = '', $expire = 0, $path = null, $domain = null, $secure = false, $httponly = false)
         {
@@ -437,6 +450,7 @@
                 ($httponly ? true : false)
             );
             $this->cookies[$cookie->get('name')] = $cookie;
+            return $this;
         }
 
         /**
@@ -444,10 +458,12 @@
          *
          * @access public
          * @param HttpCookie $cookie the cookie to add
+         * @return HttpClient fluent interface
          */
         public function addCookie(HttpCookie $cookie)
         {
             $this->cookies[$cookie->get('name')] = $cookie;
+            return $this;
         }
 
         /**
@@ -455,6 +471,7 @@
          *
          * @access public
          * @param HttpCookie[] $cookies the cookies to add
+         * @return HttpClient fluent interface
          */
         public function addCookies(array $cookies)
         {
@@ -465,6 +482,7 @@
                     $this->cookies[$cookie->get('name')] = $cookie;
                 }
             }
+            return $this;
         }
 
         /**
@@ -513,10 +531,12 @@
          *
          * @access public
          * @param string $name the name
+         * @return HttpClient fluent interface
          */
         public function removeCookie($name)
         {
             unset($this->cookies[$name]);
+            return $this;
         }
 
         /**
@@ -524,6 +544,7 @@
          *
          * @access public
          * @param string[] $names the names
+         * @return HttpClient fluent interface
          */
         public function removeCookies(array $names)
         {
@@ -531,6 +552,7 @@
             {
                 unset($this->cookies[$name]);
             }
+            return $this;
         }
         
         public function isCookieValid($cookie)
@@ -590,10 +612,12 @@
          *
          * @access public
          * @param bool $state the state to set
+         * @return HttpClient fluent interface
          */
         public function setConnectionKeepAlive($state)
         {
             $this->connectionKeepAlive = ($state ? true : false);
+            return $this;
         }
 
         /**
@@ -612,10 +636,12 @@
          *
          * @access public
          * @param bool $state the state to set
+         * @return HttpClient fluent interface
          */
         public function setTryReconnectOnSendFailure($state)
         {
             $this->tryReconnectOnSendFailure = ($state ? true : false);
+            return $this;
         }
         
         /**
@@ -633,10 +659,12 @@
          *
          * @access public
          * @param int $timeout the timeout
+         * @return HttpClient fluent interface
          */
         public function setTimeout($timeout)
         {
             $this->timeout = floatval($timeout);
+            return $this;
         }
 
         /**
@@ -655,11 +683,13 @@
          *
          * @access public
          * @param string $host the hostname
+         * @return HttpClient fluent interface
          */
         public function setHost($host)
         {
             $this->host = trim($host);
             $this->hostIp = gethostbyname(trim($host));
+            return $this;
         }
 
         /**
@@ -672,20 +702,27 @@
         {
             return $this->host;
         }
+        
+        public function getHostIp()
+        {
+            return $this->hostIp;
+        }
 
         /**
          * Sets the port to connect to
          *
          * @access public
          * @param int $port the port
+         * @return HttpClient fluent interface
          */
         public function setPort($port)
         {
-            $port = (int) $port;
+            $port = intval($port);
             if ($port >= 0 && $port < 65537)
             {
                 $this->port = $port;
             }
+            return $this;
         }
 
         /**
@@ -705,6 +742,7 @@
          * @access public
          * @param string $file the file path
          * @param bool $getDirFromFile whether to set the dir, too
+         * @return HttpClient fluent interface
          */
         public function setFile($file, $getDirFromFile = false)
         {
@@ -718,6 +756,7 @@
             {
                 $this->dir = substr($this->file, 0, strrpos($this->file, '/') + 1);
             }
+            return $this;
         }
 
         /**
@@ -737,6 +776,7 @@
          *
          * @access public
          * @param string $dir sets the directory
+         * @return HttpClient fluent interface
          */
   
         public function setDir($dir = null)
@@ -749,6 +789,7 @@
             {
                 $this->dir = trim($dir);
             }
+            return $this;
         }
 
         /**
@@ -768,10 +809,12 @@
          *
          * @access public
          * @param bool $ssl the state
+         * @return HttpClient fluent interface
          */
         public function setSsl($ssl)
         {
             $this->ssl = ($ssl ? true : false);
+            return $this;
         }
 
         /**
@@ -791,6 +834,7 @@
          *
          * @access public
          * @param string $target the target URL
+         * @return HttpClient fluent interface
          */
         public function setTarget($target)
         {
@@ -844,6 +888,7 @@
                     throw new HttpException('There was no path set while setting a relative target!');
                 }
             }
+            return $this;
         }
 
         /**
@@ -851,10 +896,12 @@
          *
          * @access public
          * @param AbstractHttpRequestMethod $method the request method
+         * @return HttpClient fluent interface
          */
         public function setMethod(AbstractHttpRequestMethod $method)
         {
             $this->requestMethod = $method;
+            return $this;
         }
 
         /**
@@ -873,10 +920,12 @@
          *
          * @access public
          * @param bool $state the state
+         * @return HttpClient fluent interface
          */
         public function setHandleRedirects($state)
         {
             $this->handleRedirects = ($state ? true : false);
+            return $this;
         }
 
         /**
@@ -895,10 +944,12 @@
          *
          * @access public
          * @param bool $state the state
+         * @return HttpClient fluent interface
          */
         public function setAuthUse($state)
         {
             $this->authUse = ($state ? true : false);
+            return $this;
         }
 
         /**
@@ -917,6 +968,7 @@
          *
          * @access public
          * @param AbstractHttpAuthentication $method the authentication method
+         * @return HttpClient fluent interface
          */
         public function setAuthMethod(AbstractHttpAuthentication $method)
         {
@@ -924,6 +976,7 @@
             {
                 $this->authMethod = $method;
             }
+            return $this;
         }
 
         /**
@@ -942,10 +995,12 @@
          *
          * @access public
          * @param string $user the username
+         * @return HttpClient fluent interface
          */
         public function setAuthUser($user)
         {
             $this->authUser = strval($user);
+            return $this;
         }
 
         /**
@@ -964,10 +1019,12 @@
          *
          * @access public
          * @param string $pass the password
+         * @return HttpClient fluent interface
          */
         public function setAuthPass($pass)
         {
             $this->authPass = strval($pass);
+            return $this;
         }
 
         /**
@@ -987,10 +1044,12 @@
          *
          * @access public
          * @param string $data the data to set
+         * @return HttpClient fluent interface
          */
         public function setRequestBody($data)
         {
             $this->requestBody = $data;
+            return $this;
         }
 
         /**
@@ -1242,6 +1301,7 @@
                 elseif (isset($responseHead[3]['transfer-encoding']) && strcasecmp ($responseHead[3]['transfer-encoding']->value, 'chunked') === 0)
                 { // transfer-encoding: chunked -> read chunk for chunk
                     stream_set_blocking($this->connection, 1);
+                    $chunkLength = 0;
                     do
                     {
                         $chunkLength = hexdec(trim(fgets($this->connection, 32)));
