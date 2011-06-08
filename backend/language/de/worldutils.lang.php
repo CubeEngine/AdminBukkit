@@ -22,8 +22,9 @@
         'storm_state'               => 'Soll es stürmig sein oder nicht?',
         'storm_success_on'          => 'Es ist nun stürmig!',
         'storm_success_off'         => 'Es ist nun nicht mehr stürmig!',
-        'spawn_location'            => 'Gib die Position des Spawns (Format: x,y,z) ein:',
+        'spawn_location'            => 'Gib den Spawnpunkt (Format: x,y,z) oder einen Spielername ein:',
         'spawn_invalidformat'       => 'Du musst dich an das Format halten!',
+        'spawn_playernotfound'      => 'Du musst dich an das Format halten!',
         'spawn_invalidlocation'     => 'Es wurde keine gültige Position angegeben!',
         'spawn_success'             => 'Der Spawn-Punkt wurde erfolgreich verlegt!',
         

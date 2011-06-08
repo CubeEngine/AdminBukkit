@@ -169,13 +169,24 @@ function world_storm(world)
 
 function world_spawn(world)
 {
-    var location = prompt(worldutilsLang.spawn_location, '');
-    if (!location)
+    var target = prompt(worldutilsLang.spawn_location, '');
+    if (!target)
     {
         return;
     }
-    location = $.trim(location);
-    if (!location.match(/^(\-)?\d+,(\-)?\d+,(\-)?\d+$/))
+    var data = {
+        world: world
+    };
+    target = target.replace(/\s/g, '');
+    if (target.match(/^(\-)?\d+,(\-)?\d+,(\-)?\d+$/))
+    {
+        data.location = target;
+    }
+    else if (target.match(/^[\w\d\._]+$/i))
+    {
+        data.player = target;
+    }
+    else
     {
         alert(worldutilsLang.spawn_invalidformat);
         return;
@@ -192,11 +203,14 @@ function world_spawn(world)
                 alert(worldutilsLang.world_notfound);
                 break;
             case 3:
-            case 4:
+            case 5:
                 alert(worldutilsLang.spawn_invalidlocation);
+                break;
+            case 4:
+                alert(worldutilsLang.spawn_playernotfound);
                 break;
         }
     });
     request.method('POST');
-    request.execute({world: world, location: location});
+    request.execute(data);
 }

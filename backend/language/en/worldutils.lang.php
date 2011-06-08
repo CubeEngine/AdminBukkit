@@ -21,8 +21,9 @@
         'storm_state'               => 'Should it be stormy or not?',
         'storm_success_on'          => 'It is stormy now!',
         'storm_success_off'         => 'It is not stormy anymore!',
-        'spawn_location'            => 'Enter the position of the spawn (format: x,y,z):',
+        'spawn_location'            => 'Enter the spawn location (format: x,y,z) or a player name:',
         'spawn_invalidformat'       => 'You have to regard the format!',
+        'spawn_playernotfound'      => 'Du musst dich an das Format halten!',
         'spawn_invalidlocation'     => 'Invalid location!',
         'spawn_success'             => 'The spawn was successfully moved!',
         
