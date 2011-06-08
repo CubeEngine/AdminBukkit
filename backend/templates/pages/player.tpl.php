@@ -19,7 +19,6 @@
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
         </div>
-        <!--<span id="player_health"><?php $genericLang->progress ?></span> / 20</li>-->
     <li class="arrow"><a href="" id="player_world"><?php $lang->world ?>: <span><?php $genericLang->progress ?></span></a></li>
     <li>
         <?php $lang->position ?>:<br>
