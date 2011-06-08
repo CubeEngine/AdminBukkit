@@ -7,6 +7,7 @@
         'world'             => 'Welt',
         'position'          => 'Position',
         'orientation'       => 'Ausrichtung',
+        'ip'                => 'IP Adresse',
         'utils'             => 'Werkzeuge',
         'refresh'           => 'Erneuern',
         'playerleft_alert'  => 'Der Spieler hat Spiel das verlassen.\nDie Daten werden nun nicht mehr erneuert.',

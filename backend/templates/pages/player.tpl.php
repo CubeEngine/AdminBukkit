@@ -15,6 +15,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;Z: <span id="player_pos2"><?php $genericLang->progress ?></span>
     </li>
     <li><?php $lang->orientation ?>: <span id="player_pos3"><?php $genericLang->progress ?></span></li>
+    <li><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></li>
 </ul>
 <ul class="rounded">
     <li class="arrow"><a href="#" class="toggleoverlay"><?php $lang->utils ?></a></li>
@@ -62,6 +63,7 @@
             elem.innerHTML = (Math.round(data.position[index] * 1000) / 1000);
             elem.setAttribute('title', data.position[index]);
         }
+        document.getElementById('player_ip').innerHTML = data.ip;
     }
     
     var intervalID = null;

@@ -7,6 +7,7 @@
         'world'             => 'World',
         'position'          => 'Position',
         'orientation'       => 'Orientation',
+        'ip'                => 'IP Address',
         'utils'             => 'Utilities',
         'refresh'           => 'Refresh',
         'playerleft_alert'  => 'Player left the game.\nThe data wont be refreshed anymore.',
