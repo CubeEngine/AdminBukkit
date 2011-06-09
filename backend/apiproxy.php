@@ -4,8 +4,8 @@
     
     if (!User::loggedIn())
     {
-        header('HTTP/1.1 403 Forbidden');
-        die('Seems like the you\'re not logged in!');
+        header('HTTP/1.1 401 Not Authorized');
+        die('2');
     }
     
     $path = '';
