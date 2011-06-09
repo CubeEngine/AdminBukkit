@@ -1,5 +1,5 @@
 <?php $lang = Lang::instance('playerutils') ?>
-<div id="player_overlay">
+<div id="player_overlay" class="overlay">
     <div id="player_scroller">
         <div>
             <ul class="rounded">
@@ -18,6 +18,7 @@
                 <li><a href="#" class="toggleoverlay"><?php $lang->close ?></a></li>
             </ul>
         </div>
+            <div class="spacer"></div>
     </div>
 </div>
 <script type="text/javascript" src="backend/javascriptlang.php?file=playerutils"></script>

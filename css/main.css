@@ -27,7 +27,7 @@
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
 }
-#player_overlay, #world_overlay, #ban_overlay {
+.overlay {
     display: none;
     position: absolute;
     top: 0;
@@ -36,6 +36,9 @@
     height: 100%;
     background-color: rgba(0,0,0,0.6);
     overflow: auto;
+}
+.overlay div.spacer {
+    height: 6px;
 }
 a.back:hover {
     cursor: pointer;

@@ -1,5 +1,5 @@
 <?php $lang = Lang::instance('worldutils') ?>
-<div id="world_overlay">
+<div id="world_overlay" class="overlay">
     <div id="world_scroller">
         <div>
             <ul class="rounded">

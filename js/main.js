@@ -127,7 +127,6 @@ function prepareForm(query)
 
 function prepareOverlay(query)
 {
-    $(query).css('padding-top', $('.toolbar').height() + 10);
     $(query).click(function(e){
         toggleOverlay(query);
     });
@@ -139,11 +138,23 @@ function prepareOverlay(query)
 
 function toggleOverlay(query)
 {
-    $(query).toggle('fast');
-    if (typeof scroller != 'undefined')
-    {
-        scroller.refresh();
-        scroller.scrollTo(0, 0);
+    var elem = $(query);
+    if (elem.css('display') == 'none')
+    { // show
+        elem.show('fast', function(){
+            if (typeof scroller != 'undefined')
+            {
+                window.scrollTo(0, 0);
+                scroller.scrollTo(0, 0);
+                var scrollElem = elem.find('div:first');
+                scrollElem.height(scrollElem.height() + 10);
+                scroller.refresh();
+            }
+        });
+    }
+    else
+    { // hide
+        elem.hide('fast')
     }
 }
 

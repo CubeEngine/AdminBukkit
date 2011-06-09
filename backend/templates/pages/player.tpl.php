@@ -85,6 +85,12 @@
         }
         document.getElementById('player_ip').innerHTML = data.ip;
     }
+
+    $('#player_health span.heart').bind('touchstart', function(e){
+        $(e.target).parent().trigger('touchstart', e);
+        e.preventDefault();
+        e.stopImmediatePropagation();
+    });
     
     var intervalID = null;
     function init()

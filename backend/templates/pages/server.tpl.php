@@ -20,7 +20,7 @@
     <li><a href="#" id="broadcast"><?php $lang->broadcast ?></a></li>
     <li><a href="#" id="stop"><?php $lang->stop ?></a></li>
 </ul>
-<div id="ban_overlay">
+<div id="ban_overlay" class="overlay">
     <ul class="rounded">
         <li><a href="#" id="ban_player"><?php $lang->banplayer ?></a></li>
         <li><a href="#" id="ban_ip"><?php $lang->banip ?></a></li>
