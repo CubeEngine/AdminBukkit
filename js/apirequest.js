@@ -127,6 +127,7 @@ function ApiRequest(controller, action)
         if (typeof state !== 'undefined')
         {
             $sync = !!state;
+            return $this;
         }
         else
         {
@@ -139,6 +140,7 @@ function ApiRequest(controller, action)
         if (typeof state !== 'undefined')
         {
             $method = method;
+            return $this;
         }
         else
         {
@@ -156,6 +158,7 @@ function ApiRequest(controller, action)
         if (typeof data !== 'undefined')
         {
             $data = data;
+            return $this;
         }
         else
         {
