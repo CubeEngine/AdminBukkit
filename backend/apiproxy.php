@@ -4,7 +4,7 @@
     
     if (!User::loggedIn())
     {
-        header('HTTP/1.1 401 Not Authorized');
+        header('HTTP/1.1 401 Unauthorized');
         die('2');
     }
     
