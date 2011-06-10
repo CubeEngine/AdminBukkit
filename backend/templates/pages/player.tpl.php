@@ -4,7 +4,7 @@
     var player = '<?php echo $player ?>';
 </script>
 <ul class="rounded">
-    <li><?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span></li>
+    <li><?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span><span id="player_head"></span></li>
     <li><?php $lang->displayname ?>: <span id="player_displayname"><?php $genericLang->progress ?></span></li>
     <li><?php $lang->lifes ?>:
         <div id="player_health">
