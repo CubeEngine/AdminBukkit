@@ -58,13 +58,11 @@ div.touchTooltip {
 div.touchTooltip div {
     margin: 3px;
 }
-div.playerhead {
+#player_head {
     display: block;
     float: right;
     width: 24px;
     height: 24px;
-    background-position: -8px -8px;
-    float: left;
 }
 #player_health {
     display: inline-block;
