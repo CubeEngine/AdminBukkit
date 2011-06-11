@@ -21,6 +21,8 @@ function ApiRequest(controller, action)
     var $data = null;
     var $sync = false;
     var $method = 'GET';
+    var $ignoreFirstFail = false;
+    var $lastFailed = false;
     
     var $onSuccess = null;
     var $onFailure = null;
@@ -54,11 +56,17 @@ function ApiRequest(controller, action)
                     alert(genericLang.error_unknown);
                     break;
                 case 0:
-                    __APIREQUESTS_ENABLED = false;
-                    alert(genericLang.error_serverunavailable);
-                    if (confirm(genericLang.error_gotohome))
+                    if (!$ignoreFirstFail || ($ignoreFirstFail && $lastFailed))
                     {
-                        redirectTo('home.html');
+                        __APIREQUESTS_ENABLED = false;
+                        if (confirm(genericLang.error_serverunavailable))
+                        {
+                            redirectTo('home.html');
+                        }
+                    }
+                    else
+                    {
+                        $lastFailed = true;
                     }
                     break;
                 case 1:
@@ -87,6 +95,15 @@ function ApiRequest(controller, action)
                     //do nothing
                     break;
             }
+        }
+    }
+
+    function onSuccess(data, textStatus, jqXHR)
+    {
+        $lastFailed = false;
+        if (typeof $onSuccess == 'function')
+        {
+            $onSuccess(data, textStatus, jqXHR);
         }
     }
     
@@ -126,7 +143,7 @@ function ApiRequest(controller, action)
     {
         if (typeof state !== 'undefined')
         {
-            $sync = !!state;
+            $sync = (state ? true : false);
             return $this;
         }
         else
@@ -137,7 +154,7 @@ function ApiRequest(controller, action)
     
     this.method = function(method)
     {
-        if (typeof state !== 'undefined')
+        if (typeof method !== 'undefined')
         {
             $method = method;
             return $this;
@@ -165,6 +182,24 @@ function ApiRequest(controller, action)
             return $data;
         }
     }
+
+    this.ignoreFirstFail = function(state)
+    {
+        if (typeof state !== 'undefined')
+        {
+            $ignoreFirstFail = (state ? true : false);
+            return $this;
+        }
+        else
+        {
+            return $ignoreFirstFail;
+        }
+    }
+
+    this.lastFailed = function()
+    {
+        return $lastFailed;
+    }
     
     this.execute = function(data)
     {
@@ -183,7 +218,7 @@ function ApiRequest(controller, action)
             type: $method,
             data: requestData,
             async: !$sync,
-            success: $onSuccess,
+            success: onSuccess,
             error: onError,
             beforeSend: $onBeforeSend,
             complete: $onComplete
