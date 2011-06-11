@@ -71,7 +71,7 @@ class Router
             $url .= (preg_match('/\?/', $url) ? '&' : '?') . $sessString;
         }
         header('Location: ' . $url);
-        ob_end_clean();
+        @ob_end_clean();
         die();
     }
     
