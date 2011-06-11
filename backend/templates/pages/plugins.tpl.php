@@ -11,6 +11,7 @@
 <script type="text/javascript">
     var list = document.getElementById('pluginlist');
     var request = new ApiRequest('plugin', 'list');
+    request.ignoreFirstFail(true);
     request.onSuccess(refreshData);
     request.onFailure(function(){
         alert('failed to load list!');

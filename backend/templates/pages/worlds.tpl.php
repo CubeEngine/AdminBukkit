@@ -10,6 +10,7 @@
 <script type="text/javascript">
     var list = document.getElementById('worldlist');
     var request = new ApiRequest('world', 'list');
+    request.ignoreFirstFail(true);
     request.onSuccess(refreshData);
     request.onFailure(function(){
         alert('failed to load list');

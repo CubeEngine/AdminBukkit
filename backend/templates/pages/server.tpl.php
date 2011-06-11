@@ -46,6 +46,7 @@
     statsRequest.onBeforeSend(null);
     statsRequest.onComplete(null);
     statsRequest.data({format: 'json'});
+    statsRequest.ignoreFirstFail(true);
     statsRequest.onFailure(function(){
         alert('failed to load stats');
     });

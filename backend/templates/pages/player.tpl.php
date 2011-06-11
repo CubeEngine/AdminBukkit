@@ -37,6 +37,7 @@
     var succeeded = false;
     var request = new ApiRequest('player', 'info');
     request.data({player: player, format:'json'});
+    request.ignoreFirstFail(true);
     request.onSuccess(refreshData);
     request.onFailure(function(error){
         switch(error)
