@@ -24,7 +24,7 @@ function world_create(onSuccess)
     }
     data.environment = 'normal';
     var env = prompt(worldutilsLang.create_env, '');
-    if (env == 'normal' || env == 'nether')
+    if (env == 'normal' || env == 'nether' || env == 'skylands')
     {
         data.environment = env;
     }
