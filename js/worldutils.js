@@ -2,8 +2,8 @@ var worldutilsLang = new WorldutilsLang();
 
 function world_create(onSuccess)
 {
-    alert(genericLang.function_disabled);
-    return false;
+    //alert(genericLang.function_disabled);
+    //return false;
     
     var data = new Object();
     var world = prompt(worldutilsLang.create_name, '');
