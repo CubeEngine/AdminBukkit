@@ -65,7 +65,6 @@
         succeeded = true;
         data = eval('(' + data + ')');
         document.getElementById('player_name').innerHTML = data.name;
-        alert(parseColors(data.displayName));
         document.getElementById('player_displayname').innerHTML = parseColors(data.displayName);
         var hearts = Math.floor(data.health / 2);
         $('#player_health').attr('title', data.health);

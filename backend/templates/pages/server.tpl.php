@@ -31,8 +31,8 @@
         <li><a href="#" class="toggleoverlay"><?php $lang->close ?></a></li>
     </ul>
 </div>
-<script type="text/javascript" src="backend/javascriptlang.php?file=banutils"></script>
-<script type="text/javascript" src="js/banutils.js"></script>
+<script type="text/javascript" src="backend/javascriptlang.php?file=serverutils"></script>
+<script type="text/javascript" src="js/serverutils.js"></script>
 <script type="text/javascript">
     var infoRequest = new ApiRequest('server', 'info');
     infoRequest.onSuccess(refreshData);

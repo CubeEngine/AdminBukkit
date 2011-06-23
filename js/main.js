@@ -229,6 +229,7 @@ function parseColors(string)
             }
             if (color)
             {
+                counter++;
                 return '<span style="color:' + color + ';">'
             }
         }

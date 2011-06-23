@@ -23,8 +23,8 @@
 </div>
 <script type="text/javascript" src="backend/javascriptlang.php?file=playerutils"></script>
 <script type="text/javascript" src="js/playerutils.js"></script>
-<script type="text/javascript" src="backend/javascriptlang.php?file=banutils"></script>
-<script type="text/javascript" src="js/banutils.js"></script>
+<script type="text/javascript" src="backend/javascriptlang.php?file=serverutils"></script>
+<script type="text/javascript" src="js/serverutils.js"></script>
 <script type="text/javascript" src="js/iscroll-lite.min.js"></script>
 <script type="text/javascript">
     var scroller = new iScroll('player_overlay');
