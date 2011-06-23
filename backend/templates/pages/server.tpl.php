@@ -76,8 +76,10 @@
     function refreshMemStats(data)
     {
         data = eval('(' + data + ')');
-        $('#stats_ram_free').html(Math.round(data.freememory / 1024 / 1024));
-        $('#stats_ram_max').html(Math.round(data.maxmemory / 1024 / 1024));
+        var max = Math.round(data.maxmemory / 1024 / 1024);
+        var free = Math.round(data.freememory / 1024 / 1024);
+        $('#stats_ram_max').html(max);
+        $('#stats_ram_free').html(max - free);
     }
     
     $('#stats_ram').click(function(e){
