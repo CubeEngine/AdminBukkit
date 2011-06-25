@@ -1,18 +1,6 @@
 <?php
     class Request
     {
-        public static function rqst($name, $default = '')
-        {
-            if (isset($_REQUEST[$name]))
-            {
-                return $_REQUEST[$name];
-            }
-            else
-            {
-                return $default;
-            }
-        }
-        
         public static function get($name, $default = '')
         {
             if (isset($_GET[$name]))
