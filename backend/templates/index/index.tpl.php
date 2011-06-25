@@ -10,11 +10,11 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="shortcut icon" type="image/png" href="gfx/favicon.png">
         <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 163dpi)" href="gfx/icon-iphone.png">
-        <link rel="apple-touch-icon" media="screen and (resolution: 132dpi)" href="gfx/icon-ipad.png">
-        <link rel="apple-touch-icon" media="screen and (resolution: 326dpi)" href="gfx/icon-iphone4.png">
+        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 132dpi)" href="gfx/icon-ipad.png">
+        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 326dpi)" href="gfx/icon-iphone4.png">
         <link rel="apple-touch-startup-image" media="screen and (resolution: 163dpi)" href="gfx/startup-iphone.png">
-        <!--<link rel="apple-touch-startup-image" media="screen and (resolution: 132dpi)" href="gfx/startup-ipad.png">
-        <link rel="apple-touch-startup-image" media="screen and (resolution: 326dpi)" href="gfx/startup-iphone4.png">-->
+        <link rel="apple-touch-startup-image" media="screen and (resolution: 132dpi)" href="gfx/startup-ipad.png">
+        <link rel="apple-touch-startup-image" media="screen and (resolution: 326dpi)" href="gfx/startup-iphone4.png">
         <style type="text/css" media="screen">@import "css/jqtouch.css";</style>
         <style type="text/css" media="screen">@import "themes/<?php echo $theme ?>/theme.css";</style>
         <style type="text/css" media="screen">@import "css/main.css";</style>
