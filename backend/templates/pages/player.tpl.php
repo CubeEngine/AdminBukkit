@@ -27,7 +27,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;Z: <span id="player_pos2"><?php $genericLang->progress ?></span>
     </li>
     <li><?php $lang->orientation ?>: <span id="player_pos3"><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></li>
+    <li><a id="ban_ip" href="#"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a></li>
 </ul>
 <ul class="rounded">
     <li class="arrow"><a href="#" class="toggleoverlay"><?php $lang->utils ?></a></li>
@@ -104,6 +104,17 @@
 
     $('.toolbar a.button').click(function(){
         request.execute();
+        return false;
+    });
+
+    $('#ban_ip').click(function(){
+        if (ban_ip($('#player_ip').text(), true))
+        {
+            if (player_kick(player, true))
+            {
+                history.back();
+            }
+        }
         return false;
     });
     
