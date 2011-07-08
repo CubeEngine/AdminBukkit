@@ -17,6 +17,8 @@
 <h2><?php $lang->utils ?></h2>
 <ul class="rounded">
     <li><a href="#" id="banning"><?php $lang->banning ?></a></li>
+    <li><a href="#" id="whitelist"><?php $lang->whitelist ?></a></li>
+    <li><a href="#" id="operators"><?php $lang->operators ?></a></li>
     <li><a href="#" id="broadcast"><?php $lang->broadcast ?></a></li>
     <li><a href="#" id="stop"><?php $lang->stop ?></a></li>
 </ul>
