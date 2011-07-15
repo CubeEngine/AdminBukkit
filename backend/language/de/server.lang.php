@@ -21,6 +21,8 @@
         'banplayer'             => 'Ban einen Spieler',
         'unbanip'               => 'Entbanne eine IP',
         'unbanplayer'           => 'Entbanne einen Spieler',
+        'whitelist'             => 'Whitelist',
+        'operators'             => 'Operatoren',
         'close'                 => 'Schließen',
         'broadcast'             => 'Eine Nachricht an den Server',
         'broadcast_prompt'      => 'Gib die Nachricht ein:',
