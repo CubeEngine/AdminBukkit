@@ -26,7 +26,7 @@
         }
         elseif (!preg_match('/^[\w\d-]{5,40}/i', $user))
         {
-            $errors[] = $registerLang['user_invalid'];
+            //$errors[] = $registerLang['user_invalid'];
         }
         if (empty($email))
         {

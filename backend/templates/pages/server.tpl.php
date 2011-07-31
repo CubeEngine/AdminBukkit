@@ -16,30 +16,70 @@
 </ul>
 <h2><?php $lang->utils ?></h2>
 <ul class="rounded">
-    <li><a href="#" id="banning"><?php $lang->banning ?></a></li>
-    <li><a href="#" id="whitelist"><?php $lang->whitelist ?></a></li>
-    <li><a href="#" id="operators"><?php $lang->operators ?></a></li>
+    <li><a href="#" id="banplayer"><?php $lang->banplayer ?></a></li>
+    <li><a href="#" id="banip"><?php $lang->banip ?></a></li>
+    <li><a href="#" id="whitelist"><?php $lang->addtowhitelist ?></a></li>
+    <li><a href="#" id="operators"><?php $lang->addoperator ?></a></li>
     <li><a href="#" id="broadcast"><?php $lang->broadcast ?></a></li>
     <li><a href="#" id="stop"><?php $lang->stop ?></a></li>
 </ul>
-<div id="ban_overlay" class="overlay">
+<div id="generic_overlay" class="overlay">
     <ul class="rounded">
-        <li><a href="#" id="ban_player"><?php $lang->banplayer ?></a></li>
-        <li><a href="#" id="ban_ip"><?php $lang->banip ?></a></li>
-        <li><a href="#" id="unban_player"><?php $lang->unbanplayer ?></a></li>
-        <li><a href="#" id="unban_ip"><?php $lang->unbanip ?></a></li>
+        <li><a href="#" id="generic_add"></a></li>
     </ul>
+    <h2 id="generic_headline"></h2>
+    <div class="generic_scroller">
+        <div>
+            <ul id="generic_list" class="rounded">
+                <li><?php $genericLang->progress ?></li>
+            </ul>
+        </div>
+    </div>
     <ul>
         <li><a href="#" class="toggleoverlay"><?php $lang->close ?></a></li>
     </ul>
 </div>
 <script type="text/javascript" src="backend/javascriptlang.php?file=serverutils"></script>
+<script type="text/javascript" src="js/overlay.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/serverutils.js"></script>
+<script type="text/javascript" src="js/iscroll-lite.min.js"></script>
 <script type="text/javascript">
+
+    var genericApiRequest = null;
+    //var genericScroller = new iScroll('generic_scroller');
+    var genericList = $('#generic_list');
+    var genericOverlay = new Overlay('#generic_overlay');
+    genericOverlay.getElement().bind('beforeOpenOverlay', function(e, event){
+        window.scrollTo(0, 0);
+        if (genericApiRequest)
+        {
+            genericApiRequest.execute();
+        }
+    }).bind('openOverlay', function(e, event){
+        //genericScroller.scrollTo(0, 0);
+        //genericScroller.refresh();
+    }).bind('beforeCloseOverlay', function(e, event){
+        /* nothing to do here yet */
+    }).bind('closeOverlay', function(e, event){
+        $('#generic_add').html('').unbind('click');
+        $('#generic_headline').html('');
+        $('#generic_list').html('<li><?php $genericLang->progress ?></li>');
+        genericApiRequest = null;
+    });
+</script>
+<?php $this->displayTemplateFile('pages/server/banip_js') ?>
+
+<?php $this->displayTemplateFile('pages/server/banplayer_js') ?>
+
+<?php $this->displayTemplateFile('pages/server/operators_js') ?>
+
+<?php $this->displayTemplateFile('pages/server/whitelist_js') ?>
+<script type="text/javascript">
+
     var infoRequest = new ApiRequest('server', 'info');
     infoRequest.onSuccess(refreshData);
     infoRequest.onFailure(function(){
-        alert('failed to load infos');
+        alert('failed to load infos'); // @todo hardcoded string
     });
     infoRequest.data({format: 'json'});
     
@@ -132,30 +172,6 @@
         });
         request.execute({message: message.substr(0, 100)});
         return false;
-    });
-    prepareOverlay('#ban_overlay');
-    $('#banning').click(function(){
-        toggleOverlay('#ban_overlay');
-        return false;
-    });
-    $('#ban_player').click(function(e){
-        e.preventDefault();
-        if (ban_player())
-        {
-            refreshData();
-        }
-    });
-    $('#ban_ip').click(function(e){
-        e.preventDefault();
-        ban_ip();
-    });
-    $('#unban_player').click(function(e){
-        e.preventDefault();
-        unban_player();
-    });
-    $('#unban_ip').click(function(e){
-        e.preventDefault();
-        unban_ip();
     });
     
     function init()

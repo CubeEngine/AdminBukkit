@@ -39,6 +39,14 @@
         'teleport_worldnotfound'    => 'Die Welt wurde nicht gefunden!',
         'teleport_invalidtarget'    => 'Es wurde kein gültiges Ziel angegeben!',
         'teleport_success'          => 'Der Spieler wurde erfolgreich teleportiert!',
+        'op_confirm'                => 'Willst du diesen Spieler wirklich op\'pen?',
+        'op_success'                => 'Der Spieler wurde erfolgreich geop\'pt!',
+        'op_noplayer'               => 'Es wurde kein Spieler angegeben!',
+        'op_alreadyopped'           => 'Der Spieler ist bereits ein Operator!',
+        'deop_confirm'              => 'Willst du diesen Spieler wirklich deop\'pen?',
+        'deop_success'              => 'Der Spieler wurde erfolgreich gedeop\'pt!',
+        'deop_noplayer'             => 'Es wurde kein Spieler angegeben!',
+        'deop_notopped'             => 'Der Spieler ist kein Operator!',
         
         'infos'                     => 'Informationen',
         'ban'                       => 'Verbannen',
@@ -50,6 +58,8 @@
         'give'                      => 'Etwas geben',
         'clearinv'                  => 'Inventar leeren',
         'tell'                      => 'Eine Nachricht schicken',
+        'op'                        => 'Oppen',
+        'deop'                      => 'Deoppen',
         'close'                     => 'Schließen'
     );
 ?>

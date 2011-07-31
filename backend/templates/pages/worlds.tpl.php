@@ -45,13 +45,12 @@
     function overlayHandler(e)
     {
         world = e.target.innerHTML;
-        toggleOverlay('#world_overlay');
+        worldOverlay.toggle();
         e.preventDefault();
     }
     
     function init()
     {
-        prepareOverlay('#world_overlay');
         request.execute();
     }
 

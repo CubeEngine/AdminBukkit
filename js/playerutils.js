@@ -269,3 +269,49 @@ function player_teleport(player)
     });
     request.execute(data);
 }
+
+function player_op(player)
+{
+    if (confirm(playerutilsLang.op_confirm))
+    {
+        var request = new ApiRequest('operator', 'add');
+        request.onSuccess(function(){
+            alert(playerutilsLang.op_success);
+        });
+        request.onFailure(function(error){
+            switch(error)
+            {
+                case 1:
+                    alert(playerutilsLang.op_noplayer);
+                    break;
+                case 2:
+                    alert(playerutilsLang.op_alreadyopped);
+                    break;
+            }
+        });
+        request.execute({player:player});
+    }
+}
+
+function player_deop(player)
+{
+    if (confirm(playerutilsLang.deop_confirm))
+    {
+        var request = new ApiRequest('operator', 'remove');
+        request.onSuccess(function(){
+            alert(playerutilsLang.deop_success);
+        });
+        request.onFailure(function(error){
+            switch(error)
+            {
+                case 1:
+                    alert(playerutilsLang.deop_noplayer);
+                    break;
+                case 2:
+                    alert(playerutilsLang.deop_notopped);
+                    break;
+            }
+        });
+        request.execute({player:player});
+    }
+}

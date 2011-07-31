@@ -22,7 +22,16 @@
 </div>
 <script type="text/javascript" src="backend/javascriptlang.php?file=worldutils"></script>
 <script type="text/javascript" src="js/worldutils.js"></script>
+<script type="text/javascript" src="js/overlay.js"></script>
 <script type="text/javascript" src="js/iscroll-lite.min.js"></script>
 <script type="text/javascript">
     var scroller = new iScroll('world_overlay');
+    var worldOverlay = new Overlay('#world_overlay');
+    worldOverlay.getElement().bind('openOverlay', function(e, event){
+        window.scroll(0, 0);
+        scroller.refresh();
+        scroller.scrollTo(0, 0);
+        var scrollElem = event.getElement().find('div:first');
+        scrollElem.height(scrollElem.height() + 10)
+    });
 </script>

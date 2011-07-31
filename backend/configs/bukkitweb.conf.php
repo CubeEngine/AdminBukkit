@@ -16,6 +16,6 @@
         
         // Debugging
         'displayErrors'         => true,
-        'logLevel'              => 0
+        'logLevel'              => 5
     );
 ?>

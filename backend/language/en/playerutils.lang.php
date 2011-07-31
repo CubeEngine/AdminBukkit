@@ -39,6 +39,14 @@
         'teleport_worldnotfound'    => 'World not found!',
         'teleport_invalidtarget'    => 'You entered a invalid target!',
         'teleport_success'          => 'The player was successfully teleported!',
+        'op_confirm'                => 'Are you sure to op this player?',
+        'op_success'                => 'The player was successfully op\'ped!',
+        'op_noplayer'               => 'There was no player given!',
+        'op_alreadyopped'           => 'This player is already a operator!',
+        'deop_confirm'              => 'Are you sure to deop\'pen?',
+        'deop_success'              => 'The player was successfully deop\'pt!',
+        'deop_noplayer'             => 'There was no player given!',
+        'deop_notopped'             => 'This player is no operator!',
         
         'infos'                     => 'Information',
         'ban'                       => 'Ban',
@@ -50,6 +58,8 @@
         'give'                      => 'Give',
         'clearinv'                  => 'Clear inventory',
         'tell'                      => 'Send a message',
+        'op'                        => 'Op',
+        'deop'                      => 'Deop',
         'close'                     => 'Close'
     );
 ?>

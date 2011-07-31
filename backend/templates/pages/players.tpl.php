@@ -52,9 +52,6 @@
             {
                 var li = document.createElement('li');
                 li.setAttribute('class', 'arrow');
-                //var div = document.createElement('div');
-                //$(div).addClass('playerhead');
-                //$(div).css('background-image', 'url(\'http://s3.amazonaws.com/MinecraftSkins/' + players[i] + '.png\')')
                 var a = document.createElement('a');
                 a.innerHTML = players[i];
                 a.href = '#';
@@ -69,7 +66,7 @@
     function overlayHandler(e)
     {
         player = e.target.innerHTML;
-        toggleOverlay('#player_overlay');
+        playerOverlay.toggle();
         e.preventDefault();
     }
     
@@ -80,7 +77,6 @@
 
     function init()
     {
-        prepareOverlay('#player_overlay');
         var maxPlayersRequest = new ApiRequest('server', 'maxplayers');
         maxPlayersRequest.onSuccess(function(data){
             $('#players_limit').html(data);
@@ -134,6 +130,14 @@
     });
     $('#player_teleport').click(function(){
         player_teleport(player);
+        return false;
+    });
+    $('#player_op').click(function(){
+        player_op(player);
+        return false;
+    });
+    $('#player_deop').click(function(){
+        player_deop(player);
         return false;
     });
     $('#player_info').click(function(){

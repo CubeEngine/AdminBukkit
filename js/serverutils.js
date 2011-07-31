@@ -48,8 +48,9 @@ function ban_player(player, sync)
     request.execute(data);
     return $result;
 }
-function ban_ip(ip)
+function ban_ip(ip, sync)
 {
+    var $result = false;
     if (!ip)
     {
         ip = prompt(serverutilsLang.banip_prompt, '');
@@ -58,22 +59,23 @@ function ban_ip(ip)
     {
         if (!confirm(serverutilsLang.banip_confirm))
         {
-            return;
+            return false;
         }
     }
     if (!ip)
     {
-        return;
+        return false;
     }
     ip = ip.replace(/\s/g, '');
     if (!ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/))
     {
         alert(serverutilsLang.ip_invalid);
-        return;
+        return false;
     }
     var request = new ApiRequest('ban', 'add');
     request.onSuccess(function(){
         alert(serverutilsLang.banip_success);
+        $result = true;
     });
     request.onFailure(function(code){
         switch (code)
@@ -86,11 +88,14 @@ function ban_ip(ip)
                 break;
         }
     });
+    request.sync(!!sync);
     request.execute({ip: ip});
+    return $result;
 }
 
-function unban_player(player)
+function unban_player(player, sync)
 {
+    var $result = false;
     if (!player)
     {
         player = prompt(serverutilsLang.unbanplayer_prompt, '');
@@ -99,22 +104,23 @@ function unban_player(player)
     {
         if (!confirm(serverutilsLang.unbanplayer_confirm))
         {
-            return;
+            return false;
         }
     }
     if (!player)
     {
-        return;
+        return false;
     }
     player = player.replace(/\s/g, '');
     if (!player.match(/^[\w\d\.]+$/i))
     {
         alert(serverutilsLang.name_invalid);
-        return;
+        return false;
     }
     var request = new ApiRequest('ban', 'remove');
     request.onSuccess(function(){
         alert(serverutilsLang.unbanplayer_success);
+        $result = true;
     });
     request.onFailure(function(code){
         switch (code)
@@ -124,10 +130,13 @@ function unban_player(player)
                 break;
         }
     });
+    request.sync(!!sync);
     request.execute({player: player});
+    return $result;
 }
-function unban_ip(ip)
+function unban_ip(ip, sync)
 {
+    var $result = false;
     if (!ip)
     {
         ip = prompt(serverutilsLang.unbanip_prompt, '');
@@ -136,22 +145,23 @@ function unban_ip(ip)
     {
         if (!confirm(serverutilsLang.unbanip_confirm))
         {
-            return;
+            return false;
         }
     }
     if (!ip)
     {
-        return;
+        return false;
     }
     ip = ip.replace(/\s/g, '');
     if (!ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/))
     {
         alert(serverutilsLang.ip_invalid);
-        return;
+        return false;
     }
     var request = new ApiRequest('ban', 'remove');
     request.onSuccess(function(){
         alert(serverutilsLang.unbanip_success);
+        $result = true;
     });
     request.onFailure(function(code){
         switch (code)
@@ -164,11 +174,14 @@ function unban_ip(ip)
                 break;
         }
     });
+    request.sync(!!sync);
     request.execute({ip: ip});
+    return $result;
 }
 
-function whitelist_add(player)
+function whitelist_add(player, sync)
 {
+    var $result = false;
     if (!player)
     {
         player = prompt(serverutilsLang.whitelist_add_prompt, '');
@@ -177,16 +190,17 @@ function whitelist_add(player)
     {
         if (!confirm(serverutilsLang.whitelist_add_confirm))
         {
-            return;
+            return false;
         }
     }
     if (!player)
     {
-        return;
+        return false;
     }
     var request = new ApiRequest('whitelist', 'add');
     request.onSuccess(function(){
         alert(serverutilsLang.whitelist_add_success);
+        $result = true;
     });
     request.onFailure(function(code){
         switch (code)
@@ -196,11 +210,14 @@ function whitelist_add(player)
                 break;
         }
     });
+    request.sync(!!sync);
     request.execute({player: player});
+    return $result;
 }
 
-function whitelist_remove(player)
+function whitelist_remove(player, sync)
 {
+    var $result = false;
     if (!player)
     {
         player = prompt(serverutilsLang.whitelist_remove_prompt, '');
@@ -209,16 +226,17 @@ function whitelist_remove(player)
     {
         if (!confirm(serverutilsLang.whitelist_remove_confirm))
         {
-            return;
+            return false;
         }
     }
     if (!player)
     {
-        return;
+        return false;
     }
     var request = new ApiRequest('whitelist', 'remove');
     request.onSuccess(function(){
         alert(serverutilsLang.whitelist_remove_success);
+        $result = true;
     });
     request.onFailure(function(code){
         switch (code)
@@ -228,11 +246,14 @@ function whitelist_remove(player)
                 break;
         }
     });
+    request.sync(!!sync);
     request.execute({player: player});
+    return $result;
 }
 
-function operator_add()
+function operator_add(player, sync)
 {
+    var $result = false;
     if (!player)
     {
         player = prompt(serverutilsLang.operator_add_prompt, '');
@@ -241,16 +262,17 @@ function operator_add()
     {
         if (!confirm(serverutilsLang.operator_add_confirm))
         {
-            return;
+            return false;
         }
     }
     if (!player)
     {
-        return;
+        return false;
     }
     var request = new ApiRequest('operator', 'add');
     request.onSuccess(function(){
         alert(serverutilsLang.operator_add_success);
+        $result = true;
     });
     request.onFailure(function(code){
         switch (code)
@@ -260,11 +282,14 @@ function operator_add()
                 break;
         }
     });
+    request.sync(!!sync);
     request.execute({player: player});
+    return $result;
 }
 
-function operator_remove()
+function operator_remove(player, sync)
 {
+    var $result = false;
     if (!player)
     {
         player = prompt(serverutilsLang.operator_remove_prompt, '');
@@ -273,16 +298,17 @@ function operator_remove()
     {
         if (!confirm(serverutilsLang.operator_remove_confirm))
         {
-            return;
+            return false;
         }
     }
     if (!player)
     {
-        return;
+        return false;
     }
     var request = new ApiRequest('operator', 'remove');
     request.onSuccess(function(){
         alert(serverutilsLang.operator_remove_success);
+        $result = true;
     });
     request.onFailure(function(code){
         switch (code)
@@ -292,5 +318,7 @@ function operator_remove()
                 break;
         }
     });
+    request.sync(!!sync);
     request.execute({player: player});
+    return $result;
 }

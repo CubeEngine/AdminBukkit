@@ -2,8 +2,10 @@
     return array(
         'unbanplayer_prompt'        => 'Enter the playername which should be unbanned:',
         'unbanplayer_success'       => 'Player was successfully unbanned!',
+        'unbanplayer_confirm'       => 'Are you sure to unban this player?',
         'unbanip_prompt'            => 'Enter the IP(v4) which should be unbanned:',
         'unbanip_success'           => 'IP was successfully unbanned!',
+        'unbanip_confirm'           => 'Are you sure to unban this IP(v4)?',
         
         'name_invalid'              => "Your input was invalid!\nAllowed: A-Z, a-z, 0-9, _, .",
         'name_missing'              => 'No player name given!',

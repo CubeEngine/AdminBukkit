@@ -54,6 +54,10 @@
         
         if (isset($classmap[$classname]))
         {
+            if (class_exists('Logger'))
+            {
+                Logger::instance('loader')->write(5, "info", "Loaded class $classname");
+            }
             require_once INCLUDE_PATH . DS . $classmap[$classname];
         }
     }

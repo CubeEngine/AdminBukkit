@@ -17,7 +17,7 @@
     <li class="arrow"><a href="players.html?world=<?php echo $world ?>"><?php $lang->players ?>: <span id="world_players"><?php $genericLang->progress ?></span></a></li>
 </ul>
 <ul class="rounded">
-    <li><a href="#" class="toggleoverlay"><?php $lang->utils ?></a></li>
+    <li><a href="#" id="toggleutils"><?php $lang->utils ?></a></li>
 </ul>
 <?php $this->displayTemplateFile('generic/worldutils') ?>
 <script type="text/javascript">
@@ -67,11 +67,15 @@
         document.getElementById('world_thunder').innerHTML = data.thunderDuration;
         document.getElementById('world_players').innerHTML = data.players;
     }
+
+    $('#toggleutils').click(function(){
+        worldOverlay.toggle();
+        return false;
+    });
     
     function init()
     {
         $('#world_info').parent('li').remove();
-        prepareOverlay('#world_overlay');
         request.execute();
     }
     

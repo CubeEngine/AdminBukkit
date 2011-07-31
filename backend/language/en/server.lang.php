@@ -21,8 +21,6 @@
         'banplayer'             => 'Ban a Player',
         'unbanip'               => 'Unban an IP',
         'unbanplayer'           => 'Unban a Player',
-        'whitelist'             => 'Whitelist',
-        'operators'             => 'Operators',
         'close'                 => 'Close',
         'broadcast'             => 'A message to the server',
         'broadcast_prompt'      => 'Please enter a message:',
@@ -31,6 +29,14 @@
         'stop_confirm'          => 'Are you sure you want to stop the server?',
         'stop_confirm2'         => 'Are you really really sure??',
         'stop_success'          => 'The server was successfully stopped!',
+        'banned_ips'            => 'Banned IPs',
+        'noBannedIps'           => 'No banned IPs available!',
+        'banned_players'        => 'Banned players',
+        'noBannedPlayers'       => 'No banned players avaiable"',
+        'addoperator'           => 'Add an operator',
+        'noOperatores'          => 'No operators available',
+        'addtowhitelist'        => 'Add a player to the whitelist',
+        'emptyWhitelist'        => 'The whitelist is empty!',
         
         // Controller
         'serverinfos'           => 'Serverinfo',

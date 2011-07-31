@@ -5,7 +5,7 @@
 </script>
 <ul class="rounded">
     <li><?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span><span id="player_head" style="background-image:url('backend/playerhead.php?player=<?php echo $player ?>')"></span></li>
-    <li><?php $lang->displayname ?>: <span id="player_displayname"><?php $genericLang->progress ?></span></li>
+    <li><a href="#" id="player_displayname"><?php $lang->displayname ?>: <span><?php $genericLang->progress ?></span></a></li>
     <li><?php $lang->lifes ?>:
         <div id="player_health">
             <span class="heart"><span></span></span>
@@ -30,7 +30,7 @@
     <li><a id="ban_ip" href="#"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a></li>
 </ul>
 <ul class="rounded">
-    <li class="arrow"><a href="#" class="toggleoverlay"><?php $lang->utils ?></a></li>
+    <li class="arrow"><a href="#" id="toggleutils"><?php $lang->utils ?></a></li>
 </ul>
 <?php $this->displayTemplateFile('generic/playerutils') ?>
 <script type="text/javascript">
@@ -65,7 +65,7 @@
         succeeded = true;
         data = eval('(' + data + ')');
         document.getElementById('player_name').innerHTML = data.name;
-        document.getElementById('player_displayname').innerHTML = parseColors(data.displayName);
+        document.getElementById('player_displayname').getElementsByTagName('span')[0].innerHTML = parseColors(data.displayName);
         var hearts = Math.floor(data.health / 2);
         $('#player_health').attr('title', data.health);
         $('#player_health span.heart span').removeClass('full');
@@ -97,7 +97,6 @@
     function init()
     {
         $('#player_info').parent('li').remove();
-        prepareOverlay('#player_overlay');
         request.execute();
         intervalID = setInterval(request.execute, 10000);
     }
@@ -116,6 +115,42 @@
             }
         }
         return false;
+    });
+
+    $('#toggleutils').click(function(){
+        playerOverlay.toggle();
+        return false;
+    });
+
+    $('#player_displayname').click(function(){
+        var displayname = prompt('<?php $lang->displayname_enter ?>', '');
+        if (!displayname)
+        {
+            return false;
+        }
+        var displayNameRequest = new ApiRequest('player', 'displayname');
+        displayNameRequest.onSuccess(function(){
+            alert('<?php $lang->displayname_success ?>');
+            request.execute();
+        });
+        displayNameRequest.onFailure(function(error){
+            switch (error)
+            {
+                case 1:
+                    alert('<?php $lang->displayname_noplayer ?>');
+                    break;
+                case 2:
+                    alert('<?php $lang->displayname_playernotfound ?>');
+                    break;
+                case 3:
+                    alert('<?php $lang->displayname_nodisplayname ?>');
+                    break;
+            }
+        });
+        displayNameRequest.execute({
+            player: player,
+            displayname: displayname
+        });
     });
     
     /**** Overlay Handler ****/
@@ -162,6 +197,16 @@
     });
     $('#player_teleport').click(function(){
         player_teleport(player);
+        request.execute();
+        return false;
+    });
+    $('#player_op').click(function(){
+        player_op(player);
+        request.execute();
+        return false;
+    });
+    $('#player_deop').click(function(){
+        player_deop(player);
         request.execute();
         return false;
     });

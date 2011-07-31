@@ -1,5 +1,26 @@
 var genericLang = new GenericLang();
 
+function Event(element)
+{
+    var $cancelled = false;
+    var $element = $(element);
+
+    this.setCancelled = function(cancelled)
+    {
+        $cancelled = cancelled ? true : false;
+    }
+
+    this.isCancelled = function()
+    {
+        return $cancelled;
+    }
+
+    this.getElement = function()
+    {
+        return $element;
+    }
+}
+
 function urlencode(str)
 {
     function parse(match)
@@ -122,17 +143,6 @@ function prepareForm(query)
         {
             $(query).submit();
         }
-    });
-}
-
-function prepareOverlay(query)
-{
-    $(query).click(function(e){
-        toggleOverlay(query);
-    });
-    $('.toggleoverlay').click(function(e){
-        e.preventDefault();
-        toggleOverlay(query);
     });
 }
 
