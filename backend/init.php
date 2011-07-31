@@ -128,11 +128,14 @@
             echo 'An uncaught ' . $type . " occurred!<br />\nMessage: " . $e->getMessage();
         }
     }
+
+    $config = Config::instance('bukkitweb');
     
     set_error_handler('onError', -1);
     set_exception_handler('onException');
+    date_default_timezone_set($config->get('timezone', 'Europe/Berlin'));
 
-    session_name(Config::instance('bukkitweb')->get('sessionName', 'sid'));
-    session_set_cookie_params(Config::instance('bukkitweb')->get('sessionCookieLiftime', 3600));
+    session_name($config->get('sessionName', 'sid'));
+    session_set_cookie_params($config->get('sessionCookieLiftime', 3600));
     session_start();
 ?>

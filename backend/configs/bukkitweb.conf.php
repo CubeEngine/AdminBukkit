@@ -4,6 +4,7 @@
         'default'               => 'home',
         'theme'                 => 'apple',
         'defaultLanguage'       => 'en',
+        'timezone'              => 'Europe/Berlin',
         
         // Session
         'sessionName'           => 'sid',
