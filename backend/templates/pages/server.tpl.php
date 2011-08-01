@@ -98,7 +98,14 @@
         data = eval('(' + data + ')');
         $('#server_name').html(data.name);
         $('#server_name').attr('title', 'ID: ' + data.id);
-        $('#server_ip').html(data.ip);
+        if (data.ip)
+        {
+            $('#server_ip').html(data.ip);
+        }
+        else
+        {
+            $('#server_ip').html('<?php gethostbyname($_SESSION['user']->getServerAddress()) ?>');
+        }
         $('#server_port').html(data.port);
         $('#server_online').html(data.players);
         $('#server_maxplayers').html(data.maxplayers);

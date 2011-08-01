@@ -75,3 +75,31 @@ span.heart span.full {
 span.heart span.half {
     background-image: url('../gfx/health/heart_half.png');
 }
+div#console_viewbox {
+    height: 200px;
+    overflow: auto;
+    background-color: rgb(211,211,211);
+    margin: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+    padding: 5px;
+}
+div#console_viewbox > div > div {
+    padding: 1px 2px;
+}
+div#console_viewbox > div > div:hover {
+    background-color: rgb(220,220,220);
+}
+div#console_viewbox > div > div.logtype_info {
+}
+div#console_viewbox > div > div.logtype_severe {
+    background-color: rgb(255, 100, 100);
+}
+div#console_viewbox > div > div.logtype_severe:hover {
+    background-color: rgb(255, 80, 80);
+}
+/*div#console_viewbox div.logtype_ {
+
+}*/
