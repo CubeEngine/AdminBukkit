@@ -104,7 +104,7 @@
         }
         else
         {
-            $('#server_ip').html('<?php gethostbyname($_SESSION['user']->getServerAddress()) ?>');
+            $('#server_ip').html('<?php echo gethostbyname($_SESSION['user']->getServerAddress()) ?>');
         }
         $('#server_port').html(data.port);
         $('#server_online').html(data.players);
