@@ -4,6 +4,7 @@
         'name'                          => 'Name',
         'displayname'                   => 'Anzeigename',
         'lifes'                         => 'Leben',
+        'armor'                         => 'Rüstung',
         'world'                         => 'Welt',
         'position'                      => 'Position',
         'orientation'                   => 'Ausrichtung',

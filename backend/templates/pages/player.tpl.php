@@ -7,7 +7,7 @@
     <li><?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span><span id="player_head" style="background-image:url('backend/playerhead.php?player=<?php echo $player ?>')"></span></li>
     <li><a href="#" id="player_displayname"><?php $lang->displayname ?>: <span><?php $genericLang->progress ?></span></a></li>
     <li><?php $lang->lifes ?>:
-        <div id="player_health">
+        <span id="player_health">
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
@@ -18,7 +18,22 @@
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
-        </div>
+        </span>
+    </li>
+    <li><?php $lang->armor ?>:
+        <span id="player_armor">
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+            <span class="chestplate"><span></span></span>
+        </span>
+    </li>
     <li class="arrow"><a href="" id="player_world"><?php $lang->world ?>: <span><?php $genericLang->progress ?></span></a></li>
     <li>
         <?php $lang->position ?>:<br>
@@ -26,7 +41,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;Y: <span id="player_pos1"><?php $genericLang->progress ?></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;Z: <span id="player_pos2"><?php $genericLang->progress ?></span>
     </li>
-    <li><?php $lang->orientation ?>: <span id="player_pos3"><?php $genericLang->progress ?></span></li>
+    <li><?php $lang->orientation ?>: <span id="player_pos3"><?php $genericLang->progress ?></span> | <span id="player_pos4"><?php $genericLang->progress ?></span></li>
     <li><a id="ban_ip" href="#"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a></li>
 </ul>
 <ul class="rounded">
@@ -74,6 +89,16 @@
         if (data.health % 2 == 1)
         {
             $('#player_health span.heart:eq(' + hearts + ') span').addClass('half');
+        }
+
+        var armor = Math.floor(data.armor / 2);
+        $('#player_armor').attr('title', data.armor);
+        $('#player_armor span.chestplate span').removeClass('full');
+        $('#player_armor span.chestplate span').removeClass('half');
+        $('#player_armor span.chestplate:lt(' + armor + ') span').addClass('full');
+        if (data.armor % 2 == 1)
+        {
+            $('#player_armor span.chestplate:eq(' + armor + ') span').addClass('half');
         }
         var world = document.getElementById('player_world');
         world.setAttribute('href', 'world.html?world=' + data.world);

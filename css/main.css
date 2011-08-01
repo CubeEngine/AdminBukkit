@@ -55,18 +55,18 @@ div.touchTooltip div {
     width: 24px;
     height: 24px;
 }
-#player_health {
+#player_health, #player_armor {
     display: inline-block;
-    margin-bottom: -2px;
+    margin-bottom: -3px;
 }
-#player_health span.heart {
+#player_health span.heart, #player_armor span.chestplate {
     margin-right: 2px;
 }
 #player_health span.heart, span.heart span {
     display: block;
     float: left;
-    height: 15px;
-    width: 15px;
+    height: 18px;
+    width: 18px;
     background-image: url('../gfx/health/heart_empty.png');
 }
 span.heart span.full {
@@ -74,6 +74,19 @@ span.heart span.full {
 }
 span.heart span.half {
     background-image: url('../gfx/health/heart_half.png');
+}
+#player_armor span.chestplate, span.chestplate span {
+    display: block;
+    float: left;
+    height: 18px;
+    width: 18px;
+    background-image: url('../gfx/armor/armor_empty.png');
+}
+span.chestplate span.full {
+    background-image: url('../gfx/armor/armor_full.png');
+}
+span.chestplate span.half {
+    background-image: url('../gfx/armor/armor_half.png');
 }
 div#console_viewbox {
     height: 200px;
