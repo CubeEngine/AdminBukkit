@@ -1,6 +1,6 @@
 <?php $lang = Lang::instance('login') ?>
 <form id="login_form" action="login.html" method="post" accept-charset="utf-8">
-    <?php if (isset($errors)): ?>
+    <?php if (isset($errors) && count($errors)): ?>
     <h2><?php $lang->errors ?></h2>
     <ul class="rounded">
         <li style="color:red"><?php echo implode("<br>", $errors) ?></li>

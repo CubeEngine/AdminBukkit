@@ -3,7 +3,7 @@
     {
         public static function increment($index)
         {
-            $db = SQLite::instance();
+            $db = DatabaseManager::instance()->getDatabase();
             $data = array($index);
             $query = 'SELECT count(*) AS \'count\' FROM statistics WHERE `index`=?';
             $result = $db->preparedQuery($query, $data);
@@ -20,8 +20,9 @@
         
         public static function getValue($index)
         {
+            $db = DatabaseManager::instance()->getDatabase();
             $query = 'SELECT value FROM statistics WHERE `index`=?';
-            $result = SQLite::instance()->preparedQuery($query, array($index));
+            $result = $db->preparedQuery($query, array($index));
             if (count($result))
             {
                 return $result[0]['value'];
@@ -34,9 +35,10 @@
         
         public static function getValues($partialIndex)
         {
+            $db = DatabaseManager::instance()->getDatabase();
             $partialIndex = str_replace('*', '%', $partialIndex);
             $query = 'SELECT `index`, value FROM statistics WHERE `index` LIKE ?';
-            return SQLite::instance()->preparedQuery($query, array($partialIndex));
+            return $db->preparedQuery($query, array($partialIndex));
         }
     }
 ?>

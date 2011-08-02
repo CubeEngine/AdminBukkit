@@ -6,8 +6,8 @@
     }
 
     $page = new Page('login');
-    $page->assign('user', '');
-    $page->assign('langs', array_merge(array(Lang::getLanguage()), Lang::listLanguages()));
+    $page->assign('user', '')
+         ->assign('langs', array_merge(array(Lang::getLanguage()), Lang::listLanguages()));
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
@@ -52,6 +52,8 @@
                     case 4:
                         $errors[] = $lang['internalerror'];
                         break;
+                    default:
+                        echo '<################################################################>';
                 }
             }
         }

@@ -49,7 +49,10 @@
             'Lang'                              => 'Lang.php',
             'Logger'                            => 'Logger.php',
             'Statistics'                        => 'Statistics.php',
-            'ApiBukkit'                         => 'ApiBukkit.php'
+            'ApiBukkit'                         => 'ApiBukkit.php',
+            'Database'                          => 'Database.php',
+            'DatabaseManager'                   => 'DatabaseManager.php',
+            'DatabaseException'                 => 'DatabaseException.php'
         );
         
         if (isset($classmap[$classname]))
@@ -125,10 +128,20 @@
         }
     }
 
+    function onShutdown()
+    {
+        $error = error_get_last();
+        if ($error !== null)
+        {
+            onError($error['type'], $error['message'], $error['file'], $error['line'], array());
+        }
+    }
+
     $config = Config::instance('bukkitweb');
     
     set_error_handler('onError', -1);
     set_exception_handler('onException');
+    register_shutdown_function('onShutdown');
     date_default_timezone_set($config->get('timezone', 'Europe/Berlin'));
 
     session_name($config->get('sessionName', 'sid'));

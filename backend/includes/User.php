@@ -3,14 +3,15 @@
     {
         private static $users = array();
         protected $userdata;
+        protected $database;
         
         private function __construct($name, $password)
         {
             try
             {
-                $db = SQLite::instance();
+                $this->database = DatabaseManager::instance()->getDatabase();
                 $query = 'SELECT * FROM users WHERE name=?';
-                $result = $db->preparedQuery($query, array($name));
+                $result = $this->database->preparedQuery($query, array($name));
                 if (count($result) < 1)
                 {
                     throw new Exception('User does not exist!', 1);
@@ -82,7 +83,7 @@
             try
             {
                 $query = 'DELETE FROM users WHERE name=?';
-                SQLite::instance()->preparedQuery($query, array($this->getName()));
+                $this->database->preparedQuery($query, array($this->getName()));
                 return true;
             }
             catch (PDOException $e)
@@ -103,7 +104,7 @@
                 
                 $query = 'INSERT INTO users (name, password, email, serveraddress, apiport, apipassword) '
                        . 'VALUES (?, ?, ?, ?, ?, ?)';
-                $db = SQLite::instance();
+                $db = DatabaseManager::instance()->getDatabase();
                 $salt = self::getSalt();
                 $crypter = self::getCrypter($pass);
                 $mailCrypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
@@ -140,7 +141,7 @@
                 
                 $query = 'UPDATE users SET name=?, password =?, email=?, serveraddress=?, apiport=?, '
                        . 'apipassword=? WHERE name=?';
-                $db = SQLite::instance();
+                $db = DatabaseManager::instance()->getDatabase();
                 $salt = self::getSalt();
                 $crypter = self::getCrypter($pass);
                 $mailCrypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
@@ -171,7 +172,7 @@
         public static function exists($name)
         {
             $query = 'SELECT count(*) as count FROM users WHERE name=?';
-            $result = SQLite::instance()->preparedQuery($query, array($name));
+            $result = DatabaseManager::instance()->getDatabase()->preparedQuery($query, array($name));
             return ($result[0]['count'] > 0);
         }
         

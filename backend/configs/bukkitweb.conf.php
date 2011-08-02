@@ -5,6 +5,15 @@
         'theme'                 => 'apple',
         'defaultLanguage'       => 'en',
         'timezone'              => 'Europe/Berlin',
+        'database'              => 'MySQL',
+
+        // MySQL
+        'mysql_host'            => 'localhost',
+        'mysql_port'            => 3306,
+        'mysql_database'        => 'adminbukkit',
+        'mysql_user'            => 'root',
+        'mysql_pass'            => '',
+        'mysql_prefix'          => 'ab01_',
         
         // Session
         'sessionName'           => 'sid',

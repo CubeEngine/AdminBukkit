@@ -279,6 +279,6 @@ $(function(){
         e.preventDefault();
     });
     $('a[href]:not(a[target=_blank])').click(linkHandler);
-    $('.toolbar a.back').click(historyBack);
+    $('.toolbar a.back:not(a[href])').click(historyBack);
     $('*[title]').live('touchstart', touchTooltipHandler);
 });

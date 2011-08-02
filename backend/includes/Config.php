@@ -27,7 +27,13 @@
         
         private function __clone()
         {}
-        
+
+        /**
+         * Returns the instances of the configuration
+         *
+         * @param string $name name of the configuration
+         * @return Config the configuration
+         */
         public static function instance($name)
         {
             if (!isset(self::$configs[$name]))
