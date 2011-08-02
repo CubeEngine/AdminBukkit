@@ -4,7 +4,8 @@
         'apistats'                                  => 'API-Statistics',
         'userstats'                                 => 'Userstatistics',
         'failed_requests'                           => '{0} Requests have failed.',
-        
+
+        'downloads'                                 => 'Downloadstatistics',
         'filedownloaded'                            => 'The file "{0}" has been downlaoded {1} times.',
         
         'stat_user.login'                           => '{0} times logged in.',
@@ -17,9 +18,6 @@
         'stat_api.succeeded.server_online'          => '{0} times the playercount was requested.',
         'stat_api.succeeded.server_info'            => '{0} times the serverinformation was requested.',
         'stat_api.succeeded.server_version'         => '{0} times the serverversion was requested.',
-        'stat_api.succeeded.server_ban'             => '{0} times a player was banned.',
-        'stat_api.succeeded.server_bans'            => '{0} times the banlist was requested.',
-        'stat_api.succeeded.server_unban'           => '{0} times a player was unbanned.',
         'stat_api.succeeded.server_garbagecollect'  => '{0} times the garbage collector was performed.',
         'stat_api.succeeded.server_kill'            => '{0} times the server was killed.',
         'stat_api.succeeded.server_stop'            => '{0} times the server has been stopped.',
@@ -35,6 +33,7 @@
         'stat_api.succeeded.player_list'            => '{0} times the playerlist was requested.',
         'stat_api.succeeded.player_teleport'        => '{0} times a player was teleported.',
         'stat_api.succeeded.player_tell'            => '{0} message(s) was sent to a/the player. ',
+        'stat_api.succeeded.player_displayname'     => '{0} times the display name of a player was changed.',
         'stat_api.succeeded.plugin_list'            => '{0} times the pluginlist was requested.',
         'stat_api.succeeded.plugin_load'            => '{0} times a plugin was loaded.',
         'stat_api.succeeded.plugin_reload'          => '{0} times a plugin was reloaded.',
@@ -51,6 +50,15 @@
         'stat_api.succeeded.world_spawn'            => '{0} times the spawn-point was moved.',
         'stat_api.succeeded.world_list'             => '{0} times the worldlist was requested.',
         'stat_api.succeeded.world_players'          => '{0} times the playerlist of a world was requested.',
+        'stat_api.succeeded.ban_get'                => '{0} times the banlist was requested.',
+        'stat_api.succeeded.ban_add'                => '{0} times a player was banned.',
+        'stat_api.succeeded.ban_remove'             => '{0} times a player was unbanned.',
+        'stat_api.succeeded.operator_get'           => '{0} times the operator list was requested.',
+        'stat_api.succeeded.operator_add'           => '{0} times an operator was added.',
+        'stat_api.succeeded.operator_remove'        => '{0} times an operator was removed.',
+        'stat_api.succeeded.whitelist_get'          => '{0} times the whitelist was requested.',
+        'stat_api.succeeded.whitelist_add'          => '{0} times a player was added to the whitelist.',
+        'stat_api.succeeded.whitelist_remove'       => '{0} times a player was removed from the whitelist.',
      // 'stat_api.succeeded.' => '',
         
         // Controller

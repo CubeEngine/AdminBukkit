@@ -5,7 +5,7 @@
         'theme'                 => 'apple',
         'defaultLanguage'       => 'en',
         'timezone'              => 'Europe/Berlin',
-        'database'              => 'MySQL',
+        'database'              => 'SQLite',
 
         // MySQL
         'mysql_host'            => 'localhost',

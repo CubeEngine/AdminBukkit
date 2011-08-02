@@ -10,7 +10,7 @@
                 genericApiRequest.execute();
             }
         });
-        $('#generic_headline').text('<?php $lang->whitelist ?>');
+        $('#generic_headline').text('<?php $lang->whitelist ?>:');
         genericApiRequest = new ApiRequest('operator', 'get');
         genericApiRequest.data({format:'json'});
         genericApiRequest.onSuccess(loadWhitelist);

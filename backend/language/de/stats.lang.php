@@ -4,7 +4,8 @@
         'apistats'                                  => 'API-Statistiken',
         'userstats'                                 => 'Benutzerstatistiken',
         'failed_requests'                           => '{0} Anfragen sind fehlgeschlagen.',
-        
+
+        'downloads'                                 => 'Downloadstatistik',
         'filedownloaded'                            => 'Die Datei "{0}" wurde {1} runtergeladen.',
         
         'stat_user.login'                           => '{0} Mal wurde sich eingeloggt.',
@@ -17,9 +18,6 @@
         'stat_api.succeeded.server_online'          => '{0} Mal wurde die Spielerzahl abgefragt.',
         'stat_api.succeeded.server_info'            => '{0} Mal wurden Serverinformationen abgefragt.',
         'stat_api.succeeded.server_version'         => '{0} Mal wurde die Serverversion abgefragt.',
-        'stat_api.succeeded.server_ban'             => '{0} Mal wurde jemand gebannt.',
-        'stat_api.succeeded.server_bans'            => '{0} Mal wurden die Bannlisten abgefragt.',
-        'stat_api.succeeded.server_unban'           => '{0} Mal wurde jemand entbannt.',
         'stat_api.succeeded.server_garbagecollect'  => '{0} Mal wurde der Garbage Collector ausgeführt.',
         'stat_api.succeeded.server_kill'            => '{0} Mal wurde der Server gekillt.',
         'stat_api.succeeded.server_stop'            => '{0} Mal wurde der Server beendet',
@@ -34,7 +32,8 @@
         'stat_api.succeeded.player_kill'            => '{0} Mal wurde ein Spieler getötet.',
         'stat_api.succeeded.player_list'            => '{0} Mal wurde die Spielerliste abgefragt.',
         'stat_api.succeeded.player_teleport'        => '{0} Mal wurde ein Spieler teleportiert',
-        'stat_api.succeeded.player_tell'            => '{0} Nachricht(en) wurde(n) an Spieler verschickt. ',
+        'stat_api.succeeded.player_tell'            => '{0} Nachricht(en) wurde(n) an Spieler verschickt.',
+        'stat_api.succeeded.player_displayname'     => '{0} Mal wurde der Anzeigename eines Spielers geändert.',
         'stat_api.succeeded.plugin_list'            => '{0} Mal wurde die Pluginliste abgefragt.',
         'stat_api.succeeded.plugin_load'            => '{0} Mal wurde ein Plugin geladen.',
         'stat_api.succeeded.plugin_reload'          => '{0} Mal wurde ein Plugin neugeladen.',
@@ -51,6 +50,15 @@
         'stat_api.succeeded.world_spawn'            => '{0} Mal wurde der Spawn-Punkt verlegt.',
         'stat_api.succeeded.world_list'             => '{0} Mal wurde die Weltenliste abgefragt.',
         'stat_api.succeeded.world_players'          => '{0} Mal wurde die Spielerliste einer Welt abgefragt.',
+        'stat_api.succeeded.ban_get'                => '{0} Mal wurden die Bannlisten abgefragt.',
+        'stat_api.succeeded.ban_add'                => '{0} Mal wurde jemand gebannt.',
+        'stat_api.succeeded.ban_remove'             => '{0} Mal wurde jemand entbannt.',
+        'stat_api.succeeded.operator_get'           => '{0} Mal wurde die Operatorliste abgefragt.',
+        'stat_api.succeeded.operator_add'           => '{0} Mal wurde ein Operator hinzugefügt.',
+        'stat_api.succeeded.operator_remove'        => '{0} Mal wurde ein Operator entfernt.',
+        'stat_api.succeeded.whitelist_get'          => '{0} Mal wurde die Whitelist abgefragt.',
+        'stat_api.succeeded.whitelist_add'          => '{0} Mal wurde ein Spieler auf die Whitelist hinzugefügt.',
+        'stat_api.succeeded.whitelist_remove'       => '{0} Mal wurde ein Spieler von der Whitelist entfernt.',
      // 'stat_api.succeeded.' => '',
         
         // Controller

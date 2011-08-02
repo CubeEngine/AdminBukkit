@@ -16,7 +16,7 @@
     <?php endif ?>
     <li><?php $lang->failed_requests($stats['api_fails']) ?></li>
 </ul>
-<h2><?php $lang->downloads ?></h2>
+<h2><?php $lang->downloads ?>:</h2>
 <?php if (count($stats['downloaded'])): ?>
 <ul class="rounded">
     <?php foreach ($stats['downloaded'] as $file):  ?>

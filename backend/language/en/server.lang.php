@@ -35,8 +35,10 @@
         'noBannedPlayers'       => 'No banned players avaiable"',
         'addoperator'           => 'Add an operator',
         'noOperatores'          => 'No operators available',
+        'operators'             => 'Operators',
         'addtowhitelist'        => 'Add a player to the whitelist',
         'emptyWhitelist'        => 'The whitelist is empty!',
+        'whitelist'             => 'The whitelist',
         
         // Controller
         'serverinfos'           => 'Serverinfo',
