@@ -57,5 +57,10 @@ CREATE TABLE IF NOT EXISTS `statistics` (
                 $this->query(self::INIT_SQL, false);
             }
         }
+        
+        public function getPrefix()
+        {
+            return $this->prefix;
+        }
     }
 ?>
