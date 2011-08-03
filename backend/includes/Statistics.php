@@ -5,15 +5,15 @@
         {
             $db = DatabaseManager::instance()->getDatabase();
             $data = array($index);
-            $query = 'SELECT count(*) AS \'count\' FROM statistics WHERE `index`=?';
+            $query = 'SELECT count(*) AS \'count\' FROM ' . $db->getPrefix() . 'statistics WHERE `index`=?';
             $result = $db->preparedQuery($query, $data);
             if ($result[0]['count'] > 0)
             {
-                $query = 'UPDATE statistics SET value=value+1 WHERE `index`=?';   
+                $query = 'UPDATE ' . $db->getPrefix() . 'statistics SET value=value+1 WHERE `index`=?';   
             }
             else
             {
-                $query = 'INSERT INTO statistics (`index`, value) VALUES (?, 1)';
+                $query = 'INSERT INTO ' . $db->getPrefix() . 'statistics (`index`, value) VALUES (?, 1)';
             }
             return $db->preparedQuery($query, $data, false);
         }
@@ -21,7 +21,7 @@
         public static function getValue($index)
         {
             $db = DatabaseManager::instance()->getDatabase();
-            $query = 'SELECT value FROM statistics WHERE `index`=?';
+            $query = 'SELECT value FROM ' . $db->getPrefix() . 'statistics WHERE `index`=?';
             $result = $db->preparedQuery($query, array($index));
             if (count($result))
             {
@@ -37,7 +37,7 @@
         {
             $db = DatabaseManager::instance()->getDatabase();
             $partialIndex = str_replace('*', '%', $partialIndex);
-            $query = 'SELECT `index`, value FROM statistics WHERE `index` LIKE ?';
+            $query = 'SELECT `index`, value FROM ' . $db->getPrefix() . 'statistics WHERE `index` LIKE ?';
             return $db->preparedQuery($query, array($partialIndex));
         }
     }
