@@ -5,6 +5,7 @@
         protected $error;
 
         public abstract function connect();
+        public abstract function getPrefix();
         
         public function preparedQuery($query, array $data, $return = true)
         {
