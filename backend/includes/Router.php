@@ -22,19 +22,15 @@ class Router
     {
         $page = '';
         $defaultPage = $this->config->get('default', 'index');
-        if (isset($_GET['page']) && trim($_GET['page']) !== '')
+        if (isset($_SERVER['PATH_INFO']) && trim($_SERVER['PATH_INFO']) !== '')
         {
-            $page = trim($_GET['page']);
-        }
-        elseif (isset($_POST['page']) && trim($_POST['page']) !== '')
-        {
-            $page = trim($_POST['page']);
+            $page = trim($_SERVER['PATH_INFO']);
         }
         else
         {
             $page =& $defaultPage;
         }
-        
+
         $path = PAGE_PATH . DS;
         if (file_exists($path . $page . '.php'))
         {
