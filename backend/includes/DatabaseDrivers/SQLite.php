@@ -64,6 +64,11 @@ CREATE TABLE "servers" (
                 }
             }
         }
+        
+        public function getPrefix()
+        {
+            return '';
+        }
     }
 
 ?>
