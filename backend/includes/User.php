@@ -10,7 +10,7 @@
             try
             {
                 $this->database = DatabaseManager::instance()->getDatabase();
-                $query = 'SELECT * FROM users WHERE name=?';
+                $query = 'SELECT * FROM ' . $this->database->getPrefix() . 'users WHERE name=?';
                 $result = $this->database->preparedQuery($query, array($name));
                 if (count($result) < 1)
                 {
@@ -82,7 +82,7 @@
         {
             try
             {
-                $query = 'DELETE FROM users WHERE name=?';
+                $query = 'DELETE FROM ' . $this->database->getPrefix() . 'users WHERE name=?';
                 $this->database->preparedQuery($query, array($this->getName()));
                 return true;
             }
@@ -102,9 +102,9 @@
                     throw new Exception('User does already exist!', 5);
                 }
                 
-                $query = 'INSERT INTO users (name, password, email, serveraddress, apiport, apipassword) '
-                       . 'VALUES (?, ?, ?, ?, ?, ?)';
                 $db = DatabaseManager::instance()->getDatabase();
+                $query = 'INSERT INTO ' . $db->getPrefix() . 'users (name, password, email, serveraddress, apiport, apipassword) '
+                       . 'VALUES (?, ?, ?, ?, ?, ?)';
                 $salt = self::getSalt();
                 $crypter = self::getCrypter($pass);
                 $mailCrypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
@@ -139,9 +139,9 @@
                     throw new Exception('User does already exist!', 5);
                 }
                 
-                $query = 'UPDATE users SET name=?, password =?, email=?, serveraddress=?, apiport=?, '
-                       . 'apipassword=? WHERE name=?';
                 $db = DatabaseManager::instance()->getDatabase();
+                $query = 'UPDATE ' . $db->getPrefix() . 'users SET name=?, password =?, email=?, serveraddress=?, apiport=?, '
+                       . 'apipassword=? WHERE name=?';
                 $salt = self::getSalt();
                 $crypter = self::getCrypter($pass);
                 $mailCrypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
@@ -171,8 +171,9 @@
         
         public static function exists($name)
         {
-            $query = 'SELECT count(*) as count FROM users WHERE name=?';
-            $result = DatabaseManager::instance()->getDatabase()->preparedQuery($query, array($name));
+            $db = DatabaseManager::instance()->getDatabase();
+            $query = 'SELECT count(*) as count FROM ' . $db->getPrefix() . 'users WHERE name=?';
+            $result = $db->preparedQuery($query, array($name));
             return ($result[0]['count'] > 0);
         }
         
