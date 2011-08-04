@@ -1,7 +1,7 @@
-backend/configs/users.db
-js/jqtouch.js
-js/jquery-1.*.js
-backend/logs/
-backend/downloads/
+*.db
+res/js/jqtouch.js
+res/js/jquery-1.*.js
+backend/logs/*.log
+backend/downloads/*
 test.php
 /todo.txt
