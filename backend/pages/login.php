@@ -62,7 +62,7 @@
     
     $tpl = new Template('pages/login');
     $toolbar = new Toolbar($lang['login']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath() . '/');
+    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath());
     $toolbar->setButton($lang['registration'], $design->getLinkGenerator()->page('register'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent($tpl);

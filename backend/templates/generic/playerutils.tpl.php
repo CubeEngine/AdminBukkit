@@ -23,9 +23,9 @@
             <div class="spacer"></div>
     </div>
 </div>
-<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>/backend/javascriptlang.php?file=playerutils"></script>
+<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=playerutils"></script>
 <script type="text/javascript" src="<?php $this->res('js/playerutils.js') ?>"></script>
-<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>/backend/javascriptlang.php?file=serverutils"></script>
+<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=serverutils"></script>
 <script type="text/javascript" src="<?php $this->res('js/serverutils.js') ?>"></script>
 <script type="text/javascript" src="<?php $this->res('js/overlay.js') ?>"></script>
 <script type="text/javascript" src="<?php $this->res('js/iscroll-lite.min.js') ?>"></script>

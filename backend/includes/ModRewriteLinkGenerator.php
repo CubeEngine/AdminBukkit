@@ -8,7 +8,7 @@
 
         public function page($page)
         {
-            return $this->base . '/' . $page . '/';
+            return $this->base . $page . '/';
         }
     }
 ?>

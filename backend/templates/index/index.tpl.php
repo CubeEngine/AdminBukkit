@@ -25,7 +25,7 @@
             var SESS_QUERY = SESS_NAME + '=' + SESS_ID;
             var BASE_PATH = '<?php echo $basePath ?>';
         </script>
-        <script type="text/javascript" src="<?php echo $basePath ?>/backend/javascriptlang.php?file=generic" charset="utf-8"></script>
+        <script type="text/javascript" src="<?php echo $basePath ?>backend/javascriptlang.php?file=generic" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/jquery.min.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/wkshake.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/apirequest.js') ?>" charset="utf-8"></script>

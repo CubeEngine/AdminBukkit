@@ -22,6 +22,10 @@ class Router
         $this->pagePath = null;
         $this->route();
         $this->base = dirname($_SERVER['SCRIPT_NAME']);
+        if ($this->base != '/')
+        {
+            $this->base .= '/';
+        }
         if (Config::instance('bukkitweb')->get('mod_rewrite', false))
         {
             $this->linkgen = new ModRewriteLinkGenerator($this->base);

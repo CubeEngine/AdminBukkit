@@ -6,6 +6,7 @@
         'defaultLanguage'       => 'en',
         'timezone'              => 'Europe/Berlin',
         'database'              => 'SQLite',
+        'mod_rewrite'           => true,
 
         // MySQL
         'mysql_host'            => 'localhost',

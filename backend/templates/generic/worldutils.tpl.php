@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>/backend/javascriptlang.php?file=worldutils"></script>
+<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=worldutils"></script>
 <script type="text/javascript" src="<?php $this->res('js/worldutils.js') ?>"></script>
 <script type="text/javascript" src="<?php $this->res('js/overlay.js') ?>"></script>
 <script type="text/javascript" src="<?php $this->res('js/iscroll-lite.min.js') ?>"></script>
