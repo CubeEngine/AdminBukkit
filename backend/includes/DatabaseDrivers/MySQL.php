@@ -10,7 +10,7 @@
 
         protected $connected;
 
-        const INIT_SQL = 'CREATE TABLE IF NOT EXISTS `users` (
+        protected $INIT_SQL = 'CREATE TABLE IF NOT EXISTS `__PREFIX__users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   `email` varchar(500) NOT NULL,
@@ -21,7 +21,7 @@
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-CREATE TABLE IF NOT EXISTS `statistics` (
+CREATE TABLE IF NOT EXISTS `__PREFIX__statistics` (
   `index` varchar(50) NOT NULL,
   `value` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;';
@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS `statistics` (
             $this->user = $config->get('mysql_user', 'root');
             $this->pass = $config->get('mysql_pass', '');
             $this->prefix = $config->get('mysql_prefix', 'ab01_');
+
+            $this->INIT_SQL = str_replace('__PREFIX__', $this->prefix, $this->INIT_SQL);
 
             $this->connected = false;
         }
@@ -54,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `statistics` (
                 }
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->connected = true;
-                $this->query(self::INIT_SQL, false);
+                $this->query($this->INIT_SQL, false);
             }
         }
         

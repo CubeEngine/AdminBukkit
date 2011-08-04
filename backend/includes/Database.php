@@ -29,7 +29,7 @@
                 $result = $this->db->query($query);
                 if ($result === false)
                 {
-                    throw new Exception('The query failed!');
+                    throw new DatabaseException('The query failed!');
                 }
                 $fetchedResult = array();
                 foreach ($result as $row)
