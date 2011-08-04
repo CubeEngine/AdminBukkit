@@ -2,7 +2,7 @@
     $lang = Lang::instance('world');
     if (!isset($_GET['world']) || trim($_GET['world']) === '')
     {
-        Router::redirectToPage('worlds', $lang['noworld']);
+        Router::instance()->redirectToPage('worlds', $lang['noworld']);
     }
     $page = new Page('world');
     $toolbar = new Toolbar($lang['worldinfo']);

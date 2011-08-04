@@ -2,7 +2,7 @@
     $lang = Lang::instance('stats');
     $page = new Page('stats');
     $toolbar = new Toolbar($lang['stats']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), './');
+    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath() . '/');
     $page->addSubtemplate('toolbar', $toolbar);
     $tpl = new Template('pages/stats');
     $stats = array();

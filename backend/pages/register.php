@@ -2,7 +2,7 @@
     $lang = Lang::instance('register');
     if (User::loggedIn())
     {
-        Router::redirectToPage('home', $lang['alreadyregistered']);
+        Router::instance()->redirectToPage('home', $lang['alreadyregistered']);
     }
     
     $page = new Page('register');
@@ -97,7 +97,7 @@
                     $apipass
                 );
                 User::login(User::get($user, $pass));
-                Router::redirectToPage('home', $lang['registersuccess']);
+                Router::instance()->redirectToPage('home', $lang['registersuccess']);
             }
             catch (Exception $e)
             {
@@ -128,8 +128,8 @@
     }
     
     $toolbar = new Toolbar($lang['registration']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), './');
-    $toolbar->setButton($lang['login'], 'login.html');
+    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath() . '/');
+    $toolbar->setButton($lang['login'], $design->getLinkGenerator()->page('login'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/register'));
     

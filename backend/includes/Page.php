@@ -7,7 +7,7 @@
         {
             if ($auth && !User::loggedIn())
             {
-                Router::redirectToLoginPage();
+                Router::instance()->redirectToLoginPage();
             }
             parent::__construct('generic/page');
             $this->assign('pageName', $name);

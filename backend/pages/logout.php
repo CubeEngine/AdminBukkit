@@ -3,10 +3,10 @@
     if (User::loggedIn())
     {
         User::logout();
-        Router::redirectToPage('home', $lang['logout_success']);
+        Router::instance()->redirectToPage('home', $lang['logout_success']);
     }
     else
     {
-        Router::redirectToPage('home', $lang['notloggedin']);
+        Router::instance()->redirectToPage('home', $lang['notloggedin']);
     }
 ?>

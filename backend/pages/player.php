@@ -3,7 +3,7 @@
     $player = trim(Request::get('player'));
     if ($player === '')
     {
-        Router::redirectToPage('players', $lang['noplayer']);
+        Router::instance()->redirectToPage('players', $lang['noplayer']);
     }
     $page = new Page('player', true);
     $page->assign('player', $player);

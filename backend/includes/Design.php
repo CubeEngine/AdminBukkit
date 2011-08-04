@@ -4,14 +4,11 @@
         protected $title;
         protected static $minorTitles = array();
     
-        public function __construct($title, LinkGenerator $linkgen = null)
+        public function __construct($title)
         {
             $this->title = $title;
-            if (!$linkgen)
-            {
-                $linkgen = new DefaultLinkGenerator(Router::instance()->getBasePath());
-            }
-            parent::__construct('index/index', $linkgen);
+            
+            parent::__construct('index/index', Router::instance()->getLinkGenerator());
             $this->assign('theme', Config::instance('bukkitweb')->get('theme'));
         }
         

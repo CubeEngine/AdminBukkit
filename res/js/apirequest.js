@@ -13,7 +13,7 @@ function ApiRequest(controller, action)
     var $this = this;
     var $controller = controller;
     var $action = (!!action ? action : '');
-    var $url = 'backend/apiproxy.php/' + $controller + '/' + $action;
+    var $url = BASE_PATH + '/backend/apiproxy.php/' + $controller + '/' + $action;
     if (SESS_APPEND)
     {
         $url = appendSession($url);

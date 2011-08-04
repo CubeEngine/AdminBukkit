@@ -3,7 +3,7 @@
     $lang = Lang::instance('downloads');
     $page = new Page('downloads');
     $toolbar = new Toolbar($lang['downloads']);
-    $toolbar->setBack($lang['home'], './');
+    $toolbar->setBack($lang['home'], Router::instance()->getBasePath() . '/');
     $page->addSubtemplate('toolbar', $toolbar);
     $template = new Template('pages/downloads');
     if (!empty($file) && !preg_match('/\.\./', $file))

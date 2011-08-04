@@ -12,6 +12,8 @@ class Router
     protected $page;
     protected $pagePath;
     protected $base;
+
+    protected $linkgen;
     
     private function __construct()
     {
@@ -20,6 +22,14 @@ class Router
         $this->pagePath = null;
         $this->route();
         $this->base = dirname($_SERVER['SCRIPT_NAME']);
+        if (Config::instance('bukkitweb')->get('mod_rewrite', false))
+        {
+            $this->linkgen = new ModRewriteLinkGenerator($this->base);
+        }
+        else
+        {
+            $this->linkgen = new DefaultLinkGenerator($this->base);
+        }
     }
 
     /**
@@ -77,7 +87,7 @@ class Router
         return $this->pagePath;
     }
     
-    public static function redirect($url)
+    public function redirect($url)
     {
         $sessString = session_name() . '=' . session_id();
         if (!preg_match('/^https?:\/\//i', $url) && !preg_match('/' . $sessString . '/i', $url) && !Request::session('cookies'))
@@ -89,17 +99,17 @@ class Router
         die();
     }
     
-    public static function redirectToPage($page, $msg = null)
+    public function redirectToPage($page, $msg = null)
     {
-        $url = $page . '.html';
+        $url = $this->linkgen->page($page);
         if ($msg !== null)
         {
             $url .= '?msg=' . urlencode(strval($msg));
         }
-        self::redirect($url);
+        $this->redirect($url);
     }
     
-    public static function redirectToLoginPage($msg = 'Login benötigt')
+    public function redirectToLoginPage($msg = 'Login benötigt')
     {
         $_SESSION['referrer'] = $_SERVER['REQUEST_URI'];
         self::redirectToPage('login', $msg);
@@ -108,6 +118,16 @@ class Router
     public function getBasePath()
     {
         return $this->base;
+    }
+
+    public function setLinkGenerator(LinkGenerator $linkgen)
+    {
+        $this->linkgen = $linkgen;
+    }
+
+    public function getLinkGenerator()
+    {
+        return $this->linkgen;
     }
 }
 

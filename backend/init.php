@@ -3,6 +3,7 @@
 
     defined('DS')               or define('DS',             DIRECTORY_SEPARATOR);
     defined('BACKEND_PATH')     or define('BACKEND_PATH',   dirname(__FILE__));
+    defined('RESOURCE_PATH')    or define('RESOURCE_PATH',  BACKEND_PATH . DS . '..' . DS . 'res');
     defined('INCLUDE_PATH')     or define('INCLUDE_PATH',   BACKEND_PATH . DS . 'includes');
     defined('TEMPLATE_PATH')    or define('TEMPLATE_PATH',  BACKEND_PATH . DS . 'templates');
     defined('PAGE_PATH')        or define('PAGE_PATH',      BACKEND_PATH . DS . 'pages');

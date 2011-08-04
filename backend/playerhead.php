@@ -3,7 +3,7 @@
 
     define('HEAD_ADDRESS', 'http://s3.amazonaws.com/MinecraftSkins/');
     define('HEAD_SIZE', 24);
-    define('HEAD_DEFAULT', BACKEND_PATH . DS . '../gfx/char.png');
+    define('HEAD_DEFAULT', RESOURCE_PATH . DS . 'gfx' . DS . 'char.png');
     
     $player = trim(Request::get('player', ''));
     $url = HEAD_ADDRESS . $player . '.png';

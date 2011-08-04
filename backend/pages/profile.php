@@ -3,7 +3,7 @@
     $page = new Page('profile', true);
     $toolbar = new Toolbar($lang['profile']);
     $toolbar->setBack(Lang::instance('generic')->get('btn_home'), './');
-    $toolbar->setButton($lang['edit'], 'editprofile.html');
+    $toolbar->setButton($lang['edit'], $design->getLinkGenerator()->page('editprofile'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->assign('username', $_SESSION['user']->getName());
     $page->assign('email', $_SESSION['user']->getEmail());

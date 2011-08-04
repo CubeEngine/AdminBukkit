@@ -2,26 +2,26 @@
 <h2><?php $lang->menu ?>:</h2>
 <?php if (!User::loggedIn()): ?>
 <ul class="rounded">
-    <li class="arrow"><a href="register.html"><?php $lang->registration ?></a></li>
-    <li class="arrow"><a href="login.html"><?php $lang->login ?></a></li>
-    <li class="arrow"><a href="stats.html"><?php $lang->stats ?></a></li>
-    <li class="arrow"><a href="downloads.html"><?php $lang->downloads ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('register') ?>"><?php $lang->registration ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('login') ?>"><?php $lang->login ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('stats') ?>"><?php $lang->stats ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('downloads') ?>"><?php $lang->downloads ?></a></li>
 </ul>
 <?php else: ?>
 <ul class="rounded">
-    <li class="arrow"><a href="server.html"><?php $lang->serverinfo ?></a></li>
-    <li class="arrow"><a href="players.html"><?php $lang->manplayers ?></a></li>
-    <li class="arrow"><a href="worlds.html"><?php $lang->manworlds ?></a></li>
-    <li class="arrow"><a href="plugins.html"><?php $lang->manplugins ?></a></li>
-    <li class="arrow"><a href="stats.html"><?php $lang->stats ?></a></li>
-    <li class="arrow"><a href="downloads.html"><?php $lang->downloads ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('server') ?>"><?php $lang->serverinfo ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('players') ?>"><?php $lang->manplayers ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('worlds') ?>"><?php $lang->manworlds ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('plugins') ?>"><?php $lang->manplugins ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('stats') ?>"><?php $lang->stats ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('downloads') ?>"><?php $lang->downloads ?></a></li>
     <!--
     <li class="arrow"><a href=".html"></a></li>
     -->
 </ul>
 <ul class="rounded">
-    <li class="arrow"><a href="profile.html"><?php $lang->profile ?></a></li>
-    <li class="arrow"><a href="logout.html" id="logout"><?php $lang->logout ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('profile') ?>"><?php $lang->profile ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('logout') ?>" id="logout"><?php $lang->logout ?></a></li>
 </ul>
 <script type="text/javascript">
     $('#logout').click(function(){

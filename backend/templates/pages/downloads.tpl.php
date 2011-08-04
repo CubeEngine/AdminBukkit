@@ -4,11 +4,11 @@
 </ul>
 <h2><?php $lang->baseplugin ?>:</h2>
 <ul class="rounded">
-    <li class="arrow"><a class="download" href="downloads.html?file=ApiBukkit.jar">ApiBukkit</a></li>
+    <li class="arrow"><a class="download" href="<?php $this->page('downloads') ?>?file=ApiBukkit.jar">ApiBukkit</a></li>
 </ul>
 <h2><?php $lang->apiplugins ?></h2>
 <ul class="rounded">
-    <li class="arrow"><a class="download" href="downloads.html?file=BasicApi.jar">BasicApi</a></li>
+    <li class="arrow"><a class="download" href="<?php $this->page('downloads') ?>?file=BasicApi.jar">BasicApi</a></li>
 </ul>
 <script type="text/javascript">
     $('a.download').click(function(e){

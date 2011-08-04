@@ -296,6 +296,11 @@
         {
             $this->linkgen = $linkgen;
         }
+
+        public function getLinkGenerator()
+        {
+            return $this->linkgen;
+        }
     }
 
 ?>

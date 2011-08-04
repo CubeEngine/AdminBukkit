@@ -5,9 +5,9 @@
     <li><?php $lang->servername ?>: <span id="server_name" title=""><?php $genericLang->progress ?></span></li>
     <li><?php $lang->serverip ?>: <span id="server_ip"><?php $genericLang->progress ?></span></li>
     <li><?php $lang->serverport ?>: <span id="server_port"><?php $genericLang->progress ?></span></li>
-    <li class="arrow"><a href="players.html"><?php $lang->players ?>: <span id="server_online"><?php $genericLang->progress ?></span> / <span id="server_maxplayers"><?php $genericLang->progress ?></span></a></li>
-    <li class="arrow"><a href="worlds.html"><?php $lang->worlds ?>: <span id="server_worlds"><?php $genericLang->progress ?></span></a></li>
-    <li class="arrow"><a href="plugins.html"><?php $lang->plugins ?>: <span id="server_plugins"><?php $genericLang->progress ?></span></a></li>
+    <li class="arrow"><a href="<?php $this->page('players') ?>"><?php $lang->players ?>: <span id="server_online"><?php $genericLang->progress ?></span> / <span id="server_maxplayers"><?php $genericLang->progress ?></span></a></li>
+    <li class="arrow"><a href="<?php $this->page('worlds') ?>"><?php $lang->worlds ?>: <span id="server_worlds"><?php $genericLang->progress ?></span></a></li>
+    <li class="arrow"><a href="<?php $this->page('plugins') ?>"><?php $lang->plugins ?>: <span id="server_plugins"><?php $genericLang->progress ?></span></a></li>
     <li><?php $lang->uptime ?>: <span id="server_uptime"><?php $genericLang->progress ?></span></li>
 </ul>
 <h2><?php $lang->stats ?>:</h2>
@@ -39,10 +39,10 @@
         <li><a href="#" class="toggleoverlay"><?php $lang->close ?></a></li>
     </ul>
 </div>
-<script type="text/javascript" src="backend/javascriptlang.php?file=serverutils"></script>
-<script type="text/javascript" src="js/overlay.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/serverutils.js"></script>
-<script type="text/javascript" src="js/iscroll-lite.min.js"></script>
+<script type="text/javascript" src="<?php echo $basePath ?>/backend/javascriptlang.php?file=serverutils"></script>
+<script type="text/javascript" src="<?php $this->res('js/overlay.js') ?>" charset="utf-8"></script>
+<script type="text/javascript" src="<?php $this->res('js/serverutils.js') ?>"></script>
+<script type="text/javascript" src="<?php $this->res('js/iscroll-lite.min.js') ?>"></script>
 <script type="text/javascript">
 
     var genericApiRequest = null;

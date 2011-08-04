@@ -14,7 +14,7 @@
     <li><?php $lang->time ?>: <span id="world_time_display"><?php $genericLang->progress ?></span></li>
     <li><?php $lang->weatherduration ?>: <span id="world_weather"><?php $genericLang->progress ?></span></li>
     <li><?php $lang->thunderduration ?>: <span id="world_thunder"><?php $genericLang->progress ?></span></li>
-    <li class="arrow"><a href="players.html?world=<?php echo $world ?>"><?php $lang->players ?>: <span id="world_players"><?php $genericLang->progress ?></span></a></li>
+    <li class="arrow"><a href="<?php $this->page('players') ?>?world=<?php echo $world ?>"><?php $lang->players ?>: <span id="world_players"><?php $genericLang->progress ?></span></a></li>
 </ul>
 <ul class="rounded">
     <li><a href="#" id="toggleutils"><?php $lang->utils ?></a></li>

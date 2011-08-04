@@ -11,7 +11,7 @@
 </ul>
 <?php if (!empty($world)): ?>
 <ul class="rounded">
-    <li class="arrow"><a href="players.html" id="players_all"><?php $lang->allplayers ?></a></li>
+    <li class="arrow"><a href="<?php $this->page('players') ?>" id="players_all"><?php $lang->allplayers ?></a></li>
 </ul>
 <?php endif ?>
 <?php $this->displayTemplateFile('generic/playerutils') ?>
@@ -141,7 +141,7 @@
         return false;
     });
     $('#player_info').click(function(){
-        redirectTo('player.html?player=' + player);
+        redirectTo('<?php $this->page('player') ?>?player=' + player);
         return false;
     });
 </script>

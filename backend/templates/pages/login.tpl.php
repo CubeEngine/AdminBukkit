@@ -1,5 +1,5 @@
 <?php $lang = Lang::instance('login') ?>
-<form id="login_form" action="login.html" method="post" accept-charset="utf-8">
+<form id="login_form" action="<?php $this->page('login') ?>" method="post" accept-charset="utf-8">
     <?php if (isset($errors) && count($errors)): ?>
     <h2><?php $lang->errors ?></h2>
     <ul class="rounded">

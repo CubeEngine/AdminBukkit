@@ -35,7 +35,7 @@
                 li.setAttribute('class', 'arrow');
                 var a = document.createElement('a');
                 a.innerHTML = plugins[i];
-                a.href = 'plugin.html?plugin=' + plugins[i];
+                a.href = '<?php $this->page('plugin') ?>?plugin=' + plugins[i];
                 $(a).click(linkHandler);
                 li.appendChild(a);
                 list.appendChild(li);

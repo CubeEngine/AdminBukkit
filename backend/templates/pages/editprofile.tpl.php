@@ -1,6 +1,6 @@
 <?php $lang = Lang::instance('editprofile') ?>
 <?php $registerLang = Lang::instance('register') ?>
-<form action="editprofile.html" method="post" accept-charset="utf-8" id="editprofile_form">
+<form action="<?php $this->page('editprofile') ?>" method="post" accept-charset="utf-8" id="editprofile_form">
     <?php if (isset($errors)): ?>
     <h2><?php $registerLang->errors ?>:</h2>
     <ul class="rounded">

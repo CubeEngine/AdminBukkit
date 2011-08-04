@@ -4,7 +4,7 @@
     var player = '<?php echo $player ?>';
 </script>
 <ul class="rounded">
-    <li><?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span><span id="player_head" style="background-image:url('backend/playerhead.php?player=<?php echo $player ?>')"></span></li>
+    <li><?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span><span id="player_head" style="background-image:url('<?php echo $basePath ?>/backend/playerhead.php?player=<?php echo $player ?>')"></span></li>
     <li><a href="#" id="player_displayname"><?php $lang->displayname ?>: <span><?php $genericLang->progress ?></span></a></li>
     <li><?php $lang->lifes ?>:
         <span id="player_health">

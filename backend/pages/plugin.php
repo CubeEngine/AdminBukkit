@@ -1,7 +1,7 @@
 <?php
     if (!isset($_GET['plugin']) || trim($_GET['plugin']) === '')
     {
-        Router::redirectToPage('plugins');
+        Router::instance()->redirectToPage('plugins');
     }
     $plugin = trim($_GET['plugin']);
     $page = new Page('plugin', true);
@@ -27,12 +27,12 @@
         {
             $err = $lang['failedtoload'];
         }
-        Router::redirectToPage('plugins', $err);
+        Router::instance()->redirectToPage('plugins', $err);
     }
     $data = json_decode($response->getBody());
     if ($data === null)
     {
-        Router::redirectToPage('plugins', 'Konnte keine Informationen zum Plugin "' . $plugin . '" abrufen');
+        Router::instance()->redirectToPage('plugins', 'Konnte keine Informationen zum Plugin "' . $plugin . '" abrufen');
     }
     $template->assign('pluginName', $data->name);
     $template->assign('fullName', $data->fullName);

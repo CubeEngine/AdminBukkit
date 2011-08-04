@@ -2,7 +2,7 @@
     $lang = Lang::instance('login');
     if (User::loggedIn())
     {
-        Router::redirectToPage('home', $lang['alreadyloggedin']);
+        Router::instance()->redirectToPage('home', $lang['alreadyloggedin']);
     }
 
     $page = new Page('login');
@@ -36,7 +36,7 @@
                 }
                 else
                 {
-                    Router::redirectToPage('home', $lang['login_success']);
+                    Router::instance()->redirectToPage('home', $lang['login_success']);
                 }
             }
             catch (Exception $e)
@@ -62,8 +62,8 @@
     
     $tpl = new Template('pages/login');
     $toolbar = new Toolbar($lang['login']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), './');
-    $toolbar->setButton($lang['registration'], 'register.html');
+    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath() . '/');
+    $toolbar->setButton($lang['registration'], $design->getLinkGenerator()->page('register'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent($tpl);
     

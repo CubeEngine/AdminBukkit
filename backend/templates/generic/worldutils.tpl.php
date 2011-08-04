@@ -20,10 +20,10 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="backend/javascriptlang.php?file=worldutils"></script>
-<script type="text/javascript" src="js/worldutils.js"></script>
-<script type="text/javascript" src="js/overlay.js"></script>
-<script type="text/javascript" src="js/iscroll-lite.min.js"></script>
+<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>/backend/javascriptlang.php?file=worldutils"></script>
+<script type="text/javascript" src="<?php $this->res('js/worldutils.js') ?>"></script>
+<script type="text/javascript" src="<?php $this->res('js/overlay.js') ?>"></script>
+<script type="text/javascript" src="<?php $this->res('js/iscroll-lite.min.js') ?>"></script>
 <script type="text/javascript">
     var scroller = new iScroll('world_overlay');
     var worldOverlay = new Overlay('#world_overlay');

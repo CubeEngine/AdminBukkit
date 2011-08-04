@@ -78,11 +78,11 @@
         return false;
     });
     $('#world_info').click(function(){
-        redirectTo('world.html?world=' + world);
+        redirectTo('<?php $this->page('world') ?>?world=' + world);
         return false;
     });
     $('#world_playerlist').click(function(){
-        redirectTo('players.html?world=' + world);
+        redirectTo('<?php $this->page('players') ?>?world=' + world);
         return false;
     });
 

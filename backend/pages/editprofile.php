@@ -91,7 +91,7 @@
                     $apipass
                 );
                 User::logout();
-                Router::redirectToPage('home', $lang['edit_success']);
+                Router::instance()->redirectToPage('home', $lang['edit_success']);
             }
             catch (Exception $e)
             {
@@ -122,7 +122,7 @@
     }
     
     $toolbar = new Toolbar($lang['edit']);
-    $toolbar->setBack($lang['profile'], 'profile.html');
+    $toolbar->setBack($lang['profile'], $design->getLinkGenerator()->page('profile'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/editprofile'));
     
