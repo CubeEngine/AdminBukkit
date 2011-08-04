@@ -22,5 +22,5 @@
     }
     $page->setContent($template);
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

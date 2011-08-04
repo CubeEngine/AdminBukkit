@@ -67,5 +67,5 @@
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent($tpl);
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

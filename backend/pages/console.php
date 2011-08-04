@@ -8,5 +8,5 @@
     $page->setContent(new Template('pages/console'));
     //$page->setInfo();
 
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

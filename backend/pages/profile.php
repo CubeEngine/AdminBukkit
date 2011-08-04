@@ -12,5 +12,5 @@
     $page->assign('pass', $_SESSION['user']->getApiPassword());
     $page->setContent(new Template('pages/profile'));
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

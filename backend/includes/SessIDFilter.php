@@ -1,5 +1,5 @@
 <?php
-    class SessIDFilter implements IFilter
+    class SessIDFilter implements Filter
     {
         private $sessionName;
         private $sessionID;

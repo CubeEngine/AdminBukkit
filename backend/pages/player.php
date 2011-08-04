@@ -14,5 +14,5 @@
     $page->setContent(new Template('pages/player'));
     $page->setInfo($lang['info']);
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

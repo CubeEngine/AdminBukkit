@@ -12,5 +12,5 @@
     $page->setContent(new Template('pages/world'));
     $page->assign('world', Request::get('world'));
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

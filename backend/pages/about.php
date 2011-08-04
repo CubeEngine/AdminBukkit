@@ -6,5 +6,5 @@
     $page->setContent(new Template('pages/about'));
     $page->setInfo(new Template('generic/copyright'));
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

@@ -1,5 +1,5 @@
 <?php
-    interface IView
+    interface View
     {
         public function render();
         public function display();

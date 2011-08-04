@@ -9,5 +9,5 @@
     $page->setContent(new Template('pages/players'));
     $page->setInfo($lang['pageinfo']);
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

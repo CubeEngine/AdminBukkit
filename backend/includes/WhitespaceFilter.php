@@ -1,6 +1,6 @@
 <?php
 
-    class WhitespaceFilter implements IFilter
+    class WhitespaceFilter implements Filter
     {
         public function execute(&$string)
         {

@@ -133,5 +133,5 @@
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/register'));
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

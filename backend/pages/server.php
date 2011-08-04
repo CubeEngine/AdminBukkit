@@ -7,5 +7,5 @@
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/server'));
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

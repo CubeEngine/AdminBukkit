@@ -1,5 +1,5 @@
 <?php
-    interface IFilter
+    interface Filter
     {
         public function execute(&$string);
     }

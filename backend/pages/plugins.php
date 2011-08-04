@@ -8,5 +8,5 @@
     $page->setContent(new Template('pages/plugins'));
     $page->setInfo($lang['info']);
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

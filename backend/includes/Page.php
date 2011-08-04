@@ -16,7 +16,7 @@
             $this->info = null;
         }
         
-        public function setContent(IView $content)
+        public function setContent(View $content)
         {
             $this->content = $content;
         }

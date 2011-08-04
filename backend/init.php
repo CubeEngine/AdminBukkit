@@ -19,8 +19,8 @@
             'Config'                            => 'Config.php',
             'Minecraft'                         => 'Minecraft.php',
             'Router'                            => 'Router.php',
-            'IView'                             => 'IView.php',
-            'IFilter'                           => 'IFilter.php',
+            'View'                              => 'View.php',
+            'Filter'                            => 'Filter.php',
             'Registry'                          => 'Registry.php',
             'Page'                              => 'Page.php',
             'WhitespaceFilter'                  => 'WhitespaceFilter.php',
@@ -39,7 +39,6 @@
             'OptionsRequestMethod'              => 'Http/RequestMethods/OptionsRequestMethod.php',
             'TraceRequestMethod'                => 'Http/RequestMethods/TraceRequestMethod.php',
             'HeadRequestMethod'                 => 'Http/RequestMethods/HeadRequestMethod.php',
-            'SQLite'                            => 'SQLite.php',
             'AESCrypter'                        => 'AESCrypter.php',
             'User'                              => 'User.php',
             'Text'                              => 'Text.php',
@@ -52,7 +51,10 @@
             'ApiBukkit'                         => 'ApiBukkit.php',
             'Database'                          => 'Database.php',
             'DatabaseManager'                   => 'DatabaseManager.php',
-            'DatabaseException'                 => 'DatabaseException.php'
+            'DatabaseException'                 => 'DatabaseException.php',
+            'LinkGenerator'                     => 'LinkGenerator.php',
+            'DefaultLinkGenerator'              => 'DefaultLinkGenerator.php',
+            'ModRewriteLinkGenerator'           => 'ModRewriteLinkGenerator.php'
         );
         
         if (isset($classmap[$classname]))

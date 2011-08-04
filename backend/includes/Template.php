@@ -1,6 +1,6 @@
 <?php
 
-    class Template implements IView
+    class Template implements View
     {
         protected $file;
         protected $vars;
@@ -8,8 +8,9 @@
         protected $postFilters;
         protected $views;
         protected $logger;
+        protected $linkgen;
     
-        public function __construct($file)
+        public function __construct($file, $linkgen = null)
         {
             $tplpath = '';
             if (is_readable($file))
@@ -31,6 +32,7 @@
             $this->postFilters = array();
             $this->views = array();
             $this->logger = Logger::instance('template');
+            $this->linkgen = $linkgen;
         }
         
         public function __destruct()
@@ -89,12 +91,11 @@
             if ($this->subtemplateExists($tpl))
             {
                 $this->logger->write(4, 'info', 'rendering the subtemplate ' . $tpl);
-                /**
-                 * @todo clone or reference ?
-                 */
-                //$tpl = clone $this->subtemplates[$tpl];
                 $tpl =& $this->subtemplates[$tpl];
-                /*****/
+                if ($this->linkgen)
+                {
+                    $tpl->attachLinkGenerator($this->linkgen);
+                }
                 
                 $tpl->assignAssoc($this->vars);
                 return $tpl->render();
@@ -122,6 +123,10 @@
             try
             {
                 $tpl = new Template($tplpath);
+                if ($this->linkgen)
+                {
+                    $tpl->attachLinkGenerator($this->linkgen);
+                }
                 return $tpl->render();
             }
             catch(Exception $e)
@@ -138,6 +143,10 @@
         
         public function addSubtemplate($name, Template $tpl)
         {
+            if ($this->linkgen)
+            {
+                $tpl->attachLinkGenerator($this->linkgen);
+            }
             $this->subtemplates[strval($name)] = $tpl;
             return $this;
         }
@@ -201,7 +210,7 @@
             }
         }
         
-        public function addPostFilter(IFilter $filter)
+        public function addPostFilter(Filter $filter)
         {
             $this->postFilters[] = $filter;
             return $this;
@@ -223,7 +232,7 @@
             return isset($this->views[$name]);
         }
 
-        public function addView($name, IView $widget)
+        public function addView($name, View $widget)
         {
             $this->views[strval($name)] = $widget;
             return $this;
@@ -257,6 +266,35 @@
         {
             unset($this->views[$name]);
             return $this;
+        }
+
+        public function page($page)
+        {
+            if ($this->linkgen)
+            {
+                echo $this->linkgen->page($page);
+            }
+            else
+            {
+                throw new Exception('No LinkGenerator attached!');
+            }
+        }
+
+        public function res($resource)
+        {
+            if ($this->linkgen)
+            {
+                echo $this->linkgen->res($resource);
+            }
+            else
+            {
+                throw new Exception('No LinkGenerator attached!');
+            }
+        }
+
+        public function attachLinkGenerator(LinkGenerator $linkgen)
+        {
+            $this->linkgen = $linkgen;
         }
     }
 

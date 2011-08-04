@@ -4,10 +4,14 @@
         protected $title;
         protected static $minorTitles = array();
     
-        public function __construct($title)
+        public function __construct($title, LinkGenerator $linkgen = null)
         {
             $this->title = $title;
-            parent::__construct('index/index');
+            if (!$linkgen)
+            {
+                $linkgen = new DefaultLinkGenerator(Router::instance()->getBasePath());
+            }
+            parent::__construct('index/index', $linkgen);
             $this->assign('theme', Config::instance('bukkitweb')->get('theme'));
         }
         
@@ -28,7 +32,7 @@
             return parent::render();
         }
         
-        public function setContentTpl(Template $tpl)
+        public function setContentView(View $tpl)
         {
             $this->addSubtemplate('page', $tpl);
         }

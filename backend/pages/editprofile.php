@@ -126,5 +126,5 @@
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/editprofile'));
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

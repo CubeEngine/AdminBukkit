@@ -24,5 +24,5 @@
     $tpl->assign('stats', $stats);
     $page->setContent($tpl);
     
-    $design->setContentTpl($page);
+    $design->setContentView($page);
 ?>

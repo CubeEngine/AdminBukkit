@@ -1,5 +1,5 @@
 <?php
-    class TidyFilter implements IFilter
+    class TidyFilter implements Filter
     {
         public function execute(&$string)
         {

@@ -6,16 +6,34 @@
  */
 class Router
 {
+    private static $instance = null;
+
     protected $config;
     protected $page;
     protected $pagePath;
+    protected $base;
     
-    public function __construct()
+    private function __construct()
     {
         $this->config = Config::instance('bukkitweb');
         $this->page = null;
         $this->pagePath = null;
         $this->route();
+        $this->base = dirname($_SERVER['SCRIPT_NAME']);
+    }
+
+    /**
+     * returns the singleton instance of the router
+     *
+     * @return Router the router
+     */
+    public static function instance()
+    {
+        if (self::$instance === null)
+        {
+            self::$instance = new self();
+        }
+        return self::$instance;
     }
     
     protected function route()
@@ -24,7 +42,7 @@ class Router
         $defaultPage = $this->config->get('default', 'index');
         if (isset($_SERVER['PATH_INFO']) && trim($_SERVER['PATH_INFO']) !== '')
         {
-            $page = trim($_SERVER['PATH_INFO']);
+            $page = rtrim(trim($_SERVER['PATH_INFO']), '/');
         }
         else
         {
@@ -85,6 +103,11 @@ class Router
     {
         $_SESSION['referrer'] = $_SERVER['REQUEST_URI'];
         self::redirectToPage('login', $msg);
+    }
+
+    public function getBasePath()
+    {
+        return $this->base;
     }
 }
 
