@@ -1,8 +1,8 @@
 <?php $lang = Lang::instance('players') ?>
-<?php if (!empty($world)): ?>
-<h2><?php $lang->playersworld($world) ?>:
+<h2><?php if (!empty($world)): ?>
+<?php $lang->playersworld($world) ?>:
 <?php else: ?>
-<h2><?php $lang->allplayers ?>:
+<?php $lang->allplayers ?>:
 <?php endif ?>
     [ <span id="players_online">0</span> / <span id="players_limit">0</span> ]
 </h2>

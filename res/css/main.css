@@ -107,6 +107,12 @@ div#console_viewbox > div > div:hover {
 }
 div#console_viewbox > div > div.logtype_info {
 }
+div#console_viewbox > div > div.logtype_warning {
+    background-color: rgb(255, 205, 80);
+}
+div#console_viewbox > div > div.logtype_warning:hover {
+    background-color: rgb(255, 225, 80);
+}
 div#console_viewbox > div > div.logtype_severe {
     background-color: rgb(255, 100, 100);
 }

@@ -39,6 +39,7 @@
         'addtowhitelist'        => 'Whiteliste einen Spieler',
         'emptyWhitelist'        => 'Die Whitelist ist leer!',
         'whitelist'             => 'Die Whitelist',
+        'consoleview'           => 'Konsolenansicht',
         
         // Controller
         'serverinfos'           => 'Serverinfos',

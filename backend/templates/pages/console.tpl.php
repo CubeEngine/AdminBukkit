@@ -8,6 +8,7 @@
 </ul>
 <script type="text/javascript" src="js/iscroll-lite.min.js"></script>
 <script type="text/javascript">
+    var refreshing = true;
     var consoleRequest = new ApiRequest('server', 'console');
     consoleRequest.data({format:'json'});
     consoleRequest.ignoreFirstFail(true);
@@ -17,17 +18,18 @@
     consoleRequest.onFailure(function(){
         alert('<?php $lang->console_fail ?>');
     });
-    var consoleScroller = new iScroll('console_viewbox');
-    consoleScroller.scrollToElement('div#console_viewbox > div > div:last-child', 100);
+    //var consoleScroller = new iScroll('console_viewbox');
+    //consoleScroller.scrollToElement('div#console_viewbox > div > div:last-child', 100);
 
+    var commandHistory = [];
 
     function refreshConsole(data)
     {
         var parseRegex = /(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) \[(\w+)] (.*)/i;
-        var consoleBox = $('#console_viewbox > div');
+        var console = document.getElementById('console_viewbox');
+        var consoleBox = $(console).find('div:first');
         data = eval('(' + data + ')');
-        data = data.reverse();
-        //var lines = [];
+        consoleBox.html('');
         for (var i = 0; i < data.length; ++i)
         {
             var line = data[i];
@@ -42,8 +44,59 @@
             }
         }
         consoleBox.remove('div:gt(99)');
-        consoleScroller.refresh();
+        console.scrollTop = console.scrollHeight;
+        //consoleScroller.refresh();
+
+        if (refreshing)
+        {
+            setTimeout(function(){
+                consoleRequest.execute();
+            }, 100);
+        }
     }
+
+    $('#console_input').bind('keydown', function(e){
+        if (e.which == 13)
+        {
+            var commandLine = $(e.target).val().split(" ");
+            var command = commandLine[0];
+            data = {}
+            if (commandLine.length > 1)
+            {
+                var params = commandLine.slice(1, commandLine.length);
+                data.params = params.join(",");
+            }
+            var commandRequest = new ApiRequest('command', command);
+            commandRequest.onSuccess(function(data){
+                $('#console_input').val('');
+                if (!refreshing)
+                {
+                    consoleRequest.execute();
+                }
+            });
+            commandRequest.onFailure(function(error){
+                alert('Failed!\n' + error);
+            });
+            commandRequest.execute(data);
+        }
+    });
+
+    $('.toolbar a.button').click(function(e){
+        e.preventDefault();
+        var elem = $(e.target);
+        if (refreshing)
+        {
+            refreshing = false;
+            elem.text('<?php $lang->enable_refreshing ?>');
+        }
+        else
+        {
+            refreshing = true;
+            elem.text('<?php $lang->disable_refreshing ?>');
+            consoleRequest.execute();
+        }
+        return false;
+    });
 
     function init()
     {

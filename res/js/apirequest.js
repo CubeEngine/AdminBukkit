@@ -13,7 +13,7 @@ function ApiRequest(controller, action)
     var $this = this;
     var $controller = controller;
     var $action = (!!action ? action : '');
-    var $url = BASE_PATH + '/backend/apiproxy.php/' + $controller + '/' + $action;
+    var $url = BASE_PATH + 'backend/apiproxy.php/' + $controller + '/' + $action;
     if (SESS_APPEND)
     {
         $url = appendSession($url);
@@ -61,7 +61,7 @@ function ApiRequest(controller, action)
                         __APIREQUESTS_ENABLED = false;
                         if (confirm(genericLang.error_serverunavailable))
                         {
-                            redirectTo('home.html');
+                            redirectTo(BASE_PATH + 'index.php/home/');
                         }
                     }
                     else
@@ -74,7 +74,7 @@ function ApiRequest(controller, action)
                     break;
                 case 2:
                     alert(genericLang.error_authfailed);
-                    redirectTo('home.html?msg=' + urlencode(genericLang.redirect_msg));
+                    redirectTo(BASE_PATH + 'index.php/home/?msg=' + urlencode(genericLang.redirect_msg));
                     break;
                 case 3:
                     // execute onFailure if set

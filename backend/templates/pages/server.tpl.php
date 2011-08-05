@@ -21,6 +21,7 @@
     <li><a href="#" id="whitelist"><?php $lang->addtowhitelist ?></a></li>
     <li><a href="#" id="operators"><?php $lang->addoperator ?></a></li>
     <li><a href="#" id="broadcast"><?php $lang->broadcast ?></a></li>
+    <li><a href="<?php $this->page('console') ?>"><?php $lang->consoleview ?></a></li>
     <li><a href="#" id="stop"><?php $lang->stop ?></a></li>
 </ul>
 <div id="generic_overlay" class="overlay">
@@ -39,7 +40,7 @@
         <li><a href="#" class="toggleoverlay"><?php $lang->close ?></a></li>
     </ul>
 </div>
-<script type="text/javascript" src="<?php echo $basePath ?>/backend/javascriptlang.php?file=serverutils"></script>
+<script type="text/javascript" src="<?php echo $basePath ?>backend/javascriptlang.php?file=serverutils"></script>
 <script type="text/javascript" src="<?php $this->res('js/overlay.js') ?>" charset="utf-8"></script>
 <script type="text/javascript" src="<?php $this->res('js/serverutils.js') ?>"></script>
 <script type="text/javascript" src="<?php $this->res('js/iscroll-lite.min.js') ?>"></script>

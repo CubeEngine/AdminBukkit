@@ -21,7 +21,7 @@ class Router
         $this->page = null;
         $this->pagePath = null;
         $this->route();
-        $this->base = dirname($_SERVER['SCRIPT_NAME']);
+        $this->base = str_replace('\\', '', dirname($_SERVER['SCRIPT_NAME']));
         if ($this->base != '/')
         {
             $this->base .= '/';
