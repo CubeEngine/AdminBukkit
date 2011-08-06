@@ -6,10 +6,11 @@
 <ul>
     <li><input type="text" id="console_input" placeholder="<?php $lang->command_enter ?>"></li>
 </ul>
-<script type="text/javascript" src="js/iscroll-lite.min.js"></script>
+<script type="text/javascript" src="<?php $this->res('js/iscroll-lite.min.js') ?>"></script>
 <script type="text/javascript">
-    var refreshing = true;
-    var consoleRequest = new ApiRequest('server', 'console');
+    var refreshing = true,
+        timeoutID,
+        consoleRequest = new ApiRequest('server', 'console');
     consoleRequest.data({format:'json'});
     consoleRequest.ignoreFirstFail(true);
     consoleRequest.onBeforeSend(null);
@@ -28,6 +29,7 @@
         var parseRegex = /(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) \[(\w+)] (.*)/i;
         var console = document.getElementById('console_viewbox');
         var consoleBox = $(console).find('div:first');
+        var scrollDown = (console.scrollTop == (console.scrollHeight - console.offsetHeight));
         data = eval('(' + data + ')');
         consoleBox.html('');
         for (var i = 0; i < data.length; ++i)
@@ -43,15 +45,17 @@
                 consoleBox.append(lineDiv);
             }
         }
-        consoleBox.remove('div:gt(99)');
-        console.scrollTop = console.scrollHeight;
+        if (scrollDown)
+        {
+            console.scrollTop = console.scrollHeight;
+        }
         //consoleScroller.refresh();
 
         if (refreshing)
         {
-            setTimeout(function(){
+            timeoutID = setTimeout(function(){
                 consoleRequest.execute();
-            }, 100);
+            }, 1000);
         }
     }
 
@@ -87,6 +91,7 @@
         if (refreshing)
         {
             refreshing = false;
+            clearTimeout(timeoutID);
             elem.text('<?php $lang->enable_refreshing ?>');
         }
         else
