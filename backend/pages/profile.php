@@ -2,7 +2,7 @@
     $lang = Lang::instance('profile');
     $page = new Page('profile', true);
     $toolbar = new Toolbar($lang['profile']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), './');
+    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath());
     $toolbar->setButton($lang['edit'], $design->getLinkGenerator()->page('editprofile'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->assign('username', $_SESSION['user']->getName());
