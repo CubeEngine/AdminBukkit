@@ -6,7 +6,6 @@
 <ul>
     <li><input type="text" id="console_input" placeholder="<?php $lang->command_enter ?>"></li>
 </ul>
-<script type="text/javascript" src="<?php $this->res('js/iscroll-lite.min.js') ?>"></script>
 <script type="text/javascript">
     var refreshing = true,
         timeoutID,
@@ -19,9 +18,6 @@
     consoleRequest.onFailure(function(){
         alert('<?php $lang->console_fail ?>');
     });
-    //var consoleScroller = new iScroll('console_viewbox');
-    //consoleScroller.scrollToElement('div#console_viewbox > div > div:last-child', 100);
-
     var commandHistory = [];
 
     function refreshConsole(data)
@@ -49,7 +45,6 @@
         {
             console.scrollTop = console.scrollHeight;
         }
-        //consoleScroller.refresh();
 
         if (refreshing)
         {
