@@ -74,7 +74,11 @@
                 }
             });
             commandRequest.onFailure(function(error){
-                alert('Failed!\n' + error);
+                switch (error)
+                {
+                    case 1:
+                        alert('<?php $lang->console_readfailed ?>');
+                }
             });
             commandRequest.execute(data);
         }
