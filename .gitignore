@@ -1,4 +1,5 @@
 *.db
+*.db-journal
 res/js/jqtouch.js
 res/js/jquery-1.*.js
 backend/logs/*.log

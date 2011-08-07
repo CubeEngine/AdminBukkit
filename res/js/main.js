@@ -84,18 +84,18 @@ function linkHandler(e)
     return false;
 }
 
-function touchTooltipHandler(e)
+function touchTooltipHandler(event)
 {
-    e.preventDefault();
-    var $target = $(e.target);
-    var $timeout = setTimeout(attachTooltip, 200);
+    var $target = $(event.target);
+    var $timeout = setTimeout(attachTooltip, 170);
     var $tooltip = null;
     
     function attachTooltip()
     {
+        event.preventDefault();
         $tooltip = $('<div class="touchTooltip"><div>' + $target.attr('title') + '</div></div>');
         var pos = $target.position();
-        $tooltip.css('top', pos.top + e.target.offsetHeight + 'px');
+        $tooltip.css('top', pos.top + event.target.offsetHeight + 'px');
         $tooltip.css('left', pos.left + 'px');
         $tooltip.css('max-width', (window.innerWidth - pos.left - 5) + 'px');
         $tooltip.bind('touchstart', function(){
