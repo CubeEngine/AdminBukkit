@@ -15,8 +15,7 @@
         <link rel="apple-touch-startup-image" media="screen and (resolution: 163dpi)" href="<?php $this->res('gfx/startup-iphone.png') ?>">
         <link rel="apple-touch-startup-image" media="screen and (resolution: 132dpi)" href="<?php $this->res('gfx/startup-ipad.png') ?>">
         <link rel="apple-touch-startup-image" media="screen and (resolution: 326dpi)" href="<?php $this->res('gfx/startup-iphone4.png') ?>">
-        <style type="text/css" media="screen">@import "<?php $this->res('css/jqtouch.css') ?>";</style>
-        <style type="text/css" media="screen">@import "<?php $this->res("themes/$theme/theme.css") ?>";</style>
+        <style type="text/css" media="screen">@import "<?php $this->res('css/jquery.mobile.css') ?>";</style>
         <style type="text/css" media="screen">@import "<?php $this->res('css/main.css') ?>";</style>
         <script type="text/javascript">
             var SESS_APPEND = <?php echo (Request::session('cookies') ? 'false' : 'true') ?>;
@@ -27,12 +26,13 @@
         </script>
         <script type="text/javascript" src="<?php echo $basePath ?>backend/javascriptlang.php?file=generic" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/jquery.js') ?>" charset="utf-8"></script>
+        <script type="text/javascript" src="<?php $this->res('js/jquery.mobile.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/wkshake.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/apirequest.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/main.js') ?>" charset="utf-8"></script>
     </head>
     <body>
-        <div id="jqt">
+        <div>
             <?php $this->displaySubTemplate('page') ?>
         </div>
         <div id="progress"><?php $lang->progress ?></div>
