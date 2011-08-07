@@ -122,3 +122,6 @@ div#console_viewbox > div > div.logtype_severe:hover {
 /*div#console_viewbox div.logtype_ {
 
 }*/
+div#copyright {
+    text-align: center;
+}
