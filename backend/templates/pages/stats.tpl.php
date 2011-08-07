@@ -6,17 +6,17 @@
     <li><?php $lang->outParsed('stat_' . $stat['index'], array($stat['value'])) ?></li>
     <?php endforeach ?>
 <?php endif ?>
-    <li data-role="divider"><?php $lang->apistats ?>:</li>
-    <?php if (count($stats['user'])): ?>
-        <?php foreach ($stats['api_success'] as $stat):  ?>
-            <li><?php $lang->outParsed('stat_' . $stat['index'], array($stat['value'])) ?></li>
-        <?php endforeach ?>
-    <?php endif ?>
-    <li><?php $lang->failed_requests($stats['api_fails']) ?></li>
-    <?php if (count($stats['downloaded'])): ?>
-        <li data-role="divider"><?php $lang->downloads ?></li>
-        <?php foreach ($stats['downloaded'] as $file):  ?>
-            <li><?php $lang->outParsed('filedownloaded', array($file['index'], $file['value'])) ?></li>
-        <?php endforeach ?>
-    </ul>
-    <?php endif ?>
+<li data-role="divider"><?php $lang->apistats ?></li>
+<?php if (count($stats['user'])): ?>
+    <?php foreach ($stats['api_success'] as $stat):  ?>
+        <li><?php $lang->outParsed('stat_' . $stat['index'], array($stat['value'])) ?></li>
+    <?php endforeach ?>
+<?php endif ?>
+<li><?php $lang->failed_requests($stats['api_fails']) ?></li>
+<?php if (count($stats['downloaded'])): ?>
+    <li data-role="divider"><?php $lang->downloads ?></li>
+    <?php foreach ($stats['downloaded'] as $file):  ?>
+        <li><?php $lang->outParsed('filedownloaded', array($file['index'], $file['value'])) ?></li>
+    <?php endforeach ?>
+</ul>
+<?php endif ?>

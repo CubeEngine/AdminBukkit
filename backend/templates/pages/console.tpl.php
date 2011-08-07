@@ -102,8 +102,7 @@
         return false;
     });
 
-    function init()
-    {
+    $('#console').bind('pageshow', function(){
         consoleRequest.execute();
-    }
+    });
 </script>

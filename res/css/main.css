@@ -122,6 +122,6 @@ div#console_viewbox > div > div.logtype_severe:hover {
 /*div#console_viewbox div.logtype_ {
 
 }*/
-div#copyright {
+div[data-role=footer] {
     text-align: center;
 }

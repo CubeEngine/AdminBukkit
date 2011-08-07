@@ -38,6 +38,7 @@ function urlencode(str)
 
 function setProgress(state)
 {
+    return;
     if (state)
     {
         $('#progress').css('display', 'block');
@@ -256,7 +257,7 @@ function parseColors(string)
 
 $(window).unload(function(){
     ready = false;
-    setProgress(true);
+    //setProgress(true);
 });
 
 var shakeListener = new WKShake();
@@ -264,10 +265,6 @@ shakeListener.start();
 
 $(function(){
     ready = true;
-    if (typeof init == 'function')
-    {
-        init();
-    }
     $('a[href=\\#]').click(function(e){
         e.preventDefault();
     });

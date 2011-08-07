@@ -3,56 +3,50 @@
     <li><a href="#" id="world_create"><?php $lang->create ?></a></li>
 </ul>
 <h2><?php $lang->loadedworlds ?>:</h2>
-<ul id="worldlist" class="rounded">
+<ul id="worldlist" data-role="listview">
     <li><?php $lang->loadinglist ?></li>
 </ul>
 <?php $this->displayTemplateFile('generic/worldutils') ?>
 <script type="text/javascript">
-    var list = document.getElementById('worldlist');
+    var list = $('#worldlist');
     var request = new ApiRequest('world', 'list');
     request.ignoreFirstFail(true);
     request.onSuccess(refreshData);
     request.onFailure(function(){
-        alert('failed to load list');
+        alert('failed to load list'); // @todo static language
     });
     
     function refreshData(data)
     {
-        list.innerHTML = '';
+        list.html('');
         if (data == '')
         {
-            var li = document.createElement('li');
+            var li = $('<li>');
             li.innerHTML = '<?php $lang->noworlds ?>';
-            list.appendChild(li)
+            list.append(li);
         }
         else
         {
             var worlds = data.split(',').sort(realSort);
             for (var i = 0; i < worlds.length; i++)
             {
-                var li = document.createElement('li');
-                li.setAttribute('class', 'arrow');
-                var a = document.createElement('a');
-                a.innerHTML = worlds[i];
-                a.href = '#';
-                $(a).click(overlayHandler);
-                li.appendChild(a);
-                list.appendChild(li);
+                var li = $('<li>');
+                var mainLink = $('<a>');
+                mainLink.text(worlds[i]);
+                mainLink.attr('href', '<?php $this->page('world') ?>?world=' + worlds[i]);
+                li.append(mainLink);
+                var minorLink = $('<a>');
+                minorLink.attr('href', '<?php $this->page('worldpopup') ?>');
+                li.append(minorLink);
+                list.append(li);
             }
+            list.listview('refresh');
         }
     }
     
-    function overlayHandler(e)
-    {
-        world = e.target.innerHTML;
-        worldOverlay.toggle();
-        e.preventDefault();
-    }
-    
-    function init()
-    {
+    $('#worlds').bind('pageshow', function(){
         request.execute();
-    }
+    });
 
     $('div.toolbar a.button').click(function(){
         request.execute();

@@ -73,11 +73,10 @@
         return false;
     });
     
-    function init()
-    {
+    $('#world').bind('pageshow', function(){
         $('#world_info').parent('li').remove();
         request.execute();
-    }
+    });
     
     $('.toolbar a.button').click(function(){
         request.execute();

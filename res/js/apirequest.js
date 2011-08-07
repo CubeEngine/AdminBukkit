@@ -27,10 +27,10 @@ function ApiRequest(controller, action)
     var $onSuccess = null;
     var $onFailure = null;
     var $onBeforeSend = function(){
-        setProgress(true);
+        $.mobile.showPageLoadingMsg();
     };
     var $onComplete = function(){
-        setProgress(false);
+        $.mobile.hidePageLoadingMsg();
     };
     
     function onError(jqXHR, textStatus, thrownError)

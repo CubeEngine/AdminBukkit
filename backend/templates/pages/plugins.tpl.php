@@ -1,54 +1,48 @@
 <?php $lang = Lang::instance('plugins') ?>
-<ul class="rounded">
-    <li><a id="plugins_load" href="#">Lade ein Plugin</a></li>
-    <li><a id="plugins_reloadall" href="#">Lade alle Plugins neu</a></li>
-</ul>
-<h2>Plugins:</h2>
-<ul class="rounded" id="pluginlist">
-    <li>Pluginliste wird geladen...</li>
-</ul>
+<ol id="pluginlist" data-role="listview">
+    <li>Pluginliste wird geladen...</li> <!-- @todo static language -->
+</ol>
 
 <script type="text/javascript">
-    var list = document.getElementById('pluginlist');
+    var list = $('#pluginlist');
     var request = new ApiRequest('plugin', 'list');
     request.ignoreFirstFail(true);
     request.onSuccess(refreshData);
     request.onFailure(function(){
-        alert('failed to load list!');
+        alert('failed to load list!'); // @todo static language
     });
     
     function refreshData(data)
     {
-        list.innerHTML = '';
+        list.html('');
         if (data == '')
         {
-            var li = document.createElement('li');
+            var li = $('<li>');
             li.innerHTML = '<?php $lang->noplugins ?>';
-            list.appendChild(li)
+            list.appendChild(li);
         }
         else
         {
             var plugins = data.split(',').sort(realSort);
             for (var i = 0; i < plugins.length; i++)
             {
-                var li = document.createElement('li');
-                li.setAttribute('class', 'arrow');
-                var a = document.createElement('a');
-                a.innerHTML = plugins[i];
-                a.href = '<?php $this->page('plugin') ?>?plugin=' + plugins[i];
-                $(a).click(linkHandler);
-                li.appendChild(a);
-                list.appendChild(li);
+                var li = $('<li>');
+                var a = $('<a>');
+                a.text(plugins[i]);
+                a.attr('href', '<?php $this->page('plugin') ?>?plugin=' + plugins[i]);
+                a.click(linkHandler);
+                li.append(a);
+                list.append(li);
             }
+            list.listview('refresh');
         }
     }
     
-    function init()
-    {
+    $('#plugins').bind('pageshow', function(){
         request.execute();
-    }
+    });
     
-    $('div.toolbar a.button').click(function(){
+    $('div.toolbar a:last-child').click(function(){
         request.execute();
         return false;
     });

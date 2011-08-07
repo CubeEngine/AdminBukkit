@@ -182,10 +182,9 @@
         return false;
     });
     
-    function init()
-    {
+    $('#server').bind('pageshow', function(){
         infoRequest.execute();
         statsRequest.execute();
         setInterval(statsRequest.execute, 5000);
-    }
+    });
 </script>

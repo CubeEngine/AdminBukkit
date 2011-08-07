@@ -119,12 +119,11 @@
     });
     
     var intervalID = null;
-    function init()
-    {
+    $('#player').bind('pageshow', function(){
         $('#player_info').parent('li').remove();
         request.execute();
         intervalID = setInterval(request.execute, 10000);
-    }
+    });
 
     $('.toolbar a.button').click(function(){
         request.execute();
