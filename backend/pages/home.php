@@ -5,7 +5,6 @@
     $toolbar->setButton($lang['about'], $design->getLinkGenerator()->page('about'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/home'));
-    $page->setInfo(new Template('generic/copyright'));
     
     $design->setContentView($page);
 ?>

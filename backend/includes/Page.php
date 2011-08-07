@@ -13,7 +13,7 @@
             $this->assign('pageName', $name);
             $this->addSubTemplate('copyright', new Template('generic/copyright'));
             $this->content = null;
-            $this->info = null;
+            $this->info = $this->getSubtemplate('copyright');
         }
         
         public function setContent(View $content)
