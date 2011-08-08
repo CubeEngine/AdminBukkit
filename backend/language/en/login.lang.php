@@ -4,9 +4,9 @@
         
         // Template
         'errors'                => 'Errors',
-        'enterlogin'            => 'Enter your login information',
         'username'              => 'Username',
         'password'              => 'Password',
+        'language'              => 'Language',
         'nocookies'             => 'Cookies unavailable?',
         
         // Controller

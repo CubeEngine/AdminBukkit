@@ -6,7 +6,7 @@
 <?php endif ?>
     [ <span id="players_online">0</span> / <span id="players_limit">0</span> ]
 </h2>
-<ul data-role="listview" id="players_list">
+<ul data-role="listview" id="players_list" data-split-icon="gear">
     <li><?php $lang->loadinglist ?></li>
 </ul>
 <?php if (!empty($world)): ?>
@@ -33,16 +33,22 @@
     request.onFailure(function(){
         alert('Failed to load the list'); // @todo static language
     });
+    var maxPlayersRequest = new ApiRequest('server', 'maxplayers');
+    maxPlayersRequest.onSuccess(function(data){
+        $('#players_limit').html(data);
+    });
+    maxPlayersRequest.onBeforeSend(null);
+    maxPlayersRequest.onComplete(null);
 
     function refreshData(data)
     {
         list.html('');
         if (data == '')
         {
-            $('#players_online').html(0);
-            var li = document.createElement('li');
-            li.innerHTML = '<?php $lang->noplayers ?>';
-            list.appendChild(li);
+            $('#players_online').html('0');
+            var li = $('<li>');
+            li.html('<?php $lang->noplayers ?>');
+            list.append(li);
         }
         else
         {
@@ -53,19 +59,20 @@
                 var li = $('<li>');
                 var mainLink = $('<a>');
                 mainLink.text(players[i]);
-                mainLink.attr('href', '<?php $this->page('player') ?>/?player=' + players[i]);
+                mainLink.attr('href', '<?php $this->page('player') ?>?player=' + players[i]);
+                //mainLink.data('rel', 'dialog');
                 var icon = $('<img>');
                 icon.addClass('ui-li-icon');
                 icon.attr('src', BASE_PATH + 'backend/playerhead.php?size=16&player=' + players[i])
                 mainLink.append(icon);
                 li.append(mainLink);
                 var minorLink = $('<a>');
-                minorLink.attr('href', '<?php $this->page('playerpopup') ?>');
-                li.append(minorLink)
+                minorLink.attr('href', '<?php $this->page('playerpopup') ?>?player=' + players[i]);
+                li.append(minorLink);
                 list.append(li);
             }
-            list.listview('refresh')
         }
+        list.listview('refresh');
     }
     
     $('div.toolbar a.button').click(function(){
@@ -76,10 +83,6 @@
     var intervalId = null;
     
     $('#players').bind('pageshow', function(){
-        var maxPlayersRequest = new ApiRequest('server', 'maxplayers');
-        maxPlayersRequest.onSuccess(function(data){
-            $('#players_limit').html(data);
-        });
         maxPlayersRequest.execute();
         request.execute();
         intervalID = setInterval(request.execute, 10000);
@@ -90,64 +93,5 @@
         {
             clearInterval(intervalID);
         }
-    });
-
-    
-    /**** Overlay Handler ****/
-    $('#player_ban').click(function(){
-        if (ban_player(player, true))
-        {
-            refreshData();
-            toggleOverlay('#player_overlay');
-        }
-        return false;
-    });
-    $('#player_kick').click(function(){
-        if (player_kick(player, true))
-        {
-            refreshData();
-            toggleOverlay('#player_overlay');
-        }
-        return false;
-    });
-    $('#player_tell').click(function(){
-        player_tell(player);
-        return false;
-    });
-    $('#player_kill').click(function(){
-        player_kill(player);
-        return false;
-    });
-    $('#player_burn').click(function(){
-        player_burn(player);
-        return false;
-    });
-    $('#player_heal').click(function(){
-        player_heal(player);
-        return false;
-    });
-    $('#player_clearinv').click(function(){
-        player_clearinv(player);
-        return false;
-    });
-    $('#player_give').click(function(){
-        player_give(player);
-        return false;
-    });
-    $('#player_teleport').click(function(){
-        player_teleport(player);
-        return false;
-    });
-    $('#player_op').click(function(){
-        player_op(player);
-        return false;
-    });
-    $('#player_deop').click(function(){
-        player_deop(player);
-        return false;
-    });
-    $('#player_info').click(function(){
-        redirectTo('<?php $this->page('player') ?>?player=' + player);
-        return false;
     });
 </script>

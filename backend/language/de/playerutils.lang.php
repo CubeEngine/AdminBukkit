@@ -48,7 +48,7 @@
         'deop_noplayer'             => 'Es wurde kein Spieler angegeben!',
         'deop_notopped'             => 'Der Spieler ist kein Operator!',
         
-        'infos'                     => 'Informationen',
+        'info'                      => 'Informationen',
         'ban'                       => 'Verbannen',
         'kick'                      => 'Kicken',
         'kill'                      => 'Töten',

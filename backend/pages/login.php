@@ -32,7 +32,7 @@
                 {
                     $referrer = $_SESSION['referrer'];
                     unset($_SESSION['referrer']);
-                    Router::redirect($referrer);
+                    Router::instance()->redirect($referrer);
                 }
                 else
                 {

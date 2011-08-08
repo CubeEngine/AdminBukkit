@@ -3,7 +3,8 @@
         // Template
         'fillin'                    => 'Füllen sie das Formular vollständig aus.',
         'username'                  => 'Benutzername',
-        'email'                     => 'beispiel@email.adr',
+        'email'                     => 'Email',
+        'exampleemail'              => 'beispiel@domain.tld',
         'password'                  => 'Passwort',
         'password_repeat'           => 'Passwort wiederholen',
         'serveraddr'                => 'Serveradresse',

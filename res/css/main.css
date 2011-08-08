@@ -37,6 +37,28 @@ a.back:hover {
 #plugin .contentSlide div {
     display: none;
 }
+.infobox {
+    /*position: relative;*/
+    margin-bottom: 5px;
+    padding: .4em 15px;
+    overflow: hidden;
+    display: block;
+    clear:both;
+    border: 1px solid #F7C942;
+    color: #333333;
+    text-shadow: 0 1px 0 #fff;
+    background: #faeb9e;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#faeb9e)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #fff, #faeb9e); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient(top, #fff, #faeb9e); /* FF3.6 */
+    background-image:     -ms-linear-gradient(top, #fff, #faeb9e); /* IE10 */
+    background-image:      -o-linear-gradient(top, #fff, #faeb9e); /* Opera 11.10+ */
+    background-image:         linear-gradient(top, #fff, #faeb9e);
+    font-family: Helvetica, Arial, sans-serif;
+}
+.infobox > h4 {
+    margin: .5em 0;
+}
 div.touchTooltip {
     position: absolute;
     z-index: 110;

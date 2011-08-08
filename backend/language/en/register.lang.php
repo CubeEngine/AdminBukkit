@@ -3,7 +3,8 @@
         // Template
         'fillin'                    => 'Please fill in everything.',
         'username'                  => 'Username',
-        'email'                     => 'example@email.adr',
+        'email'                     => 'Email',
+        'exampleemail'              => 'example@domain.tld',
         'password'                  => 'Password',
         'password_repeat'           => 'Repeat password',
         'serveraddr'                => 'Serveraddress',

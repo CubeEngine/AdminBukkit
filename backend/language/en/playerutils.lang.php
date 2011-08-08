@@ -48,7 +48,7 @@
         'deop_noplayer'             => 'There was no player given!',
         'deop_notopped'             => 'This player is no operator!',
         
-        'infos'                     => 'Information',
+        'info'                      => 'Information',
         'ban'                       => 'Ban',
         'kick'                      => 'Kick',
         'kill'                      => 'Kill',
