@@ -1,5 +1,5 @@
 <?php $lang = Lang::instance('login') ?>
-<form id="login_form" action="<?php $this->page('login') ?>" method="post" accept-charset="utf-8">
+<form id="login_form" action="<?php $this->page('login') ?>" method="post" accept-charset="utf-8" data-ajax="false">
     <?php if (isset($errors) && count($errors)): ?>
     <div class="infobox">
         <h4><?php $lang->errors ?>:</h4>
@@ -19,7 +19,5 @@
         <option name="<?php echo $code ?>"><?php $lang->out('lang_' . $code) ?></option>
         <?php endforeach ?>
     </select>
-    <label for="login_nocookies"><?php $lang->nocookies ?></label>
-    <input type="checkbox" name="nocookies" id="login_nocookies" value="disable">
     <input type="submit" value="<?php $lang->login ?>">
 </form>

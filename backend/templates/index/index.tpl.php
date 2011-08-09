@@ -18,10 +18,6 @@
         <style type="text/css" media="screen">@import "<?php $this->res('jquery/jquery.mobile.css') ?>";</style>
         <style type="text/css" media="screen">@import "<?php $this->res('css/main.css') ?>";</style>
         <script type="text/javascript">
-            var SESS_APPEND = <?php echo (Request::session('cookies') ? 'false' : 'true') ?>;
-            var SESS_NAME = '<?php echo session_name() ?>';
-            var SESS_ID = '<?php echo session_id() ?>';
-            var SESS_QUERY = SESS_NAME + '=' + SESS_ID;
             var BASE_PATH = '<?php echo $basePath ?>';
         </script>
         <script type="text/javascript" src="<?php echo $basePath ?>backend/javascriptlang.php?file=generic" charset="utf-8"></script>

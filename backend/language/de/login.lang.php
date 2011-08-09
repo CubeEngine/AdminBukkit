@@ -7,7 +7,6 @@
         'username'              => 'Benutzername',
         'password'              => 'Passwort',
         'language'              => 'Sprache',
-        'nocookies'             => 'Cookies nicht verfügbar?',
         
         // Controller
         'home'                  => 'Home',

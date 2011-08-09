@@ -8,7 +8,7 @@
     $page = new Page('playerpopup', true);
     $page->assign('player', $player);
     $toolbar = new Toolbar($lang['playerinfos']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_back'));
+    //$toolbar->setBack(Lang::instance('generic')->get('btn_back'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/playerpopup'));
 

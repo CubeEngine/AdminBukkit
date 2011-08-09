@@ -8,6 +8,7 @@
         'Yes'                       => 'Ja',
         'no'                        => 'nein',
         'No'                        => 'Nein',
+        'loginrequired'             => 'Login benötigt',
         
         'error_serverunavailable'   => "Der Server ist nicht (mehr) erreichbar.\nÜberprüfe die Serverdaten und den Server.\n\nWillst du zur Hauptseite zurück?",
         'error_unknown'             => "Es ist ein unbekannter Fehler aufgetreten.\nBitte informiere einen Administrator über diesen Fehler.",

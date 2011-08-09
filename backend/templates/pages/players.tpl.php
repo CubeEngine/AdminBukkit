@@ -60,14 +60,13 @@
                 var mainLink = $('<a>');
                 mainLink.text(players[i]);
                 mainLink.attr('href', '<?php $this->page('player') ?>?player=' + players[i]);
-                //mainLink.data('rel', 'dialog');
+                mainLink.jqmData('rel', 'dialog');
                 var icon = $('<img>');
                 icon.addClass('ui-li-icon');
                 icon.attr('src', BASE_PATH + 'backend/playerhead.php?size=16&player=' + players[i])
                 mainLink.append(icon);
                 li.append(mainLink);
-                var minorLink = $('<a>');
-                minorLink.attr('href', '<?php $this->page('playerpopup') ?>?player=' + players[i]);
+                var minorLink = $('<a href="<?php $this->page('playerpopup') ?>?player=' + players[i] + '"></a>');
                 li.append(minorLink);
                 list.append(li);
             }

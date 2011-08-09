@@ -93,11 +93,6 @@ class Router
     
     public function redirect($url)
     {
-        $sessString = session_name() . '=' . session_id();
-        if (!preg_match('/^https?:\/\//i', $url) && !preg_match('/' . $sessString . '/i', $url) && !Request::session('cookies'))
-        {
-            $url .= (preg_match('/\?/', $url) ? '&' : '?') . $sessString;
-        }
         header('Location: ' . $url);
         @ob_end_clean();
         die();
@@ -113,7 +108,7 @@ class Router
         $this->redirect($url);
     }
     
-    public function redirectToLoginPage($msg = 'Login benötigt')
+    public function redirectToLoginPage($msg = null)
     {
         $_SESSION['referrer'] = $_SERVER['REQUEST_URI'];
         self::redirectToPage('login', $msg);

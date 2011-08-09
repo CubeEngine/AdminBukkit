@@ -1,26 +1,5 @@
 var genericLang = new GenericLang();
 
-function Event(element)
-{
-    var $cancelled = false;
-    var $element = $(element);
-
-    this.setCancelled = function(cancelled)
-    {
-        $cancelled = cancelled ? true : false;
-    }
-
-    this.isCancelled = function()
-    {
-        return $cancelled;
-    }
-
-    this.getElement = function()
-    {
-        return $element;
-    }
-}
-
 function urlencode(str)
 {
     function parse(match)
@@ -36,30 +15,10 @@ function urlencode(str)
     return escape(str).replace(/%[a-f0-9]{2}/ig, parse);
 }
 
-function setProgress(state)
-{
-    return;
-    if (state)
-    {
-        $('#progress').css('display', 'block');
-        var progressWidth = document.getElementById('progress').offsetWidth / 2;
-        var windowWidth = window.innerWidth / 2;
-        $('#progress').css('left', (windowWidth - progressWidth) + 'px');
-    }
-    else
-    {
-        $('#progress').css('display', 'none');
-    }
-}
-
 function redirectTo(target)
 {
     if (target)
     {
-        if (SESS_APPEND)
-        {
-            target = appendSession(target);
-        }
         document.location.href = target;
     }
 }
@@ -71,18 +30,6 @@ function appendSession(target)
         target += (target.match(/\?/) ? '&' : '?') + SESS_QUERY;
     }
     return target;
-}
-
-function linkHandler(e)
-{
-    if (e.isDefaultPrevented())
-    {
-        return false;
-    }
-    setProgress(true);
-    $(this).addClass('active');
-    redirectTo(this.href);
-    return false;
 }
 
 function touchTooltipHandler(event)
@@ -120,11 +67,6 @@ function touchTooltipHandler(event)
     $target.bind('touchend', removeTooltip).bind('touchmove', removeTooltip);
 }
 
-function historyBack(e)
-{
-    window.history.back();
-}
-
 function prepareForm(query)
 {
     if (SESS_APPEND)
@@ -145,28 +87,6 @@ function prepareForm(query)
             $(query).submit();
         }
     });
-}
-
-function toggleOverlay(query)
-{
-    var elem = $(query);
-    if (elem.css('display') == 'none')
-    { // show
-        elem.show('fast', function(){
-            if (typeof scroller != 'undefined')
-            {
-                window.scrollTo(0, 0);
-                scroller.scrollTo(0, 0);
-                var scrollElem = elem.find('div:first');
-                scrollElem.height(scrollElem.height() + 10);
-                scroller.refresh();
-            }
-        });
-    }
-    else
-    { // hide
-        elem.hide('fast')
-    }
 }
 
 function realSort(a, b)
@@ -257,7 +177,6 @@ function parseColors(string)
 
 $(window).unload(function(){
     ready = false;
-    //setProgress(true);
 });
 
 var shakeListener = new WKShake();
@@ -276,6 +195,5 @@ $(function(){
         e.preventDefault();
     });
     $('a[href]:not(a[target=_blank])').click(linkHandler);
-    $('.toolbar a.back:not(a[href])').click(historyBack);
     $('*[title]').live('touchstart', touchTooltipHandler);
 });

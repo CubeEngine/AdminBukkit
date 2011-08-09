@@ -7,7 +7,7 @@
         {
             if ($auth && !User::loggedIn())
             {
-                Router::instance()->redirectToLoginPage();
+                Router::instance()->redirectToLoginPage(Lang::instance('generic')->get('loginrequired'));
             }
             parent::__construct('generic/page');
             $this->assign('pageName', $name);

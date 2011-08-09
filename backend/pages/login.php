@@ -27,7 +27,6 @@
             try
             {
                 User::login(User::get($_POST['user'], $_POST['pass']));
-                $_SESSION['cookies'] = (Request::post('nocookies') ? false : true);
                 if (isset($_SESSION['referrer']))
                 {
                     $referrer = $_SESSION['referrer'];
