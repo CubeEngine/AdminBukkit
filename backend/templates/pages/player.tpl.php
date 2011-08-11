@@ -3,11 +3,23 @@
 <script type="text/javascript">
     var player = '<?php echo $player ?>';
 </script>
-<ul class="rounded">
-    <li><?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span><span id="player_head" style="background-image:url('<?php echo $basePath ?>/backend/playerhead.php?player=<?php echo $player ?>')"></span></li>
-    <li><a href="#" id="player_displayname"><?php $lang->displayname ?>: <span><?php $genericLang->progress ?></span></a></li>
-    <li><?php $lang->lifes ?>:
-        <span id="player_health">
+
+<div class="ui-grid-a">
+    <div class="ui-block-a">
+        <img style="float:right" id="player_head" alt="" src="<?php echo $basePath ?>/backend/playerhead.php?size=80&amp;player=<?php echo $player ?>">
+    </div>
+    <div class="ui-block-b">
+        <div>
+            <a href="#" id="player_displayname"><?php $lang->displayname ?>: <span><?php $genericLang->progress ?></span></a>
+        </div>
+        <div>
+            <?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span>
+        </div>
+    </div>
+</div>
+<div class="ui-grid-a">
+    <div class="ui-block-a">
+        <div id="player_health">
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
@@ -18,10 +30,10 @@
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
             <span class="heart"><span></span></span>
-        </span>
-    </li>
-    <li><?php $lang->armor ?>:
-        <span id="player_armor">
+        </div>
+    </div>
+    <div class="ui-block-b">
+        <div id="player_armor">
             <span class="chestplate"><span></span></span>
             <span class="chestplate"><span></span></span>
             <span class="chestplate"><span></span></span>
@@ -32,22 +44,24 @@
             <span class="chestplate"><span></span></span>
             <span class="chestplate"><span></span></span>
             <span class="chestplate"><span></span></span>
-        </span>
-    </li>
-    <li class="arrow"><a href="" id="player_world"><?php $lang->world ?>: <span><?php $genericLang->progress ?></span></a></li>
-    <li>
-        <?php $lang->position ?>:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;X: <span id="player_pos0"><?php $genericLang->progress ?></span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Y: <span id="player_pos1"><?php $genericLang->progress ?></span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Z: <span id="player_pos2"><?php $genericLang->progress ?></span>
-    </li>
-    <li><?php $lang->orientation ?>: <span id="player_pos3"><?php $genericLang->progress ?></span> | <span id="player_pos4"><?php $genericLang->progress ?></span></li>
-    <li><a id="ban_ip" href="#"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a></li>
-</ul>
-<ul class="rounded">
-    <li class="arrow"><a href="#" id="toggleutils"><?php $lang->utils ?></a></li>
-</ul>
-<?php $this->displayTemplateFile('generic/playerutils') ?>
+        </div>
+    </div>
+</div>
+
+<a href="" id="player_world"><?php $lang->world ?>: <span><?php $genericLang->progress ?></span></a>
+
+<?php $lang->position ?>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;X: <span id="player_pos0"><?php $genericLang->progress ?></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Y: <span id="player_pos1"><?php $genericLang->progress ?></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Z: <span id="player_pos2"><?php $genericLang->progress ?></span>
+<?php $lang->orientation ?>: <span id="player_pos3"><?php $genericLang->progress ?></span> | <span id="player_pos4"><?php $genericLang->progress ?></span>
+<a id="ban_ip" href="#"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a>
+
+<div>
+    <a href="<?php $this->page('playerpopup') ?>?player=<?php echo $player ?>" data-role="button" data-rel="dialog"><?php $lang->utils ?></a>
+</div>
+<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=playerutils"></script>
+<script type="text/javascript" src="<?php $this->res('js/playerutils.js') ?>"></script>
 <script type="text/javascript">
     var succeeded = false;
     var request = new ApiRequest('player', 'info');
@@ -101,7 +115,7 @@
             $('#player_armor span.chestplate:eq(' + armor + ') span').addClass('half');
         }
         var world = document.getElementById('player_world');
-        world.setAttribute('href', 'world.html?world=' + data.world);
+        world.setAttribute('href', '<?php $this->page('world') ?>?world=' + data.world);
         world.getElementsByTagName('span')[0].innerHTML = data.world;
         for (var index in data.position)
         {
@@ -117,13 +131,6 @@
         e.preventDefault();
         e.stopImmediatePropagation();
     });
-    
-    var intervalID = null;
-    $('#player').bind('pageshow', function(){
-        $('#player_info').parent('li').remove();
-        request.execute();
-        intervalID = setInterval(request.execute, 10000);
-    });
 
     $('.toolbar a.button').click(function(){
         request.execute();
@@ -138,11 +145,6 @@
                 history.back();
             }
         }
-        return false;
-    });
-
-    $('#toggleutils').click(function(){
-        playerOverlay.toggle();
         return false;
     });
 
@@ -176,63 +178,17 @@
             displayname: displayname
         });
     });
-    
-    /**** Overlay Handler ****/
-    $('#player_ban').click(function(){
-        if (ban_player(player, true))
+
+    var playerIntervalID = null;
+    $('#player').bind('pageshow', function(){
+        request.execute();
+        playerIntervalID = setInterval(request.execute, 10000);
+    })
+    .bind('pagehide', function(){
+        if (playerIntervalID)
         {
-            history.back();
+            clearInterval(playerIntervalID);
         }
-        return false;
-    });
-    $('#player_kick').click(function(){
-        if (player_kick(player, true))
-        {
-            history.back();
-        }
-        return false;
-    });
-    $('#player_tell').click(function(){
-        player_tell(player);
-        return false;
-    });
-    $('#player_kill').click(function(){
-        player_kill(player);
-        request.execute();
-        return false;
-    });
-    $('#player_burn').click(function(){
-        player_burn(player);
-        request.execute();
-        return false;
-    });
-    $('#player_heal').click(function(){
-        player_heal(player);
-        request.execute();
-        return false;
-    });
-    $('#player_clearinv').click(function(){
-        player_clearinv(player);
-        return false;
-    });
-    $('#player_give').click(function(){
-        player_give(player);
-        return false;
-    });
-    $('#player_teleport').click(function(){
-        player_teleport(player);
-        request.execute();
-        return false;
-    });
-    $('#player_op').click(function(){
-        player_op(player);
-        request.execute();
-        return false;
-    });
-    $('#player_deop').click(function(){
-        player_deop(player);
-        request.execute();
-        return false;
     });
     
 </script>

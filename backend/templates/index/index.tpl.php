@@ -23,7 +23,7 @@
         <script type="text/javascript" src="<?php echo $basePath ?>backend/javascriptlang.php?file=generic" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('jquery/jquery.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('jquery/jquery.mobile.js') ?>" charset="utf-8"></script>
-        <script type="text/javascript" src="<?php $this->res('js/wkshake.js') ?>" charset="utf-8"></script>
+        <!--<script type="text/javascript" src="<?php $this->res('js/wkshake.js') ?>" charset="utf-8"></script>-->
         <script type="text/javascript" src="<?php $this->res('js/apirequest.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/main.js') ?>" charset="utf-8"></script>
     </head>

@@ -175,12 +175,15 @@ function parseColors(string)
     return string + (new Array(counter)).join('</span>');
 }
 
+$.mobile.loadingMessage = genericLang.progress;
+$.mobile.pageloadErrorMessage = genericLang.pageloaderror;
+
 $(window).unload(function(){
     ready = false;
 });
 
-var shakeListener = new WKShake();
-shakeListener.start();
+/*var shakeListener = new WKShake();
+shakeListener.start();*/
 
 $(function(){
     ready = true;
@@ -194,6 +197,5 @@ $(function(){
         }
         e.preventDefault();
     });
-    $('a[href]:not(a[target=_blank])').click(linkHandler);
     $('*[title]').live('touchstart', touchTooltipHandler);
 });

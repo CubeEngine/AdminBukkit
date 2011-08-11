@@ -128,7 +128,7 @@
     }
     
     $toolbar = new Toolbar($lang['registration']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath());
+    $toolbar->setBack(Lang::instance('generic')->get('btn_back'));
     $toolbar->setButton($lang['login'], $design->getLinkGenerator()->page('login'));
     $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/register'));

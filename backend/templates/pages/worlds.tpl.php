@@ -6,7 +6,6 @@
 <ul id="worldlist" data-role="listview">
     <li><?php $lang->loadinglist ?></li>
 </ul>
-<?php $this->displayTemplateFile('generic/worldutils') ?>
 <script type="text/javascript">
     var list = $('#worldlist');
     var request = new ApiRequest('world', 'list');
@@ -22,7 +21,7 @@
         if (data == '')
         {
             var li = $('<li>');
-            li.innerHTML = '<?php $lang->noworlds ?>';
+            li.text('<?php $lang->noworlds ?>');
             list.append(li);
         }
         else
@@ -50,33 +49,6 @@
 
     $('div.toolbar a.button').click(function(){
         request.execute();
-        return false;
-    });
-    $('#world_create').click(function(){
-        world_create(request.execute);
-    });
-    $('#world_time').click(function(){
-        world_time(world);
-        return false;
-    });
-    $('#world_pvp').click(function(){
-        world_pvp(world);
-        return false;
-    });
-    $('#world_storm').click(function(){
-        world_storm(world)
-        return false;
-    });
-    $('#world_spawn').click(function(){
-        world_spawn(world);
-        return false;
-    });
-    $('#world_info').click(function(){
-        redirectTo('<?php $this->page('world') ?>?world=' + world);
-        return false;
-    });
-    $('#world_playerlist').click(function(){
-        redirectTo('<?php $this->page('players') ?>?world=' + world);
         return false;
     });
 

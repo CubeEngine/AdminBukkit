@@ -14,12 +14,11 @@
     <li><?php $lang->time ?>: <span id="world_time_display"><?php $genericLang->progress ?></span></li>
     <li><?php $lang->weatherduration ?>: <span id="world_weather"><?php $genericLang->progress ?></span></li>
     <li><?php $lang->thunderduration ?>: <span id="world_thunder"><?php $genericLang->progress ?></span></li>
-    <li class="arrow"><a href="<?php $this->page('players') ?>?world=<?php echo $world ?>"><?php $lang->players ?>: <span id="world_players"><?php $genericLang->progress ?></span></a></li>
+    <li class="arrow"><a href="<?php $this->page('playersofworld') ?>?world=<?php echo $world ?>"><?php $lang->players ?>: <span id="world_players"><?php $genericLang->progress ?></span></a></li>
 </ul>
 <ul class="rounded">
     <li><a href="#" id="toggleutils"><?php $lang->utils ?></a></li>
 </ul>
-<?php $this->displayTemplateFile('generic/worldutils') ?>
 <script type="text/javascript">
     var world = '<?php echo $world ?>';
     
@@ -42,39 +41,36 @@
                 }
                 else
                 {
-                    redirectTo('worlds.html?msg=' + urlencode('<?php $lang->worldremoved_msg ?>'));
+                    redirectTo('<?php $this->page('worlds') ?>?msg=' + urlencode('<?php $lang->worldremoved_msg ?>'));
                 }
         }
     });
-    request.data({world: world, format: 'json'});
+    request.data({
+        world: world,
+        format: 'json'
+    });
     
     function refreshData(data)
     {
         succeeded = true;
         data = eval('(' + data + ')');
-        document.getElementById('world_name').innerHTML = data.name;
-        document.getElementById('world_type').innerHTML = data.environment.toLowerCase();
-        document.getElementById('world_seed').innerHTML = data.seed;
-        document.getElementById('world_pvp_display').innerHTML = (data.pvp ? '<?php $genericLang->Yes ?>' : '<?php $genericLang->No ?>');
+        $('#world_name').text(data.name);
+        $('#world_type').text(data.environment.toLowerCase());
+        $('#world_seed').text(data.seed);
+        $('#world_pvp_display').text(data.pvp ? '<?php $genericLang->Yes ?>' : '<?php $genericLang->No ?>');
         for (var i = 0; i < data.spawnLocation.length; i++)
         {
-            document.getElementById('world_spawn' + i).innerHTML = data.spawnLocation[i];
+            $('#world_spawn' + i).text(data.spawnLocation[i]);
         }
-        var time = document.getElementById('world_time_display');
-        time.innerHTML = data.time;
-        time.setAttribute('title', data.fullTime);
-        document.getElementById('world_weather').innerHTML = data.weatherDuration;
-        document.getElementById('world_thunder').innerHTML = data.thunderDuration;
-        document.getElementById('world_players').innerHTML = data.players;
+        var time = $('#world_time_display');
+        time.text(data.time);
+        time.attr('title', data.fullTime);
+        $('#world_weather').text(data.weatherDuration);
+        $('#world_thunder').text(data.thunderDuration);
+        $('#world_players').text(data.players);
     }
-
-    $('#toggleutils').click(function(){
-        worldOverlay.toggle();
-        return false;
-    });
     
     $('#world').bind('pageshow', function(){
-        $('#world_info').parent('li').remove();
         request.execute();
     });
     
@@ -83,28 +79,8 @@
         return false;
     });
     
-    $('#world_time').click(function(){
-        world_time(world);
-        request.execute();
+    /*$('#world_playerlist').click(function(){
+        redirectTo('<?php $this->page('playersofworld') ?>?world=' + world);
         return false;
-    });
-    $('#world_pvp').click(function(){
-        world_pvp(world);
-        request.execute();
-        return false;
-    });
-    $('#world_storm').click(function(){
-        world_storm(world);
-        request.execute();
-        return false;
-    });
-    $('#world_spawn').click(function(){
-        world_spawn(world);
-        request.execute();
-        return false;
-    });
-    $('#world_playerlist').click(function(){
-        redirectTo('players.html?world=' + world);
-        return false;
-    });
+    });*/
 </script>

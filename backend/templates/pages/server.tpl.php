@@ -40,41 +40,6 @@
         <li><a href="#" class="toggleoverlay"><?php $lang->close ?></a></li>
     </ul>
 </div>
-<script type="text/javascript" src="<?php echo $basePath ?>backend/javascriptlang.php?file=serverutils"></script>
-<script type="text/javascript" src="<?php $this->res('js/overlay.js') ?>" charset="utf-8"></script>
-<script type="text/javascript" src="<?php $this->res('js/serverutils.js') ?>"></script>
-<script type="text/javascript" src="<?php $this->res('js/iscroll-lite.min.js') ?>"></script>
-<script type="text/javascript">
-
-    var genericApiRequest = null;
-    //var genericScroller = new iScroll('generic_scroller');
-    var genericList = $('#generic_list');
-    var genericOverlay = new Overlay('#generic_overlay');
-    genericOverlay.getElement().bind('beforeOpenOverlay', function(e, event){
-        window.scrollTo(0, 0);
-        if (genericApiRequest)
-        {
-            genericApiRequest.execute();
-        }
-    }).bind('openOverlay', function(e, event){
-        //genericScroller.scrollTo(0, 0);
-        //genericScroller.refresh();
-    }).bind('beforeCloseOverlay', function(e, event){
-        /* nothing to do here yet */
-    }).bind('closeOverlay', function(e, event){
-        $('#generic_add').html('').unbind('click');
-        $('#generic_headline').html('');
-        $('#generic_list').html('<li><?php $genericLang->progress ?></li>');
-        genericApiRequest = null;
-    });
-</script>
-<?php $this->displayTemplateFile('pages/server/banip_js') ?>
-
-<?php $this->displayTemplateFile('pages/server/banplayer_js') ?>
-
-<?php $this->displayTemplateFile('pages/server/operators_js') ?>
-
-<?php $this->displayTemplateFile('pages/server/whitelist_js') ?>
 <script type="text/javascript">
 
     var infoRequest = new ApiRequest('server', 'info');

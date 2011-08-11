@@ -71,18 +71,24 @@ div.touchTooltip {
 div.touchTooltip div {
     margin: 3px;
 }
+
+/**
+ * Page - player
+ */
 #player_head {
     display: block;
-    float: right;
-    width: 24px;
-    height: 24px;
+    width: 80px;
+    height: 80px;
 }
 #player_health, #player_armor {
-    display: inline-block;
     margin-bottom: -3px;
 }
-#player_health span.heart, #player_armor span.chestplate {
-    margin-right: 2px;
+#player_health {
+    float: right;
+    margin-right: 3px;
+}
+#player_health {
+    margin-left: 3px;
 }
 #player_health span.heart, span.heart span {
     display: block;

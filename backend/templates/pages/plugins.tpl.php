@@ -18,8 +18,8 @@
         if (data == '')
         {
             var li = $('<li>');
-            li.innerHTML = '<?php $lang->noplugins ?>';
-            list.appendChild(li);
+            li.text('<?php $lang->noplugins ?>');
+            list.append(li);
         }
         else
         {
@@ -30,7 +30,6 @@
                 var a = $('<a>');
                 a.text(plugins[i]);
                 a.attr('href', '<?php $this->page('plugin') ?>?plugin=' + plugins[i]);
-                a.click(linkHandler);
                 li.append(a);
                 list.append(li);
             }
@@ -44,56 +43,6 @@
     
     $('div.toolbar a:last-child').click(function(){
         request.execute();
-        return false;
-    });
-    
-    $('#plugins_load').click(function(){
-        alert(genericLang.function_disabled);
-        return false;
-        
-        var pluginName = prompt('<?php $lang->pluginfilename ?>', '');
-        if (!pluginName)
-        {
-            return false;
-        }
-        pluginName = pluginName.replace(/\.jar$/i, '');
-        var loadRequest = new ApiRequest('plugin', 'load');
-        loadRequest.onSuccess(function(){
-            request.execute();
-        });
-        request.onFailure(function(code){
-            switch (code)
-            {
-                case 1:
-                    alert('<?php $lang->noplugin ?>');
-                    break;
-                case 2:
-                    alert('<?php $lang->failedtoload ?>');
-                    break;
-                case 3:
-                    alert('<?php $lang->invalidplugin ?>');
-                    break;
-                case 4:
-                    alert('<?php $lang->invaliddescription ?>');
-                    break;
-                case 5:
-                    alert('<?php $lang->missingdependency ?>');
-                    break;
-            }
-        });
-        loadRequest.execute({plugin: pluginName});
-        return false;
-    });
-    $('#plugins_reloadall').click(function(){
-        if (confirm('<?php $lang->confirm_reloadall ?>'))
-        {
-            var reloadAllRequest = new ApiRequest('plugin', 'reload');
-            reloadAllRequest.onSuccess(function(){
-                alert('<?php $lang->reload_success ?>');
-                request.execute();
-            });
-            reloadAllRequest.execute();
-        }
         return false;
     });
 </script>

@@ -6,31 +6,26 @@
 <?php endif ?>
     [ <span id="players_online">0</span> / <span id="players_limit">0</span> ]
 </h2>
-<ul data-role="listview" id="players_list" data-split-icon="gear">
+<ul data-role="listview" id="<?php echo $pageName ?>_players" data-split-icon="gear">
     <li><?php $lang->loadinglist ?></li>
 </ul>
-<?php if (!empty($world)): ?>
-<ul data-role="listview">
-    <li class="arrow"><a href="<?php $this->page('players') ?>" id="players_all"><?php $lang->allplayers ?></a></li>
-</ul>
-<?php endif ?>
-<?php $this->displayTemplateFile('generic/playerutils') ?>
 <script type="text/javascript">
-    var world = '<?php echo $world ?>';
+    var requestData = {};
+    <?php if (isset($world)): ?>
+    var dataSource = ['world', 'players'];
+    requestData.world = '<?php echo $world ?>';
+    <?php else: ?>
     var dataSource = ['player', 'list'];
-    if (world != '')
-    {
-        dataSource = ['world', 'players'];
-    }
+    <?php endif ?>
     
-    var list = $('#players_list');
-    var request = new ApiRequest(dataSource[0], dataSource[1]);
-    request.data({world: world});
-    request.ignoreFirstFail(true);
-    request.onSuccess(function(data){
+    var list = $('#<?php echo $pageName ?>_players');
+    var playersRequest = new ApiRequest(dataSource[0], dataSource[1]);
+    playersRequest.data(requestData);
+    playersRequest.ignoreFirstFail(true);
+    playersRequest.onSuccess(function(data){
         refreshData(data);
     });
-    request.onFailure(function(){
+    playersRequest.onFailure(function(){
         alert('Failed to load the list'); // @todo static language
     });
     var maxPlayersRequest = new ApiRequest('server', 'maxplayers');
@@ -47,7 +42,7 @@
         {
             $('#players_online').html('0');
             var li = $('<li>');
-            li.html('<?php $lang->noplayers ?>');
+            li.text('<?php $lang->noplayers ?>');
             list.append(li);
         }
         else
@@ -66,31 +61,38 @@
                 icon.attr('src', BASE_PATH + 'backend/playerhead.php?size=16&player=' + players[i])
                 mainLink.append(icon);
                 li.append(mainLink);
-                var minorLink = $('<a href="<?php $this->page('playerpopup') ?>?player=' + players[i] + '"></a>');
+                var minorLink = $('<a href="<?php $this->page('playerpopup') ?>?player=' + players[i] + '" data-rel="dialog"></a>');
                 li.append(minorLink);
                 list.append(li);
             }
+            <?php if (isset($world)): ?>
+            var li = $('<li>');
+            var link = $('<a>');
+            link.attr('href', '<?php $this->page('players') ?>');
+            link.text('<?php $lang->allplayers ?>');
+            li.append(link);
+            list.append(li);
+            <?php endif ?>
         }
         list.listview('refresh');
     }
     
     $('div.toolbar a.button').click(function(){
-        request.execute();
+        playersRequest.execute();
         return false;
     });
 
-    var intervalId = null;
-    
-    $('#players').bind('pageshow', function(){
-        maxPlayersRequest.execute();
-        request.execute();
-        intervalID = setInterval(request.execute, 10000);
-    });
 
-    $('#players').bind('pagehide', function(){
-        if (intervalID)
+    var playersIntervalId = null;    
+    $('#<?php echo $pageName ?>').bind('pageshow', function(){
+        maxPlayersRequest.execute();
+        playersRequest.execute();
+        playersIntervalId = setInterval(playersRequest.execute, 10000);
+    })
+    .bind('pagehide', function(){
+        if (playersIntervalId)
         {
-            clearInterval(intervalID);
+            clearInterval(playersIntervalId);
         }
     });
 </script>

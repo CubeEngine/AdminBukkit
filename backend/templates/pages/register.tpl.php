@@ -1,7 +1,7 @@
 <?php $lang = Lang::instance('register') ?>
-<form action="<?php $this->page('register') ?>" method="post" accept-charset="utf-8" id="register_form">
+<form action="<?php $this->page('register') ?>" method="post" accept-charset="utf-8" data-ajax="false">
     <?php if (isset($errors)): ?>
-    <div class="ui-body ui-body-e">
+    <div class="infobox">
         <h4><?php $lang->errors ?>:</h4>
         <div style="color:red">
             <?php echo implode("<br>", $errors) ?>
