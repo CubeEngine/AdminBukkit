@@ -93,8 +93,8 @@ div.touchTooltip div {
 #player_health span.heart, span.heart span {
     display: block;
     float: left;
-    height: 18px;
-    width: 18px;
+    height: 12px;
+    width: 12px;
     background-image: url('../gfx/health/heart_empty.png');
 }
 span.heart span.full {
@@ -106,8 +106,8 @@ span.heart span.half {
 #player_armor span.chestplate, span.chestplate span {
     display: block;
     float: left;
-    height: 18px;
-    width: 18px;
+    height: 12px;
+    width: 12px;
     background-image: url('../gfx/armor/armor_empty.png');
 }
 span.chestplate span.full {
