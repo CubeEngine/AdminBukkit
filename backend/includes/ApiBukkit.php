@@ -18,7 +18,7 @@
         public function requestPath($path, array $params = array())
         {
             $path = '/' . ltrim(trim($path), '/');
-            $params['password'] = $this->pass;
+            $params['authkey'] = $this->pass;
             $this->http->setTarget($path);
             $this->http->setRequestBody($this->http->generateQueryString($params));
             return $this->http->executeRequest();

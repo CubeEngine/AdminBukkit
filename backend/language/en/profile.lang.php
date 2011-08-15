@@ -5,7 +5,7 @@
         'username'          => 'Username',
         'email'             => 'Email-address',
         'apiaddr'           => 'API address',
-        'apipass'           => 'API password',
+        'apipass'           => 'API auth key',
         
         // Controller
         'edit'              => 'Edit',

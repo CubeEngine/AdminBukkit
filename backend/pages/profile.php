@@ -9,7 +9,7 @@
     $page->assign('email', $_SESSION['user']->getEmail());
     $page->assign('host', $_SESSION['user']->getServerAddress());
     $page->assign('port', $_SESSION['user']->getApiPort());
-    $page->assign('pass', $_SESSION['user']->getApiPassword());
+    $page->assign('pass', $_SESSION['user']->getApiAuthKey());
     $page->setContent(new Template('pages/profile'));
     
     $design->setContentView($page);

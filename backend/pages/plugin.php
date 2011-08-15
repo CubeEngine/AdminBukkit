@@ -11,7 +11,7 @@
     $page->addSubtemplate('toolbar', $toolbar);
     $template = new Template('pages/plugin');
 
-    $api = new ApiBukkit($_SESSION['user']->getServerAddress(), $_SESSION['user']->getApiPort(), $_SESSION['user']->getApiPassword());
+    $api = new ApiBukkit($_SESSION['user']->getServerAddress(), $_SESSION['user']->getApiPort(), $_SESSION['user']->getApiAuthKey());
     $response = $api->request('plugin', 'info', array(
         'format' => 'json',
         'plugin' => $plugin

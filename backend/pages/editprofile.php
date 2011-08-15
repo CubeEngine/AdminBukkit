@@ -6,7 +6,7 @@
          ->assign('email',      $_SESSION['user']->getEmail())
          ->assign('serveraddr', $_SESSION['user']->getServerAddress())
          ->assign('apiport',    $_SESSION['user']->getApiPort())
-         ->assign('apipass',    $_SESSION['user']->getApiPassword());
+         ->assign('apiauthkey',    $_SESSION['user']->getApiAuthKey());
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
@@ -16,7 +16,7 @@
         $pass_repeat = Request::post('pass_repeat');
         $serveraddr = trim(Request::post('serveraddr'));
         $apiport = trim(Request::post('apiport'));
-        $apipass = Request::post('apipass');
+        $apiauthkey = Request::post('apipass');
         
         $passwordSet = false;
         $errors = array();
@@ -26,7 +26,7 @@
         }
         elseif (!preg_match('/^[\w\d-]{5,40}/i', $user))
         {
-            //$errors[] = $registerLang['user_invalid'];
+            //$errors[] = $registerLang['user_invalid']; // @todo reenabled error
         }
         if (empty($email))
         {
@@ -64,17 +64,17 @@
         {
             $errors[] = $registerLang['apiport_invalid'];
         }
-        if (empty($apipass))
+        if (empty($apiauthkey))
         {
-            $errors[] = $registerLang['apipass_missing'];
+            $errors[] = $registerLang['apiauthkey_missing'];
         }
         if (!count($errors) && !ApiValidator::serverReachable($serveraddr, $apiport))
         {
             $errors[] = $registerLang['svr_unreachable'];
         }
-        elseif (!count($errors) && !ApiValidator::validApiPass($serveraddr, $apiport, $apipass))
+        elseif (!count($errors) && !ApiValidator::validApiPass($serveraddr, $apiport, $apiauthkey))
         {
-            $errors[] = $registerLang['apipass_wrong'];
+            $errors[] = $registerLang['apiauthkey_wrong'];
         }
         
         if (!count($errors))
@@ -88,7 +88,7 @@
                     $email,
                     $serveraddr,
                     $apiport,
-                    $apipass
+                    $apiauthkey
                 );
                 User::logout();
                 Router::instance()->redirectToPage('home', $lang['edit_success']);
@@ -118,7 +118,7 @@
         $page->assign('email', $email);
         $page->assign('serveraddr', $serveraddr);
         $page->assign('apiport', $apiport);
-        $page->assign('apipass', $apipass);
+        $page->assign('apiauthkey', $apiauthkey);
     }
     
     $toolbar = new Toolbar($lang['edit']);

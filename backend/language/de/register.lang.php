@@ -9,7 +9,7 @@
         'password_repeat'           => 'Passwort wiederholen',
         'serveraddr'                => 'Serveradresse',
         'apiport'                   => 'API Port',
-        'apipassword'               => 'API Passwort',
+        'apiauthkey'                => 'API Auth-Schlüssel',
         'register'                  => 'Registrieren',
         'errors'                    => 'Fehler',
         
@@ -29,9 +29,9 @@
         'serveraddr_invalidhost'    => 'Die angegebene Serveradresse ist ungültig!',
         'apiport_missing'           => 'Der API Port wurde nicht angegeben!',
         'apiport_invalid'           => 'Der API Port muss aus 2 - 5 Zahlen bestehen!',
-        'apipass_missing'           => 'Das API Passwort wurde nicht angegeben!',
+        'apiauthkey_missing'        => 'Der API Auth-Schlüssel wurde nicht angegeben!',
         'svr_unreachable'           => 'Es konnte keine Verbindung zu dem angegebenen Server aufgebaut werden!',
-        'apipass_wrong'             => 'Das angebene API Passwort ist nicht korrekt!',
+        'apiauthkey_wrong'          => 'Der angebene API Auth-Schlüssel ist nicht korrekt!',
         'registersuccess'           => 'Erfolgreich registriert und eingeloggt!',
         'internalerror'             => 'Ein interner Fehler ist aufgetreten, bitte informieren sie die Administrator.'
     );

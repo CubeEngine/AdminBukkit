@@ -9,8 +9,8 @@
     $page->assign('user', '')
          ->assign('email', '')
          ->assign('serveraddr', '')
-         ->assign('apiport', '')
-         ->assign('apipass', '');
+         ->assign('apiport', '6561')
+         ->assign('apiauthkey', '');
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
@@ -20,7 +20,7 @@
         $pass_repeat = Request::post('pass_repeat');
         $serveraddr = trim(Request::post('serveraddr'));
         $apiport = trim(Request::post('apiport'));
-        $apipass = Request::post('apipass');
+        $apiauthkey = Request::post('apipass');
         
         $errors = array();
         if (empty($user))
@@ -71,17 +71,17 @@
         {
             $errors[] = $lang['apiport_invalid'];
         }
-        if (empty($apipass))
+        if (empty($apiauthkey))
         {
-            $errors[] = $lang['apipass_missing'];
+            $errors[] = $lang['apiauthkey_missing'];
         }
         if (!count($errors) && !ApiValidator::serverReachable($serveraddr, $apiport))
         {
             $errors[] = $lang['svr_unreachable'];
         }
-        elseif (!count($errors) && !ApiValidator::validApiPass($serveraddr, $apiport, $apipass))
+        elseif (!count($errors) && !ApiValidator::validApiPass($serveraddr, $apiport, $apiauthkey))
         {
-            $errors[] = $lang['apipass_wrong'];
+            $errors[] = $lang['apiauthkey_wrong'];
         }
         
         if (!count($errors))
@@ -94,7 +94,7 @@
                     $email,
                     $serveraddr,
                     $apiport,
-                    $apipass
+                    $apiauthkey
                 );
                 User::login(User::get($user, $pass));
                 Router::instance()->redirectToPage('home', $lang['registersuccess']);
@@ -124,7 +124,7 @@
              ->assign('email', $email)
              ->assign('serveraddr', $serveraddr)
              ->assign('apiport', $apiport)
-             ->assign('apipass', $apipass);
+             ->assign('apiauthkey', $apiauthkey);
     }
     
     $toolbar = new Toolbar($lang['registration']);

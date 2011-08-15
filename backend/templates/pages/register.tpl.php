@@ -27,8 +27,8 @@
     <label for="register_apiport"><?php $lang->apiport ?></label>
     <input name="apiport" id="register_apiport" type="number" placeholder="<?php $lang->apiport ?>" value="<?php echo $apiport ?>" size="5" required>
     
-    <label for="register_apipass"><?php $lang->apipassword ?></label>
-    <input name="apipass" id="register_apipass" type="text" placeholder="<?php $lang->apipassword ?>" value="<?php echo $apipass ?>" required>
+    <label for="register_apiauthkey"><?php $lang->apiauthkey ?></label>
+    <input name="apipass" id="register_apiauthkey" type="text" placeholder="<?php $lang->apiauthkey ?>" value="<?php echo $apiauthkey ?>" required>
     
     <input type="submit" value="<?php $lang->register ?>">
 </form>

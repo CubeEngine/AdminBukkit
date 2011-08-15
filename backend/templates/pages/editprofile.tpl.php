@@ -3,7 +3,7 @@
 <form action="<?php $this->page('editprofile') ?>" method="post" accept-charset="utf-8" data-ajax="false">
     <?php if (isset($errors) && count($errors)): ?>
     <div class="infobox">
-        <h4><?php $lang->errors ?>:</h4>
+        <h4><?php $registerLang->errors ?>:</h4>
         <div style="color:red">
             <?php echo implode("<br>", $errors) ?>
         </div>
@@ -29,8 +29,8 @@
     <label for="editprofile_apiport"><?php $registerLang->apipport ?></label>
     <input name="apiport" id="editprofile_apiport" type="text" placeholder="<?php $registerLang->apipport ?>" value="<?php echo $apiport ?>" size="5">
     
-    <label for="editprofile_apipass"><?php $registerLang->apipassword ?></label>
-    <input name="apipass" id="editprofile_apipass" type="text" placeholder="<?php $registerLang->apipassword ?>" value="<?php echo $apipass ?>">
+    <label for="editprofile_apiauthkey"><?php $registerLang->apiauthkey ?></label>
+    <input name="apipass" id="editprofile_apiauthkey" type="text" placeholder="<?php $registerLang->apiauthkey ?>" value="<?php echo $apiauthkey ?>">
 
     <input type="submit" value="<?php $lang->change ?>">
 </form>

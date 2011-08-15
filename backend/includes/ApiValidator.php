@@ -18,10 +18,10 @@
             return true;
         }
         
-        public static function validApiPass($host, $port, $pass)
+        public static function validApiPass($host, $port, $authkey)
         {
-            $api = new ApiBukkit($host, $port, $pass);
-            $response = $api->request('validate', 'password');
+            $api = new ApiBukkit($host, $port, $authkey);
+            $response = $api->request('validate', 'authkey');
             return ($response->getStatus() == 204);
         }
         

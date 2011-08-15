@@ -4,18 +4,19 @@
     var player = '<?php echo $player ?>';
 </script>
 
-<div class="ui-grid-a">
-    <div class="ui-block-a">
-        <img style="float:right" id="player_head" alt="" src="<?php echo $basePath ?>/backend/playerhead.php?size=80&amp;player=<?php echo $player ?>">
+<div id="player_primary_info">
+    <div id="player_head">
+        <img alt="" src="<?php echo $basePath ?>/backend/playerhead.php?size=80&amp;player=<?php echo $player ?>">
     </div>
-    <div class="ui-block-b">
-        <div>
-            <a href="#" id="player_displayname"><?php $lang->displayname ?>: <span><?php $genericLang->progress ?></span></a>
+    <div id="player_names">
+        <div id="player_displayname">
+            <a href="#"><?php $genericLang->progress ?></a>
         </div>
-        <div>
-            <?php $lang->name ?>: <span id="player_name"><?php $genericLang->progress ?></span>
+        <div id="player_name">
+            <span><?php $genericLang->progress ?></span>
         </div>
     </div>
+    <div class="clear"></div>
 </div>
 <div class="ui-grid-a">
     <div class="ui-block-a">
@@ -84,7 +85,7 @@
                 }
                 else
                 {
-                    redirectTo('players.html?msg=' + urlencode('<?php $lang->playerleft_msg ?>'));
+                    redirectTo('<?php $this->page('players') ?>?msg=' + urlencode('<?php $lang->playerleft_msg ?>'));
                 }
         }
     });
@@ -93,8 +94,8 @@
     {
         succeeded = true;
         data = eval('(' + data + ')');
-        document.getElementById('player_name').innerHTML = data.name;
-        document.getElementById('player_displayname').getElementsByTagName('span')[0].innerHTML = parseColors(data.displayName);
+        $('#player_name span:first').text(data.name);
+        $('#player_displayname a:first').html(parseColors(data.displayName));
         var hearts = Math.floor(data.health / 2);
         $('#player_health').attr('title', data.health);
         $('#player_health span.heart span').removeClass('full');
@@ -104,26 +105,25 @@
         {
             $('#player_health span.heart:eq(' + hearts + ') span').addClass('half');
         }
-
-        var armor = Math.floor(data.armor / 2);
+        var armorDelta = 10 - Math.floor(data.armor / 2);
         $('#player_armor').attr('title', data.armor);
         $('#player_armor span.chestplate span').removeClass('full');
         $('#player_armor span.chestplate span').removeClass('half');
-        $('#player_armor span.chestplate:lt(' + armor + ') span').addClass('full');
+        $('#player_armor span.chestplate:gt(' + (armorDelta - 1) + ') span').addClass('full');
         if (data.armor % 2 == 1)
         {
-            $('#player_armor span.chestplate:eq(' + armor + ') span').addClass('half');
+            $('#player_armor span.chestplate:eq(' + (armorDelta - 1) + ') span').addClass('half');
         }
-        var world = document.getElementById('player_world');
-        world.setAttribute('href', '<?php $this->page('world') ?>?world=' + data.world);
-        world.getElementsByTagName('span')[0].innerHTML = data.world;
+        var world = $('#player_world');
+        world.attr('href', '<?php $this->page('world') ?>?world=' + data.world);
+        world.find('span:first').text(data.world);
         for (var index in data.position)
         {
-            var elem = document.getElementById('player_pos' + index);
-            elem.innerHTML = (Math.round(data.position[index] * 1000) / 1000);
-            elem.setAttribute('title', data.position[index]);
+            var elem = $('#player_pos' + index);
+            elem.text(Math.round(data.position[index] * 1000) / 1000);
+            elem.attr('title', data.position[index]);
         }
-        document.getElementById('player_ip').innerHTML = data.ip;
+        $('#player_ip').text(data.ip);
     }
 
     $('#player_health span.heart, #player_armor span.chestplate').bind('touchstart', function(e){

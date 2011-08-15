@@ -9,7 +9,7 @@
         'password_repeat'           => 'Repeat password',
         'serveraddr'                => 'Serveraddress',
         'apiport'                   => 'API port',
-        'apipassword'               => 'API password',
+        'apiauthkey'               => 'API auth key',
         'register'                  => 'Register',
         'errors'                    => 'Errors',
         
@@ -29,9 +29,9 @@
         'serveraddr_invalidhost'    => 'The entered serveraddress is invalid!',
         'apiport_missing'           => 'The API port is missing!',
         'apiport_invalid'           => 'The API port must consist of 2 - 5 numbers!',
-        'apipass_missing'           => 'The API password is missing!',
+        'apiauthkey_missing'        => 'The API auth key is missing!',
         'svr_unreachable'           => 'The server you have entered is unreachable!',
-        'apipass_wrong'             => 'The entered API password is wrong!',
+        'apiauthkey_wrong'          => 'The entered API auth key is wrong!',
         'registersuccess'           => 'You have successfully registered and logged in!',
         'internalerror'             => 'An internal error occured, please inform the administrator.'
     );

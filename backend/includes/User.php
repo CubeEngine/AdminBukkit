@@ -73,7 +73,7 @@
             return $this->userdata['apiport'];
         }
         
-        public function getApiPassword()
+        public function getApiAuthKey()
         {
             return $this->userdata['apipassword'];
         }
