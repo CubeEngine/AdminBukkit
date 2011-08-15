@@ -15,15 +15,15 @@
     <li class="arrow"><a href="#" id="stats_ram"><?php $lang->ram ?>: <span id="stats_ram_free"><?php $genericLang->progress ?></span> / <span id="stats_ram_max"><?php $genericLang->progress ?></span> MB</a></li>
 </ul>
 <h2><?php $lang->utils ?></h2>
-<ul class="rounded">
-    <li><a href="#" id="banplayer"><?php $lang->banplayer ?></a></li>
-    <li><a href="#" id="banip"><?php $lang->banip ?></a></li>
-    <li><a href="#" id="whitelist"><?php $lang->addtowhitelist ?></a></li>
-    <li><a href="#" id="operators"><?php $lang->addoperator ?></a></li>
-    <li><a href="#" id="broadcast"><?php $lang->broadcast ?></a></li>
-    <li><a href="<?php $this->page('console') ?>"><?php $lang->consoleview ?></a></li>
-    <li><a href="#" id="stop"><?php $lang->stop ?></a></li>
-</ul>
+<div data-role="controlgroup">
+    <a href="#" id="banplayer" data-role="button" data-rel="dialog"><?php $lang->banplayer ?></a>
+    <a href="#" id="banip" data-role="button" data-rel="dialog"><?php $lang->banip ?></a>
+    <a href="#" id="whitelist" data-role="button" data-rel="dialog"><?php $lang->addtowhitelist ?></a>
+    <a href="#" id="operators" data-role="button" data-rel="dialog"><?php $lang->addoperator ?></a>
+    <a href="#" id="broadcast" data-role="button"><?php $lang->broadcast ?></a>
+    <a href="<?php $this->page('console') ?>" data-role="button"><?php $lang->consoleview ?></a>
+    <a href="#" id="stop" data-role="button"><?php $lang->stop ?></a>
+</div>
 <div id="generic_overlay" class="overlay">
     <ul class="rounded">
         <li><a href="#" id="generic_add"></a></li>

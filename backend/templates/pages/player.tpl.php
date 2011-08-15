@@ -6,7 +6,7 @@
 
 <div id="player_primary_info">
     <div id="player_head">
-        <img alt="" src="<?php echo $basePath ?>/backend/playerhead.php?size=80&amp;player=<?php echo $player ?>">
+        <img alt="" src="<?php echo $basePath ?>backend/playerhead.php?size=80&amp;player=<?php echo $player ?>">
     </div>
     <div id="player_names">
         <div id="player_displayname">
@@ -14,6 +14,9 @@
         </div>
         <div id="player_name">
             <span><?php $genericLang->progress ?></span>
+        </div>
+        <div>
+            
         </div>
     </div>
     <div class="clear"></div>
@@ -49,20 +52,23 @@
     </div>
 </div>
 
-<a href="" id="player_world"><?php $lang->world ?>: <span><?php $genericLang->progress ?></span></a>
+
 
 <?php $lang->position ?>:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;X: <span id="player_pos0"><?php $genericLang->progress ?></span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Y: <span id="player_pos1"><?php $genericLang->progress ?></span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;Z: <span id="player_pos2"><?php $genericLang->progress ?></span>
 <?php $lang->orientation ?>: <span id="player_pos3"><?php $genericLang->progress ?></span> | <span id="player_pos4"><?php $genericLang->progress ?></span>
-<a id="ban_ip" href="#"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a>
 
-<div>
+
+<div data-role="controlgroup">
+    <a href="" id="player_world" data-role="button"><?php $lang->world ?>: <span id="player_world_name"><?php $genericLang->progress ?></span></a>
+    <a id="ban_ip" href="#" data-role="button"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a>
     <a href="<?php $this->page('playerpopup') ?>?player=<?php echo $player ?>" data-role="button" data-rel="dialog"><?php $lang->utils ?></a>
 </div>
-<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=playerutils"></script>
-<script type="text/javascript" src="<?php $this->res('js/playerutils.js') ?>"></script>
+<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=serverutils"></script>
+<!--<script type="text/javascript" src="<?php $this->res('js/playerutils.js') ?>"></script>-->
+<script type="text/javascript" src="<?php $this->res('js/serverutils.js') ?>"></script>
 <script type="text/javascript">
     var succeeded = false;
     var request = new ApiRequest('player', 'info');
@@ -114,9 +120,8 @@
         {
             $('#player_armor span.chestplate:eq(' + (armorDelta - 1) + ') span').addClass('half');
         }
-        var world = $('#player_world');
-        world.attr('href', '<?php $this->page('world') ?>?world=' + data.world);
-        world.find('span:first').text(data.world);
+        $('#player_world').attr('href', '<?php $this->page('world') ?>?world=' + data.world);
+        $('#player_world_name').text(data.world);
         for (var index in data.position)
         {
             var elem = $('#player_pos' + index);
@@ -137,7 +142,7 @@
         return false;
     });
 
-    $('#ban_ip').click(function(){
+    $('#ban_ip').bind('vmousedown', function(){
         if (ban_ip($('#player_ip').text(), true))
         {
             if (player_kick(player, true))
