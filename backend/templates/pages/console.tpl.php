@@ -1,11 +1,11 @@
 <?php $lang = Lang::instance('console') ?>
 <?php $genericLang = Lang::instance('generic') ?>
 <div id="console_viewbox">
-    <div></div>
+    <div><?=$genericLang->progress?></div>
 </div>
-<ul>
-    <li><input type="text" id="console_input" placeholder="<?php $lang->command_enter ?>"></li>
-</ul>
+<div>
+    <input type="text" id="console_input" placeholder="<?php $lang->command_enter ?>">
+</div>
 <script type="text/javascript">
     var refreshing = true,
         timeoutID,
