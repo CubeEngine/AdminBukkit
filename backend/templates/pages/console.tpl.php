@@ -1,7 +1,7 @@
 <?php $lang = Lang::instance('console') ?>
 <?php $genericLang = Lang::instance('generic') ?>
 <div id="console_viewbox">
-    <div><?=$genericLang->progress?></div>
+    <div><?php echo $genericLang->progress?></div>
 </div>
 <div>
     <input type="text" id="console_input" placeholder="<?php $lang->command_enter ?>">
