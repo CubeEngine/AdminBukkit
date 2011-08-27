@@ -31,6 +31,5 @@
         <div>
             <?php $this->displaySubTemplate('page') ?>
         </div>
-        <div id="progress"><?php $lang->progress ?></div>
     </body>
 </html>
