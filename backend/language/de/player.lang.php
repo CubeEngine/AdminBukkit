@@ -7,7 +7,7 @@
         'armor'                         => 'Rüstung',
         'world'                         => 'Welt',
         'position'                      => 'Position',
-        'orientation'                   => 'Ausrichtung',
+        'direction'                     => 'Richtung',
         'ip'                            => 'IP Adresse',
         'utils'                         => 'Werkzeuge',
         'refresh'                       => 'Erneuern',

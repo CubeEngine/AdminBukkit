@@ -7,7 +7,7 @@
         'armor'                         => 'Armor',
         'world'                         => 'World',
         'position'                      => 'Position',
-        'orientation'                   => 'Orientation',
+        'direction'                     => 'Direction',
         'ip'                            => 'IP Address',
         'utils'                         => 'Utilities',
         'refresh'                       => 'Refresh',

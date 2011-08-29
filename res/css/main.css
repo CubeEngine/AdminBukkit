@@ -70,6 +70,11 @@ div.touchTooltip div {
     margin-top: -4px;
     margin-left: 20px;
 }
+#position_box {
+    width: 200px;
+    margin-top: 10px;
+    font-size: 90%;
+}
 #player_health, #player_armor {
     margin-bottom: -3px;
 }

@@ -15,8 +15,15 @@
         <div id="player_name">
             <span><?php $genericLang->progress ?></span>
         </div>
-        <div>
-            
+        <div class="ui-grid-a" id="position_box">
+            <div class="ui-block-a">
+                <div>X: <span id="player_pos0"><?php $genericLang->progress ?></span></div>
+                <div>Z: <span id="player_pos2"><?php $genericLang->progress ?></span></div>
+            </div>
+            <div class="ui-block-b">
+                <div>Y: <span id="player_pos1"><?php $genericLang->progress ?></span></div>
+                <div><?php $lang->direction ?>: <span id="player_orientation"><?php $genericLang->progress ?></span></div>
+            </div>
         </div>
     </div>
     <div class="clear"></div>
@@ -51,16 +58,6 @@
         </div>
     </div>
 </div>
-
-
-
-<?php $lang->position ?>:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;X: <span id="player_pos0"><?php $genericLang->progress ?></span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;Y: <span id="player_pos1"><?php $genericLang->progress ?></span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;Z: <span id="player_pos2"><?php $genericLang->progress ?></span>
-<?php $lang->orientation ?>: <span id="player_pos3"><?php $genericLang->progress ?></span> | <span id="player_pos4"><?php $genericLang->progress ?></span>
-
-
 <div data-role="controlgroup">
     <a href="" id="player_world" data-role="button"><?php $lang->world ?>: <span id="player_world_name"><?php $genericLang->progress ?></span></a>
     <a id="ban_ip" href="#" data-role="button"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a>
@@ -122,12 +119,14 @@
         }
         $('#player_world').attr('href', '<?php $this->page('world') ?>?world=' + data.world);
         $('#player_world_name').text(data.world);
-        for (var index in data.position)
+        for (var index in data.blockPosition)
         {
             var elem = $('#player_pos' + index);
-            elem.text(Math.round(data.position[index] * 1000) / 1000);
+            elem.text(data.blockPosition[index]);
             elem.attr('title', data.position[index]);
         }
+
+        $('#player_orientation').text(data.orientation.cardinalDirection);
         $('#player_ip').text(data.ip);
     }
 
