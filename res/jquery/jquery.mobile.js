@@ -1,6 +1,6 @@
 /*!
  * jQuery Mobile v Git Build
- * Git Info SHA1: 6de76168af4e8211fc04eecadf6f632864d30260 Date: Sat Aug 27 11:26:16 2011 -0400
+ * Git Info SHA1: f679d3062032ef43aa3ba6a97f3d7b9289a208a3 Date: Tue Aug 30 15:59:46 2011 -0700
  * http://jquerymobile.com/
  *
  * Copyright 2010, jQuery Project
@@ -1876,7 +1876,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 			//    [15]: ?msg=1234&type=unread
 			//    [16]: #msg-content
 			//
-			urlParseRE: /^(((([^:\/#\?]+:)?(?:\/\/((?:(([^:@\/#\?]+)(?:\:([^:@\/#\?]+))?)@)?(([^:\/#\?]+)(?:\:([0-9]+))?))?)?)?((\/?(?:[^\/\?#]+\/+)*)([^\?#]*)))?(\?[^#]+)?)(#.*)?/,
+			urlParseRE: /^(((([^:\/#\?]+:)?(?:\/\/((?:(([^:@\/#\?]+)(?:\:([^:@\/#\?]+))?)@)?(([^:\/#\?\]\[]+|\[[^\/\]@#?]+\])(?:\:([0-9]+))?))?)?)?((\/?(?:[^\/\?#]+\/+)*)([^\?#]*)))?(\?[^#]+)?)(#.*)?/,
 
 			//Parse a URL into a structure that allows easy access to
 			//all of the URL components by name.
@@ -2131,9 +2131,9 @@ $.widget( "mobile.page", $.mobile.widget, {
 				this.activeIndex = newActiveIndex !== undefined ? newActiveIndex : this.activeIndex;
 
 				if( back ) {
-					(opts.either || opts.isBack)( back );
+					( opts.either || opts.isBack )( true );
 				} else if( forward ) {
-					(opts.either || opts.isForward)( back );
+					( opts.either || opts.isForward )( false );
 				}
 			},
 
@@ -4565,7 +4565,8 @@ $.widget( "mobile.slider", $.mobile.widget, {
 			slider: slider,
 			handle: handle,
 			dragging: false,
-			beforeStart: null
+			beforeStart: null,
+			userModified: false
 		});
 
 		if ( cType == "select" ) {
@@ -4607,12 +4608,14 @@ $.widget( "mobile.slider", $.mobile.widget, {
 		$( document ).bind( "vmousemove", function( event ) {
 			if ( self.dragging ) {
 				self.refresh( event );
+				self.userModified = self.userModified || self.beforeStart !== control[0].selectedIndex;
 				return false;
 			}
 		});
 
 		slider.bind( "vmousedown", function( event ) {
 			self.dragging = true;
+			self.userModified = false;
 
 			if ( cType === "select" ) {
 				self.beforeStart = control[0].selectedIndex;
@@ -4629,7 +4632,7 @@ $.widget( "mobile.slider", $.mobile.widget, {
 
 					if ( cType === "select" ) {
 
-						if ( self.beforeStart === control[ 0 ].selectedIndex ) {
+						if ( !self.userModified ) {
 							//tap occurred, but value didn't change. flip it!
 							self.refresh( !self.beforeStart ? 1 : 0 );
 						}
@@ -4817,7 +4820,8 @@ $( document ).bind( "pagecreate create", function( e ){
 
 });
 
-})( jQuery );/*
+})( jQuery );
+/*
 * jQuery Mobile Framework : "textinput" plugin for text inputs, textareas
 * Copyright (c) jQuery Project
 * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -5199,6 +5203,9 @@ $( document ).bind( "pagecreate create", function( e ){
 				var self = this;
 
 				if ( self.menuType == "page" ) {
+					// TODO centralize page removal binding / handling in the page plugin.
+					// Suggestion from @jblas to do refcounting
+					//
 					// rebind the page remove that was unbound in the open function
 					// to allow for the parent page removal from actions other than the use
 					// of a dialog sized custom select
@@ -6429,9 +6436,9 @@ $(function() {
 			$pages.add( ":jqmData(role='dialog')" ).each(function() {
 				var $this = $(this);
 
-				// unless the data url is already set set it to the id
+				// unless the data url is already set set it to the pathname
 				if ( !$this.jqmData("url") ) {
-					$this.attr( "data-" + $.mobile.ns + "url", $this.attr( "id" ) );
+					$this.attr( "data-" + $.mobile.ns + "url", $this.attr( "id" ) || location.pathname );
 				}
 			});
 
