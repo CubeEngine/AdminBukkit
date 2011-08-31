@@ -103,6 +103,13 @@
     });
 
     $('#console').bind('pageshow', function(){
+        refreshing = true;
         consoleRequest.execute();
+    }).bind('pagehide', function(){
+        if (refreshing)
+        {
+            refreshing = false;
+            clearTimeout(timeoutID);
+        }
     });
 </script>
