@@ -1,44 +1,36 @@
 <?php $lang = Lang::instance('server') ?>
 <?php $genericLang = Lang::instance('generic') ?>
 <h2><?php $lang->serverinfos ?>:</h2>
-<ul class="rounded">
-    <li><?php $lang->servername ?>: <span id="server_name" title=""><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->serverip ?>: <span id="server_ip"><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->serverport ?>: <span id="server_port"><?php $genericLang->progress ?></span></li>
-    <li class="arrow"><a href="<?php $this->page('players') ?>"><?php $lang->players ?>: <span id="server_online"><?php $genericLang->progress ?></span> / <span id="server_maxplayers"><?php $genericLang->progress ?></span></a></li>
-    <li class="arrow"><a href="<?php $this->page('worlds') ?>"><?php $lang->worlds ?>: <span id="server_worlds"><?php $genericLang->progress ?></span></a></li>
-    <li class="arrow"><a href="<?php $this->page('plugins') ?>"><?php $lang->plugins ?>: <span id="server_plugins"><?php $genericLang->progress ?></span></a></li>
-    <li><?php $lang->uptime ?>: <span id="server_uptime"><?php $genericLang->progress ?></span></li>
-</ul>
-<h2><?php $lang->stats ?>:</h2>
-<ul class="rounded">
-    <li class="arrow"><a href="#" id="stats_ram"><?php $lang->ram ?>: <span id="stats_ram_free"><?php $genericLang->progress ?></span> / <span id="stats_ram_max"><?php $genericLang->progress ?></span> MB</a></li>
-</ul>
+<div id="server_info">
+    <span class="label"><?php $lang->servername ?>:</span>
+    <span id="server_name" title=""><?php $genericLang->progress ?></span>
+    <br>
+    <span class="label"><?php $lang->serverip ?>:</span>
+    <span id="server_ip"><?php $genericLang->progress ?></span>
+    <br>
+    <span class="label"><?php $lang->serverport ?>:</span>
+    <span id="server_port"><?php $genericLang->progress ?></span>
+    <br>
+    <span class="label"><?php $lang->uptime ?>:</span>
+    <span id="server_uptime"><?php $genericLang->progress ?></span>
+    <br>
+</div>
+<div data-role="controlgroup">
+    <a data-role="button" href="<?php $this->page('players') ?>"><?php $lang->players ?>: <span id="server_online"><?php $genericLang->progress ?></span> / <span id="server_maxplayers"><?php $genericLang->progress ?></span></a>
+    <a data-role="button" href="<?php $this->page('worlds') ?>"><?php $lang->worlds ?>: <span id="server_worlds"><?php $genericLang->progress ?></span></a>
+    <a data-role="button" href="<?php $this->page('plugins') ?>"><?php $lang->plugins ?>: <span id="server_plugins"><?php $genericLang->progress ?></span></a>
+</div>
+    
 <h2><?php $lang->utils ?></h2>
 <div data-role="controlgroup">
-    <a href="#" id="banplayer" data-role="button" data-rel="dialog"><?php $lang->banplayer ?></a>
-    <a href="#" id="banip" data-role="button" data-rel="dialog"><?php $lang->banip ?></a>
-    <a href="#" id="whitelist" data-role="button" data-rel="dialog"><?php $lang->addtowhitelist ?></a>
-    <a href="#" id="operators" data-role="button" data-rel="dialog"><?php $lang->addoperator ?></a>
-    <a href="#" id="broadcast" data-role="button"><?php $lang->broadcast ?></a>
-    <a href="<?php $this->page('console') ?>" data-role="button"><?php $lang->consoleview ?></a>
-    <a href="#" id="stop" data-role="button"><?php $lang->stop ?></a>
-</div>
-<div id="generic_overlay" class="overlay">
-    <ul class="rounded">
-        <li><a href="#" id="generic_add"></a></li>
-    </ul>
-    <h2 id="generic_headline"></h2>
-    <div class="generic_scroller">
-        <div>
-            <ul id="generic_list" class="rounded">
-                <li><?php $genericLang->progress ?></li>
-            </ul>
-        </div>
-    </div>
-    <ul>
-        <li><a href="#" class="toggleoverlay"><?php $lang->close ?></a></li>
-    </ul>
+    <a data-role="button" href="#" id="stats_ram"><?php $lang->ram ?>: <span id="stats_ram_free"><?php $genericLang->progress ?></span> / <span id="stats_ram_max"><?php $genericLang->progress ?></span> MB</a>
+    <a data-role="button" href="<?php $this->page('banplayerpopup') ?>" data-rel="dialog"><?php $lang->banplayer ?></a>
+    <a data-role="button" href="<?php $this->page('banippopup') ?>" data-rel="dialog"><?php $lang->banip ?></a>
+    <a data-role="button" href="<?php $this->page('whitelistpopup') ?>" data-rel="dialog"><?php $lang->addtowhitelist ?></a>
+    <a data-role="button" href="<?php $this->page('operatorpopup') ?>" data-rel="dialog"><?php $lang->addoperator ?></a>
+    <a data-role="button" href="#" id="broadcast"><?php $lang->broadcast ?></a>
+    <a data-role="button" href="<?php $this->page('console') ?>"><?php $lang->consoleview ?></a>
+    <a data-role="button" href="#" id="stop"><?php $lang->stop ?></a>
 </div>
 <script type="text/javascript">
 
@@ -146,10 +138,17 @@
         request.execute({message: message.substr(0, 100)});
         return false;
     });
+
+    var statsInterval = null;
     
     $('#server').bind('pageshow', function(){
         infoRequest.execute();
         statsRequest.execute();
-        setInterval(statsRequest.execute, 5000);
+        statsInterval = setInterval(statsRequest.execute, 5000);
+    }).bind('pagehide', function(){
+        if (statsInterval)
+        {
+            clearInterval(statsInterval);
+        }
     });
 </script>

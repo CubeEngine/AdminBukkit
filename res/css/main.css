@@ -45,9 +45,9 @@ div.touchTooltip div {
 /**
  * Page - player
  */
- #player_primary_info {
-     margin-bottom: 5px;
- }
+#player_primary_info {
+ margin-bottom: 5px;
+}
 #player_head {
     float: left;
 }
@@ -111,6 +111,9 @@ span.chestplate span.full {
 span.chestplate span.half {
     background-image: url('../gfx/armor/armor_half.png');
 }
+/**
+ * Page - console
+ */
 div#console_viewbox {
     height: 200px;
     overflow: auto;
@@ -145,6 +148,20 @@ div#console_viewbox > div > div.logtype_severe:hover {
 /*div#console_viewbox div.logtype_ {
 
 }*/
+/**
+ * Page - server
+ */
+ div#server_info {
+     font-size: 105%;
+ }
+ div#server_info span.label {
+     float: left;
+     width: 105px;
+     font-weight: bolder;
+ }
+ div#server_info br {
+     clear: left;
+ }
 div[data-role=footer] {
     text-align: center;
 }

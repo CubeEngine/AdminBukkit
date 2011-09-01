@@ -1,24 +1,38 @@
 <?php $lang = Lang::instance('world') ?>
 <?php $genericLang = Lang::instance('generic') ?>
-<ul class="rounded">
-    <li><?php $lang->name ?>: <span id="world_name"><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->type ?>: <span id="world_type"><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->seed ?>: <span id="world_seed"><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->pvp ?>: <span id="world_pvp_display"><?php $genericLang->progress ?></span></li>
-    <li>
+<div>
+    <div>
+        <?php $lang->name ?>: <span id="world_name"><?php $genericLang->progress ?></span>
+    </div>
+    <div>
+        <?php $lang->type ?>: <span id="world_type"><?php $genericLang->progress ?></span>
+    </div>
+    <div>
+        <?php $lang->seed ?>: <span id="world_seed"><?php $genericLang->progress ?></span>
+    </div>
+    <div>
+        <?php $lang->pvp ?>: <span id="world_pvp_display"><?php $genericLang->progress ?></span>
+    </div>
+    <div>
         <?php $lang->spawnpoint ?>:<br>
         &nbsp;&nbsp;&nbsp;&nbsp;X: <span id="world_spawn0"><?php $genericLang->progress ?></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;Y: <span id="world_spawn1"><?php $genericLang->progress ?></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;Z: <span id="world_spawn2"><?php $genericLang->progress ?></span>
-    </li>
-    <li><?php $lang->time ?>: <span id="world_time_display"><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->weatherduration ?>: <span id="world_weather"><?php $genericLang->progress ?></span></li>
-    <li><?php $lang->thunderduration ?>: <span id="world_thunder"><?php $genericLang->progress ?></span></li>
-    <li class="arrow"><a href="<?php $this->page('playersofworld') ?>?world=<?php echo $world ?>"><?php $lang->players ?>: <span id="world_players"><?php $genericLang->progress ?></span></a></li>
-</ul>
-<ul class="rounded">
-    <li><a href="#" id="toggleutils"><?php $lang->utils ?></a></li>
-</ul>
+    </div>
+    <div>
+        <?php $lang->time ?>: <span id="world_time_display"><?php $genericLang->progress ?></span>
+    </div>
+    <div>
+        <?php $lang->weatherduration ?>: <span id="world_weather"><?php $genericLang->progress ?></span> <?php $lang->seconds ?>
+    </div>
+    <div>
+        <?php $lang->thunderduration ?>: <span id="world_thunder"><?php $genericLang->progress ?></span> <?php $lang->seconds ?>
+    </div>
+    <div data-role="controlgroup">
+        <a data-role="button" href="<?php $this->page('playersofworld') ?>?world=<?php echo $world ?>"><?php $lang->players ?>: <span id="world_players"><?php $genericLang->progress ?></span></a>
+        <a data-role="button" href="#" id="toggleutils"><?php $lang->utils ?></a>
+    </div>
+</div>
 <script type="text/javascript">
     var world = '<?php echo $world ?>';
     
@@ -65,8 +79,8 @@
         var time = $('#world_time_display');
         time.text(data.time);
         time.attr('title', data.fullTime);
-        $('#world_weather').text(data.weatherDuration);
-        $('#world_thunder').text(data.thunderDuration);
+        $('#world_weather').text(Math.round(data.weatherDuration / 20));
+        $('#world_thunder').text(Math.round(data.thunderDuration / 20));
         $('#world_players').text(data.players);
     }
     
@@ -78,9 +92,4 @@
         request.execute();
         return false;
     });
-    
-    /*$('#world_playerlist').click(function(){
-        redirectTo('<?php $this->page('playersofworld') ?>?world=' + world);
-        return false;
-    });*/
 </script>
