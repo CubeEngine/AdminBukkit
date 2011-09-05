@@ -8,13 +8,13 @@
         protected $algo;
         private static $algos = array(MCRYPT_RIJNDAEL_128, MCRYPT_RIJNDAEL_192, MCRYPT_RIJNDAEL_256);
 
-        public function  __construct($key, $algo = 0)
+        public function  __construct($key, $strength = 0)
         {
-            if (!isset(self::$algos[$algo]))
+            if (!isset(self::$algos[$strength]))
             {
                 throw new Exception('AESCrypter::__construct: algorithem ID not available!', 404);
             }
-            $this->algo = &self::$algos[$algo];
+            $this->algo = &self::$algos[$strength];
             $this->key = substr($key, 0, mcrypt_get_key_size($this->algo, MCRYPT_MODE_ECB));
         }
 
