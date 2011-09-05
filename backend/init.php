@@ -121,13 +121,20 @@
     
     function onException($e)
     {
-        $logger = Logger::instance('error');
-        $type = get_class($e);
-        $logger->write(0, $type, '[' . basename($e->getFile()) . ':' . $e->getLine() . '] ' . $e->getMessage());
-
-        if (Config::instance('bukkitweb')->get('displayErrors', false))
+        if ($e instanceof CriticalException)
         {
-            echo 'An uncaught ' . $type . " occurred!<br />\nMessage: " . $e->getMessage();
+            die('An critical exception was not caught, ending the script here!<br>Message: ' . $e->getMessage());
+        }
+        else
+        {
+            $logger = Logger::instance('error');
+            $type = get_class($e);
+            $logger->write(0, $type, '[' . basename($e->getFile()) . ':' . $e->getLine() . '] ' . $e->getMessage());
+            
+            if (Config::instance('bukkitweb')->get('displayErrors', false))
+            {
+                echo 'An uncaught ' . $type . " occurred!<br />\nMessage: " . $e->getMessage();
+            }
         }
     }
 

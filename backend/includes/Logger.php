@@ -73,7 +73,7 @@
             $writable = (file_exists($path) && is_writable($path)) || is_writable(dirname($path));
             if (!$writable)
             {
-                throw new Exception('the logfile is not writable!', 401);
+                throw new CriticalException('the logfile is not writable!', 401);
             }
             $this->sthWritten = false;
             $this->filepath = $path;
@@ -119,7 +119,7 @@
                 $this->fhandle = @fopen($this->filepath, $this->fmode);
                 if ($this->fhandle === false)
                 {
-                    throw new Exception('Could not open logfile "' . $this->logfile . '" for writing! Check file permissions!');
+                    throw new CriticalException('Could not open logfile "' . $this->logfile . '" for writing! Check file permissions!');
                 }
                 $this->write(0, 'Logger', '----------> Log opened <----------');
             }
