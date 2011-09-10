@@ -1,6 +1,6 @@
 /*!
  * jQuery Mobile v Git Build
- * Git Info SHA1: f679d3062032ef43aa3ba6a97f3d7b9289a208a3 Date: Tue Aug 30 15:59:46 2011 -0700
+ * Git Info SHA1: 6a4bd76a9c27d95b0744db862de020da601d2243 Date: Fri Sep 9 18:26:21 2011 -0700
  * http://jquerymobile.com/
  *
  * Copyright 2010, jQuery Project
@@ -815,6 +815,7 @@ a.ui-link-inherit {
 .ui-icon-radio-off {
 	background-color: transparent;	
 }
+.ui-icon-checkbox-on,
 .ui-checkbox-on .ui-icon,
 .ui-radio-on .ui-icon {
 	background-color: #4596ce; /* NOTE: this hex should match the active state color. It's repeated here for cascade */
@@ -1006,6 +1007,21 @@ a.ui-link-inherit {
 .landscape,
 .landscape .ui-page  { min-height: 300px; }
 
+/* native overflow scrolling */
+.ui-page.ui-mobile-touch-overflow,
+.ui-mobile-touch-overflow.ui-native-fixed .ui-content {
+	overflow: auto;
+	height: 100%;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+	-o-overflow-scrolling: touch;
+	-ms-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+}
+.ui-page.ui-mobile-pre-transition {
+	display: block;
+}
+
 /* loading screen */
 .ui-loading .ui-mobile-viewport { overflow: hidden !important; }
 .ui-loading .ui-loader { display: block; }
@@ -1031,6 +1047,43 @@ a.ui-link-inherit {
 /*content area*/
 .ui-content { border-width: 0; overflow: visible; overflow-x: hidden; padding: 15px; }
 .ui-page-fullscreen .ui-content { padding:0; }
+
+/* native fixed headers and footers */
+.ui-mobile-touch-overflow.ui-page.ui-native-fixed,
+.ui-mobile-touch-overflow.ui-page.ui-native-fullscreen {
+	overflow: visible;
+}
+.ui-mobile-touch-overflow.ui-native-fixed .ui-header,
+.ui-mobile-touch-overflow.ui-native-fixed .ui-footer {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 200;
+}
+.ui-mobile-touch-overflow.ui-page.ui-native-fixed .ui-footer {
+	top: auto;
+	bottom: 0;
+}
+.ui-mobile-touch-overflow.ui-native-fixed .ui-content {
+	padding-top: 2.5em;
+	padding-bottom: 3em;
+	top: 0;
+	bottom: 0;
+	height: auto;
+	position: absolute;
+}
+.ui-mobile-touch-overflow.ui-native-fullscreen .ui-content {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.ui-mobile-touch-overflow.ui-native-fullscreen .ui-header,
+.ui-mobile-touch-overflow.ui-native-fullscreen .ui-footer {
+	opacity: .9;
+}
+.ui-native-bars-hidden {
+	display: none;
+}
 
 /* icons sizing */
 .ui-icon { width: 18px; height: 18px; }
@@ -1634,7 +1687,7 @@ a.ui-slider-handle .ui-btn-inner { padding-left: 0; padding-right: 0; }
 
 div.ui-slider-switch { height: 32px;  overflow: hidden; margin-left: 0; }
 div.ui-slider-inneroffset { margin-left: 50%; position: absolute; top: 1px; height: 100%; width: 50%; }
-div.ui-slider-handle-snapping { -webkit-transition: left 100ms linear; }
+a.ui-slider-handle-snapping { -webkit-transition: left 100ms linear; }
 div.ui-slider-labelbg { position: absolute; top:0; margin: 0; border-width: 0; }
 div.ui-slider-switch div.ui-slider-labelbg-a { width: 60%; height: 100%; left: 0; }
 div.ui-slider-switch div.ui-slider-labelbg-b { width: 60%; height: 100%; right: 0; }
