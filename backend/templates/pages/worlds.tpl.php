@@ -1,7 +1,7 @@
 <?php $lang = Lang::instance('worlds') ?>
-<ul class="rounded">
-    <li><a href="#" id="world_create"><?php $lang->create ?></a></li>
-</ul>
+<div>
+    <a href="#" id="world_create"><?php $lang->create ?></a>
+</div>
 <h2><?php $lang->loadedworlds ?>:</h2>
 <ul id="worldlist" data-role="listview">
     <li><?php $lang->loadinglist ?></li>
@@ -34,8 +34,8 @@
                 mainLink.attr('href', '<?php $this->page('world') ?>?world=' + worlds[i]);
                 li.append(mainLink);
                 var minorLink = $('<a>');
-                minorLink.attr('href', '<?php $this->page('worldpopup') ?>');
-                li.append(minorLink);
+                minorLink.attr('href', '<?php $this->page('worldpopup') ?>?world=' + worlds[i]);
+                li.append($('<a href="<?php $this->page('worldpopup') ?>?world=' + worlds[i] + '" data-rel="dialog"></a>'));
                 list.append(li);
             }
             list.listview('refresh');

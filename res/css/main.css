@@ -41,6 +41,9 @@ div.touchTooltip {
 div.touchTooltip div {
     margin: 3px;
 }
+ul[data-role=listview] span.value {
+    font-weight: lighter;
+}
 
 /**
  * Page - player
@@ -151,9 +154,13 @@ div#console_viewbox > div > div.logtype_severe:hover {
 /**
  * Page - server
  */
-ul#server_info span.value {
-    font-weight: lighter;
-}
 div[data-role=footer] {
     text-align: center;
 }
+/**
+ * Page - world
+ */
+ a#world_create {
+     text-decoration: none;
+     color: #2489CE;
+ }
