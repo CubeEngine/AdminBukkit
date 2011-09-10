@@ -1,25 +1,33 @@
 <?php $lang = Lang::instance('server') ?>
 <?php $genericLang = Lang::instance('generic') ?>
 <h2><?php $lang->serverinfos ?>:</h2>
-<div id="server_info">
-    <span class="label"><?php $lang->servername ?>:</span>
-    <span id="server_name" title=""><?php $genericLang->progress ?></span>
-    <br>
-    <span class="label"><?php $lang->serverip ?>:</span>
-    <span id="server_ip"><?php $genericLang->progress ?></span>
-    <br>
-    <span class="label"><?php $lang->serverport ?>:</span>
-    <span id="server_port"><?php $genericLang->progress ?></span>
-    <br>
-    <span class="label"><?php $lang->uptime ?>:</span>
-    <span id="server_uptime"><?php $genericLang->progress ?></span>
-    <br>
-</div>
-<div data-role="controlgroup">
-    <a data-role="button" href="<?php $this->page('players') ?>"><?php $lang->players ?>: <span id="server_online"><?php $genericLang->progress ?></span> / <span id="server_maxplayers"><?php $genericLang->progress ?></span></a>
-    <a data-role="button" href="<?php $this->page('worlds') ?>"><?php $lang->worlds ?>: <span id="server_worlds"><?php $genericLang->progress ?></span></a>
-    <a data-role="button" href="<?php $this->page('plugins') ?>"><?php $lang->plugins ?>: <span id="server_plugins"><?php $genericLang->progress ?></span></a>
-</div>
+<ul data-role="listview" data-inset="true" id="server_info">
+    <li>
+        <span class="label"><?php $lang->servername ?>:</span>
+        <span id="server_name" title="" class="value"><?php $genericLang->progress ?></span>
+    </li>
+    <li>
+        <span class="label"><?php $lang->serverip ?>:</span>
+        <span id="server_ip" class="value"><?php $genericLang->progress ?></span>
+    </li>
+    <li>
+        <span class="label"><?php $lang->serverport ?>:</span>
+        <span id="server_port" class="value"><?php $genericLang->progress ?></span>
+    </li>
+    <li>
+        <span class="label"><?php $lang->uptime ?>:</span><br>
+        <span id="server_uptime" class="value"><?php $genericLang->progress ?></span>
+    </li>
+    <li>
+        <a href="<?php $this->page('players') ?>"><?php $lang->players ?>: <span class="value"><span id="server_online"><?php $genericLang->progress ?></span> / <span id="server_maxplayers"><?php $genericLang->progress ?></span></span></a>
+    </li>
+    <li>
+        <a href="<?php $this->page('worlds') ?>"><?php $lang->worlds ?>: <span id="server_worlds" class="value"><?php $genericLang->progress ?></span></a>
+    </li>
+    <li>
+        <a href="<?php $this->page('plugins') ?>"><?php $lang->plugins ?>: <span id="server_plugins" class="value"><?php $genericLang->progress ?></span></a>
+    </li>
+</ul>
     
 <h2><?php $lang->utils ?></h2>
 <div data-role="controlgroup">

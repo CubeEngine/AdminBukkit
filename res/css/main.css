@@ -151,17 +151,9 @@ div#console_viewbox > div > div.logtype_severe:hover {
 /**
  * Page - server
  */
- div#server_info {
-     font-size: 105%;
- }
- div#server_info span.label {
-     float: left;
-     width: 105px;
-     font-weight: bolder;
- }
- div#server_info br {
-     clear: left;
- }
+ul#server_info span.value {
+    font-weight: lighter;
+}
 div[data-role=footer] {
     text-align: center;
 }
