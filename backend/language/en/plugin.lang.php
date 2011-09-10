@@ -1,5 +1,7 @@
 <?php
     return array(
+        'plugininfo'            => 'Plugininfo',
+        'noplugin'              => 'No plugin was given!',
         'active'                => 'active',
         'inactive'              => 'inactive',
         'name'                  => 'Name',

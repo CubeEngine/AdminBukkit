@@ -5,7 +5,7 @@
         Router::instance()->redirectToPage('home', $lang['alreadyregistered']);
     }
     
-    $page = new Page('register');
+    $page = new Page('register', $lang['registration']);
     $page->assign('user', '')
          ->assign('email', '')
          ->assign('serveraddr', '')
@@ -127,11 +127,9 @@
              ->assign('apiauthkey', $apiauthkey);
     }
     
-    $toolbar = new Toolbar($lang['registration']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_back'));
-    $toolbar->setButton($lang['login'], $design->getLinkGenerator()->page('login'));
-    $page->addSubtemplate('toolbar', $toolbar);
-    $page->setContent(new Template('pages/register'));
+    $page->setBack(Lang::instance('generic')->get('btn_back'))
+         ->setButton($lang['login'], $design->getLinkGenerator()->page('login'))
+         ->setContent(new Template('pages/register'));
     
     $design->setContentView($page);
 ?>

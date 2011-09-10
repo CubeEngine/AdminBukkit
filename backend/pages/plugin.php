@@ -1,14 +1,12 @@
 <?php
-    if (!isset($_GET['plugin']) || trim($_GET['plugin']) === '')
+    $lang = Lang::instance('plugin');
+    $plugin = trim(Request::get('plugin'));
+    if ($plugin === '')
     {
-        Router::instance()->redirectToPage('plugins');
+        Router::instance()->redirectToPage('plugins', $lang['noplugin']);
     }
-    $plugin = trim($_GET['plugin']);
-    $page = new Page('plugin', true);
-    $toolbar = new Toolbar('Infos');
-    $toolbar->setBack(Lang::instance('generic')->get('btn_back'));
-    //$toolbar->setButton($text, $target);
-    $page->addSubtemplate('toolbar', $toolbar);
+    $page = new Page('plugin', $lang['plugininfo'], true);
+    $page->setBack(Lang::instance('generic')->get('btn_back'));
     $template = new Template('pages/plugin');
 
     $api = new ApiBukkit($_SESSION['user']->getServerAddress(), $_SESSION['user']->getApiPort(), $_SESSION['user']->getApiAuthKey());
@@ -19,6 +17,7 @@
     if ($response->getStatus() > 204)
     {
         $error = explode(',', $response->getBody());
+        $err = null;
         if ($error[0] == '3')
         {
             $err = $lang['pluginunavailable'];
@@ -34,16 +33,16 @@
     {
         Router::instance()->redirectToPage('plugins', 'Konnte keine Informationen zum Plugin "' . $plugin . '" abrufen');
     }
-    $template->assign('pluginName', $data->name);
-    $template->assign('fullName', $data->fullName);
-    $template->assign('dataFolder', $data->dataFolder);
-    $template->assign('version', $data->version);
-    $template->assign('description', $data->description);
-    $template->assign('website', $data->website);
-    $template->assign('authors', $data->authors);
-    $template->assign('commands', $data->commands);
-    $template->assign('depend', $data->depend);
-    $template->assign('enabled', $data->enabled);
+    $template->assign('pluginName', $data->name)
+             ->assign('fullName', $data->fullName)
+             ->assign('dataFolder', $data->dataFolder)
+             ->assign('version', $data->version)
+             ->assign('description', $data->description)
+             ->assign('website', $data->website)
+             ->assign('authors', $data->authors)
+             ->assign('commands', $data->commands)
+             ->assign('depend', $data->depend)
+             ->assign('enabled', $data->enabled);
     
     $page->setContent($template);
     

@@ -1,7 +1,7 @@
 <?php
     $lang = Lang::instance('editprofile');
     $registerLang = Lang::instance('register');
-    $page = new Page('editprofile', true);
+    $page = new Page('editprofile', $lang['edit'], true);
     $page->assign('user',       $_SESSION['user']->getName())
          ->assign('email',      $_SESSION['user']->getEmail())
          ->assign('serveraddr', $_SESSION['user']->getServerAddress())
@@ -114,17 +114,15 @@
             $page->assign('errors', $errors);
         }
         
-        $page->assign('user', $user);
-        $page->assign('email', $email);
-        $page->assign('serveraddr', $serveraddr);
-        $page->assign('apiport', $apiport);
-        $page->assign('apiauthkey', $apiauthkey);
+        $page->assign('user', $user)
+             ->assign('email', $email)
+             ->assign('serveraddr', $serveraddr)
+             ->assign('apiport', $apiport)
+             ->assign('apiauthkey', $apiauthkey);
     }
     
-    $toolbar = new Toolbar($lang['edit']);
-    $toolbar->setBack($lang['profile'], $design->getLinkGenerator()->page('profile'));
-    $page->addSubtemplate('toolbar', $toolbar);
-    $page->setContent(new Template('pages/editprofile'));
+    $page->setBack($lang['profile'], $design->getLinkGenerator()->page('profile'))
+         ->setContent(new Template('pages/editprofile'));
     
     $design->setContentView($page);
 ?>

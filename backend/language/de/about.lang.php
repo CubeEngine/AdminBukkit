@@ -1,6 +1,7 @@
 <?php
     return array(
-        'text' => <<<ABOUT
+        'about'     => 'About',
+        'text'      => <<<ABOUT
 Diese Web Application wurde von Phillip Schichtel programmiert.
     
 Lizenz: GNU GPL v3

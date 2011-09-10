@@ -5,10 +5,8 @@
     {
         Router::instance()->redirectToPage('worlds', $lang['noworld']);
     }
-    $page = new Page('worldpopup', true);
+    $page = new Page('worldpopup', $lang['playerinfos'], true);
     $page->assign('world', $world);
-    $toolbar = new Toolbar($lang['playerinfos']);
-    $page->addSubtemplate('toolbar', $toolbar);
     $page->setContent(new Template('pages/worldpopup'));
 
     $design->setContentView($page);

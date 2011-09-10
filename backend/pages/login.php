@@ -5,7 +5,7 @@
         Router::instance()->redirectToPage('home', $lang['alreadyloggedin']);
     }
 
-    $page = new Page('login');
+    $page = new Page('login', $lang['login']);
     $page->assign('user', '')
          ->assign('langs', array_merge(array(Lang::getLanguage()), Lang::listLanguages()));
     
@@ -55,16 +55,14 @@
             }
         }
         
-        $page->assign('errors', $errors);
-        $page->assign('user', $user);
+        $page->assign('errors', $errors)
+             ->assign('user', $user);
     }
     
     $tpl = new Template('pages/login');
-    $toolbar = new Toolbar($lang['login']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath());
-    $toolbar->setButton($lang['registration'], $design->getLinkGenerator()->page('register'));
-    $page->addSubtemplate('toolbar', $toolbar);
-    $page->setContent($tpl);
+    $page->setBack(Lang::instance('generic')->get('btn_home'), Router::instance()->getBasePath())
+         ->setButton($lang['registration'], $design->getLinkGenerator()->page('register'))
+         ->setContent($tpl);
     
     $design->setContentView($page);
 ?>

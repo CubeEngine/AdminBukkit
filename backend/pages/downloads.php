@@ -1,10 +1,8 @@
 <?php
     $file = trim(Request::get('file', ''));
     $lang = Lang::instance('downloads');
-    $page = new Page('downloads');
-    $toolbar = new Toolbar($lang['downloads']);
-    $toolbar->setBack($lang['home'], Router::instance()->getBasePath());
-    $page->addSubtemplate('toolbar', $toolbar);
+    $page = new Page('downloads', $lang['downloads']);
+    $page->setBack($lang['home'], Router::instance()->getBasePath());
     $template = new Template('pages/downloads');
     if (!empty($file) && !preg_match('/\.\./', $file))
     {

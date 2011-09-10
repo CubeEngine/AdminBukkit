@@ -5,14 +5,12 @@
     {
         Router::instance()->redirectToPage('players', $lang['noplayer']);
     }
-    $page = new Page('player', true);
-    $page->assign('player', $player);
-    $toolbar = new Toolbar($lang['playerinfos']);
-    $toolbar->setBack(Lang::instance('generic')->get('btn_back'));
-    $toolbar->setButton($lang['refresh'], '#');
-    $page->addSubtemplate('toolbar', $toolbar);
-    $page->setContent(new Template('pages/player'));
-    $page->setInfo($lang['info']);
+    $page = new Page('player', $lang['playerinfos'], true);
+    $page->assign('player', $player)
+         ->setBack(Lang::instance('generic')->get('btn_back'))
+         ->setButton($lang['refresh'], '#')
+         ->setContent(new Template('pages/player'))
+         ->setInfo($lang['info']);
     
     $design->setContentView($page);
 ?>
