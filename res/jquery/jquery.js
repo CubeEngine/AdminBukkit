@@ -1,5 +1,5 @@
 /*!
- * jQuery JavaScript Library v1.6.3pre
+ * jQuery JavaScript Library v1.6.4pre
  * http://jquery.com/
  *
  * Copyright 2011, John Resig
@@ -11,7 +11,7 @@
  * Copyright 2011, The Dojo Foundation
  * Released under the MIT, BSD, and GPL Licenses.
  *
- * Date: Fri Aug 5 07:45:05 2011 -0700
+ * Date: Fri Sep 9 10:55:22 2011 -0400
  */
 (function( window, undefined ) {
 
@@ -37,8 +37,8 @@ var jQuery = function( selector, context ) {
 	rootjQuery,
 
 	// A simple way to check for HTML strings or ID strings
-	// (both of which we optimize for)
-	quickExpr = /^(?:[^<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,
+	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
+	quickExpr = /^(?:[^#<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,
 
 	// Check if a string has a non-whitespace character in it
 	rnotwhite = /\S/,
@@ -60,7 +60,6 @@ var jQuery = function( selector, context ) {
 	rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g,
 
 	// Useragent RegExp
-	rchrome = /(chrome)[ \/]([\w.]+)/,
 	rwebkit = /(webkit)[ \/]([\w.]+)/,
 	ropera = /(opera)(?:.*version)?[ \/]([\w.]+)/,
 	rmsie = /(msie) ([\w.]+)/,
@@ -68,6 +67,7 @@ var jQuery = function( selector, context ) {
 
 	// Matches dashed string for camelizing
 	rdashAlpha = /-([a-z]|[0-9])/ig,
+	rmsPrefix = /^-ms-/,
 
 	// Used by jQuery.camelCase as callback to replace()
 	fcamelCase = function( all, letter ) {
@@ -213,7 +213,7 @@ jQuery.fn = jQuery.prototype = {
 	selector: "",
 
 	// The current version of jQuery being used
-	jquery: "1.6.3pre",
+	jquery: "1.6.4pre",
 
 	// The default length of a jQuery object is 0
 	length: 0,
@@ -522,10 +522,15 @@ jQuery.extend({
 			return false;
 		}
 
-		// Not own constructor property must be Object
-		if ( obj.constructor &&
-			!hasOwn.call(obj, "constructor") &&
-			!hasOwn.call(obj.constructor.prototype, "isPrototypeOf") ) {
+		try {
+			// Not own constructor property must be Object
+			if ( obj.constructor &&
+				!hasOwn.call(obj, "constructor") &&
+				!hasOwn.call(obj.constructor.prototype, "isPrototypeOf") ) {
+				return false;
+			}
+		} catch ( e ) {
+			// IE8,9 Will throw exceptions on certain host objects #9897
 			return false;
 		}
 
@@ -611,10 +616,10 @@ jQuery.extend({
 		}
 	},
 
-	// Converts a dashed string to camelCased string;
-	// Used by both the css and data modules
+	// Convert dashed to camelCase; used by the css and data modules
+	// Microsoft forgot to hump their vendor prefix (#9572)
 	camelCase: function( string ) {
-		return string.replace( rdashAlpha, fcamelCase );
+		return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
 	},
 
 	nodeName: function( elem, name ) {
@@ -699,6 +704,9 @@ jQuery.extend({
 	},
 
 	inArray: function( elem, array ) {
+		if ( !array ) {
+			return -1;
+		}
 
 		if ( indexOf ) {
 			return indexOf.call( array, elem );
@@ -850,8 +858,7 @@ jQuery.extend({
 	uaMatch: function( ua ) {
 		ua = ua.toLowerCase();
 
-		var match = rchrome.exec( ua ) ||
-			rwebkit.exec( ua ) ||
+		var match = rwebkit.exec( ua ) ||
 			ropera.exec( ua ) ||
 			rmsie.exec( ua ) ||
 			ua.indexOf("compatible") < 0 && rmozilla.exec( ua ) ||
@@ -1174,6 +1181,7 @@ jQuery.support = (function() {
 	div.setAttribute("className", "t");
 	div.innerHTML = "   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/>";
 
+
 	all = div.getElementsByTagName( "*" );
 	a = div.getElementsByTagName( "a" )[ 0 ];
 
@@ -1300,8 +1308,8 @@ jQuery.support = (function() {
 	if ( body ) {
 		jQuery.extend( testElementStyle, {
 			position: "absolute",
-			left: -1000,
-			top: -1000
+			left: "-1000px",
+			top: "-1000px"
 		});
 	}
 	for ( i in testElementStyle ) {
@@ -1333,7 +1341,7 @@ jQuery.support = (function() {
 		support.shrinkWrapBlocks = ( div.offsetWidth !== 2 );
 	}
 
-	div.innerHTML = "<table><tr><td style='padding:0;border:0;display:none'></td><td>&nbsp;</td></tr></table>";
+	div.innerHTML = "<table><tr><td style='padding:0;border:0;display:none'></td><td>t</td></tr></table>";
 	tds = div.getElementsByTagName( "td" );
 
 	// Check if table cells still have offsetWidth/Height when they are set
@@ -1406,7 +1414,7 @@ jQuery.boxModel = jQuery.support.boxModel;
 
 
 var rbrace = /^(?:\{.*\}|\[.*\])$/,
-	rmultiDash = /([a-z])([A-Z])/g;
+	rmultiDash = /([A-Z])/g;
 
 jQuery.extend({
 	cache: {},
@@ -1456,7 +1464,7 @@ jQuery.extend({
 
 		// Avoid doing any more work than we need to when trying to get data on an
 		// object that has no data at all
-		if ( (!id || (pvt && id && !cache[ id ][ internalKey ])) && getByName && data === undefined ) {
+		if ( (!id || (pvt && id && (cache[ id ] && !cache[ id ][ internalKey ]))) && getByName && data === undefined ) {
 			return;
 		}
 
@@ -1596,7 +1604,8 @@ jQuery.extend({
 		// Browsers that fail expando deletion also refuse to delete expandos on
 		// the window, but it will allow it on all other JS objects; other browsers
 		// don't care
-		if ( jQuery.support.deleteExpando || cache != window ) {
+		// Ensure that `cache` is not a window object #10080
+		if ( jQuery.support.deleteExpando || !cache.setInterval ) {
 			delete cache[ id ];
 		} else {
 			cache[ id ] = null;
@@ -1720,7 +1729,8 @@ function dataAttr( elem, key, data ) {
 	// If nothing was found internally, try to fetch any
 	// data from the HTML5 data-* attribute
 	if ( data === undefined && elem.nodeType === 1 ) {
-		var name = "data-" + key.replace( rmultiDash, "$1-$2" ).toLowerCase();
+
+		var name = "data-" + key.replace( rmultiDash, "-$1" ).toLowerCase();
 
 		data = elem.getAttribute( name );
 
@@ -2299,14 +2309,9 @@ jQuery.extend({
 		var propName;
 		if ( elem.nodeType === 1 ) {
 			name = jQuery.attrFix[ name ] || name;
-		
-			if ( jQuery.support.getSetAttribute ) {
-				// Use removeAttribute in browsers that support it
-				elem.removeAttribute( name );
-			} else {
-				jQuery.attr( elem, name, "" );
-				elem.removeAttributeNode( elem.getAttributeNode( name ) );
-			}
+
+			jQuery.attr( elem, name, "" );
+			elem.removeAttribute( name );
 
 			// Set corresponding property to false for boolean attributes
 			if ( rboolean.test( name ) && (propName = jQuery.propFix[ name ] || name) in elem ) {
@@ -3266,8 +3271,9 @@ if ( !jQuery.support.submitBubbles ) {
 		setup: function( data, namespaces ) {
 			if ( !jQuery.nodeName( this, "form" ) ) {
 				jQuery.event.add(this, "click.specialSubmit", function( e ) {
+					// Avoid triggering error on non-existent type attribute in IE VML (#7071)
 					var elem = e.target,
-						type = jQuery.nodeName( elem, "input" ) ? elem.type : "";
+						type = jQuery.nodeName( elem, "input" ) || jQuery.nodeName( elem, "button" ) ? elem.type : "";
 
 					if ( (type === "submit" || type === "image") && jQuery( elem ).closest("form").length ) {
 						trigger( "submit", this, arguments );
@@ -3276,7 +3282,7 @@ if ( !jQuery.support.submitBubbles ) {
 
 				jQuery.event.add(this, "keypress.specialSubmit", function( e ) {
 					var elem = e.target,
-						type = jQuery.nodeName( elem, "input" ) ? elem.type : "";
+						type = jQuery.nodeName( elem, "input" ) || jQuery.nodeName( elem, "button" ) ? elem.type : "";
 
 					if ( (type === "text" || type === "password") && jQuery( elem ).closest("form").length && e.keyCode === 13 ) {
 						trigger( "submit", this, arguments );
@@ -6295,8 +6301,7 @@ var ralpha = /alpha\([^)]*\)/i,
 	rupper = /([A-Z]|^ms)/g,
 	rnumpx = /^-?\d+(?:px)?$/i,
 	rnum = /^-?\d/,
-	rrelNum = /^[+\-]=/,
-	rrelNumFilter = /[^+\-\.\de]+/g,
+	rrelNum = /^([\-+])=([\-+.\de]+)/,
 
 	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
 	cssWidth = [ "Left", "Right" ],
@@ -6373,16 +6378,16 @@ jQuery.extend({
 		if ( value !== undefined ) {
 			type = typeof value;
 
-			// Make sure that NaN and null values aren't set. See: #7116
-			if ( type === "number" && isNaN( value ) || value == null ) {
-				return;
-			}
-
 			// convert relative number strings (+= or -=) to relative numbers. #7345
-			if ( type === "string" && rrelNum.test( value ) ) {
-				value = +value.replace( rrelNumFilter, "" ) + parseFloat( jQuery.css( elem, name ) );
+			if ( type === "string" && (ret = rrelNum.exec( value )) ) {
+				value = ( +( ret[1] + 1) * +ret[2] ) + parseFloat( jQuery.css( elem, name ) );
 				// Fixes bug #9237
 				type = "number";
+			}
+
+			// Make sure that NaN and null values aren't set. See: #7116
+			if ( value == null || type === "number" && isNaN( value ) ) {
+				return;
 			}
 
 			// If a number was passed in, add 'px' to the (except for certain CSS properties)
@@ -6714,7 +6719,10 @@ var r20 = /%20/g,
 	ajaxLocation,
 
 	// Document location segments
-	ajaxLocParts;
+	ajaxLocParts,
+	
+	// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
+	allTypes = ["*/"] + ["*"];
 
 // #8138, IE may throw an exception when accessing
 // a field from window.location if document.domain has been set
@@ -7003,7 +7011,7 @@ jQuery.extend({
 			html: "text/html",
 			text: "text/plain",
 			json: "application/json, text/javascript",
-			"*": "*/*"
+			"*": allTypes
 		},
 
 		contents: {
@@ -7374,7 +7382,7 @@ jQuery.extend({
 		jqXHR.setRequestHeader(
 			"Accept",
 			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[0] ] ?
-				s.accepts[ s.dataTypes[0] ] + ( s.dataTypes[ 0 ] !== "*" ? ", */*; q=0.01" : "" ) :
+				s.accepts[ s.dataTypes[0] ] + ( s.dataTypes[ 0 ] !== "*" ? ", " + allTypes + "; q=0.01" : "" ) :
 				s.accepts[ "*" ]
 		);
 
@@ -8068,10 +8076,7 @@ var elemdisplay = {},
 		// opacity animations
 		[ "opacity" ]
 	],
-	fxNow,
-	requestAnimationFrame = window.webkitRequestAnimationFrame ||
-		window.mozRequestAnimationFrame ||
-		window.oRequestAnimationFrame;
+	fxNow;
 
 jQuery.fn.extend({
 	show: function( speed, easing, callback ) {
@@ -8447,8 +8452,7 @@ jQuery.fx.prototype = {
 	// Start an animation from one number to another
 	custom: function( from, to, unit ) {
 		var self = this,
-			fx = jQuery.fx,
-			raf;
+			fx = jQuery.fx;
 
 		this.startTime = fxNow || createFxNow();
 		this.start = from;
@@ -8464,20 +8468,7 @@ jQuery.fx.prototype = {
 		t.elem = this.elem;
 
 		if ( t() && jQuery.timers.push(t) && !timerId ) {
-			// Use requestAnimationFrame instead of setInterval if available
-			if ( requestAnimationFrame ) {
-				timerId = true;
-				raf = function() {
-					// When timerId gets set to null at any point, this stops
-					if ( timerId ) {
-						requestAnimationFrame( raf );
-						fx.tick();
-					}
-				};
-				requestAnimationFrame( raf );
-			} else {
-				timerId = setInterval( fx.tick, fx.interval );
-			}
+			timerId = setInterval( fx.tick, fx.interval );
 		}
 	},
 
