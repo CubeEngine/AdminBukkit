@@ -9,7 +9,6 @@
             $this->title = $title;
             
             parent::__construct('index/index', Router::instance()->getLinkGenerator());
-            $this->assign('theme', Config::instance('bukkitweb')->get('theme'));
         }
         
         public static function addMinorTitle($title)

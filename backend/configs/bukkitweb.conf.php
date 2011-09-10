@@ -2,7 +2,6 @@
     return array(
         // Generell
         'default'               => 'home',
-        'theme'                 => 'apple',
         'defaultLanguage'       => 'en',
         'timezone'              => 'Europe/Berlin',
         'database'              => 'SQLite',
