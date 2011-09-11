@@ -1,7 +1,8 @@
 <?php
     return array(
         // Template
-        'menu'              => 'Menu',
+        'pages'             => 'Seiten',
+        'user'              => 'Benutzer',
         'registration'      => 'Registration',
         'login'             => 'Login',
         'manplayers'        => 'Player-Management',

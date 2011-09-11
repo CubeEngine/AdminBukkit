@@ -1,6 +1,6 @@
 <?php $lang = Lang::instance('home') ?>
 <ul data-role="listview">
-    <li data-role="divider">!Pages!</li>
+    <li data-role="divider"><?php $lang->pages ?></li>
     <?php if (!User::loggedIn()): ?>
     <li class="arrow"><a href="<?php $this->page('register') ?>"><?php $lang->registration ?></a></li>
     <li class="arrow"><a href="<?php $this->page('login') ?>"><?php $lang->login ?></a></li>
@@ -14,7 +14,7 @@
     <li class="arrow"><a href="<?php $this->page('stats') ?>"><?php $lang->stats ?></a></li>
     <li class="arrow"><a href="<?php $this->page('downloads') ?>"><?php $lang->downloads ?></a></li>
 
-    <li data-role="divider">!User!</li>
+    <li data-role="divider"><?php $lang->user ?></li>
     <li class="arrow"><a href="<?php $this->page('profile') ?>"><?php $lang->profile ?></a></li>
     <li class="arrow"><a href="<?php $this->page('logout') ?>" id="logout"><?php $lang->logout ?></a></li>
     <?php endif ?>
