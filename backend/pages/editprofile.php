@@ -121,7 +121,7 @@
              ->assign('apiauthkey', $apiauthkey);
     }
     
-    $page->setBack($lang['profile'], $design->getLinkGenerator()->page('profile'))
+    $page->setBack(Lang::instance('generic')->get('btn_back'))
          ->setContent(new Template('pages/editprofile'));
     
     $design->setContentView($page);

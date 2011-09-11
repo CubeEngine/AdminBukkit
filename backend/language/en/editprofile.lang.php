@@ -6,8 +6,7 @@
         
         // Controller
         'edit_success'      => 'You can login with your new information now',
-        'edit'              => 'Edit',
-        'profile'           => 'Profile'
+        'edit'              => 'Edit'
         
         // @see register
     );
