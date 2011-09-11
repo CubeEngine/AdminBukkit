@@ -157,6 +157,9 @@ div#console_viewbox > div > div.logtype_severe:hover {
 div[data-role=footer] {
     text-align: center;
 }
+div[data-role=footer] a {
+    color: #CCC;
+}
 /**
  * Page - world
  */
