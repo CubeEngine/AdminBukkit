@@ -7,7 +7,7 @@
     }
     $page = new Page('playerpopup', $player, true);
     $page->assign('player', $lang['playerinfos'], $player)
-         ->setContent(new Template('pages/playerpopup'));
+         ->setContent(new Template('pages/popups/player'));
 
     $design->setContentView($page);
 ?>

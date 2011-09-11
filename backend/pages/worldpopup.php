@@ -7,7 +7,7 @@
     }
     $page = new Page('worldpopup', $world, true);
     $page->assign('world', $world)
-         ->setContent(new Template('pages/worldpopup'));
+         ->setContent(new Template('pages/popups/world'));
 
     $design->setContentView($page);
 ?>
