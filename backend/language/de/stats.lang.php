@@ -59,6 +59,7 @@
         'stat_api.succeeded.whitelist_get'          => '{0} Mal wurde die Whitelist abgefragt.',
         'stat_api.succeeded.whitelist_add'          => '{0} Mal wurde ein Spieler auf die Whitelist hinzugefügt.',
         'stat_api.succeeded.whitelist_remove'       => '{0} Mal wurde ein Spieler von der Whitelist entfernt.',
+        'stat_api.succeeded.server_console'         => '{0} Mal wurde die Konsole abgefragt.',
      // 'stat_api.succeeded.' => '',
         
         // Controller

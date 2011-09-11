@@ -59,6 +59,7 @@
         'stat_api.succeeded.whitelist_get'          => '{0} times the whitelist was requested.',
         'stat_api.succeeded.whitelist_add'          => '{0} times a player was added to the whitelist.',
         'stat_api.succeeded.whitelist_remove'       => '{0} times a player was removed from the whitelist.',
+        'stat_api.succeeded.server_console'         => '{0} times the console was requested.',
      // 'stat_api.succeeded.' => '',
         
         // Controller
