@@ -32,10 +32,10 @@
 <h2><?php $lang->utils ?></h2>
 <div data-role="controlgroup">
     <a data-role="button" href="#" id="stats_ram"><?php $lang->ram ?>: <span id="stats_ram_free"><?php $genericLang->progress ?></span> / <span id="stats_ram_max"><?php $genericLang->progress ?></span> MB</a>
-    <a data-role="button" href="<?php $this->page('banplayerpopup') ?>" data-rel="dialog"><?php $lang->banplayer ?></a>
-    <a data-role="button" href="<?php $this->page('banippopup') ?>" data-rel="dialog"><?php $lang->banip ?></a>
-    <a data-role="button" href="<?php $this->page('whitelistpopup') ?>" data-rel="dialog"><?php $lang->addtowhitelist ?></a>
-    <a data-role="button" href="<?php $this->page('operatorpopup') ?>" data-rel="dialog"><?php $lang->addoperator ?></a>
+    <a data-role="button" href="<?php $this->page('playerbanlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->banplayer ?></a>
+    <a data-role="button" href="<?php $this->page('ipbanlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->banip ?></a>
+    <a data-role="button" href="<?php $this->page('whitelist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->addtowhitelist ?></a>
+    <a data-role="button" href="<?php $this->page('operatorlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->addoperator ?></a>
     <a data-role="button" href="#" id="broadcast"><?php $lang->broadcast ?></a>
     <a data-role="button" href="<?php $this->page('console') ?>"><?php $lang->consoleview ?></a>
     <a data-role="button" href="#" id="stop"><?php $lang->stop ?></a>
@@ -120,7 +120,7 @@
         }
         return false;
     });
-    $('#stop').click(function(){
+    $('#stop').bind('vmousedown', function(){
         if (confirm('<?php $lang->stop_confirm ?>'))
         {
             if (confirm('<?php $lang->stop_confirm2 ?>'))
@@ -133,7 +133,7 @@
             }
         }
     });
-    $('#broadcast').click(function(){
+    $('#broadcast').bind('vmousedown', function(){
         var message = prompt('<?php $lang->broadcast_prompt ?>', '');
         if (!message)
         {
