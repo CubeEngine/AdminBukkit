@@ -5,9 +5,8 @@
     {
         Router::instance()->redirectToPage('players', $lang['noplayer']);
     }
-    $page = new Page('playerpopup', true);
+    $page = new Page('playerpopup', $player, true);
     $page->assign('player', $lang['playerinfos'], $player)
-    //     ->setBack(Lang::instance('generic')->get('btn_back'));
          ->setContent(new Template('pages/playerpopup'));
 
     $design->setContentView($page);

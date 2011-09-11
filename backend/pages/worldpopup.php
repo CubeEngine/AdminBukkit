@@ -5,9 +5,9 @@
     {
         Router::instance()->redirectToPage('worlds', $lang['noworld']);
     }
-    $page = new Page('worldpopup', $lang['playerinfos'], true);
-    $page->assign('world', $world);
-    $page->setContent(new Template('pages/worldpopup'));
+    $page = new Page('worldpopup', $world, true);
+    $page->assign('world', $world)
+         ->setContent(new Template('pages/worldpopup'));
 
     $design->setContentView($page);
 ?>
