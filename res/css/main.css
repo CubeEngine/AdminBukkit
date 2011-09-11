@@ -8,7 +8,6 @@ a.back:hover {
     display: none;
 }
 .infobox {
-    margin-bottom: 5px;
     padding: .4em 15px;
     border: 1px solid #F7C942;
     color: #333333;
@@ -116,6 +115,11 @@ span.chestplate span.half {
 div#console_viewbox {
     height: 200px;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -moz-overflow-scrolling: touch;
+    -o-overflow-scrolling: touch;
+    -ms-overflow-scrolling: touch;
+    overflow-scrolling: touch;
     background-color: rgb(211,211,211);
     margin: 10px;
     -webkit-border-radius: 10px;

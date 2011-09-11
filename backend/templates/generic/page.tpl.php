@@ -15,13 +15,13 @@
             <a href="<?php echo $btnTarget ?>"><?php echo $btnText ?></a>
         <?php endif ?>
     </div>
+    <?php if (Request::get('msg')): ?>
+    <div class="ui-body ui-body-e">
+        <h4 style="margin:.5em 0"><?php $lang->message ?></h4>
+        <?php echo htmlspecialchars(urldecode(Request::get('msg'))) ?>
+    </div>
+    <?php endif ?>
     <div data-role="content">
-        <?php if (Request::get('msg')): ?>
-        <div class="ui-body ui-body-e">
-            <h4 style="margin:.5em 0"><?php $lang->message ?></h4>
-            <?php echo htmlspecialchars(urldecode(Request::get('msg'))) ?>
-        </div>
-        <?php endif ?>
         <div>
             <?php $this->subTemplate('content') ?>
         </div>
