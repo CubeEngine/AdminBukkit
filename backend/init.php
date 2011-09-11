@@ -26,7 +26,6 @@
             'Page'                              => 'Page.php',
             'WhitespaceFilter'                  => 'WhitespaceFilter.php',
             'TidyFilter'                        => 'TidyFilter.php',
-            'Toolbar'                           => 'Toolbar.php',
             'Router'                            => 'Router.php',
             'HttpClient'                        => 'Http/HttpClient.php',
             'HttpHeader'                        => 'Http/HttpHeader.php',
