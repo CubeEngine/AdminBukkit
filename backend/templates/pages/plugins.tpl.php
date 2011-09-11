@@ -1,5 +1,5 @@
 <?php $lang = Lang::instance('plugins') ?>
-<ol id="pluginlist" data-role="listview">
+<ol data-filter="true" id="pluginlist" data-role="listview">
     <li>Pluginliste wird geladen...</li> <!-- @todo static language -->
 </ol>
 

@@ -6,7 +6,7 @@
 <?php endif ?>
     [ <span id="players_online">0</span> / <span id="players_limit">0</span> ]
 </h2>
-<ul data-role="listview" id="<?php echo $pageName ?>_players" data-split-icon="gear">
+<ul data-filter="true" data-role="listview" id="<?php echo $pageName ?>_players" data-split-icon="gear">
     <li><?php $lang->loadinglist ?></li>
 </ul>
 <script type="text/javascript">

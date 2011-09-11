@@ -9,6 +9,8 @@
         'no'                        => 'no',
         'No'                        => 'No',
         'loginrequired'             => 'Login required',
+        'pageloaderror'             => 'The page could not be loaded!',
+        'filterplaceholder'         => 'Search...',
 
         'error_serverunavailable'   => "The server isn't reachable (anymore).\nCheck your server info and the server.\n\nBack to the main page?",
         'error_unknown'             => 'An unknown error occured.\nPlease inform an administrator about this error',

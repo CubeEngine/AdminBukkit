@@ -177,6 +177,7 @@ function parseColors(string)
 
 $.mobile.loadingMessage = genericLang.progress;
 $.mobile.pageloadErrorMessage = genericLang.pageloaderror;
+$.mobile.listview.prototype.options.filterPlaceholder = genericLang.filterplaceholder;
 
 $(window).unload(function(){
     ready = false;
