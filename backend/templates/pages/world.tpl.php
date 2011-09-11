@@ -90,10 +90,10 @@
     
     $('#world').bind('pageshow', function(){
         request.execute();
-    });
-    
-    $('.toolbar a.button').click(function(){
-        request.execute();
-        return false;
+    }).bind('pagecreate', function(){
+        $('#world_toolbar_button').bind('vmousedown', function(){
+            request.execute();
+            return false;
+        });
     });
 </script>

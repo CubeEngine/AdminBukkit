@@ -96,56 +96,6 @@
         $('#stats_ram_max').html(max);
         $('#stats_ram_free').html(max - free);
     }
-    
-    $('#stats_ram').click(function(e){
-        e.preventDefault();
-        if (confirm('<?php $lang->gc_confirm ?>'))
-        {
-            var request = new ApiRequest('server', 'garbagecollect');
-            request.onSuccess(function(){
-                alert('<?php $lang->gc_success ?>');
-            });
-            request.execute();
-        }
-    });
-    $('.toolbar a.button').click(function(){
-        if (confirm('<?php $lang->confirm_reload ?>'))
-        {
-            var request = new ApiRequest('server', 'reload');
-            request.onSuccess(function(){
-                alert('<?php $lang->reload_success ?>');
-                infoRequest.execute();
-            });
-            request.execute();
-        }
-        return false;
-    });
-    $('#stop').bind('vmousedown', function(){
-        if (confirm('<?php $lang->stop_confirm ?>'))
-        {
-            if (confirm('<?php $lang->stop_confirm2 ?>'))
-            {
-                var request = new ApiRequest('server', 'stop');
-                request.onSuccess(function(){
-                    alert('<?php $lang->stop_success ?>');
-                });
-                request.execute();
-            }
-        }
-    });
-    $('#broadcast').bind('vmousedown', function(){
-        var message = prompt('<?php $lang->broadcast_prompt ?>', '');
-        if (!message)
-        {
-            return false;
-        }
-        var request = new ApiRequest('server', 'broadcast')
-        request.onSuccess(function(){
-            alert('<?php $lang->broadcast_success ?>');
-        });
-        request.execute({message: message.substr(0, 100)});
-        return false;
-    });
 
     var statsInterval = null;
     
@@ -158,5 +108,58 @@
         {
             clearInterval(statsInterval);
         }
+    }).bind('pagecreate', function(){
+        $('#server_toolbar_button').bind('vmousedown', function(){
+            if (confirm('<?php $lang->confirm_reload ?>'))
+            {
+                var request = new ApiRequest('server', 'reload');
+                request.onSuccess(function(){
+                    alert('<?php $lang->reload_success ?>');
+                    infoRequest.execute();
+                });
+                request.execute();
+            }
+            return false;
+        });
+
+        $('#stats_ram').click(function(e){
+            e.preventDefault();
+            if (confirm('<?php $lang->gc_confirm ?>'))
+            {
+                var request = new ApiRequest('server', 'garbagecollect');
+                request.onSuccess(function(){
+                    alert('<?php $lang->gc_success ?>');
+                });
+                request.execute();
+            }
+        });
+
+        $('#stop').bind('vmousedown', function(){
+            if (confirm('<?php $lang->stop_confirm ?>'))
+            {
+                if (confirm('<?php $lang->stop_confirm2 ?>'))
+                {
+                    var request = new ApiRequest('server', 'stop');
+                    request.onSuccess(function(){
+                        alert('<?php $lang->stop_success ?>');
+                    });
+                    request.execute();
+                }
+            }
+        });
+
+        $('#broadcast').bind('vmousedown', function(){
+            var message = prompt('<?php $lang->broadcast_prompt ?>', '');
+            if (!message)
+            {
+                return false;
+            }
+            var request = new ApiRequest('server', 'broadcast')
+            request.onSuccess(function(){
+                alert('<?php $lang->broadcast_success ?>');
+            });
+            request.execute({message: message.substr(0, 100)});
+            return false;
+        });
     });
 </script>

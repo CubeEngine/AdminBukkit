@@ -44,11 +44,10 @@
     
     $('#worlds').bind('pageshow', function(){
         request.execute();
+    }).bind('pagecreate', function(){
+        $('#worlds_toolbar_button').bind('vmousedown', function(){
+            request.execute();
+            return false;
+        });
     });
-
-    $('div.toolbar a.button').click(function(){
-        request.execute();
-        return false;
-    });
-
 </script>

@@ -74,11 +74,6 @@
         }
         list.listview('refresh');
     }
-    
-    $('div.toolbar a.button').click(function(){
-        playersRequest.execute();
-        return false;
-    });
 
 
     var playersIntervalId = null;    
@@ -86,11 +81,15 @@
         maxPlayersRequest.execute();
         playersRequest.execute();
         playersIntervalId = setInterval(playersRequest.execute, 10000);
-    })
-    .bind('pagehide', function(){
+    }).bind('pagehide', function(){
         if (playersIntervalId)
         {
             clearInterval(playersIntervalId);
         }
+    }).bind('pagecreate', function(){
+        $('#<?php echo $pageName ?>_toolbar_button').bind('vmousedown', function(){
+            playersRequest.execute();
+            return false;
+        });
     });
 </script>

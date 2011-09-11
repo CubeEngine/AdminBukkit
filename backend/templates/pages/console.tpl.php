@@ -54,54 +54,6 @@
         }
     }
 
-    $('#console_input').bind('keydown', function(e){
-        if (e.which == 13)
-        {
-            var commandLine = $(e.target).val().split(" ");
-            var command = commandLine[0];
-            data = {}
-            if (commandLine.length > 1)
-            {
-                var params = commandLine.slice(1, commandLine.length);
-                data.params = params.join(",");
-            }
-            var commandRequest = new ApiRequest('command', command);
-            commandRequest.onSuccess(function(data){
-                $('#console_input').val('');
-                if (!refreshing)
-                {
-                    consoleRequest.execute();
-                }
-            });
-            commandRequest.onFailure(function(error){
-                switch (error)
-                {
-                    case 1:
-                        alert('<?php $lang->console_readfailed ?>');
-                }
-            });
-            commandRequest.execute(data);
-        }
-    });
-
-    $('.toolbar a.button').click(function(e){
-        e.preventDefault();
-        var elem = $(e.target);
-        if (refreshing)
-        {
-            refreshing = false;
-            clearTimeout(timeoutID);
-            elem.text('<?php $lang->enable_refreshing ?>');
-        }
-        else
-        {
-            refreshing = true;
-            elem.text('<?php $lang->disable_refreshing ?>');
-            consoleRequest.execute();
-        }
-        return false;
-    });
-
     $('#console').bind('pageshow', function(){
         refreshing = true;
         consoleRequest.execute();
@@ -111,5 +63,53 @@
             refreshing = false;
             clearTimeout(timeoutID);
         }
+    }).bind('pagecreate', function(){
+        $('#console_input').bind('keydown', function(e){
+            if (e.which == 13)
+            {
+                var commandLine = $(e.target).val().split(" ");
+                var command = commandLine[0];
+                data = {}
+                if (commandLine.length > 1)
+                {
+                    var params = commandLine.slice(1, commandLine.length);
+                    data.params = params.join(",");
+                }
+                var commandRequest = new ApiRequest('command', command);
+                commandRequest.onSuccess(function(data){
+                    $('#console_input').val('');
+                    if (!refreshing)
+                    {
+                        consoleRequest.execute();
+                    }
+                });
+                commandRequest.onFailure(function(error){
+                    switch (error)
+                    {
+                        case 1:
+                            alert('<?php $lang->console_readfailed ?>');
+                    }
+                });
+                commandRequest.execute(data);
+            }
+        });
+
+        $('#console_toolbar_button').bind('vclick', function(e){
+            e.preventDefault();
+            var elem = $(e.target);
+            if (refreshing)
+            {
+                refreshing = false;
+                clearTimeout(timeoutID);
+                elem.text('<?php $lang->enable_refreshing ?>');
+            }
+            else
+            {
+                refreshing = true;
+                elem.text('<?php $lang->disable_refreshing ?>');
+                consoleRequest.execute();
+            }
+            return false;
+        });
     });
 </script>

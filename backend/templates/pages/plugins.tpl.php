@@ -38,10 +38,10 @@
     
     $('#plugins').bind('pageshow', function(){
         request.execute();
-    });
-    
-    $('div.toolbar a:last-child').click(function(){
-        request.execute();
-        return false;
+    }).bind('pagecreate', function(){
+        $('#plugins_toolbar_button').bind('vmousedown', function(){
+            request.execute();
+            return false;
+        });
     });
 </script>

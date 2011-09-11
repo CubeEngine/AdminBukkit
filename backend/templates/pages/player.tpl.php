@@ -61,7 +61,7 @@
 <div data-role="controlgroup">
     <a href="" id="player_world" data-role="button"><?php $lang->world ?>: <span id="player_world_name"><?php $genericLang->progress ?></span></a>
     <a id="ban_ip" href="#" data-role="button"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a>
-    <a href="<?php $this->page('playerpopup') ?>?player=<?php echo $player ?>" data-role="button" data-rel="dialog"><?php $lang->utils ?></a>
+    <a href="<?php $this->page('playerpopup') ?>?player=<?php echo $player ?>" data-role="button" data-rel="dialog" data-transition="pop"><?php $lang->utils ?></a>
 </div>
 <script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=serverutils"></script>
 <!--<script type="text/javascript" src="<?php $this->res('js/playerutils.js') ?>"></script>-->
@@ -130,59 +130,6 @@
         $('#player_ip').text(data.ip);
     }
 
-    $('#player_health span.heart, #player_armor span.chestplate').bind('touchstart', function(e){
-        $(e.target).parent().trigger('touchstart', e);
-        e.preventDefault();
-        e.stopImmediatePropagation();
-    });
-
-    $('.toolbar a.button').click(function(){
-        request.execute();
-        return false;
-    });
-
-    $('#ban_ip').bind('vmousedown', function(){
-        if (ban_ip($('#player_ip').text(), true))
-        {
-            if (player_kick(player, true))
-            {
-                history.back();
-            }
-        }
-        return false;
-    });
-
-    $('#player_displayname').click(function(){
-        var displayname = prompt('<?php $lang->displayname_enter ?>', '');
-        if (!displayname)
-        {
-            return false;
-        }
-        var displayNameRequest = new ApiRequest('player', 'displayname');
-        displayNameRequest.onSuccess(function(){
-            alert('<?php $lang->displayname_success ?>');
-            request.execute();
-        });
-        displayNameRequest.onFailure(function(error){
-            switch (error)
-            {
-                case 1:
-                    alert('<?php $lang->displayname_noplayer ?>');
-                    break;
-                case 2:
-                    alert('<?php $lang->displayname_playernotfound ?>');
-                    break;
-                case 3:
-                    alert('<?php $lang->displayname_nodisplayname ?>');
-                    break;
-            }
-        });
-        displayNameRequest.execute({
-            player: player,
-            displayname: displayname
-        });
-    });
-
     var playerIntervalID = null;
     $('#player').bind('pageshow', function(){
         request.execute();
@@ -193,6 +140,59 @@
         {
             clearInterval(playerIntervalID);
         }
+    }).bind('pagecreate', function(){
+        $('#player_toolbar_button').bind('vmousedown', function(){
+            request.execute();
+            return false;
+        });
+
+        $('#player_displayname').click(function(){
+            var displayname = prompt('<?php $lang->displayname_enter ?>', '');
+            if (!displayname)
+            {
+                return false;
+            }
+            var displayNameRequest = new ApiRequest('player', 'displayname');
+            displayNameRequest.onSuccess(function(){
+                alert('<?php $lang->displayname_success ?>');
+                request.execute();
+            });
+            displayNameRequest.onFailure(function(error){
+                switch (error)
+                {
+                    case 1:
+                        alert('<?php $lang->displayname_noplayer ?>');
+                        break;
+                    case 2:
+                        alert('<?php $lang->displayname_playernotfound ?>');
+                        break;
+                    case 3:
+                        alert('<?php $lang->displayname_nodisplayname ?>');
+                        break;
+                }
+            });
+            displayNameRequest.execute({
+                player: player,
+                displayname: displayname
+            });
+        });
+
+        $('#player_health span.heart, #player_armor span.chestplate').bind('touchstart', function(e){
+            $(e.target).parent().trigger('touchstart', e);
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        });
+
+        $('#ban_ip').bind('vmousedown', function(){
+            if (ban_ip($('#player_ip').text(), true))
+            {
+                if (player_kick(player, true))
+                {
+                    history.back();
+                }
+            }
+            return false;
+        });
     });
     
 </script>
