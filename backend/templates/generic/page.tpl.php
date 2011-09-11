@@ -16,10 +16,10 @@
         <?php endif ?>
     </div>
     <div data-role="content">
-        <?php if (isset($_GET['msg'])): ?>
+        <?php if (Request::get('msg')): ?>
         <div class="ui-body ui-body-e">
             <h4 style="margin:.5em 0"><?php $lang->message ?></h4>
-            <?php echo htmlspecialchars(urldecode($_GET['msg'])) ?>
+            <?php echo htmlspecialchars(urldecode(Request::get('msg'))) ?>
         </div>
         <?php endif ?>
         <div>
