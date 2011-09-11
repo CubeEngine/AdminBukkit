@@ -3,7 +3,7 @@
     <a href="#" id="world_create"><?php $lang->create ?></a>
 </div>
 <h2><?php $lang->loadedworlds ?>:</h2>
-<ul id="worldlist" data-role="listview">
+<ul id="worldlist" data-role="listview" data-split-icon="gear">
     <li><?php $lang->loadinglist ?></li>
 </ul>
 <script type="text/javascript">
