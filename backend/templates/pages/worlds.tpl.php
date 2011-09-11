@@ -1,6 +1,6 @@
 <?php $lang = Lang::instance('worlds') ?>
 <div>
-    <a href="#" id="world_create"><?php $lang->create ?></a>
+    <a href="<?php $this->page('addworld') ?>" data-rel="dialog" data-transition="pop" id="world_create"><?php $lang->create ?></a>
 </div>
 <h2><?php $lang->loadedworlds ?>:</h2>
 <ul id="worldlist" data-role="listview" data-split-icon="gear">

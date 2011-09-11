@@ -1,14 +1,11 @@
 var worldutilsLang = new WorldutilsLang();
 
-function world_create(onSuccess)
+function world_create(world, seed, environment, generator, onSuccess)
 {
-    //alert(genericLang.function_disabled);
-    //return false;
-    
     var data = new Object();
-    var world = prompt(worldutilsLang.create_name, '');
     if (!world)
     {
+        alert(worldutilsLang.create_noname);
         return false;
     }
     world = world.replace(/\s/g, '');
@@ -17,21 +14,23 @@ function world_create(onSuccess)
         alert(worldutilsLang.create_invalidname);
     }
     data.world = world;
-    var seed = prompt(worldutilsLang.create_seed, '');
     if (seed)
     {
         data.seed = seed;
     }
-    data.environment = 'normal';
-    var env = prompt(worldutilsLang.create_env, '');
-    if (env == 'normal' || env == 'nether' || env == 'skylands')
+
+    if (environment && (environment == 'normal' || environment == 'nether' || environment == 'skylands'))
     {
-        data.environment = env;
+        data.environment = environment;
     }
     else
     {
         alert(worldutilsLang.create_invalidenv);
         return false;
+    }
+    if (generator)
+    {
+        data.generator = generator;
     }
     if (confirm(worldutilsLang.create_warning))
     {
@@ -54,6 +53,9 @@ function world_create(onSuccess)
                     break;
                 case 3:
                     alert(worldutilsLang.create_invalidenv);
+                    break;
+                case 4:
+                    alert(worldutilsLang.create_generatornotfound);
                     break;
             }
         });
