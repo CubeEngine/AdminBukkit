@@ -60,7 +60,7 @@
                 icon.attr('src', BASE_PATH + 'backend/playerhead.php?size=16&player=' + players[i])
                 mainLink.append(icon);
                 li.append(mainLink);
-                li.append($('<a href="<?php $this->page('playerpopup') ?>?player=' + players[i] + '" data-rel="dialog"></a>'));
+                li.append($('<a href="<?php $this->page('playerpopup') ?>?player=' + players[i] + '" data-rel="dialog" data-transition="pop"></a>'));
                 list.append(li);
             }
             <?php if (isset($world)): ?>

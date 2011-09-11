@@ -35,7 +35,7 @@
                 li.append(mainLink);
                 var minorLink = $('<a>');
                 minorLink.attr('href', '<?php $this->page('worldpopup') ?>?world=' + worlds[i]);
-                li.append($('<a href="<?php $this->page('worldpopup') ?>?world=' + worlds[i] + '" data-rel="dialog"></a>'));
+                li.append($('<a href="<?php $this->page('worldpopup') ?>?world=' + worlds[i] + '" data-rel="dialog" data-transition="pop"></a>'));
                 list.append(li);
             }
             list.listview('refresh');
