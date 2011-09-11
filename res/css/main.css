@@ -8,12 +8,8 @@ a.back:hover {
     display: none;
 }
 .infobox {
-    /*position: relative;*/
     margin-bottom: 5px;
     padding: .4em 15px;
-    overflow: hidden;
-    display: block;
-    clear:both;
     border: 1px solid #F7C942;
     color: #333333;
     text-shadow: 0 1px 0 #fff;
