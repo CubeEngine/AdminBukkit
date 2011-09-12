@@ -54,9 +54,12 @@
                 }
             }
         }
-        
-        $page->assign('errors', $errors)
-             ->assign('user', $user);
+
+        if (count($errors))
+        {
+            $_SESSION['message'] = implode('<br>', $errors);
+        }
+        $page->assign('user', $user);
     }
     
     $tpl = new Template('pages/login');

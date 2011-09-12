@@ -1,13 +1,5 @@
 <?php $lang = Lang::instance('login') ?>
 <form id="login_form" action="<?php $this->page('login') ?>" method="post" accept-charset="utf-8" data-ajax="false">
-    <?php if (isset($errors) && count($errors)): ?>
-    <div class="infobox">
-        <h4><?php $lang->errors ?>:</h4>
-        <div style="color:red">
-            <?php echo implode("<br>", $errors) ?>
-        </div>
-    </div>
-    <?php endif ?>
     <label for="login_user"><?php $lang->username ?></label>
     <input type="text" name="user" id="login_user" placeholder="<?php $lang->username ?>" value="<?php echo $user ?>" required>
     <label for="login_pass"><?php $lang->password ?></label>
