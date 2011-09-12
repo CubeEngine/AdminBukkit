@@ -111,7 +111,7 @@
         
         if (count($errors))
         {
-            $page->assign('errors', $errors);
+            $_SESSION['message'] = implode("<br>", $errors);
         }
         
         $page->assign('user', $user)

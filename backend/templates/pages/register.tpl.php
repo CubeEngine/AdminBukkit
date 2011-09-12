@@ -1,13 +1,5 @@
 <?php $lang = Lang::instance('register') ?>
 <form action="<?php $this->page('register') ?>" method="post" accept-charset="utf-8" data-ajax="false">
-    <?php if (isset($errors)): ?>
-    <div class="infobox">
-        <h4><?php $lang->errors ?>:</h4>
-        <div style="color:red">
-            <?php echo implode("<br>", $errors) ?>
-        </div>
-    </div>
-    <?php endif ?>
     <h2><?php $lang->fillin ?></h2>
     <label for="register_user"><?php $lang->username ?></label>
     <input name="user" id="register_user" type="text" placeholder="<?php $lang->username ?>" value="<?php echo $user ?>" size="40" required>

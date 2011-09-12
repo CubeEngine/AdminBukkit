@@ -1,14 +1,6 @@
 <?php $lang = Lang::instance('editprofile') ?>
 <?php $registerLang = Lang::instance('register') ?>
 <form action="<?php $this->page('editprofile') ?>" method="post" accept-charset="utf-8" data-ajax="false">
-    <?php if (isset($errors) && count($errors)): ?>
-    <div class="infobox">
-        <h4><?php $registerLang->errors ?>:</h4>
-        <div style="color:red">
-            <?php echo implode("<br>", $errors) ?>
-        </div>
-    </div>
-    <?php endif ?>
     <h2><?php $lang->changeinfos ?>:</h2>
     
     <label for="editprofile_user"><?php $registerLang->username ?>:</label>
