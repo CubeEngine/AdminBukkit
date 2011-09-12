@@ -103,7 +103,7 @@ class Router
         $url = $this->linkgen->page($page);
         if ($msg !== null)
         {
-            $url .= '?msg=' . urlencode(strval($msg));
+            $_SESSION['message'] = strval($msg);
         }
         $this->redirect($url);
     }

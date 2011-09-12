@@ -15,6 +15,11 @@
             $this->addSubTemplate('copyright', new Template('generic/copyright'));
             $this->content = null;
             $this->info = $this->getSubtemplate('copyright');
+            if (isset($_SESSION['message']))
+            {
+                $this->assign('message', $_SESSION['message']);
+                unset($_SESSION['message']);
+            }
         }
         
         public function setContent(View $content)

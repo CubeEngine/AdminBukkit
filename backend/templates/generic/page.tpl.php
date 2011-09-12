@@ -15,10 +15,10 @@
             <a href="<?php echo $btnTarget ?>" id="<?php echo $pageName ?>_toolbar_button"><?php echo $btnText ?></a>
         <?php endif ?>
     </div>
-    <?php if (Request::get('msg')): ?>
+    <?php if (isset($message)): ?>
     <div class="ui-body ui-body-e">
         <h4 style="margin:.5em 0"><?php $lang->message ?></h4>
-        <?php echo htmlspecialchars(urldecode(Request::get('msg'))) ?>
+        <?php echo $message ?>
     </div>
     <?php endif ?>
     <div data-role="content">
