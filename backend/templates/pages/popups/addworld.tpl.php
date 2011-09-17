@@ -4,9 +4,9 @@
     <input type="text" name="name" id="addworld_name" placeholder="<?php $lang->name ?>">
     <label for="addworld_environment"><?php $lang->environment ?>:</label>
     <select name="environment" id="addworld_environment">
-        <option value="normal"><?php $lang->env_normal ?></option>
-        <option value="nether"><?php $lang->env_nether ?></option>
-        <option value="skylands"><?php $lang->env_skylands ?></option>
+        <option value="0"><?php $lang->env_normal ?></option>
+        <option value="-1"><?php $lang->env_nether ?></option>
+        <option value="1"><?php $lang->env_skylands ?></option>
     </select>
     <label for="addworld_seed"><?php $lang->seed ?>:</label>
     <input type="text" name="seed" id="addworld_seed" placeholder="<?php $lang->seed ?>">
