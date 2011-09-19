@@ -3,6 +3,7 @@
         'unbanplayer_prompt'        => 'Enter the playername which should be unbanned:',
         'unbanplayer_success'       => 'Player was successfully unbanned!',
         'unbanplayer_confirm'       => 'Are you sure to unban this player?',
+        'unbanplayer_isnotbanned'   => 'The player is not banned!',
         'unbanip_prompt'            => 'Enter the IP(v4) which should be unbanned:',
         'unbanip_success'           => 'IP was successfully unbanned!',
         'unbanip_confirm'           => 'Are you sure to unban this IP(v4)?',

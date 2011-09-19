@@ -3,6 +3,7 @@
         'unbanplayer_prompt'        => 'Gib den zu entbannenden Spielernamen ein:',
         'unbanplayer_success'       => 'Spieler erfolgreich entbannt!',
         'unbanplayer_confirm'       => 'Willst du diesen Spieler wirklich entbannen?',
+        'unbanplayer_isnotbanned'   => 'Der Spieler ist gar nicht gebannt!',
         'unbanip_prompt'            => 'Gib die zu entbannende IP(v4) ein:',
         'unbanip_success'           => 'IP erfolgreich entbannt!',
         'unbanip_confirm'           => 'Willst du diese IP(v4) wirklich entbannen?',

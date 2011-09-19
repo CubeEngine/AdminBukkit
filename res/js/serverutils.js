@@ -131,6 +131,9 @@ function unban_player(player, sync)
             case 1:
                 alert(serverutilsLang.name_missing);
                 break;
+            case 3:
+                alert(serverutilsLang.unbanplayer_isnotbanned);
+                break;
         }
     });
     request.sync(!!sync);
