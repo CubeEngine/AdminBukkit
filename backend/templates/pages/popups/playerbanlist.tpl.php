@@ -1,4 +1,5 @@
-<ul data-role="listview" data-filter="true">
+<?php $lang = Lang::instance('playerbanlist') ?>
+<ul id="playerbanlist_list" data-role="listview" data-filter="true">
     <li><?php $lang->loading ?></li>
 </ul>
 <script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=serverutils"></script>
@@ -7,7 +8,7 @@
     var listRequest = new ApiRequest('ban', 'get');
     listRequest.data({format: 'json'});
     listRequest.onSuccess(refreshData);
-    var list = $('#ipbanlist_list');
+    var list = $('#playerbanlist_list');
 
     function refreshData(data)
     {
