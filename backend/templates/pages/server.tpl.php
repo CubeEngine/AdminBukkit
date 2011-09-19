@@ -44,9 +44,6 @@
 
     var infoRequest = new ApiRequest('server', 'info');
     infoRequest.onSuccess(refreshData);
-    infoRequest.onFailure(function(){
-        alert('failed to load infos'); // @todo hardcoded string
-    });
     infoRequest.data({format: 'json'});
     
     var statsRequest = new ApiRequest('server', 'stats');
