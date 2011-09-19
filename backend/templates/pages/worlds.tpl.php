@@ -10,9 +10,6 @@
     var list = $('#worldlist');
     var request = new ApiRequest('world', 'list');
     request.onSuccess(refreshData);
-    request.onFailure(function(){
-        alert('failed to load list'); // @todo static language
-    });
     
     function refreshData(data)
     {
