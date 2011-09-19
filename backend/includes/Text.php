@@ -225,9 +225,6 @@
         {
             if ($chars === '')
             {
-                /**
-                 * @todo rawurlencode ?
-                 */
                 $encoded = '';
                 for ($i = 0; $i < mb_strlen($string); $i++)
                 {
@@ -265,10 +262,6 @@
          */
         public static function rand($length)
         {
-            //static $charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=!"§$%&/()?\\-.,;:_#\'+*~<>|{}[]µ@';
-            /**
-             * @todo zeichensatz überprüfen
-             */
             $string = '';
             for ($i = 0; $i < $length; $i++)
             {
