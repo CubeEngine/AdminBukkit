@@ -214,6 +214,9 @@ function whitelist_add(player, sync)
             case 1:
                 alert(serverutilsLang.whitelist_add_noplayer);
                 break;
+            case 2:
+                alert(serverutilsLang.whitelist_add_alreadylisted);
+                break;
         }
     });
     request.sync(!!sync);
@@ -249,6 +252,9 @@ function whitelist_remove(player, sync)
         {
             case 1:
                 alert(serverutilsLang.whitelist_remove_noplayer);
+                break;
+            case 2:
+                alert(serverutilsLang.whitelist_add_notlisted);
                 break;
         }
     });
