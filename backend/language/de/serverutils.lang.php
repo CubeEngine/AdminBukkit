@@ -16,7 +16,7 @@
         'banplayer_prompt'          => 'Gib den zu bannenden Spielernamen ein:',
         'banplayer_confirm'         => 'Möchtest du diesen Spieler wirklich bannen?',
         'banplayer_reason'          => 'Warum bannst du ihn? (nicht wichtig)',
-        'banplayer_alreadybanned'   => 'Dieser Spieler ist bereits gebannt!',
+        'banplayer_alreadybanned'   => 'Der Spieler ist bereits gebannt!',
         'banplayer_success'         => 'Der Spieler wurde erfolgreich gebannt!',
         'banip_prompt'              => 'Gib die zu bannende IP(v4) ein:',
         'banip_confirm'             => 'Möchtest du diese IP wirklich bannen?',
@@ -36,10 +36,12 @@
         'operator_add_confirm'      => 'Willst du diesen Spieler wirklich oppen?',
         'operator_add_success'      => 'Der Spieler wurde erfolgreich geoppt!',
         'operator_add_noplayer'     => 'Es wurde kein Spieler übergeben!',
+        'operator_add_alreadyop'    => 'Der Spieler ist bereits ein Operator!',
 
         'operator_remove_prompt'    => 'Gib den Spieler ein, der gedeoppt werden soll:',
         'operator_remove_confirm'   => 'Willst du diesen Spieler wirklich deoppen?',
         'operator_remove_success'   => 'Der Spieler wurde erfolgreich gedeoppt!',
-        'operator_remove_noplayer'  => 'Es wurde kein Spieler übergeben!'
+        'operator_remove_noplayer'  => 'Es wurde kein Spieler übergeben!',
+        'operator_remove_noop'      => 'Der Spieler ist kein Operator!'
     );
 ?>

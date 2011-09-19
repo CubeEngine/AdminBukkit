@@ -286,6 +286,9 @@ function operator_add(player, sync)
             case 1:
                 alert(serverutilsLang.operator_add_noplayer);
                 break;
+            case 2:
+                alert(serverutilsLang.operator_add_alreadyop);
+                break;
         }
     });
     request.sync(!!sync);
@@ -321,6 +324,9 @@ function operator_remove(player, sync)
         {
             case 1:
                 alert(serverutilsLang.operator_remove_noplayer);
+                break;
+            case 2:
+                alert(serverutilsLang.operator_remove_noop);
                 break;
         }
     });

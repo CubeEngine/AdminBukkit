@@ -36,10 +36,12 @@
         'operator_add_confirm'      => 'Do you really want to op this player?',
         'operator_add_success'      => 'The player was successfully opped!',
         'operator_add_noplayer'     => 'No player given!',
+        'operator_add_alreadyop'    => 'The player is already an operator!',
 
         'operator_remove_prompt'    => 'Enter the player name to deop:',
         'operator_remove_confirm'   => 'Do you really want to deop this player?',
         'operator_remove_success'   => 'The player was successfully deopped!',
-        'operator_remove_noplayer'  => 'No player given!'
+        'operator_remove_noplayer'  => 'No player given!',
+        'operator_remove_noop'      => 'The player is no operator!'
     );
 ?>
