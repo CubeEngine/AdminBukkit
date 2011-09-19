@@ -64,7 +64,6 @@
     <a href="<?php $this->page('playerpopup') ?>?player=<?php echo $player ?>" data-role="button" data-rel="dialog" data-transition="pop"><?php $lang->utils ?></a>
 </div>
 <script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=serverutils"></script>
-<!--<script type="text/javascript" src="<?php $this->res('js/playerutils.js') ?>"></script>-->
 <script type="text/javascript" src="<?php $this->res('js/serverutils.js') ?>"></script>
 <script type="text/javascript">
     var succeeded = false;
