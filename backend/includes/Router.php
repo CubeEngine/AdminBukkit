@@ -73,7 +73,7 @@ class Router
         {
             $this->page = $defaultPage;
             $this->pagePath = $path . $defaultPage . '.php';
-            $_GET['msg'] = urlencode('Die angeforderte Seite existiert nicht!');
+            $_SESSION['message'] = 'Die angeforderte Seite existiert nicht!'; // @todo static language
         }
         else
         {
