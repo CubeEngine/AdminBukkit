@@ -22,9 +22,9 @@
         'banip_confirm'             => 'Möchtest du diese IP wirklich bannen?',
         'banip_success'             => 'Die IP wurde erfolgreich gebannt!',
 
-        'whitelist_add_prompt'      => 'Gib den Namen des Player:',
+        'whitelist_add_prompt'      => 'Gib den Namen des Spielers ein:',
         'whitelist_add_confirm'     => 'Willst du diesen Spieler wirklich auf die Whitelist setzen?',
-        'whitelist_add_success'     => 'Der Spieler wurde erfolgreich auf die Whiteliste gesetz!',
+        'whitelist_add_success'     => 'Der Spieler wurde erfolgreich auf die Whitelist gesetzt!',
         'whitelist_add_noplayer'    => 'Es wurde kein Spieler übergeben!',
 
         'whitelist_remove_prompt'   => 'Gib den Namen des Spielers ein, der von der Whitelist entfernt werden soll:',
