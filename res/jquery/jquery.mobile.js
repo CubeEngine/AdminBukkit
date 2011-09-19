@@ -1,6 +1,6 @@
 /*!
  * jQuery Mobile v Git Build
- * Git Info SHA1: 6a4bd76a9c27d95b0744db862de020da601d2243 Date: Fri Sep 9 18:26:21 2011 -0700
+ * Git Info SHA1: 0fbea8f8e6b5127f820d8758bcb78edc7351b283 Date: Mon Sep 19 11:32:13 2011 -0700
  * http://jquerymobile.com/
  *
  * Copyright 2010, jQuery Project
@@ -279,6 +279,16 @@ $.Widget.prototype = {
 (function( $, undefined ) {
 
 $.widget( "mobile.widget", {
+	// decorate the parent _createWidget to trigger `widgetinit` for users
+	// who wish to do post post `widgetcreate` alterations/additions
+	//
+	// TODO create a pull request for jquery ui to trigger this event
+	// in the original _createWidget
+	_createWidget: function() {
+		$.Widget.prototype._createWidget.apply( this, arguments );
+		this._trigger( 'init' );
+	},
+
 	_getCreateOptions: function() {
 
 		var elem = this.element,
@@ -541,6 +551,12 @@ function createVirtualEvent( event, eventType ) {
 			prop = props[ --i ];
 			event[ prop ] = oe[ prop ];
 		}
+	}
+
+	// make sure that if the mouse and click virtual events are generated
+	// without a .which one is defined
+	if ( t.search(/mouse(down|up)|click/) > -1 && !event.which ){
+		event.which = 1;
 	}
 
 	if ( t.search(/^touch/) !== -1 ) {
@@ -1810,7 +1826,11 @@ $.widget( "mobile.page", $.mobile.widget, {
 	// Mobile version of data and removeData and hasData methods
 	// ensures all data is set and retrieved using jQuery Mobile's data namespace
 	$.fn.jqmData = function( prop, value ) {
-		return this.data( prop ? $.mobile.nsNormalize( prop ) : prop, value );
+		var result;
+		if ( typeof prop != "undefined" ) {
+			result = this.data( prop ? $.mobile.nsNormalize( prop ) : prop, value );
+		}
+		return result;
 	};
 
 	$.jqmData = function( elem, prop, value ) {
@@ -1823,10 +1843,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 	$.jqmRemoveData = function( elem, prop ) {
 		return $.removeData( elem, $.mobile.nsNormalize( prop ) );
-	};
-
-	$.jqmHasData = function( elem, prop ) {
-		return $.hasData( elem, $.mobile.nsNormalize( prop ) );
 	};
 
 	// Monkey-patching Sizzle to filter the :jqmData selector
@@ -1876,20 +1892,21 @@ $.widget( "mobile.page", $.mobile.widget, {
 			//     [2]: http://jblas:password@mycompany.com:8080/mail/inbox
 			//     [3]: http://jblas:password@mycompany.com:8080
 			//     [4]: http:
-			//     [5]: jblas:password@mycompany.com:8080
-			//     [6]: jblas:password
-			//     [7]: jblas
-			//     [8]: password
-			//     [9]: mycompany.com:8080
-			//    [10]: mycompany.com
-			//    [11]: 8080
-			//    [12]: /mail/inbox
-			//    [13]: /mail/
-			//    [14]: inbox
-			//    [15]: ?msg=1234&type=unread
-			//    [16]: #msg-content
+			//     [5]: //
+			//     [6]: jblas:password@mycompany.com:8080
+			//     [7]: jblas:password
+			//     [8]: jblas
+			//     [9]: password
+			//    [10]: mycompany.com:8080
+			//    [11]: mycompany.com
+			//    [12]: 8080
+			//    [13]: /mail/inbox
+			//    [14]: /mail/
+			//    [15]: inbox
+			//    [16]: ?msg=1234&type=unread
+			//    [17]: #msg-content
 			//
-			urlParseRE: /^(((([^:\/#\?]+:)?(?:\/\/((?:(([^:@\/#\?]+)(?:\:([^:@\/#\?]+))?)@)?(([^:\/#\?\]\[]+|\[[^\/\]@#?]+\])(?:\:([0-9]+))?))?)?)?((\/?(?:[^\/\?#]+\/+)*)([^\?#]*)))?(\?[^#]+)?)(#.*)?/,
+			urlParseRE: /^(((([^:\/#\?]+:)?(?:(\/\/)((?:(([^:@\/#\?]+)(?:\:([^:@\/#\?]+))?)@)?(([^:\/#\?\]\[]+|\[[^\/\]@#?]+\])(?:\:([0-9]+))?))?)?)?((\/?(?:[^\/\?#]+\/+)*)([^\?#]*)))?(\?[^#]+)?)(#.*)?/,
 
 			//Parse a URL into a structure that allows easy access to
 			//all of the URL components by name.
@@ -1900,34 +1917,31 @@ $.widget( "mobile.page", $.mobile.widget, {
 					return url;
 				}
 
-				var u = url || "",
-					matches = path.urlParseRE.exec( url ),
-					results;
-				if ( matches ) {
+				var matches = path.urlParseRE.exec( url || "" ) || [];
+
 					// Create an object that allows the caller to access the sub-matches
 					// by name. Note that IE returns an empty string instead of undefined,
 					// like all other browsers do, so we normalize everything so its consistent
 					// no matter what browser we're running on.
-					results = {
-						href:         matches[0] || "",
-						hrefNoHash:   matches[1] || "",
-						hrefNoSearch: matches[2] || "",
-						domain:       matches[3] || "",
-						protocol:     matches[4] || "",
-						authority:    matches[5] || "",
-						username:     matches[7] || "",
-						password:     matches[8] || "",
-						host:         matches[9] || "",
-						hostname:     matches[10] || "",
-						port:         matches[11] || "",
-						pathname:     matches[12] || "",
-						directory:    matches[13] || "",
-						filename:     matches[14] || "",
-						search:       matches[15] || "",
-						hash:         matches[16] || ""
+					return {
+						href:         matches[  0 ] || "",
+						hrefNoHash:   matches[  1 ] || "",
+						hrefNoSearch: matches[  2 ] || "",
+						domain:       matches[  3 ] || "",
+						protocol:     matches[  4 ] || "",
+						doubleSlash:  matches[  5 ] || "",
+						authority:    matches[  6 ] || "",
+						username:     matches[  8 ] || "",
+						password:     matches[  9 ] || "",
+						host:         matches[ 10 ] || "",
+						hostname:     matches[ 11 ] || "",
+						port:         matches[ 12 ] || "",
+						pathname:     matches[ 13 ] || "",
+						directory:    matches[ 14 ] || "",
+						filename:     matches[ 15 ] || "",
+						search:       matches[ 16 ] || "",
+						hash:         matches[ 17 ] || ""
 					};
-				}
-				return results || {};
 			},
 
 			//Turn relPath into an asbolute path. absPath is
@@ -1987,13 +2001,14 @@ $.widget( "mobile.page", $.mobile.widget, {
 				var relObj = path.parseUrl( relUrl ),
 					absObj = path.parseUrl( absUrl ),
 					protocol = relObj.protocol || absObj.protocol,
+					doubleSlash = relObj.protocol ? relObj.doubleSlash : ( relObj.doubleSlash || absObj.doubleSlash );
 					authority = relObj.authority || absObj.authority,
 					hasPath = relObj.pathname !== "",
 					pathname = path.makePathAbsolute( relObj.pathname || absObj.filename, absObj.pathname ),
 					search = relObj.search || ( !hasPath && absObj.search ) || "",
 					hash = relObj.hash;
 
-				return protocol + "//" + authority + pathname + search + hash;
+				return protocol + doubleSlash + authority + pathname + search + hash;
 			},
 
 			//Add search (aka query) params to the specified url.
@@ -2249,7 +2264,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 			$.mobile.changePage.apply( null, pageTransitionQueue.pop() );
 		}
 	}
-	
+
 	// Save the last scroll distance per page, before it is hidden
 	var getLastScroll = (function( lastScrollEnabled ){
 		return function(){
@@ -2257,18 +2272,18 @@ $.widget( "mobile.page", $.mobile.widget, {
 				lastScrollEnabled = true;
 				return;
 			}
-			
+
 			lastScrollEnabled = false;
-		
+
 			var active = $.mobile.urlHistory.getActive(),
 				activePage = $( ".ui-page-active" ),
 				scrollElem = $( window ),
 				touchOverflow = $.support.touchOverflow && $.mobile.touchOverflowEnabled;
-			
+
 			if( touchOverflow ){
 				scrollElem = activePage.is( ".ui-native-fixed" ) ? activePage.find( ".ui-content" ) : activePage;
-			}	
-			
+			}
+
 			if( active ){
 				var lastScroll = scrollElem.scrollTop();
 
@@ -2278,12 +2293,12 @@ $.widget( "mobile.page", $.mobile.widget, {
 			}
 		};
 	})( true );
-	
+
 	// to get last scroll, we need to get scrolltop before the page change
 	// using beforechangepage or popstate/hashchange (whichever comes first)
 	$( document ).bind( "beforechangepage", getLastScroll );
 	$( window ).bind( $.support.pushState ? "popstate" : "hashchange", getLastScroll );
-	
+
 	// Make the iOS clock quick-scroll work again if we're using native overflow scrolling
 	/*
 	if( $.support.touchOverflow ){
@@ -2305,7 +2320,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 			touchOverflow = $.support.touchOverflow && $.mobile.touchOverflowEnabled,
 			toScroll = active.lastScroll || ( touchOverflow ? 0 : $.mobile.defaultHomeScroll ),
 			screenHeight = getScreenHeight();
-			
+
 		// Scroll to top, hide addr bar
 		window.scrollTo( 0, $.mobile.defaultHomeScroll );
 
@@ -2313,22 +2328,22 @@ $.widget( "mobile.page", $.mobile.widget, {
 			//trigger before show/hide events
 			fromPage.data( "page" )._trigger( "beforehide", null, { nextPage: toPage } );
 		}
-		
+
 		if( !touchOverflow){
 			toPage.height( screenHeight + toScroll );
-		}	
-		
+		}
+
 		toPage.data( "page" )._trigger( "beforeshow", null, { prevPage: fromPage || $( "" ) } );
 
 		//clear page loader
 		$.mobile.hidePageLoadingMsg();
-		
+
 		if( touchOverflow && toScroll ){
-			
+
 			toPage.addClass( "ui-mobile-pre-transition" );
 			// Send focus to page as it is now display: block
 			reFocus( toPage );
-			
+
 			//set page's scrollTop to remembered distance
 			if( toPage.is( ".ui-native-fixed" ) ){
 				toPage.find( ".ui-content" ).scrollTop( toScroll );
@@ -2351,7 +2366,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 				// Send focus to the newly shown page
 				reFocus( toPage );
 			}
-			
+
 			// Jump to top or prev scroll, sometimes on iOS the page has not rendered yet.
 			if( !touchOverflow ){
 				$.mobile.silentScroll( toScroll );
@@ -2362,7 +2377,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 				if( !touchOverflow ){
 					fromPage.height( "" );
 				}
-				
+
 				fromPage.data( "page" )._trigger( "hide", null, { nextPage: toPage } );
 			}
 
@@ -2384,7 +2399,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 		return pageMin;
 	}
-	
+
 	$.mobile.getScreenHeight = getScreenHeight;
 
 	//simply set the active page's minimum height to screen height, depending on orientation
@@ -2635,8 +2650,12 @@ $.widget( "mobile.page", $.mobile.widget, {
 					}
 
 					//append to page and enhance
+					// TODO taging a page with external to make sure that embedded pages aren't removed
+					//      by the various page handling code is bad. Having page handling code in many
+					//      places is bad. Solutions post 1.0
 					page
 						.attr( "data-" + $.mobile.ns + "url", path.convertUrlToDataUrl( fileUrl ) )
+						.attr( "data-" + $.mobile.ns + "external-page", true )
 						.appendTo( settings.pageContainer );
 
 					// wait for page creation to leverage options defined on widget
@@ -2771,7 +2790,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 		mpc.trigger( pbcEvent, triggerData );
 
 		mpc.trigger( "beforechangepage", triggerData ); // XXX: DEPRECATED for 1.0
-		
+
 		// If the default behavior is prevented, stop here!
 		if( pbcEvent.isDefaultPrevented() ){
 			return;
@@ -3024,6 +3043,12 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 		//add active state on vclick
 		$( document ).bind( "vclick", function( event ) {
+			// if this isn't a left click we don't care. Its important to note
+			// that when the virtual event is generated it will create
+			if ( event.which > 1 ){
+				return;
+			}
+
 			var link = findClosestLink( event.target );
 			if ( link ) {
 				if ( path.parseUrl( link.getAttribute( "href" ) || "#" ).hash !== "#" ) {
@@ -3038,7 +3063,10 @@ $.widget( "mobile.page", $.mobile.widget, {
 		// click routing - direct to HTTP or Ajax, accordingly
 		$( document ).bind( "click", function( event ) {
 			var link = findClosestLink( event.target );
-			if ( !link ) {
+
+			// If there is no link associated with the click or its not a left
+			// click we want to ignore the click
+			if ( !link || event.which > 1) {
 				return;
 			}
 
@@ -3054,17 +3082,17 @@ $.widget( "mobile.page", $.mobile.widget, {
 				return false;
 			}
 
-			//if ajax is disabled, exit early
-			if( !$.mobile.ajaxEnabled ){
-				httpCleanup();
-				//use default click handling
-				return;
-			}
-
 			var baseUrl = getClosestBaseUrl( $link ),
 
 				//get href, if defined, otherwise default to empty hash
 				href = path.makeUrlAbsolute( $link.attr( "href" ) || "#", baseUrl );
+
+			//if ajax is disabled, exit early
+			if( !$.mobile.ajaxEnabled && !path.isEmbeddedPage( href ) ){
+				httpCleanup();
+				//use default click handling
+				return;
+			}
 
 			// XXX_jblas: Ideally links to application pages should be specified as
 			//            an url to the application document with a hash that is either
@@ -3202,7 +3230,12 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 			//if to is defined, load it
 			if ( to ) {
-				to = ( typeof to === "string" && !path.isPath( to ) ) ? ( '#' + to ) : to;
+				// At this point, 'to' can be one of 3 things, a cached page element from
+				// a history stack entry, an id, or site-relative/absolute URL. If 'to' is
+				// an id, we need to resolve it against the documentBase, not the location.href,
+				// since the hashchange could've been the result of a forward/backward navigation
+				// that crosses from an external page/dialog to an internal page/dialog.
+				to = ( typeof to === "string" && !path.isPath( to ) ) ? ( path.makeUrlAbsolute( '#' + to, documentBase ) ) : to;
 				$.mobile.changePage( to, changePageOptions );
 			}	else {
 				//there's no hash, go to the first page in the dom
@@ -3272,28 +3305,47 @@ $.widget( "mobile.page", $.mobile.widget, {
 			return url;
 		},
 
+		// TODO sort out a single barrier to hashchange functionality
+		nextHashChangePrevented: function( value ) {
+			$.mobile.urlHistory.ignoreNextHashChange = value;
+			self.onHashChangeDisabled = value;
+		},
+
 		// on hash change we want to clean up the url
 		// NOTE this takes place *after* the vanilla navigation hash change
 		// handling has taken place and set the state of the DOM
 		onHashChange: function( e ) {
-			var href, state;
-
-			self.hashchangeFired = true;
-
-			// only replaceState when the hash doesn't represent an embeded page
-			if( $.mobile.path.isPath(location.hash) ) {
-
-				// propulate the hash when its not available
-				state = self.state();
-
-				// make the hash abolute with the current href
-				href = $.mobile.path.makeUrlAbsolute( state.hash.replace("#", ""), location.href );
-
-				href = self.resetUIKeys( href );
-
-				// replace the current url with the new href and store the state
-				history.replaceState( state, document.title, href );
+			// disable this hash change
+			if( self.onHashChangeDisabled ){
+				return;
 			}
+			
+			var href, state,
+				hash = location.hash,
+				isPath = $.mobile.path.isPath( hash );
+			hash = isPath ? hash.replace( "#", "" ) : hash;
+
+			// propulate the hash when its not available
+			state = self.state();
+
+			// make the hash abolute with the current href
+			href = $.mobile.path.makeUrlAbsolute( hash, location.href );
+
+			if ( isPath ) {
+				href = self.resetUIKeys( href );
+			}
+
+			// replace the current url with the new href and store the state
+			// Note that in some cases we might be replacing an url with the
+			// same url. We do this anyways because we need to make sure that
+			// all of our history entries have a state object associated with
+			// them. This allows us to work around the case where window.history.back()
+			// is called to transition from an external page to an embedded page.
+			// In that particular case, a hashchange event is *NOT* generated by the browser.
+			// Ensuring each history entry has a state object means that onPopState()
+			// will always trigger our hashchange callback even when a hashchange event
+			// is not fired.
+			history.replaceState( state, document.title, href );
 		},
 
 		// on popstate (ie back or forward) we need to replace the hash that was there previously
@@ -3305,14 +3357,14 @@ $.widget( "mobile.page", $.mobile.widget, {
 			// or forward popstate
 			if( poppedState ) {
 				// disable any hashchange triggered by the browser
-				$.mobile.urlHistory.ignoreNextHashChange = true;
+				self.nextHashChangePrevented( true );
 
 				// defer our manual hashchange until after the browser fired
 				// version has come and gone
 				setTimeout(function() {
 					// make sure that the manual hash handling takes place
-					$.mobile.urlHistory.ignoreNextHashChange = false;
-					
+					self.nextHashChangePrevented( false );
+
 					// change the page based on the hash
 					$.mobile._handleHashChange( poppedState.hash );
 				}, 100);
@@ -3621,9 +3673,10 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 
 		var $el = this.element,
 			o = this.options,
-			collapsibleContain = $el.addClass( "ui-collapsible-contain" ),
+			expandedCls = "ui-btn-up-" + (o.theme || "c"),
+			collapsible = $el.addClass( "ui-collapsible" ),
 			collapsibleHeading = $el.find( o.heading ).eq( 0 ),
-			collapsibleContent = collapsibleContain.wrapInner( "<div class='ui-collapsible-content'></div>" ).find( ".ui-collapsible-content" ),
+			collapsibleContent = collapsible.wrapInner( "<div class='ui-collapsible-content'></div>" ).find( ".ui-collapsible-content" ),
 			collapsibleParent = $el.closest( ":jqmData(role='collapsible-set')" ).addClass( "ui-collapsible-set" );
 
 		// Replace collapsibleHeading if it's a legend
@@ -3641,7 +3694,7 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 			.wrapInner( "<a href='#' class='ui-collapsible-heading-toggle'></a>" )
 			.find( "a:eq(0)" )
 				.buttonMarkup({
-					shadow: !collapsibleParent.length,
+					shadow: false,
 					corners: false,
 					iconPos: "left",
 					icon: "plus",
@@ -3657,64 +3710,45 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 						theme: o.iconTheme
 					});
 
-			if ( !collapsibleParent.length ) {
+		if ( !collapsibleParent.length ) {
+			collapsibleHeading
+				.find( "a:eq(0), .ui-btn-inner" )
+					.addClass( "ui-corner-top ui-corner-bottom" );
+		} else {
+			if ( collapsible.jqmData( "collapsible-last" ) ) {
 				collapsibleHeading
-					.find( "a:eq(0)" )
-						.addClass( "ui-corner-all" )
-						.find( ".ui-btn-inner" )
-							.addClass( "ui-corner-all" );
-			} else {
-				if ( collapsibleContain.jqmData( "collapsible-last" ) ) {
-					collapsibleHeading
-						.find( "a:eq(0), .ui-btn-inner" )
-							.addClass( "ui-corner-bottom" );
-				}
+					.find( "a:eq(0), .ui-btn-inner" )
+						.addClass( "ui-corner-bottom" );
 			}
+		}
 
 		//events
-		collapsibleContain
-			.bind( "collapse", function( event ) {
-				if ( ! event.isDefaultPrevented() &&
-							$( event.target ).closest( ".ui-collapsible-contain" ).is( collapsibleContain ) ) {
-
-					event.preventDefault();
-
-					collapsibleHeading
-						.addClass( "ui-collapsible-heading-collapsed" )
-						.find( ".ui-collapsible-heading-status" )
-							.text( o.expandCueText )
-						.end()
-						.find( ".ui-icon" )
-							.removeClass( "ui-icon-minus" )
-							.addClass( "ui-icon-plus" );
-
-					collapsibleContent.addClass( "ui-collapsible-content-collapsed" ).attr( "aria-hidden", true );
-
-					if ( collapsibleContain.jqmData( "collapsible-last" ) ) {
-						collapsibleHeading
-							.find( "a:eq(0), .ui-btn-inner" )
-							.addClass( "ui-corner-bottom" );
-					}
-				}
-			})
-			.bind( "expand", function( event ) {
+		collapsible
+			.bind( "expand collapse", function( event ) {
 				if ( !event.isDefaultPrevented() ) {
 
 					event.preventDefault();
 
+					var isCollapse = ( event.type === "collapse" );
+
 					collapsibleHeading
-						.removeClass( "ui-collapsible-heading-collapsed" )
-						.find( ".ui-collapsible-heading-status" ).text( o.collapseCueText );
+						.toggleClass( "ui-collapsible-heading-collapsed", isCollapse)
+						.find( ".ui-collapsible-heading-status" )
+							.text( o.expandCueText )
+						.end()
+						.find( ".ui-icon" )
+							.toggleClass( "ui-icon-minus", !isCollapse )
+							.toggleClass( "ui-icon-plus", isCollapse );
 
-					collapsibleHeading.find( ".ui-icon" ).removeClass( "ui-icon-plus" ).addClass( "ui-icon-minus" );
+					collapsible.toggleClass( "ui-collapsible-collapsed", isCollapse );
+					collapsibleContent.toggleClass( "ui-collapsible-content-collapsed", isCollapse ).attr( "aria-hidden", isCollapse );
+					collapsibleContent.toggleClass( expandedCls, !isCollapse );
 
-					collapsibleContent.removeClass( "ui-collapsible-content-collapsed" ).attr( "aria-hidden", false );
-
-					if ( collapsibleContain.jqmData( "collapsible-last" ) ) {
-
+					if ( !collapsibleParent.length || collapsible.jqmData( "collapsible-last" ) ) {
 						collapsibleHeading
 							.find( "a:eq(0), .ui-btn-inner" )
-							.removeClass( "ui-corner-bottom" );
+							.toggleClass( "ui-corner-bottom", isCollapse );
+						collapsibleContent.toggleClass( "ui-corner-bottom", !isCollapse );
 					}
 				}
 			})
@@ -3728,8 +3762,8 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 				.bind( "expand", function( event ) {
 
 					$( event.target )
-						.closest( ".ui-collapsible-contain" )
-						.siblings( ".ui-collapsible-contain" )
+						.closest( ".ui-collapsible" )
+						.siblings( ".ui-collapsible" )
 						.trigger( "collapse" );
 
 				});
@@ -3742,7 +3776,12 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 						.find( ".ui-btn-inner" )
 							.addClass( "ui-corner-top" );
 
-			set.last().jqmData( "collapsible-last", true );
+			set.last()
+				.jqmData( "collapsible-last", true )
+				.find( "a:eq(0)" )
+					.addClass( "ui-corner-bottom" )
+						.find( ".ui-btn-inner" )
+							.addClass( "ui-corner-bottom" );
 		}
 
 		collapsibleHeading
@@ -3751,7 +3790,7 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 				var type = collapsibleHeading.is( ".ui-collapsible-heading-collapsed" ) ?
 										"expand" : "collapse";
 
-				collapsibleContain.trigger( type );
+				collapsible.trigger( type );
 
 				event.preventDefault();
 			});
@@ -3966,7 +4005,7 @@ $.widget( "mobile.listview", $.mobile.widget, {
 			$li = this.element.children( "li" );
 			// at create time the li are not visible yet so we need to rely on .ui-screen-hidden
 			$visibleli = create?$li.not( ".ui-screen-hidden" ):$li.filter( ":visible" );
-			
+
 			this._removeCorners( $li );
 
 			// Select the first visible li element
@@ -4093,7 +4132,7 @@ $.widget( "mobile.listview", $.mobile.widget, {
 
 			self._itemApply( $list, item );
 		}
-		
+
 		this._refreshCorners( create );
 	},
 
@@ -4156,8 +4195,12 @@ $.widget( "mobile.listview", $.mobile.widget, {
 
 		}).listview();
 
-		//on pagehide, remove any nested pages along with the parent page, as long as they aren't active
-		if( hasSubPages && parentPage.data("page").options.domCache === false ){
+		// on pagehide, remove any nested pages along with the parent page, as long as they aren't active
+		// and aren't embedded
+		if( hasSubPages &&
+			parentPage.is( "jqmData(external-page='true')" ) &&
+			parentPage.data("page").options.domCache === false ) {
+
 			var newRemove = function( e, ui ){
 				var nextPage = ui.nextPage, npURL;
 
@@ -5583,6 +5626,10 @@ $.widget( "mobile.selectmenu", $.mobile.widget, {
 	},
 
 	_theme: function(){
+		if ( this.options.theme ){
+			return this.options.theme;
+		}
+
 		var themedParent, theme;
 		// if no theme is defined, try to find closest theme container
 		// TODO move to core as something like findCurrentTheme
@@ -5748,6 +5795,11 @@ $.widget( "mobile.selectmenu", $.mobile.widget, {
 		this.setButtonCount();
 	},
 
+	// open and close preserved in native selects
+	// to simplify users code when looping over selects
+	open: $.noop,
+	close: $.noop,
+
 	disable: function() {
 		this._setDisabled( true );
 		this.button.addClass( "ui-disabled" );
@@ -5777,7 +5829,11 @@ $( document ).bind( "pagecreate create", function( e ){
 $.fn.buttonMarkup = function( options ) {
 	return this.each( function() {
 		var el = $( this ),
-			o = $.extend( {}, $.fn.buttonMarkup.defaults, el.jqmData(), options ),
+			o = $.extend( {}, $.fn.buttonMarkup.defaults, {
+				icon: el.jqmData( "icon" ),
+				iconpos: el.jqmData( "iconpos" ),
+				theme: el.jqmData( "theme" )
+			}, options ),
 
 			// Classes Defined
 			innerClass = "ui-btn-inner",
