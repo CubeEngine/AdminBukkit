@@ -1,5 +1,8 @@
 <?php
     return array(
-        'title' => 'Whitelist'
+        'title'     => 'Whitelist',
+        'loading'   => 'Loading the whitelist...',
+        'empty'     => 'The whitelist is empty.',
+        'add'       => 'Add'
     );
 ?>
