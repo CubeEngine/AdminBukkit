@@ -44,7 +44,7 @@
         }
     }
 
-    $('#whitelist').bind('pageshow', function(){
+    $('#whitelist').bind('pagecreate', function(){
         $('#whitelist_toolbar_button').bind('vmousedown', function(){
             if (whitelist_add(null, true))
             {
@@ -52,8 +52,7 @@
             }
             return false;
         });
+    }).bind('pageshow', function(){
         listRequest.execute();
-    }).bind('pagehide', function(){
-
     });
 </script>

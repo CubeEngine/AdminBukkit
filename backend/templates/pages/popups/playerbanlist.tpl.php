@@ -46,7 +46,7 @@
         }
     }
     
-    $('#playerbanlist').bind('pageshow', function(){
+    $('#playerbanlist').bind('pagecreate', function(){
         $('#playerbanlist_toolbar_button').bind('vmousedown', function(){
             if (ban_player(null, true))
             {
@@ -54,8 +54,7 @@
             }
             return false;
         });
+    }).bind('pageshow', function(){
         listRequest.execute();
-    }).bind('pagehide', function(){
-
     });
 </script>

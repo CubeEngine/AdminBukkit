@@ -45,7 +45,7 @@
         }
     }
 
-    $('#operatorlist').bind('pageshow', function(){
+    $('#operatorlist').bind('pagecreate', function(){
         $('#operatorlist_toolbar_button').bind('vmousedown', function(){
             if (operator_add(null, true))
             {
@@ -53,8 +53,7 @@
             }
             return false;
         });
+    }).bind('pageshow', function(){
         listRequest.execute();
-    }).bind('pagehide', function(){
-
     });
 </script>

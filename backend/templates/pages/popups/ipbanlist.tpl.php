@@ -46,7 +46,7 @@
         }
     }
     
-    $('#ipbanlist').bind('pageshow', function(){
+    $('#ipbanlist').bind('pagecreate', function(){
         $('#ipbanlist_toolbar_button').bind('vmousedown', function(){
             if (ban_ip(null, true))
             {
@@ -54,8 +54,7 @@
             }
             return false;
         });
+    }).bind('pageshow', function(){
         listRequest.execute();
-    }).bind('pagehide', function(){
-
     });
 </script>
