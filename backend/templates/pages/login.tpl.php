@@ -3,7 +3,7 @@
     <label for="login_user"><?php $lang->username ?></label>
     <input type="text" name="user" id="login_user" placeholder="<?php $lang->username ?>" value="<?php echo $user ?>" required>
     <label for="login_pass"><?php $lang->password ?></label>
-    <input type="password" name="pass" id="login_pass" placeholder="<?php $lang->password ?>" required>
+    <input type="password" name="pass" id="login_pass" placeholder="<?php $lang->password ?>" required value="1234"> <!-- @todo remove password -->
 
     <label for="login_lang"><?php $lang->language ?></label>
     <select name="lang" id="login_lang">

@@ -6,7 +6,7 @@
     }
 
     $page = new Page('login', $lang['login']);
-    $page->assign('user', '')
+    $page->assign('user', 'test') //@todo remove username
          ->assign('langs', array_merge(array(Lang::getLanguage()), Lang::listLanguages()));
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST')

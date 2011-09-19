@@ -6,3 +6,4 @@ backend/logs/*.log
 backend/downloads/*
 test.php
 /todo.txt
+/blacklist.txt
