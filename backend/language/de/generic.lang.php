@@ -10,6 +10,7 @@
         'No'                        => 'Nein',
         'loginrequired'             => 'Login benötigt',
         'pageloaderror'             => 'Die Seite konnte nicht geladen werden!',
+        'pagenotfound'              => 'Die angeforderte Seite existiert nicht!',
         'filterplaceholder'         => 'Suche...',
         
         'error_serverunavailable'   => "Der Server ist nicht (mehr) erreichbar.\nÜberprüfe die Serverdaten und den Server.\n\nWillst du zur Hauptseite zurück?",

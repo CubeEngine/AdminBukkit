@@ -1,15 +1,12 @@
 <?php $lang = Lang::instance('plugins') ?>
 <ol data-filter="true" id="pluginlist" data-role="listview">
-    <li>Pluginliste wird geladen...</li> <!-- @todo static language -->
+    <li><?php $lang->loadinglist ?></li>
 </ol>
 
 <script type="text/javascript">
     var list = $('#pluginlist');
     var request = new ApiRequest('plugin', 'list');
     request.onSuccess(refreshData);
-    request.onFailure(function(){
-        alert('failed to load list!'); // @todo static language
-    });
     
     function refreshData(data)
     {

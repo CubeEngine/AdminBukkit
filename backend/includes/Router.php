@@ -73,7 +73,7 @@ class Router
         {
             $this->page = $defaultPage;
             $this->pagePath = $path . $defaultPage . '.php';
-            $_SESSION['message'] = 'Die angeforderte Seite existiert nicht!'; // @todo static language
+            $_SESSION['message'] = Lang::instance('generic')->get('pagenotfound');
         }
         else
         {
