@@ -15,6 +15,7 @@
         'banplayer_prompt'          => 'Gib den zu bannenden Spielernamen ein:',
         'banplayer_confirm'         => 'Möchtest du diesen Spieler wirklich bannen?',
         'banplayer_reason'          => 'Warum bannst du ihn? (nicht wichtig)',
+        'banplayer_alreadybanned'   => 'Dieser Spieler ist bereits gebannt!',
         'banplayer_success'         => 'Der Spieler wurde erfolgreich gebannt!',
         'banip_prompt'              => 'Gib die zu bannende IP(v4) ein:',
         'banip_confirm'             => 'Möchtest du diese IP wirklich bannen?',

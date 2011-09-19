@@ -15,6 +15,7 @@
         'banplayer_prompt'          => 'Enter the playnername which should be banned:',
         'banplayer_confirm'         => 'Do you really want to ban this Player?',
         'banplayer_reason'          => 'Why do you want to ban him? (not important)',
+        'banplayer_alreadybanned'   => 'This player is already banned!',
         'banplayer_success'         => 'The player was successfully banned!',
         'banip_prompt'              => 'Write the IP(v4) which should be banned:',
         'banip_confirm'             => 'Do you really want to ban this IP?',

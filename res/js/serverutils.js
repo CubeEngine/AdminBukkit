@@ -42,6 +42,9 @@ function ban_player(player, sync)
             case 1:
                 alert(serverutilsLang.name_missing);
                 break;
+            case 3:
+                alert(serverutilsLang.banplayer_alreadybanned);
+                break;
         }
     });
     request.sync(!!sync);
