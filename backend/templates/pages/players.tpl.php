@@ -25,8 +25,16 @@
     playersRequest.onSuccess(function(data){
         refreshData(data);
     });
-    playersRequest.onFailure(function(){
-        alert('Failed to load the list'); // @todo static language
+    playersRequest.onFailure(function(err){
+        switch(err)
+        {
+            case 1:
+                alert('<?php $lang->noworld ?>');
+                break;
+            case 2:
+                alert('<?php $lang->unknownworld ?>');
+                break;
+        }
     });
     var maxPlayersRequest = new ApiRequest('server', 'maxplayers');
     maxPlayersRequest.onSuccess(function(data){
