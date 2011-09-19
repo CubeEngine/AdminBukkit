@@ -1,5 +1,5 @@
 <?php $lang = Lang::instance('generic') ?>
-<div id="<?php echo $pageName ?>" data-role="page">
+<div id="<?php echo $pageName ?>" data-role="page" data-theme="e">
     <div data-role="header">
         <?php if (isset($backText)): ?>
             <?php if (isset($backTarget)): ?>
@@ -21,7 +21,7 @@
         <?php echo $message ?>
     </div>
     <?php endif ?>
-    <div data-role="content">
+    <div data-role="content" data-theme="c">
         <div>
             <?php $this->subTemplate('content') ?>
         </div>
