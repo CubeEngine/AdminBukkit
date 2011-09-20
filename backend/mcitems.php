@@ -1,8 +1,15 @@
 <?php
-    header('Content-Type: text/javascript;charset=utf-8');
     require_once 'init.php';
-    echo "var items = {\n";
+    
+    /** header **/
+    header('Content-Type: text/javascript;charset=utf-8');
+    $cacheLifetime = Config::instance('bukkitweb')->get('cacheLifetime', 0);
+    header('Expires: ' . gmdate('D, d M Y H:i:s', time() + $cacheLifetime) . ' GMT');
+    header('Pragma: cache');
+    header('Cache-Control: max-age=' . $cacheLifetime);
+    /** /header **/
 
+    echo "var items = {\n";
     if (($handle = @fopen(RESOURCE_PATH . DS . 'items.csv', 'rb')) !== false)
     {
         $i = 0;
@@ -20,6 +27,5 @@
         }
         @fclose($handle);
     }
-
     echo "\n}\n"
 ?>
