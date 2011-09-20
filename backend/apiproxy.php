@@ -36,6 +36,13 @@
             Statistics::increment('api.failed.' . $parts[0] . '_' . $parts[1]);
         }
         header(strval($response));
+        
+        $contentType = $response->getHeader('Content-Type');
+        if ($contentType)
+        {
+            header(strval($contentType));
+        }
+
         echo $response->getBody();
     }
     catch (NetworkException $e)
