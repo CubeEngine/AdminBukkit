@@ -4,6 +4,7 @@
         private static $users = array();
         protected $userdata;
         protected $database;
+        protected $loginIp;
         
         private function __construct($name, $password)
         {
@@ -31,6 +32,7 @@
                 $result['apipassword'] = $crypter->decrypt($result['apipassword']);
                 unset($result['password']);
                 $this->userdata = $result;
+                $this->loginIp = $_SERVER['REMOTE_ADDR'];
                 
                 // Stats
                 Statistics::increment('user.login');
@@ -76,6 +78,11 @@
         public function getApiAuthKey()
         {
             return $this->userdata['apipassword'];
+        }
+
+        public function getLoginIp()
+        {
+            return $this->loginIp;
         }
         
         public function removeUser()
@@ -192,7 +199,7 @@
         
         public static function loggedIn()
         {
-            return (isset($_SESSION['user']) && $_SESSION['user'] instanceof User);
+            return (isset($_SESSION['user']) && $_SESSION['user'] instanceof User && $_SESSION['user']->getLoginIp() == $_SERVER['REMOTE_ADDR']);
         }
         
         protected static function getSalt()
@@ -218,7 +225,7 @@
         public function serialize()
         {
             $crypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
-            $data = serialize($this->userdata);
+            $data = serialize(array($this->loginIp, $this->userdata));
             return serialize($crypter->encrypt($data));
         }
         
@@ -226,12 +233,13 @@
         {
             $crypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
             $data = unserialize($serialized);
-            $userdata = @unserialize($crypter->decrypt($data));
-            if ($userdata === false)
+            $data = @unserialize($crypter->decrypt($data));
+            if ($data === false)
             {
                 throw new Exception('Decryption seems to have failed due to a wrong encryption key');
             }
-            $this->userdata = $userdata;
+            $this->loginIp = $data[0];
+            $this->userdata = $data[1];
         }
 
         public function offsetExists($offset)
