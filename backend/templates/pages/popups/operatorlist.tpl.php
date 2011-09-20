@@ -45,7 +45,7 @@
         }
     }
 
-    $('#operatorlist').bind('pagecreate', function(){
+    $('#operatorlist').click(function(){
         $('#operatorlist_toolbar_button').bind('vmousedown', function(){
             if (operator_add(null, true))
             {

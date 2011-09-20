@@ -21,7 +21,7 @@
     var player = '<?php echo $player ?>';
 
     $('#playerpopup').bind('pagecreate', function(){
-        $('#player_kick').bind('vmousedown', function(){
+        $('#player_kick').click(function(){
             if (player_kick(player, true))
             {
                 refreshData();

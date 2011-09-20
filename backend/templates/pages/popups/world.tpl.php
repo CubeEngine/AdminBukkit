@@ -12,19 +12,19 @@
     var world = '<?php echo $world ?>';
 
     $('#worldpopup').bind('pagecreate', function(){
-        $('#worldpopup_time').bind('vmousedown', function(){
+        $('#worldpopup_time').click(function(){
             world_time(world);
             return false;
         });
-        $('#worldpopup_storm').bind('vmousedown', function(){
+        $('#worldpopup_storm').click(function(){
             world_storm(world);
             return false;
         });
-        $('#worldpopup_pvp').bind('vmousedown', function(){
+        $('#worldpopup_pvp').click(function(){
             world_pvp(world);
             return false;
         });
-        $('#worldpopup_spawn').bind('vmousedown', function(){
+        $('#worldpopup_spawn').click(function(){
             world_spawn(world);
             return false;
         });

@@ -104,10 +104,10 @@
             clearInterval(statsInterval);
         }
     }).bind('pagecreate', function(){
-        $('#server_toolbar_button').bind('vmousedown', function(){
+        $('#server_toolbar_button').click(function(){
             infoRequest.execute();
         });
-        $('#server_reload').bind('vmousedown', function(){
+        $('#server_reload').click(function(){
             if (confirm('<?php $lang->confirm_reload ?>'))
             {
                 var request = new ApiRequest('server', 'reload');
@@ -132,7 +132,7 @@
             }
         });
 
-        $('#server_stop').bind('vmousedown', function(){
+        $('#server_stop').click(function(){
             if (confirm('<?php $lang->stop_confirm ?>'))
             {
                 if (confirm('<?php $lang->stop_confirm2 ?>'))
@@ -146,7 +146,7 @@
             }
         });
 
-        $('#server_broadcast').bind('vmousedown', function(){
+        $('#server_broadcast').click(function(){
             var message = prompt('<?php $lang->broadcast_prompt ?>', '');
             if (!message)
             {

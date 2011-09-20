@@ -50,7 +50,7 @@
     $('#worlds').bind('pageshow', function(){
         request.execute();
     }).bind('pagecreate', function(){
-        $('#worlds_toolbar_button').bind('vmousedown', function(){
+        $('#worlds_toolbar_button').click(function(){
             request.execute();
             return false;
         });

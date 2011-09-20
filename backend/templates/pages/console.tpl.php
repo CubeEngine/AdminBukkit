@@ -41,6 +41,10 @@
                 consoleBox.append(lineDiv);
             }
         }
+        if (!console)
+        {
+            return;
+        }
         if (scrollDown)
         {
             console.scrollTop = console.scrollHeight;
@@ -94,7 +98,7 @@
             }
         });
 
-        $('#console_toolbar_button').bind('vclick', function(e){
+        $('#console_toolbar_button').click(function(e){
             e.preventDefault();
             var elem = $(e.target);
             if (refreshing)

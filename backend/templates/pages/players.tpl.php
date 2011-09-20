@@ -102,7 +102,7 @@
             clearInterval(playersIntervalId);
         }
     }).bind('pagecreate', function(){
-        $('#<?php echo $pageName ?>_toolbar_button').bind('vmousedown', function(){
+        $('#<?php echo $pageName ?>_toolbar_button').click(function(){
             playersRequest.execute();
             return false;
         });

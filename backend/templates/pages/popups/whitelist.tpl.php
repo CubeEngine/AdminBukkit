@@ -45,7 +45,7 @@
     }
 
     $('#whitelist').bind('pagecreate', function(){
-        $('#whitelist_toolbar_button').bind('vmousedown', function(){
+        $('#whitelist_toolbar_button').click(function(){
             if (whitelist_add(null, true))
             {
                 listRequest.execute();

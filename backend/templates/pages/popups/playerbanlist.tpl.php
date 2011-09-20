@@ -47,7 +47,7 @@
     }
     
     $('#playerbanlist').bind('pagecreate', function(){
-        $('#playerbanlist_toolbar_button').bind('vmousedown', function(){
+        $('#playerbanlist_toolbar_button').click(function(){
             if (ban_player(null, true))
             {
                 listRequest.execute();

@@ -140,7 +140,7 @@
             clearInterval(playerIntervalID);
         }
     }).bind('pagecreate', function(){
-        $('#player_toolbar_button').bind('vmousedown', function(){
+        $('#player_toolbar_button').click(function(){
             request.execute();
             return false;
         });
@@ -176,13 +176,7 @@
             });
         });
 
-        $('#player_health span.heart, #player_armor span.chestplate').bind('touchstart', function(e){
-            $(e.target).parent().trigger('touchstart', e);
-            e.preventDefault();
-            e.stopImmediatePropagation();
-        });
-
-        $('#ban_ip').bind('vmousedown', function(){
+        $('#ban_ip').click(function(){
             if (ban_ip($('#player_ip').text(), true))
             {
                 if (player_kick(player, true))
@@ -191,6 +185,12 @@
                 }
             }
             return false;
+        });
+
+        $('#player_health span.heart, #player_armor span.chestplate').bind('touchstart', function(e){
+            $(e.target).parent().trigger('touchstart', e);
+            e.preventDefault();
+            e.stopImmediatePropagation();
         });
     });
     

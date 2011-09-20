@@ -91,7 +91,7 @@
     $('#world').bind('pageshow', function(){
         request.execute();
     }).bind('pagecreate', function(){
-        $('#world_toolbar_button').bind('vmousedown', function(){
+        $('#world_toolbar_button').click(function(){
             request.execute();
             return false;
         });
