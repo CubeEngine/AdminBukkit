@@ -1,5 +1,5 @@
 <?php $lang = Lang::instance('generic') ?>
-<div id="<?php echo $pageName ?>" data-role="page" data-theme="e">
+<div id="<?php echo $pageName ?>" data-role="page" data-theme="a">
     <div data-role="header">
         <?php if (isset($backText)): ?>
             <?php if (isset($backTarget)): ?>
