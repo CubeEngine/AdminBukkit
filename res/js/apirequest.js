@@ -19,6 +19,7 @@ function ApiRequest(controller, action)
     var $method = 'GET';
     var $ignoreFirstFail = false;
     var $lastFailed = false;
+    var $broken = false;
     
     var $onSuccess = null;
     var $onFailure = null;
@@ -71,6 +72,7 @@ function ApiRequest(controller, action)
                 case 2:
                     alert(genericLang.error_authfailed);
                     redirectTo(BASE_PATH + 'index.php/home/?msg=' + urlencode(genericLang.redirect_msg));
+                    // @todo find a better method to redirect
                     break;
                 case 3:
                     // execute onFailure if set
@@ -81,16 +83,16 @@ function ApiRequest(controller, action)
                     break;
                 case 4:
                     alert(genericLang.error_notimplemented);
-                    throw "API not yet implemented!";
+                    $broken = true;
                     break;
                 case 5:
                     alert(genericLang.error_apinotfound);
-                    throw "API not found!";
+                    $broken = true;
                     break;
                 default:
                     //debug
                     alert('Failed: ' + jqXHR.responseText);
-                    //do nothing
+                    $broken = true;
                     break;
             }
         }
@@ -198,10 +200,19 @@ function ApiRequest(controller, action)
     {
         return $lastFailed;
     }
+
+    this.isBroken = function()
+    {
+        return $broken;
+    }
     
     this.execute = function(data)
     {
         if (!__APIREQUESTS_ENABLED)
+        {
+            return null;
+        }
+        if ($broken)
         {
             return null;
         }
