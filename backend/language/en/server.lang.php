@@ -40,9 +40,10 @@
         'emptyWhitelist'        => 'The whitelist is empty!',
         'whitelist'             => 'The whitelist',
         'consoleview'           => 'Console view',
+        'reload'                => 'Reload',
         
         // Controller
         'serverinfos'           => 'Serverinfo',
-        'reload'                => 'Reload'
+        'refresh'               => 'Erneuern'
     );
 ?>

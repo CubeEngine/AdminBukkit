@@ -31,14 +31,15 @@
     
 <h2><?php $lang->utils ?></h2>
 <div data-role="controlgroup">
-    <a data-role="button" href="#" id="stats_ram"><?php $lang->ram ?>: <span id="stats_ram_free"><?php $genericLang->progress ?></span> / <span id="stats_ram_max"><?php $genericLang->progress ?></span> MB</a>
+    <a data-role="button" href="#" id="server_stats_ram"><?php $lang->ram ?>: <span id="server_stats_ram_free"><?php $genericLang->progress ?></span> / <span id="server_stats_ram_max"><?php $genericLang->progress ?></span> MB</a>
     <a data-role="button" href="<?php $this->page('playerbanlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->banplayer ?></a>
     <a data-role="button" href="<?php $this->page('ipbanlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->banip ?></a>
     <a data-role="button" href="<?php $this->page('whitelist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->addtowhitelist ?></a>
     <a data-role="button" href="<?php $this->page('operatorlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->addoperator ?></a>
-    <a data-role="button" href="#" id="broadcast"><?php $lang->broadcast ?></a>
+    <a data-role="button" href="#" id="server_broadcast"><?php $lang->broadcast ?></a>
     <a data-role="button" href="<?php $this->page('console') ?>"><?php $lang->consoleview ?></a>
-    <a data-role="button" href="#" id="stop"><?php $lang->stop ?></a>
+    <a data-role="button" href="#" id="server_reload"><?php $lang->reload ?></a>
+    <a data-role="button" href="#" id="server_stop"><?php $lang->stop ?></a>
 </div>
 <script type="text/javascript">
 
@@ -87,8 +88,8 @@
         data = eval('(' + data + ')');
         var max = Math.round(data.maxmemory / 1024 / 1024);
         var free = Math.round(data.freememory / 1024 / 1024);
-        $('#stats_ram_max').html(max);
-        $('#stats_ram_free').html(max - free);
+        $('#server_stats_ram_max').html(max);
+        $('#server_stats_ram_free').html(max - free);
     }
 
     var statsInterval = null;
@@ -104,6 +105,9 @@
         }
     }).bind('pagecreate', function(){
         $('#server_toolbar_button').bind('vmousedown', function(){
+            infoRequest.execute();
+        });
+        $('#server_reload').bind('vmousedown', function(){
             if (confirm('<?php $lang->confirm_reload ?>'))
             {
                 var request = new ApiRequest('server', 'reload');
@@ -116,7 +120,7 @@
             return false;
         });
 
-        $('#stats_ram').click(function(e){
+        $('#server_stats_ram').click(function(e){
             e.preventDefault();
             if (confirm('<?php $lang->gc_confirm ?>'))
             {
@@ -128,7 +132,7 @@
             }
         });
 
-        $('#stop').bind('vmousedown', function(){
+        $('#server_stop').bind('vmousedown', function(){
             if (confirm('<?php $lang->stop_confirm ?>'))
             {
                 if (confirm('<?php $lang->stop_confirm2 ?>'))
@@ -142,7 +146,7 @@
             }
         });
 
-        $('#broadcast').bind('vmousedown', function(){
+        $('#server_broadcast').bind('vmousedown', function(){
             var message = prompt('<?php $lang->broadcast_prompt ?>', '');
             if (!message)
             {
