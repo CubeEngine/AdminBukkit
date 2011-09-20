@@ -81,9 +81,11 @@ function ApiRequest(controller, action)
                     break;
                 case 4:
                     alert(genericLang.error_notimplemented);
+                    throw "API not yet implemented!";
                     break;
                 case 5:
                     alert(genericLang.error_apinotfound);
+                    throw "API not found!";
                     break;
                 default:
                     //debug
