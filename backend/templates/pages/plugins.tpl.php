@@ -6,20 +6,27 @@
 <script type="text/javascript">
     var list = $('#pluginlist');
     var request = new ApiRequest('plugin', 'list');
+    request.data({
+        format: 'json'
+    });
     request.onSuccess(refreshData);
     
     function refreshData(data)
     {
+        var plugins = eval('(' + data + ')');
+        if (!isDataDifferent(oldData, plugins))
+        {
+            return;
+        }
+        oldData = plugins;
         list.html('');
         if (data == '')
         {
-            var li = $('<li>');
-            li.text('<?php $lang->noplugins ?>');
-            list.append(li);
+            list.append($('<li><?php $lang->noplugins ?></li>'));
         }
         else
         {
-            var plugins = data.split(',').sort(realSort);
+            plugins = plugins.sort(realSort);
             for (var i = 0; i < plugins.length; i++)
             {
                 var li = $('<li>');

@@ -10,14 +10,17 @@
     <li><?php $lang->loadinglist ?></li>
 </ul>
 <script type="text/javascript">
-    var requestData = {};
+    var requestData = {
+        format: 'json'
+    };
     <?php if (isset($world)): ?>
     var dataSource = ['world', 'players'];
     requestData.world = '<?php echo $world ?>';
     <?php else: ?>
     var dataSource = ['player', 'list'];
     <?php endif ?>
-    
+
+    var oldData = null;
     var list = $('#<?php echo $pageName ?>_players');
     var playersRequest = new ApiRequest(dataSource[0], dataSource[1]);
     playersRequest.data(requestData);
@@ -45,17 +48,21 @@
 
     function refreshData(data)
     {
-        list.html('');
-        if (data == '')
+        players = eval('(' + data + ')');
+        if (!isDataDifferent(oldData, players))
         {
-            $('#players_online').html('0');
-            var li = $('<li>');
-            li.text('<?php $lang->noplayers ?>');
-            list.append(li);
+            return;
+        }
+        oldData = players;
+        list.html('');
+        if (players.length == 0)
+        {
+            $('#players_online').text('0');
+            list.append($('<li><?php $lang->noplayers ?></li>'));
         }
         else
         {
-            var players = data.split(',').sort(realSort);
+            players = players.sort(realSort);
             $('#players_online').html(players.length);
             for (var i = 0; i < players.length; i++)
             {

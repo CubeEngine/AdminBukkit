@@ -7,22 +7,30 @@
     <li><?php $lang->loadinglist ?></li>
 </ul>
 <script type="text/javascript">
+    var oldData = null;
     var list = $('#worldlist');
     var request = new ApiRequest('world', 'list');
+    request.data({
+        format: 'json'
+    });
     request.onSuccess(refreshData);
     
     function refreshData(data)
     {
+        var worlds = eval('(' + data + ')');
+        if (!isDataDifferent(oldData, worlds))
+        {
+            return;
+        }
+        oldData = worlds;
         list.html('');
         if (data == '')
         {
-            var li = $('<li>');
-            li.text('<?php $lang->noworlds ?>');
-            list.append(li);
+            list.append($('<li><?php $lang->noworlds ?></li>'));
         }
         else
         {
-            var worlds = data.split(',').sort(realSort);
+            worlds = worlds.sort(realSort);
             for (var i = 0; i < worlds.length; i++)
             {
                 var li = $('<li>');

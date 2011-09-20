@@ -96,6 +96,26 @@ function realSort(a, b)
     return (array.sort()[0] == a ? -1 : 1);
 }
 
+function isDataDifferent(oldData, data)
+{
+    if (!oldData)
+    {
+        return true;
+    }
+    if (oldData.length != data.length)
+    {
+        return true;
+    }
+    for (var i = 0; i < oldData.length; ++i)
+    {
+        if (oldData[i] != data[i])
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 function parseColors(string)
 {
     var regex = /§([0-9a-f])/i;
