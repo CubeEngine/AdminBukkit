@@ -6,6 +6,7 @@
         'timezone'              => 'Europe/Berlin',
         'database'              => 'SQLite',
         'mod_rewrite'           => true,
+        'cacheLifetime'         => 60 * 60 * 24,
 
         // MySQL
         'mysql_host'            => 'localhost',
@@ -17,7 +18,7 @@
         
         // Session
         'sessionName'           => 'sid',
-        'sessionCookieLifetime' => 60 * 60 * 1,
+        'sessionCookieLifetime' => 60 * 60 * 4,
         
         // Security
         'databaseDir'           => CONFIG_PATH,
