@@ -10,6 +10,7 @@
         format: 'json'
     });
     request.onSuccess(refreshData);
+    var oldData = null;
     
     function refreshData(data)
     {
