@@ -66,6 +66,7 @@
 <script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=serverutils"></script>
 <script type="text/javascript" src="<?php $this->res('js/serverutils.js') ?>"></script>
 <script type="text/javascript">
+    var playerIntervalID = null;
     var succeeded = false;
     var request = new ApiRequest('player', 'info');
     request.data({player: player, format:'json'});
@@ -78,8 +79,8 @@
             case 2:
                 if (succeeded)
                 {
-                    clearInterval(intervalID);
-                    $('.toggleoverlay, .toolbar a.button').unbind('click').click(function(){
+                    clearInterval(playerIntervalID);
+                    $('#player_toolbar_button').unbind('click').click(function(){
                         alert('<?php $lang->disabled ?>');
                         return false;
                     });
@@ -129,7 +130,6 @@
         $('#player_ip').text(data.ip);
     }
 
-    var playerIntervalID = null;
     $('#player').bind('pageshow', function(){
         request.execute();
         playerIntervalID = setInterval(request.execute, 10000);
