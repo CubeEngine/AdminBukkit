@@ -4,5 +4,5 @@
     <li><?php $lang->username ?>: <span class="value"><?php echo $username ?></span></li>
     <li><?php $lang->email ?>: <span class="value"><?php echo $email ?></span></li>
     <li><?php $lang->apiaddr ?>: <span class="value"><?php echo $host . ':' . $port ?></span></li>
-    <li><?php $lang->apipass ?>: <span class="value"><?php echo htmlspecialchars($pass) ?></span></li>
+    <li><?php $lang->apipass ?>: <span id="profile_authkey" class="value"><?php echo $pass ?></span></li>
 </ul>

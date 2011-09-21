@@ -163,7 +163,13 @@ div[data-role=footer] a {
 /**
  * Page - world
  */
- a#world_create {
-     text-decoration: none;
-     color: #2489CE;
- }
+a#world_create {
+    text-decoration: none;
+    color: #2489CE;
+}
+/**
+ * Page - editprofile
+ */
+span#profile_authkey {
+    word-wrap: break-word;
+}
