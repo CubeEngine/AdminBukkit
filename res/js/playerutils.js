@@ -1,12 +1,5 @@
 var playerutilsLang = new PlayerutilsLang();
 
-/**
- * @todo add item names
- */
-var items = {
-    
-}
-
 function player_kick(player, sync)
 {
     var $result = false;
@@ -182,6 +175,18 @@ function player_give(player)
         return;
     }
     item = item.replace(/\s/g, '');
+    if (items && item.match(/[^\d:]/))
+    {
+        if (items[item])
+        {
+            item = items[item][0] + ':' + items[item][1];
+        }
+        else
+        {
+            alert(playerutilsLang.give_aliasnotfound);
+            return;
+        }
+    }
     if (!item.match(/^\d+(:\d+)?$/))
     {
         alert(playerutilsLang.give_formatfail);
@@ -190,7 +195,9 @@ function player_give(player)
     var data = 0;
     if (item.indexOf(':') > -1)
     {
-        data = item.substr(item.indexOf(':') + 1);
+        var delimPos = item.indexOf(':');
+        data = item.substr(delimPos + 1);
+        item = item.substr(0, delimPos);
     }
     var amount = prompt(playerutilsLang.give_amount, '64');
     if (!amount)
@@ -215,6 +222,15 @@ function player_give(player)
                 alert(playerutilsLang.give_formatfail);
                 break;
             case 4:
+                alert(playerutilsLang.give_noitem);
+                break;
+            case 5:
+                alert(playerutilsLang.give_invaliddata);
+                break;
+            case 6:
+                alert(playerutilsLang.give_invalidamount);
+                break;
+            case 7:
                 alert(playerutilsLang.give_unknownitem);
                 break;
         }

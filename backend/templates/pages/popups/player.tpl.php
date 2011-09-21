@@ -12,6 +12,7 @@
     <li><a href="#" id="player_op"><?php $lang->op ?></a></li>
     <li><a href="#" id="player_deop"><?php $lang->deop ?></a></li>
 </ul>
+<script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/mcitems.php"></script>
 <script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=playerutils"></script>
 <script type="text/javascript" src="<?php $this->res('js/playerutils.js') ?>"></script>
 <script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=serverutils"></script>
