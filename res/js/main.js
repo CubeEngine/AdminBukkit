@@ -200,14 +200,10 @@ $.mobile.pageloadErrorMessage = genericLang.pageloaderror;
 $.mobile.listview.prototype.options.filterPlaceholder = genericLang.filterplaceholder;
 
 $(window).unload(function(){
-    ready = false;
+    $.mobile.showPageLoadingMsg();
 });
 
-/*var shakeListener = new WKShake();
-shakeListener.start();*/
-
 $(function(){
-    ready = true;
     $('a[href=\\#]').click(function(e){
         e.preventDefault();
     });
