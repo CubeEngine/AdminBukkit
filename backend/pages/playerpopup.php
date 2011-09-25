@@ -6,7 +6,7 @@
         Router::instance()->redirectToPage('players', $lang['noplayer']);
     }
     $page = new Page('playerpopup', $player, true);
-    $page->assign('player', $lang['playerinfos'], $player)
+    $page->assign('player', $player)
          ->setContent(new Template('pages/popups/player'));
 
     $design->setContentView($page);
