@@ -7,7 +7,7 @@
 
     $page = new Page('login', $lang['login']);
     $page->assign('user', '')
-         ->assign('langs', array_merge(array(Lang::getLanguage()), Lang::listLanguages()));
+         ->assign('langs', array_unique(array_merge(array(Lang::getLanguage()), Lang::listLanguages())));
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
