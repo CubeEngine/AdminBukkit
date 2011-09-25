@@ -11,7 +11,7 @@
  * Copyright 2011, The Dojo Foundation
  * Released under the MIT, BSD, and GPL Licenses.
  *
- * Date: Mon Sep 19 16:13:57 2011 -0400
+ * Date: Fri Sep 23 09:11:02 2011 -0400
  */
 (function( window, undefined ) {
 
@@ -956,6 +956,20 @@ function doScrollCheck() {
 	jQuery.ready();
 }
 
+// Expose jQuery as an AMD module, but only for AMD loaders that
+// understand the issues with loading multiple versions of jQuery
+// in a page that all might call define(). The loader will indicate
+// they have special allowances for multiple jQuery versions by
+// specifying define.amd.jQuery = true. Register as a named module,
+// since jQuery can be concatenated with other files that may use define,
+// but not use a proper concatenation script that understands anonymous
+// AMD modules. A named AMD is safest and most robust way to register.
+// Lowercase jquery is used because AMD module names are derived from
+// file names, and jQuery is normally delivered in a lowercase file name.
+if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
+	define( "jquery", [], function () { return jQuery; } );
+}
+
 return jQuery;
 
 })();
@@ -981,9 +995,6 @@ function createFlags( flags ) {
  *	flags:	an optional list of space-separated flags that will change how
  *			the callback list behaves
  *
- *	filter:	an optional function that will be applied to each added callbacks,
- *			what filter returns will then be added provided it is not falsy.
- *
  * By default a callback list will act like an event callback list and can be
  * "fired" multiple times.
  *
@@ -995,26 +1006,12 @@ function createFlags( flags ) {
  *					after the list has been fired right away with the latest "memorized"
  *					values (like a Deferred)
  *
- *	queue:			only first callback in the list is called each time the list is fired
- *					(cannot be used in conjunction with memory)
- *
  *	unique:			will ensure a callback can only be added once (no duplicate in the list)
- *
- *	relocate:		like "unique" but will relocate the callback at the end of the list
  *
  *	stopOnFalse:	interrupt callings when a callback returns false
  *
- *	addAfterFire:	if callbacks are added while firing, then they are not executed until after
- *					the next call to fire/fireWith
- *
  */
-jQuery.Callbacks = function( flags, filter ) {
-
-	// flags are optional
-	if ( typeof flags !== "string" ) {
-		filter = flags;
-		flags = undefined;
-	}
+jQuery.Callbacks = function( flags ) {
 
 	// Convert flags from String-formatted to Object-formatted
 	// (we check in cache first)
@@ -1048,18 +1045,9 @@ jQuery.Callbacks = function( flags, filter ) {
 					// Inspect recursively
 					add( elem );
 				} else if ( type === "function" ) {
-					// If we have to relocate, we remove the callback
-					// if it already exists
-					if ( flags.relocate ) {
-						self.remove( elem );
-					// Skip if we're in unique mode and callback is already in
-					} else if ( flags.unique && self.has( elem ) ) {
-						continue;
-					}
-					// Get the filtered function if needs be
-					actual = filter ? filter( elem ) : elem;
-					if ( actual ) {
-						list.push( [ elem, actual ] );
+					// Add if not in unique mode and callback is not in
+					if ( !flags.unique || !self.has( elem ) ) {
+						list.push( elem );
 					}
 				}
 			}
@@ -1073,11 +1061,8 @@ jQuery.Callbacks = function( flags, filter ) {
 			firingStart = 0;
 			firingLength = list.length;
 			for ( ; list && firingIndex < firingLength; firingIndex++ ) {
-				if ( list[ firingIndex ][ 1 ].apply( context, args ) === false && flags.stopOnFalse ) {
+				if ( list[ firingIndex ].apply( context, args ) === false && flags.stopOnFalse ) {
 					memory = true; // Mark as halted
-					break;
-				} else if ( flags.queue ) {
-					list.splice( firingIndex, 1 );
 					break;
 				}
 			}
@@ -1105,9 +1090,7 @@ jQuery.Callbacks = function( flags, filter ) {
 					// Do we need to add the callbacks to the
 					// current firing batch?
 					if ( firing ) {
-						if ( !flags.addAfterFire ) {
-							firingLength = list.length;
-						}
+						firingLength = list.length;
 					// With memory, if we're not firing then
 					// we should call right away, unless previous
 					// firing was halted (stopOnFalse)
@@ -1126,7 +1109,7 @@ jQuery.Callbacks = function( flags, filter ) {
 						argLength = args.length;
 					for ( ; argIndex < argLength ; argIndex++ ) {
 						for ( var i = 0; i < list.length; i++ ) {
-							if ( args[ argIndex ] === list[ i ][ 0 ] ) {
+							if ( args[ argIndex ] === list[ i ] ) {
 								// Handle firingIndex and firingLength
 								if ( firing ) {
 									if ( i <= firingLength ) {
@@ -1140,7 +1123,7 @@ jQuery.Callbacks = function( flags, filter ) {
 								list.splice( i--, 1 );
 								// If we have some unicity property then
 								// we only need to do this once
-								if ( flags.unique || flags.relocate ) {
+								if ( flags.unique ) {
 									break;
 								}
 							}
@@ -1155,7 +1138,7 @@ jQuery.Callbacks = function( flags, filter ) {
 					var i = 0,
 						length = list.length;
 					for ( ; i < length; i++ ) {
-						if ( fn === list[ i ][ 0 ] ) {
+						if ( fn === list[ i ] ) {
 							return true;
 						}
 					}
@@ -1218,9 +1201,7 @@ jQuery.Callbacks = function( flags, filter ) {
 
 
 
-var // Promise methods
-	promiseMethods = "done removeDone fail removeFail progress removeProgress isResolved isRejected promise then always pipe".split( " " ),
-	// Static reference to slice
+var // Static reference to slice
 	sliceDeferred = [].slice;
 
 jQuery.extend({
@@ -1229,31 +1210,28 @@ jQuery.extend({
 		var doneList = jQuery.Callbacks( "once memory" ),
 			failList = jQuery.Callbacks( "once memory" ),
 			progressList = jQuery.Callbacks( "memory" ),
-			promise,
-			deferred = {
-				// Copy existing methods from lists
+			lists = {
+				resolve: doneList,
+				reject: failList,
+				notify: progressList
+			},
+			promise = {
 				done: doneList.add,
-				removeDone: doneList.remove,
 				fail: failList.add,
-				removeFail: failList.remove,
 				progress: progressList.add,
-				removeProgress: progressList.remove,
-				resolve: doneList.fire,
-				resolveWith: doneList.fireWith,
-				reject: failList.fire,
-				rejectWith: failList.fireWith,
-				notify: progressList.fire,
-				notifyWith: progressList.fireWith,
+
 				isResolved: doneList.fired,
 				isRejected: failList.fired,
+				isProgressing: function() {
+					return !progressList.locked();
+				},
 
-				// Create Deferred-specific methods
 				then: function( doneCallbacks, failCallbacks, progressCallbacks ) {
 					deferred.done( doneCallbacks ).fail( failCallbacks ).progress( progressCallbacks );
 					return this;
 				},
 				always: function() {
-					return deferred.done.apply( deferred, arguments ).fail.apply( this, arguments );
+					return deferred.done.apply( deferred, arguments ).fail.apply( deferred, arguments );
 				},
 				pipe: function( fnDone, fnFail, fnProgress ) {
 					return jQuery.Deferred(function( newDefer ) {
@@ -1284,18 +1262,22 @@ jQuery.extend({
 				// If obj is provided, the promise aspect is added to the object
 				promise: function( obj ) {
 					if ( obj == null ) {
-						if ( promise ) {
-							return promise;
+						obj = promise;
+					} else {
+						for( var key in promise ) {
+							obj[ key ] = promise[ key ];
 						}
-						promise = obj = {};
-					}
-					var i = promiseMethods.length;
-					while( i-- ) {
-						obj[ promiseMethods[i] ] = deferred[ promiseMethods[i] ];
 					}
 					return obj;
 				}
-			};
+			},
+			deferred = promise.promise({}),
+			key;
+
+		for ( key in lists ) {
+			deferred[ key ] = lists[ key ].fire;
+			deferred[ key + "With" ] = lists[ key ].fireWith;
+		}
 
 		// Handle lists exclusiveness
 		deferred.done( failList.disable, progressList.lock )
@@ -1377,11 +1359,12 @@ jQuery.support = (function() {
 		events,
 		eventName,
 		i,
-		isSupported;
+		isSupported,
+		offsetSupport;
 
 	// Preliminary tests
 	div.setAttribute("className", "t");
-	div.innerHTML = "   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/>";
+	div.innerHTML = "   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/><nav></nav>";
 
 
 	all = div.getElementsByTagName( "*" );
@@ -1425,6 +1408,9 @@ jQuery.support = (function() {
 		// Verify style float existence
 		// (IE uses styleFloat instead of cssFloat)
 		cssFloat: !!a.style.cssFloat,
+
+		// Make sure unknown elements (like HTML5 elems) are handled appropriately
+		unknownElems: !!div.getElementsByTagName( "nav" ).length,
 
 		// Make sure that if no value is specified for a checkbox
 		// that it defaults to "on".
@@ -1475,7 +1461,7 @@ jQuery.support = (function() {
 		div.cloneNode( true ).fireEvent( "onclick" );
 	}
 
-	// Check if a radio maintains it's value
+	// Check if a radio maintains its value
 	// after being appended to the DOM
 	input = document.createElement("input");
 	input.value = "t";
@@ -1495,7 +1481,11 @@ jQuery.support = (function() {
 	// Figure out if the W3C box model works as expected
 	div.style.width = div.style.paddingLeft = "1px";
 
-	body = document.getElementsByTagName( "body" )[ 0 ];
+	// We don't want to do body-related feature tests on frameset
+	// documents, which lack a body. So we use
+	// document.getElementsByTagName("body")[0], which is undefined in
+	// frameset documents, while document.body isn’t. (7398)
+	body = document.getElementsByTagName("body")[ 0 ];
 	// We use our own, invisible, body unless the body is already present
 	// in which case we use a div (#9239)
 	testElement = document.createElement( body ? "div" : "body" );
@@ -1510,8 +1500,8 @@ jQuery.support = (function() {
 	if ( body ) {
 		jQuery.extend( testElementStyle, {
 			position: "absolute",
-			left: "-1000px",
-			top: "-1000px"
+			left: "-999px",
+			top: "-999px"
 		});
 	}
 	for ( i in testElementStyle ) {
@@ -1602,6 +1592,49 @@ jQuery.support = (function() {
 			support[ i + "Bubbles" ] = isSupported;
 		}
 	}
+
+	// Determine fixed-position support early
+	offsetSupport = (function( body, container ) {
+
+		var outer, inner, table, td, supports,
+			bodyMarginTop = parseFloat( body.style.marginTop ) || 0,
+			ptlm = "position:absolute;top:0;left:0;width:1px;height:1px;",
+			style = "style='" + ptlm + "margin:0;border:5px solid #000;padding:0;'",
+			html = "<div " + style + "><div></div></div>" +
+							"<table " + style + " cellpadding='0' cellspacing='0'>" +
+							"<tr><td></td></tr></table>";
+
+		container.style.cssText = ptlm + "border:0;visibility:hidden";
+
+		container.innerHTML = html;
+		body.insertBefore( container, body.firstChild );
+		outer = container.firstChild;
+		inner = outer.firstChild;
+		td = outer.nextSibling.firstChild.firstChild;
+
+		supports = {
+			doesNotAddBorder: (inner.offsetTop !== 5),
+			doesAddBorderForTableAndCells: (td.offsetTop === 5)
+		};
+
+		inner.style.position = "fixed";
+		inner.style.top = "20px";
+
+		// safari subtracts parent border width here which is 5px
+		supports.supportsFixedPosition = (inner.offsetTop === 20 || inner.offsetTop === 15);
+		inner.style.position = inner.style.top = "";
+
+		outer.style.overflow = "hidden";
+		outer.style.position = "relative";
+
+		supports.subtractsBorderForOverflowNotVisible = (inner.offsetTop === -5);
+		supports.doesNotIncludeMarginInBodyOffset = (body.offsetTop !== bodyMarginTop);
+
+		return supports;
+
+	})( testElement, div );
+
+	jQuery.extend( support, offsetSupport );
 
 	// Null connected elements to avoid leaks in IE
 	testElement = fragment = select = opt = body = marginDiv = div = input = null;
@@ -1748,7 +1781,7 @@ jQuery.extend({
 			return;
 		}
 
-		var thisCache,
+		var thisCache, i, l,
 
 			// Reference to internal data cache key
 			internalKey = jQuery.expando,
@@ -1773,12 +1806,25 @@ jQuery.extend({
 
 			if ( thisCache ) {
 
-				// Support interoperable removal of hyphenated or camelcased keys
-				if ( !thisCache[ name ] ) {
+				// Support space separated names
+				if ( jQuery.isArray( name ) ) {
+					name = name;
+				} else if ( name in thisCache ) {
+					name = [ name ];
+				} else {
+
+					// split the camel cased version by spaces
 					name = jQuery.camelCase( name );
+					if ( name in thisCache ) {
+						name = [ name ];
+					} else {
+						name = name.split( " " );
+					}
 				}
 
-				delete thisCache[ name ];
+				for ( i = 0, l = name.length; i < l; i++ ) {
+					delete thisCache[ name[i] ];
+				}
 
 				// If there is no data left in the cache, we want to continue
 				// and let the cache object itself get destroyed
@@ -2495,18 +2541,26 @@ jQuery.extend({
 		}
 	},
 
-	removeAttr: function( elem, name ) {
-		var propName;
+	removeAttr: function( elem, value ) {
+		var propName, attrNames, name, l,
+			i = 0;
+
 		if ( elem.nodeType === 1 ) {
-			name = jQuery.attrFix[ name ] || name;
+			attrNames = (value || "").split( rspace );
+			l = attrNames.length;
 
-			// See #9699 for explanation of this approach (setting first, then removal)
-			jQuery.attr( elem, name, "" );
-			elem.removeAttribute( name );
+			for ( ; i < l; i++ ) {
+				name = attrNames[ i ];
+				name = jQuery.attrFix[ name ] || name;
 
-			// Set corresponding property to false for boolean attributes
-			if ( rboolean.test( name ) && (propName = jQuery.propFix[ name ] || name) in elem ) {
-				elem[ propName ] = false;
+				// See #9699 for explanation of this approach (setting first, then removal)
+				jQuery.attr( elem, name, "" );
+				elem.removeAttribute( name );
+
+				// Set corresponding property to false for boolean attributes
+				if ( rboolean.test( name ) && (propName = jQuery.propFix[ name ] || name) in elem ) {
+					elem[ propName ] = false;
+				}
 			}
 		}
 	},
@@ -2772,20 +2826,14 @@ var rnamespaces = /\.(.*)$/,
 	rescape = /[^\w\s.|`]/g,
 	rtypenamespace = /^([^\.]*)?(?:\.(.+))?$/,
 	rhoverHack =  /\bhover(\.\S+)?/,
-	rquickIs = /^([\w\-]+)?(?:#([\w\-]+))?(?:\.([\w\-]+))?(?:\[([\w+\-]+)=["']?([\w\-]*)["']?\])?(?::(first-child|last-child|empty))?$/,
-	quickPseudoMap = {
-		"empty": "firstChild",
-		"first-child": "previousSibling",
-		"last-child": "nextSibling"
-	},
+	rquickIs = /^([\w\-]+)?(?:#([\w\-]+))?(?:\.([\w\-]+))?(?:\[([\w+\-]+)=["']?([\w\-]*)["']?\])?$/,
 	quickParse = function( selector ) {
 		var quick = rquickIs.exec( selector );
 		if ( quick ) {
-			//   0  1    2   3      4         5          6
-			// [ _, tag, id, class, attrName, attrValue, :(empty first-child last-child) ]
+			//   0  1    2   3      4         5
+			// [ _, tag, id, class, attrName, attrValue ]
 			quick[1] = ( quick[1] || "" ).toLowerCase();
 			quick[3] = quick[3] && new RegExp( "\\b" + quick[3] + "\\b" );
-			quick[6] = quickPseudoMap[ quick[6] ];
 		}
 		return quick;
 	},
@@ -2794,8 +2842,7 @@ var rnamespaces = /\.(.*)$/,
 			(!m[1] || elem.nodeName.toLowerCase() === m[1]) && 
 			(!m[2] || elem.id === m[2]) && 
 			(!m[3] || m[3].test( elem.className )) &&
-			(!m[4] || elem.getAttribute( m[4] ) == m[5]) &&
-			(!m[6] || !elem[ m[6] ])
+			(!m[4] || elem.getAttribute( m[4] ) == m[5])
 		);
 	},
 	useNativeMethod = function( event ) {
@@ -3003,20 +3050,18 @@ jQuery.event = {
 
 				delete events[ type ];
 			}
+		}
 
-			// Remove the expando if it's no longer used
-			if ( jQuery.isEmptyObject( events ) ) {
-				handle = elemData.handle;
-				if ( handle ) {
-					handle.elem = null;
-				}
-
-				delete elemData.events;
-
-				// removeData also checks for emptiness and clears the expando if empty
-				// so use it instead of delete for this last property we touch here
-				jQuery.removeData( elem, "handle", true );
+		// Remove the expando if it's no longer used
+		if ( jQuery.isEmptyObject( events ) ) {
+			handle = elemData.handle;
+			if ( handle ) {
+				handle.elem = null;
 			}
+
+			// removeData also checks for emptiness and clears the expando if empty
+			// so use it instead of delete
+			jQuery.removeData( elem, [ "events", "handle" ], true );
 		}
 	},
 	
@@ -3077,6 +3122,7 @@ jQuery.event = {
 			new jQuery.Event( type );
 
 		event.type = type;
+		event.isTrigger = true;
 		event.exclusive = exclusive;
 		event.namespace = namespaces.join( "." );
 		event.namespace_re = event.namespace? new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.)?") + "(\\.|$)") : null;
@@ -3103,7 +3149,9 @@ jQuery.event = {
 
 		// Clean up the event in case it is being reused
 		event.result = undefined;
-		event.target = elem;
+		if ( !event.target ) {
+			event.target = elem;
+		}
 
 		// Clone any incoming data and prepend the event, creating the handler arg list
 		data = data != null ? jQuery.makeArray( data ) : [];
@@ -3492,7 +3540,7 @@ jQuery.each({
 	};
 });
 
-// submit delegation
+// IE submit delegation
 if ( !jQuery.support.submitBubbles ) {
 
 	jQuery.event.special.submit = {
@@ -3502,130 +3550,87 @@ if ( !jQuery.support.submitBubbles ) {
 				return false;
 			}
 
+			// Lazy-add a submit handler when a descendant form may potentially be submitted
 			jQuery.event.add( this, "click._submit keypress._submit", function( e ) {
+				// Node name check avoids a VML-related crash in IE (#9807)
 				var elem = e.target,
-					type = jQuery.nodeName( elem, "input" ) || jQuery.nodeName( elem, "button" ) ? elem.type : "";
-
-				// Do the elem.form check after type to avoid VML-related crash in IE (#9807)
-				if ( (e.type === "click" && (type === "submit" || type === "image") && elem.form) || 
-					 (e.type === "keypress" && e.keyCode === 13 && (type === "text" || type === "password") && elem.form) ) {
-					simulate( "submit", this, e );
+					form = jQuery.nodeName( elem, "input" ) || jQuery.nodeName( elem, "button" ) ? elem.form : undefined;
+				if ( form && !form._submit_attached ) {
+					jQuery.event.add( form, "submit._submit", function( event ) {
+						// Form was submitted, bubble the event up the tree
+						if ( this.parentNode ) {
+							simulate( "submit", this.parentNode, event, true );
+						}
+					});
+					form._submit_attached = true;
 				}
 			});
+			// return undefined since we don't need an event listener
 		},
 
 		teardown: function() {
-			jQuery.event.remove( this, "._submit" );
-		}
-	};
-
-}
-
-// change delegation, happens here so we have bind.
-if ( !jQuery.support.changeBubbles ) {
-
-	var getVal = function( elem ) {
-		var type = jQuery.nodeName( elem, "input" ) ? elem.type : "",
-			val = elem.value;
-
-		if ( type === "radio" || type === "checkbox" ) {
-			val = elem.checked;
-
-		} else if ( type === "select-one" ) {
-			val = elem.selectedIndex;
-
-		} else if ( type === "select-multiple" ) {
-			val = elem.selectedIndex > -1 ?
-				jQuery.map( elem.options, function( elem ) {
-					return elem.selected;
-				}).join( "-" ) :
-				"";
-		}
-
-		return val;
-	},
-
-	testChange = function testChange( e ) {
-		var elem = e.target,
-			old, val;
-
-		if ( !rformElems.test( elem.nodeName ) || elem.readOnly ) {
-			return;
-		}
-
-		old = jQuery._data( elem, "_change_data" );
-		val = getVal( elem );
-
-		// the current data will be also retrieved by beforeactivate
-		if ( e.type !== "focusout" || elem.type !== "radio" ) {
-			jQuery._data( elem, "_change_data", val );
-		}
-
-		if ( val !== old && old != null ) {
-			simulate( "change", elem,  e, true );
-		}
-	},
-
-	changeFilters = {
-		focusout: testChange,
-
-		beforedeactivate: testChange,
-
-		click: function( e ) {
-			var elem = e.target,
-				name = elem.nodeName.toLowerCase(),
-				type = name === "input"? elem.type : "";
-
-			if ( type === "radio" || type === "checkbox" || name === "select" ) {
-					testChange.call( this, e );
-			}
-		},
-
-		// Change has to be called before submit
-		// Keydown will be called before keypress, which is used in submit-event delegation
-		keydown: function( e ) {
-			var elem = e.target,
-				name = elem.nodeName.toLowerCase(),
-				type = name === "input"? elem.type : "";
-
-			if ( (e.keyCode === 13 && name !== "textarea") ||
-					(e.keyCode === 32 && (type === "checkbox" || type === "radio")) ||
-					type === "select-multiple" ) {
-					testChange.call( this, e );
-			}
-		},
-
-		// Beforeactivate happens also before the previous element is blurred
-		// here, you can't trigger a change event, but you can store data
-		beforeactivate: function( e ) {
-			var elem = e.target;
-			jQuery._data( elem, "_change_data", getVal( elem ) );
-		},
-
-		// Update the current value if we're not re-focusing (#8157)
-		focus: function( e ) {
-			var elem = e.target;
-			if ( elem != document.activeElement ) {
-				jQuery._data( elem, "_change_data", getVal( elem ) );
-			}
-		}
-	};
-
-	jQuery.event.special.change = {
-
-		setup: function( data, namespaces ) {
-			if ( this.type === "file" ) {
+			// Only need this for delegated form submit events
+			if ( jQuery.nodeName( this, "form" ) ) {
 				return false;
 			}
 
-			for ( var type in changeFilters ) {
-				jQuery.event.add( this, type + "._change", changeFilters[ type ] );
-			}
+			// Remove delegated handlers; cleanData eventually reaps submit handlers attached above
+			jQuery.event.remove( this, "._submit" );
+		}
+	};
+}
 
-			return rformElems.test( this.nodeName );
+// IE change delegation and checkbox/radio fix
+if ( !jQuery.support.changeBubbles ) {
+
+	jQuery.event.special.change = {
+
+		setup: function() {
+
+			if ( rformElems.test( this.nodeName ) ) {
+				// IE doesn't fire change on a check/radio until blur; trigger it on click
+				// after a propertychange. Eat the blur-change in special.change.handle.
+				// This still fires onchange a second time for check/radio after blur.
+				if ( this.type === "checkbox" || this.type === "radio" ) {
+					jQuery.event.add( this, "propertychange._change", function( event ) {
+						if ( event.originalEvent.propertyName === "checked" ) {
+							this._just_changed = true;
+						}
+					});
+					jQuery.event.add( this, "click._change", function( event ) {
+						if ( this._just_changed ) {
+							this._just_changed = false;
+							simulate( "change", this, event, true );
+						}
+					});
+				}
+				return false;
+			}
+			// Delegated event; lazy-add a change handler on descendant inputs
+			jQuery.event.add( this, "beforeactivate._change", function( e ) {
+				var elem = e.target;
+
+				if ( rformElems.test( elem.nodeName ) && !elem._change_attached ) {					
+					jQuery.event.add( elem, "change._change", function( event ) {
+						if ( this.parentNode && !event.isSimulated ) {
+							simulate( "change", this.parentNode, event, true );
+						}
+					});
+					elem._change_attached = true;
+				}
+			});
+		},
+		
+		handle: function( event ) {
+			var elem = event.target;
+
+			// Swallow native change events from checkbox/radio, we already triggered them above
+			if ( this !== elem || event.isSimulated || event.isTrigger || (elem.type !== "radio" && elem.type !== "checkbox") ) {
+				return event.handleObj.handler.apply( this, arguments );
+			}
 		},
 
-		teardown: function( namespaces ) {
+		teardown: function() {
 			jQuery.event.remove( this, "._change" );
 
 			return rformElems.test( this.nodeName );
@@ -3637,7 +3642,11 @@ function simulate( type, elem, event, bubble ) {
 	// Piggyback on a donor event to simulate a different one.
 	// Fake originalEvent to avoid donor's stopPropagation, but if the
 	// simulated event prevents default then we do the same on the donor.
-	var e = jQuery.extend( new jQuery.Event(), event, { type: type, originalEvent: {} } );
+	var e = jQuery.extend( 
+		new jQuery.Event(), 
+		event, 
+		{ type: type, isSimulated: true, originalEvent: {} }
+	);
 	if ( bubble ) {
 		jQuery.event.trigger( e, null, elem );
 	} else {
@@ -3909,7 +3918,7 @@ var Sizzle = function( selector, context, results, seed ) {
 	if ( parts.length > 1 && origPOS.exec( selector ) ) {
 
 		if ( parts.length === 2 && Expr.relative[ parts[0] ] ) {
-			set = posProcess( parts[0] + parts[1], context );
+			set = posProcess( parts[0] + parts[1], context, seed );
 
 		} else {
 			set = Expr.relative[ parts[0] ] ?
@@ -3923,7 +3932,7 @@ var Sizzle = function( selector, context, results, seed ) {
 					selector += parts.shift();
 				}
 				
-				set = posProcess( selector, set );
+				set = posProcess( selector, set, seed );
 			}
 		}
 
@@ -5234,7 +5243,7 @@ Sizzle.isXML = function( elem ) {
 	return documentElement ? documentElement.nodeName !== "HTML" : false;
 };
 
-var posProcess = function( selector, context ) {
+var posProcess = function( selector, context, seed ) {
 	var match,
 		tmpSet = [],
 		later = "",
@@ -5250,7 +5259,7 @@ var posProcess = function( selector, context ) {
 	selector = Expr.relative[selector] ? selector + "*" : selector;
 
 	for ( var i = 0, l = root.length; i < l; i++ ) {
-		Sizzle( selector, root[i], tmpSet );
+		Sizzle( selector, root[i], tmpSet, seed );
 	}
 
 	return Sizzle.filter( later, tmpSet );
@@ -5345,43 +5354,33 @@ jQuery.fn.extend({
 	},
 
 	is: function( selector ) {
-		return !!selector && ( typeof selector === "string" ?
-			jQuery.filter( selector, this ).length > 0 :
-			this.filter( selector ).length > 0 );
+		return !!selector && ( 
+			typeof selector === "string" ?
+				// If this is a positional selector, check membership in the returned set
+				// so $("p:first").is("p:last") won't return true for a doc with two "p".
+				POS.test( selector ) ? 
+					jQuery( selector, this.context ).index( this[0] ) >= 0 :
+					jQuery.filter( selector, this ).length > 0 :
+				this.filter( selector ).length > 0 );
 	},
 
 	closest: function( selectors, context ) {
 		var ret = [], i, l, cur = this[0];
 		
-		// Array
+		// Array (deprecated as of jQuery 1.7)
 		if ( jQuery.isArray( selectors ) ) {
-			var match, selector,
-				matches = {},
-				level = 1;
+			var level = 1;
 
-			if ( cur && selectors.length ) {
-				for ( i = 0, l = selectors.length; i < l; i++ ) {
-					selector = selectors[i];
+			while ( cur && cur.ownerDocument && cur !== context ) {
+				for ( i = 0; i < selectors.length; i++ ) {
 
-					if ( !matches[ selector ] ) {
-						matches[ selector ] = POS.test( selector ) ?
-							jQuery( selector, context || this.context ) :
-							selector;
+					if ( jQuery( cur ).is( selectors[ i ] ) ) {
+						ret.push({ selector: selectors[ i ], elem: cur, level: level });
 					}
 				}
 
-				while ( cur && cur.ownerDocument && cur !== context ) {
-					for ( selector in matches ) {
-						match = matches[ selector ];
-
-						if ( match.jquery ? match.index( cur ) > -1 : jQuery( cur ).is( match ) ) {
-							ret.push({ selector: selector, elem: cur, level: level });
-						}
-					}
-
-					cur = cur.parentNode;
-					level++;
-				}
+				cur = cur.parentNode;
+				level++;
 			}
 
 			return ret;
@@ -5617,6 +5616,7 @@ var rinlinejQuery = / jQuery\d+="(?:\d+|null)"/g,
 	rtagName = /<([\w:]+)/,
 	rtbody = /<tbody/i,
 	rhtml = /<|&#?\w+;/,
+	rnoInnerhtml = /<(?:script|style)/i,
 	rnocache = /<(?:script|object|embed|option|style)/i,
 	// checked="checked" or checked
 	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
@@ -5631,7 +5631,23 @@ var rinlinejQuery = / jQuery\d+="(?:\d+|null)"/g,
 		col: [ 2, "<table><tbody></tbody><colgroup>", "</colgroup></table>" ],
 		area: [ 1, "<map>", "</map>" ],
 		_default: [ 0, "", "" ]
-	};
+	},
+	safeFragment = (function() {
+		var nodeNames = (
+			"abbr article aside audio canvas datalist details figcaption figure footer " +
+			"header hgroup mark meter nav output progress section summary time video"
+		).split( " " ),
+		safeFrag = document.createDocumentFragment();
+
+		if ( safeFrag.createElement ) {
+			while ( nodeNames.length ) {
+				safeFrag.createElement(
+					nodeNames.pop()
+				);
+			}
+		}
+		return safeFrag;
+	})();
 
 wrapMap.optgroup = wrapMap.option;
 wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
@@ -5812,7 +5828,7 @@ jQuery.fn.extend({
 				null;
 
 		// See if we can take a shortcut and just use innerHTML
-		} else if ( typeof value === "string" && !rnocache.test( value ) &&
+		} else if ( typeof value === "string" && !rnoInnerhtml.test( value ) &&
 			(jQuery.support.leadingWhitespace || !rleadingWhitespace.test( value )) &&
 			!wrapMap[ (rtagName.exec( value ) || ["", ""])[1].toLowerCase() ] ) {
 
@@ -6235,6 +6251,9 @@ jQuery.extend({
 						wrap = wrapMap[ tag ] || wrapMap._default,
 						depth = wrap[0],
 						div = context.createElement("div");
+
+					// Append wrapper element to unknown element safe doc fragment
+					safeFragment.appendChild( div );
 
 					// Go to html and back, then peel off extra wrappers
 					div.innerHTML = wrap[1] + elem + wrap[2];
@@ -8847,8 +8866,6 @@ if ( "getBoundingClientRect" in document.documentElement ) {
 			return jQuery.offset.bodyOffset( elem );
 		}
 
-		jQuery.offset.initialize();
-
 		var computedStyle,
 			offsetParent = elem.offsetParent,
 			prevOffsetParent = elem,
@@ -8904,45 +8921,21 @@ if ( "getBoundingClientRect" in document.documentElement ) {
 	};
 }
 
-jQuery.offset = {
-	initialize: function() {
-		var body = document.body, container = document.createElement("div"), innerDiv, checkDiv, table, td, bodyMarginTop = parseFloat( jQuery.css(body, "marginTop") ) || 0,
-			html = "<div style='position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;'><div></div></div><table style='position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;' cellpadding='0' cellspacing='0'><tr><td></td></tr></table>";
+jQuery.offset = {};
 
-		jQuery.extend( container.style, { position: "absolute", top: 0, left: 0, margin: 0, border: 0, width: "1px", height: "1px", visibility: "hidden" } );
+jQuery.each(
+	( "doesAddBorderForTableAndCells doesNotAddBorder " +
+		"doesNotIncludeMarginInBodyOffset subtractsBorderForOverflowNotVisible " +
+		"supportsFixedPosition" ).split(" "), function( i, prop ) {
 
-		container.innerHTML = html;
-		body.insertBefore( container, body.firstChild );
-		innerDiv = container.firstChild;
-		checkDiv = innerDiv.firstChild;
-		td = innerDiv.nextSibling.firstChild.firstChild;
+	jQuery.offset[ prop ] = jQuery.support[ prop ];
+});
 
-		this.doesNotAddBorder = (checkDiv.offsetTop !== 5);
-		this.doesAddBorderForTableAndCells = (td.offsetTop === 5);
-
-		checkDiv.style.position = "fixed";
-		checkDiv.style.top = "20px";
-
-		// safari subtracts parent border width here which is 5px
-		this.supportsFixedPosition = (checkDiv.offsetTop === 20 || checkDiv.offsetTop === 15);
-		checkDiv.style.position = checkDiv.style.top = "";
-
-		innerDiv.style.overflow = "hidden";
-		innerDiv.style.position = "relative";
-
-		this.subtractsBorderForOverflowNotVisible = (checkDiv.offsetTop === -5);
-
-		this.doesNotIncludeMarginInBodyOffset = (body.offsetTop !== bodyMarginTop);
-
-		body.removeChild( container );
-		jQuery.offset.initialize = jQuery.noop;
-	},
+jQuery.extend( jQuery.offset, {
 
 	bodyOffset: function( body ) {
 		var top = body.offsetTop,
 			left = body.offsetLeft;
-
-		jQuery.offset.initialize();
 
 		if ( jQuery.offset.doesNotIncludeMarginInBodyOffset ) {
 			top  += parseFloat( jQuery.css(body, "marginTop") ) || 0;
@@ -8994,10 +8987,11 @@ jQuery.offset = {
 			curElem.css( props );
 		}
 	}
-};
+});
 
 
 jQuery.fn.extend({
+
 	position: function() {
 		if ( !this[0] ) {
 			return null;

@@ -1,6 +1,5 @@
 /*!
- * jQuery Mobile v Git Build
- * Git Info SHA1: 0fbea8f8e6b5127f820d8758bcb78edc7351b283 Date: Mon Sep 19 11:32:13 2011 -0700
+ * jQuery Mobile v Git || Date: Sat Sep 24 01:00:42 2011 -0400 Info SHA1: e81e3b19c01ea60be46be09e63c6db89c0457046
  * http://jquerymobile.com/
  *
  * Copyright 2010, jQuery Project
@@ -432,9 +431,7 @@ $.extend( $.support, {
 	touchOverflow: !!propExists( "overflowScrolling" ),
 	boxShadow: !!propExists( "boxShadow" ) && !bb,
 	scrollTop: ( "pageXOffset" in window || "scrollTop" in document.documentElement || "scrollTop" in fakeBody[ 0 ] ) && !webos,
-	dynamicBaseTag: baseTagTest(),
-	// TODO: This is a weak test. We may want to beef this up later.
-	eventCapture: "addEventListener" in document
+	dynamicBaseTag: baseTagTest()
 });
 
 fakeBody.remove();
@@ -513,7 +510,7 @@ var dataPropertyName = "virtualMouseBindings",
 	clickBlockList = [],
 	blockMouseTriggers = false,
 	blockTouchTriggers = false,
-	eventCaptureSupported = $.support.eventCapture,
+	eventCaptureSupported = "addEventListener" in document,
 	$document = $( document ),
 	nextTouchID = 1,
 	lastTouchID = 0;
@@ -1834,7 +1831,11 @@ $.widget( "mobile.page", $.mobile.widget, {
 	};
 
 	$.jqmData = function( elem, prop, value ) {
-		return $.data( elem, $.mobile.nsNormalize( prop ), value );
+		var result;
+		if ( typeof prop != "undefined" ) {
+			result = $.data( elem, prop ? $.mobile.nsNormalize( prop ) : prop, value );
+		}
+		return result;
 	};
 
 	$.fn.jqmRemoveData = function( prop ) {
@@ -1843,6 +1844,27 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 	$.jqmRemoveData = function( elem, prop ) {
 		return $.removeData( elem, $.mobile.nsNormalize( prop ) );
+	};
+
+	$.fn.removeWithDependents = function() {
+		$.removeWithDependents( this );
+	};
+
+	$.removeWithDependents = function( elem ) {
+		var $elem = $( elem );
+
+		( $elem.jqmData('dependents') || $() ).remove();
+		$elem.remove();
+	};
+
+	$.fn.addDependents = function( newDependents ) {
+		$.addDependents( $(this), newDependents );
+	};
+
+	$.addDependents = function( elem, newDependents ) {
+		var dependents = $(elem).jqmData( 'dependents' ) || $();
+
+		$(elem).jqmData( 'dependents', $.merge(dependents, newDependents) );
 	};
 
 	// Monkey-patching Sizzle to filter the :jqmData selector
@@ -2266,38 +2288,80 @@ $.widget( "mobile.page", $.mobile.widget, {
 	}
 
 	// Save the last scroll distance per page, before it is hidden
-	var getLastScroll = (function( lastScrollEnabled ){
-		return function(){
-			if( !lastScrollEnabled ){
-				lastScrollEnabled = true;
-				return;
-			}
+	var setLastScrollEnabled = true,
+		firstScrollElem, getScrollElem, setLastScroll, delayedSetLastScroll;
 
-			lastScrollEnabled = false;
+	getScrollElem = function() {
+		var scrollElem = $window, activePage,
+			touchOverflow = $.support.touchOverflow && $.mobile.touchOverflowEnabled;
 
-			var active = $.mobile.urlHistory.getActive(),
-				activePage = $( ".ui-page-active" ),
-				scrollElem = $( window ),
-				touchOverflow = $.support.touchOverflow && $.mobile.touchOverflowEnabled;
+		if( touchOverflow ){
+			activePage = $( ".ui-page-active" );
+			scrollElem = activePage.is( ".ui-native-fixed" ) ? activePage.find( ".ui-content" ) : activePage;
+		}
 
-			if( touchOverflow ){
-				scrollElem = activePage.is( ".ui-native-fixed" ) ? activePage.find( ".ui-content" ) : activePage;
-			}
+		return scrollElem;
+	};
 
-			if( active ){
-				var lastScroll = scrollElem.scrollTop();
+	setLastScroll = function( scrollElem ) {
+		// this barrier prevents setting the scroll value based on the browser
+		// scrolling the window based on a hashchange
+		if( !setLastScrollEnabled ) {
+			return;
+		}
 
-				// Set active page's lastScroll prop.
-				// If the Y location we're scrolling to is less than minScrollBack, let it go.
-				active.lastScroll = lastScroll < $.mobile.minScrollBack ? $.mobile.defaultHomeScroll : lastScroll;
-			}
-		};
-	})( true );
+		var active = $.mobile.urlHistory.getActive();
 
-	// to get last scroll, we need to get scrolltop before the page change
-	// using beforechangepage or popstate/hashchange (whichever comes first)
-	$( document ).bind( "beforechangepage", getLastScroll );
-	$( window ).bind( $.support.pushState ? "popstate" : "hashchange", getLastScroll );
+		if( active ) {
+			var lastScroll = scrollElem && scrollElem.scrollTop();
+
+			// Set active page's lastScroll prop.
+			// If the location we're scrolling to is less than minScrollBack, let it go.
+			active.lastScroll = lastScroll < $.mobile.minScrollBack ? $.mobile.defaultHomeScroll : lastScroll;
+		}
+	};
+
+	// bind to scrollstop to gather scroll position. The delay allows for the hashchange
+	// event to fire and disable scroll recording in the case where the browser scrolls
+	// to the hash targets location (sometimes the top of the page). once pagechange fires
+	// getLastScroll is again permitted to operate
+	delayedSetLastScroll = function() {
+		setTimeout( setLastScroll, 100, $(this) );
+	};
+
+	// disable an scroll setting when a hashchange has been fired, this only works
+	// because the recording of the scroll position is delayed for 100ms after
+	// the browser might have changed the position because of the hashchange
+	$window.bind( $.support.pushState ? "popstate" : "hashchange", function() {
+	 	setLastScrollEnabled = false;
+	});
+
+	// handle initial hashchange from chrome :(
+	$window.one( $.support.pushState ? "popstate" : "hashchange", function() {
+		setLastScrollEnabled = true;
+	});
+
+	// wait until the mobile page container has been determined to bind to pagechange
+	$window.one( "pagecontainercreate", function(){
+		// once the page has changed, re-enable the scroll recording
+		$.mobile.pageContainer.bind( "pagechange", function() {
+			var scrollElem = getScrollElem();
+
+	 		setLastScrollEnabled = true;
+
+			// remove any binding that previously existed on the get scroll
+			// which may or may not be different than the scroll element determined for
+			// this page previously
+			scrollElem.unbind( "scrollstop", delayedSetLastScroll );
+
+			// determine and bind to the current scoll element which may be the window
+			// or in the case of touch overflow the element with touch overflow
+			scrollElem.bind( "scrollstop", delayedSetLastScroll );
+		});
+	});
+
+	// bind to scrollstop for the first page as "pagechange" won't be fired in that case
+	getScrollElem().bind( "scrollstop", delayedSetLastScroll );
 
 	// Make the iOS clock quick-scroll work again if we're using native overflow scrolling
 	/*
@@ -2404,6 +2468,10 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 	//simply set the active page's minimum height to screen height, depending on orientation
 	function resetActivePageHeight(){
+		// Don't apply this height in touch overflow enabled mode
+		if( $.support.touchOverflow && $.mobile.touchOverflowEnabled ){
+			return;
+		}
 		$( "." + $.mobile.activePageClass ).css( "min-height", getScreenHeight() );
 	}
 
@@ -2433,19 +2501,11 @@ $.widget( "mobile.page", $.mobile.widget, {
 		}
 	};
 
-	//update location.hash, with or without triggering hashchange event
-	//TODO - deprecate this one at 1.0
-	$.mobile.updateHash = path.set;
-
 	//expose path object on $.mobile
 	$.mobile.path = path;
 
 	//expose base object on $.mobile
 	$.mobile.base = base;
-
-	//url stack, useful when plugins need to be aware of previous pages viewed
-	//TODO: deprecate this one at 1.0
-	$.mobile.urlstack = urlHistory.stack;
 
 	//history stack
 	$.mobile.urlHistory = urlHistory;
@@ -2481,6 +2541,19 @@ $.widget( "mobile.page", $.mobile.widget, {
 	//return the original document base url
 	$.mobile.getDocumentBase = function(asParsedObject) {
 		return asParsedObject ? $.extend( {}, documentBase ) : documentBase.href;
+	};
+
+	$.mobile._bindPageRemove = function() {
+		var page = $(this);
+
+		// when dom caching is not enabled or the page is embedded bind to remove the page on hide
+		if( !page.data("page").options.domCache
+				&& page.is(":jqmData(external-page='true')") ) {
+
+			page.bind( 'pagehide.remove', function() {
+				$( this ).removeWithDependents();
+			});
+		}
 	};
 
 	// Load a page into the DOM.
@@ -2520,6 +2593,11 @@ $.widget( "mobile.page", $.mobile.widget, {
 			settings.data = undefined;
 		}
 
+		// If the caller is using a "post" request, reloadPage must be true
+		if(  settings.data && settings.type === "post" ){
+			settings.reloadPage = true;
+		}
+
 			// The absolute version of the URL minus any dialog/subpage params.
 			// In otherwords the real URL of the page to be loaded.
 		var fileUrl = path.getFilePath( absUrl ),
@@ -2536,6 +2614,15 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 		// Check to see if the page already exists in the DOM.
 		page = settings.pageContainer.children( ":jqmData(url='" + dataUrl + "')" );
+
+		// If we failed to find the page, check to see if the url is a
+		// reference to an embedded page. If so, it may have been dynamically
+		// injected by a developer, in which case it would be lacking a data-url
+		// attribute and in need of enhancement.
+		if ( page.length === 0 && !path.isPath( dataUrl ) ) {
+			page = settings.pageContainer.children( "#" + dataUrl )
+				.attr( "data-" + $.mobile.ns + "url", dataUrl )
+		}
 
 		// If we failed to find a page in the DOM, check the URL to see if it
 		// refers to the first page in the application.
@@ -2559,6 +2646,18 @@ $.widget( "mobile.page", $.mobile.widget, {
 				return deferred.promise();
 			}
 			dupCachedPage = page;
+		}
+
+		var mpc = settings.pageContainer,
+			pblEvent = new $.Event( "pagebeforeload" ),
+			triggerData = { url: url, absUrl: absUrl, dataUrl: dataUrl, deferred: deferred, options: settings };
+
+		// Let listeners know we're about to load a page.
+		mpc.trigger( pblEvent, triggerData );
+
+		// If the default behavior is prevented, stop here!
+		if( pblEvent.isDefaultPrevented() ){
+			return deferred.promise();
 		}
 
 		if ( settings.showLoadMsg ) {
@@ -2609,9 +2708,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 							&& RegExp.$1 ) {
 						url = fileUrl = path.getFilePath( RegExp.$1 );
 					}
-					else{
-
-					}
 
 					if ( base ) {
 						base.set( fileUrl );
@@ -2659,15 +2755,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 						.appendTo( settings.pageContainer );
 
 					// wait for page creation to leverage options defined on widget
-					page.one('pagecreate', function(){
-
-						// when dom caching is not enabled bind to remove the page on hide
-						if( !page.data("page").options.domCache ){
-							page.bind( "pagehide.remove", function(){
-								$(this).remove();
-							});
-						}
-					});
+					page.one( 'pagecreate', $.mobile._bindPageRemove );
 
 					enhancePage( page, settings.role );
 
@@ -2685,12 +2773,31 @@ $.widget( "mobile.page", $.mobile.widget, {
 						hideMsg();
 					}
 
+					// Add the page reference to our triggerData.
+					triggerData.page = page;
+
+					// Let listeners know the page loaded successfully.
+					settings.pageContainer.trigger( "pageload", triggerData );
+
 					deferred.resolve( absUrl, options, page, dupCachedPage );
 				},
 				error: function() {
 					//set base back to current path
 					if( base ) {
 						base.set( path.get() );
+					}
+
+					var plfEvent = new $.Event( "pageloadfailed" );
+
+					// Let listeners know the page load failed.
+					settings.pageContainer.trigger( plfEvent, triggerData );
+
+					// If the default behavior is prevented, stop here!
+					// Note that it is the responsibility of the listener/handler
+					// that called preventDefault(), to resolve/reject the
+					// deferred object within the triggerData.
+					if( plfEvent.isDefaultPrevented() ){
+						return;
 					}
 
 					// Remove loading message.
@@ -2729,43 +2836,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 	// Show a specific page in the page container.
 	$.mobile.changePage = function( toPage, options ) {
-		// XXX: REMOVE_BEFORE_SHIPPING_1.0
-		// This is temporary code that makes changePage() compatible with previous alpha versions.
-		if ( typeof options !== "object" ) {
-			var opts = null;
-
-			// Map old-style call signature for form submit to the new options object format.
-			if ( typeof toPage === "object" && toPage.url && toPage.type ) {
-				opts = {
-					type: toPage.type,
-					data: toPage.data,
-					forcePageLoad: true
-				};
-				toPage = toPage.url;
-			}
-
-			// The arguments passed into the function need to be re-mapped
-			// to the new options object format.
-			var len = arguments.length;
-			if ( len > 1 ) {
-				var argNames = [ "transition", "reverse", "changeHash", "fromHashChange" ], i;
-				for ( i = 1; i < len; i++ ) {
-					var a = arguments[ i ];
-					if ( typeof a !== "undefined" ) {
-						opts = opts || {};
-						opts[ argNames[ i - 1 ] ] = a;
-					}
-				}
-			}
-
-			// If an options object was created, then we know changePage() was called
-			// with an old signature.
-			if ( opts ) {
-				return $.mobile.changePage( toPage, opts );
-			}
-		}
-		// XXX: REMOVE_BEFORE_SHIPPING_1.0
-
 		// If we are in the midst of a transition, queue the current request.
 		// We'll call changePage() once we're done with the current transition to
 		// service the request.
@@ -2788,8 +2858,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 		// Let listeners know we're about to change the current page.
 		mpc.trigger( pbcEvent, triggerData );
-
-		mpc.trigger( "beforechangepage", triggerData ); // XXX: DEPRECATED for 1.0
 
 		// If the default behavior is prevented, stop here!
 		if( pbcEvent.isDefaultPrevented() ){
@@ -2819,7 +2887,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 					$.mobile.changePage( newPage, options );
 				})
 				.fail(function( url, options ) {
-					// XXX_jblas: Fire off changepagefailed notificaiton.
 					isPageTransitioning = false;
 
 					//clear out the active button state
@@ -2828,7 +2895,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 					//release transition lock so navigation is free again
 					releasePageTransitionLock();
 					settings.pageContainer.trigger( "pagechangefailed", triggerData );
-					settings.pageContainer.trigger( "changepagefailed", triggerData ); // XXX: DEPRECATED for 1.0
 				});
 			return;
 		}
@@ -2855,7 +2921,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 		if( fromPage && fromPage[0] === toPage[0] ) {
 			isPageTransitioning = false;
 			mpc.trigger( "pagechange", triggerData );
-			mpc.trigger( "changepage", triggerData ); // XXX: DEPRECATED for 1.0
 			return;
 		}
 
@@ -2943,8 +3008,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 				// Let listeners know we're all done changing the current page.
 				mpc.trigger( "pagechange", triggerData );
-
-				mpc.trigger( "changepage", triggerData ); // XXX: DEPRECATED for 1.0
 			});
 	};
 
@@ -3201,7 +3264,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 						isForward: function() { window.history.forward(); }
 					});
 
-					// prevent changepage
+					// prevent changePage()
 					return;
 				} else {
 					// if the current active page is a dialog and we're navigating
@@ -3480,10 +3543,13 @@ $( document ).bind( "pagecreate enhance", function( e ){
 			optType = o.degradeInputs[ type ] || "text";
 
 		if ( o.degradeInputs[ type ] ) {
-			$this.replaceWith(
-				$( "<div>" ).html( $this.clone() ).html()
-					.replace( /\s+type=["']?\w+['"]?/, " type=\"" + optType + "\" data-" + $.mobile.ns + "type=\"" + type + "\" " )
-			);
+			var html = $( "<div>" ).html( $this.clone() ).html(),
+				// In IE browsers, the type sometimes doesn't exist in the cloned markup, so we replace the closing tag instead
+				hasType = html.indexOf( " type=" ) > -1,
+				findstr = hasType ? /\s+type=["']?\w+['"]?/ : /\/?>/,
+				repstr = " type=\"" + optType + "\" data-" + $.mobile.ns + "type=\"" + type + "\"" + ( hasType ? "" : ">" );
+
+			$this.replaceWith( html.replace( findstr, repstr ) );
 		}
 	});
 	
@@ -3504,26 +3570,35 @@ $.widget( "mobile.dialog", $.mobile.widget, {
 		initSelector	: ":jqmData(role='dialog')"
 	},
 	_create: function() {
-		var $el = this.element,
-			pageTheme = $el.attr( "class" ).match( /ui-body-[a-z]/ );
-			
+		var self = this,
+			$el = this.element,
+			pageTheme = $el.attr( "class" ).match( /ui-body-[a-z]/ ),
+			headerCloseButton = $( "<a href='#' data-" + $.mobile.ns + "icon='delete' data-" + $.mobile.ns + "iconpos='notext'>"+ this.options.closeBtnText + "</a>" );
+
 		if( pageTheme.length ){
 			$el.removeClass( pageTheme[ 0 ] );
-		}	
-		
+		}
+
 		$el.addClass( "ui-body-" + this.options.theme );
-		
+
 		// Class the markup for dialog styling
 		// Set aria role
 		$el.attr( "role", "dialog" )
 			.addClass( "ui-dialog" )
 			.find( ":jqmData(role='header')" )
 			.addClass( "ui-corner-top ui-overlay-shadow" )
-				.prepend( "<a href='#' data-" + $.mobile.ns + "icon='delete' data-" + $.mobile.ns + "rel='back' data-" + $.mobile.ns + "iconpos='notext'>"+ this.options.closeBtnText + "</a>" )
+				.prepend( headerCloseButton )
 			.end()
 			.find( ":jqmData(role='content'),:jqmData(role='footer')" )
 				.last()
 				.addClass( "ui-corner-bottom ui-overlay-shadow" );
+
+		// this must be an anonymous function so that select menu dialogs can replace
+		// the close method. This is a change from previously just defining data-rel=back
+		// on the button and letting nav handle it
+		headerCloseButton.bind( "vclick", function() {
+			self.close();
+		});
 
 		/* bind events
 			- clicks and submits should use the closing transition that the dialog opened with
@@ -4198,7 +4273,7 @@ $.widget( "mobile.listview", $.mobile.widget, {
 		// on pagehide, remove any nested pages along with the parent page, as long as they aren't active
 		// and aren't embedded
 		if( hasSubPages &&
-			parentPage.is( "jqmData(external-page='true')" ) &&
+			parentPage.is( ":jqmData(external-page='true')" ) &&
 			parentPage.data("page").options.domCache === false ) {
 
 			var newRemove = function( e, ui ){
@@ -4582,7 +4657,9 @@ $.widget( "mobile.button", $.mobile.widget, {
 	_create: function() {
 		var $el = this.element,
 			o = this.options,
-			type;
+			type,
+			name,
+			$buttonPlaceholder;
 
 		// Add ARIA role
 		this.button = $( "<div></div>" )
@@ -4599,25 +4676,27 @@ $.widget( "mobile.button", $.mobile.widget, {
 			.insertBefore( $el )
 			.append( $el.addClass( "ui-btn-hidden" ) );
 
-		// Add hidden input during submit
 		type = $el.attr( "type" );
+		name = $el.attr( "name" );
 
-		if ( type !== "button" && type !== "reset" ) {
+		// Add hidden input during submit if input type="submit" has a name.
+		if ( type !== "button" && type !== "reset" && name ) {
+				$el.bind( "vclick", function() {
+					// Add hidden input if it doesn’t already exist.
+					if( $buttonPlaceholder === undefined ) {
+						$buttonPlaceholder = $( "<input>", {
+									type: "hidden",
+									name: $el.attr( "name" ),
+									value: $el.attr( "value" )
+								})
+								.insertBefore( $el );
 
-			$el.bind( "vclick", function() {
-
-				var $buttonPlaceholder = $( "<input>", {
-							type: "hidden",
-							name: $el.attr( "name" ),
-							value: $el.attr( "value" )
-						})
-						.insertBefore( $el );
-
-				// Bind to doc to remove after submit handling
-				$( document ).submit(function(){
-					 $buttonPlaceholder.remove();
+						// Bind to doc to remove after submit handling
+						$( document ).submit(function(){
+							 $buttonPlaceholder.remove();
+						});
+					}
 				});
-			});
 		}
 
 		this.refresh();
@@ -4937,13 +5016,17 @@ $.widget( "mobile.slider", $.mobile.widget, {
 		}
 
 		if ( !preventInputUpdate ) {
+			var valueChanged = false;
+
 			// update control"s value
 			if ( cType === "input" ) {
+				valueChanged = control.val() !== newval;
 				control.val( newval );
 			} else {
+				valueChanged = control[ 0 ].selectedIndex !== newval;
 				control[ 0 ].selectedIndex = newval;
 			}
-			if ( !isfromControl ) {
+			if ( !isfromControl && valueChanged ) {
 				control.trigger( "change" );
 			}
 		}
@@ -4985,7 +5068,7 @@ $( document ).bind( "pagecreate create", function( e ){
 $.widget( "mobile.textinput", $.mobile.widget, {
 	options: {
 		theme: null,
-		initSelector: "input[type='text'], input[type='search'], :jqmData(type='search'), input[type='number'], :jqmData(type='number'), input[type='password'], input[type='email'], input[type='url'], input[type='tel'], textarea"
+		initSelector: "input[type='text'], input[type='search'], :jqmData(type='search'), input[type='number'], :jqmData(type='number'), input[type='password'], input[type='email'], input[type='url'], input[type='tel'], textarea, input:not([type])"
 	},
 
 	_create: function() {
@@ -5008,7 +5091,7 @@ $.widget( "mobile.textinput", $.mobile.widget, {
 		input.addClass("ui-input-text ui-body-"+ o.theme );
 
 		focusedEl = input;
-		
+
 		// XXX: Temporary workaround for issue 785. Turn off autocorrect and
 		//      autocomplete since the popup they use can't be dismissed by
 		//      the user. Note that we test for the presence of the feature
@@ -5019,7 +5102,7 @@ $.widget( "mobile.textinput", $.mobile.widget, {
 			input[0].setAttribute( "autocorrect", "off" );
 			input[0].setAttribute( "autocomplete", "off" );
 		}
-		
+
 
 		//"search" input widget
 		if ( input.is( "[type='search'],:jqmData(type='search')" ) ) {
@@ -5100,11 +5183,11 @@ $.widget( "mobile.textinput", $.mobile.widget, {
 
 //auto self-init widgets
 $( document ).bind( "pagecreate create", function( e ){
-	
+
 	$( $.mobile.textinput.prototype.options.initSelector, e.target )
 		.not( ":jqmData(role='none'), :jqmData(role='nojs')" )
 		.textinput();
-		
+
 });
 
 })( jQuery );
@@ -5296,6 +5379,20 @@ $( document ).bind( "pagecreate create", function( e ){
 				self.menuPage.bind( "pagehide", function() {
 					self.list.appendTo( self.listbox );
 					self._focusButton();
+
+					// TODO centralize page removal binding / handling in the page plugin.
+					// Suggestion from @jblas to do refcounting
+					//
+					// TODO extremely confusing dependency on the open method where the pagehide.remove
+					// bindings are stripped to prevent the parent page from disappearing. The way
+					// we're keeping pages in the DOM right now sucks
+					//
+					// rebind the page remove that was unbound in the open function
+					// to allow for the parent page removal from actions other than the use
+					// of a dialog sized custom select
+					//
+					// doing this here provides for the back button on the custom select dialog
+					$.mobile._bindPageRemove.call( self.thisPage );
 				});
 
 				// Events on "screen" overlay
@@ -5310,6 +5407,10 @@ $( document ).bind( "pagecreate create", function( e ){
 						return false;
 					}
 				});
+
+				// track this dependency so that when the parent page
+				// is removed on pagehide it will also remove the menupage
+				self.thisPage.addDependents( this.menuPage );
 			},
 
 			_isRebuildRequired: function() {
@@ -5367,18 +5468,6 @@ $( document ).bind( "pagecreate create", function( e ){
 				var self = this;
 
 				if ( self.menuType == "page" ) {
-					// TODO centralize page removal binding / handling in the page plugin.
-					// Suggestion from @jblas to do refcounting
-					//
-					// rebind the page remove that was unbound in the open function
-					// to allow for the parent page removal from actions other than the use
-					// of a dialog sized custom select
-					if( !self.thisPage.data("page").options.domCache ){
-						self.thisPage.bind( "pagehide.remove", function() {
-							$(self).remove();
-						});
-					}
-
 					// doesn't solve the possible issue with calling change page
 					// where the objects don't define data urls which prevents dialog key
 					// stripping - changePage has incoming refactor
@@ -5402,7 +5491,10 @@ $( document ).bind( "pagecreate create", function( e ){
 				var self = this,
 					menuHeight = self.list.parent().outerHeight(),
 					menuWidth = self.list.parent().outerWidth(),
-					scrollTop = $( window ).scrollTop(),
+					activePage = $( ".ui-page-active" ),
+					tOverflow = $.support.touchOverflow && $.mobile.touchOverflowEnabled,
+					tScrollElem = activePage.is( ".ui-native-fixed" ) ? activePage.find( ".ui-content" ) : activePage;
+					scrollTop = tOverflow ? tScrollElem.scrollTop() : $( window ).scrollTop(),
 					btnOffset = self.button.offset().top,
 					screenHeight = window.innerHeight,
 					screenWidth = window.innerWidth;
@@ -5832,7 +5924,8 @@ $.fn.buttonMarkup = function( options ) {
 			o = $.extend( {}, $.fn.buttonMarkup.defaults, {
 				icon: el.jqmData( "icon" ),
 				iconpos: el.jqmData( "iconpos" ),
-				theme: el.jqmData( "theme" )
+				theme: el.jqmData( "theme" ),
+				inline: el.jqmData( "inline" )
 			}, options ),
 
 			// Classes Defined
@@ -5901,6 +5994,7 @@ $.fn.buttonMarkup.defaults = {
 	corners: true,
 	shadow: true,
 	iconshadow: true,
+	inline: false,
 	wrapperEls: "span"
 };
 
@@ -6398,9 +6492,6 @@ $.mobile.fixedToolbars = (function() {
 	};
 })();
 
-// TODO - Deprecated namepace on $. Remove in a later release
-$.fixedToolbars = $.mobile.fixedToolbars;
-
 //auto self-init widgets
 $( document ).bind( "pagecreate create", function( event ) {
 
@@ -6439,7 +6530,7 @@ $( document ).bind( "pagecreate create", function( event ) {
 
 (function( $, undefined ) {
 
-$.mobile.touchOverflowEnabled = false;
+$.mobile.touchOverflowEnabled = true;
 
 $( document ).bind( "pagecreate", function( event ) {
 	if( $.support.touchOverflow && $.mobile.touchOverflowEnabled ){
@@ -6559,25 +6650,16 @@ $.mobile.addResolutionBreakpoints = function( newbps ) {
 	detectResolutionBreakpoints();
 };
 
-/* on mobileinit, add classes to HTML element
-	and set handlers to update those on orientationchange and resize
-*/
-$( document ).bind( "mobileinit.htmlclass", function() {
-	// bind to orientationchange and resize
-	// to add classes to HTML element for min/max breakpoints and orientation
+/* add classes to HTML element and set handlers to update those on orientationchange and resize */	
+$window.bind( "orientationchange.htmlclass throttledresize.htmlclass", function( event ) {
 
-	var ev = $.support.orientation;
+	// add orientation class to HTML element on flip/resize.
+	if ( event.orientation ) {
+		$html.removeClass( "portrait landscape" ).addClass( event.orientation );
+	}
 
-	$window.bind( "orientationchange.htmlclass throttledresize.htmlclass", function( event ) {
-
-		// add orientation class to HTML element on flip/resize.
-		if ( event.orientation ) {
-			$html.removeClass( "portrait landscape" ).addClass( event.orientation );
-		}
-
-		// add classes to HTML element for min/max breakpoints
-		detectResolutionBreakpoints();
-	});
+	// add classes to HTML element for min/max breakpoints
+	detectResolutionBreakpoints();
 });
 
 /* Manually trigger an orientationchange event when the dom ready event fires.
@@ -6652,15 +6734,6 @@ $(function() {
 			$html.removeClass( "ui-loading" );
 		},
 
-		// XXX: deprecate for 1.0
-		pageLoading: function ( done ) {
-			if ( done ) {
-				$.mobile.hidePageLoadingMsg();
-			} else {
-				$.mobile.showPageLoadingMsg();
-			}
-		},
-
 		// find and enhance the pages in the dom and transition to the first page.
 		initializePage: function() {
 			// find present pages
@@ -6686,6 +6759,10 @@ $(function() {
 
 			// define page container
 			$.mobile.pageContainer = $pages.first().parent().addClass( "ui-mobile-viewport" );
+
+			// alert listeners that the pagecontainer has been determined for binding
+			// to events triggered on it
+			$window.trigger( "pagecontainercreate" );
 
 			// cue page loading message
 			$.mobile.showPageLoadingMsg();
