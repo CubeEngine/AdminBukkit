@@ -1,5 +1,5 @@
 /*!
- * jQuery Mobile v Git || Date: Sat Sep 24 01:00:42 2011 -0400 Info SHA1: e81e3b19c01ea60be46be09e63c6db89c0457046
+ * jQuery Mobile v Git || Date: Thu Sep 29 16:40:55 2011 -0400 Info SHA1: 5b1294f7c4886fc23e74ced1df37ec70decc6b6d
  * http://jquerymobile.com/
  *
  * Copyright 2010, jQuery Project
@@ -341,7 +341,7 @@
 	background: 			#fdfdfd /*{c-bdown-background-color}*/;
 	font-weight: bold;
 	color: 					#111111 /*{c-bdown-color}*/;
-	text-shadow: 0 /*{c-bdown-shadow-x}*/ 1px /*{c-bdown-shadow-y}*/ 1p /*{c-bdown-shadow-radius}*/ #ffffff /*{c-bdown-shadow-color}*/;
+	text-shadow: 0 /*{c-bdown-shadow-x}*/ 1px /*{c-bdown-shadow-y}*/ 1px /*{c-bdown-shadow-radius}*/ #ffffff /*{c-bdown-shadow-color}*/;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#eee /*{c-bdown-background-start}*/), to(#fdfdfd /*{c-bdown-background-end}*/)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #eee /*{c-bdown-background-start}*/, #fdfdfd /*{c-bdown-background-end}*/); /* Chrome 10+, Saf5.1+ */
 	background-image:    -moz-linear-gradient(top, #eee /*{c-bdown-background-start}*/, #fdfdfd /*{c-bdown-background-end}*/); /* FF3.6 */
@@ -724,7 +724,8 @@ a.ui-link-inherit {
 /* Icons
 -----------------------------------------------------------------------------------------------------------*/
 
-.ui-icon {
+.ui-icon,
+.ui-icon-searchfield:after {
 	background: 						#666 /*{global-icon-color}*/;
 	background: 						rgba(0,0,0,.4) /*{global-icon-disc}*/;
 	background-image: url(images/icons-18-white.png) /*{global-icon-set}*/;
@@ -755,7 +756,7 @@ a.ui-link-inherit {
 	.ui-icon-plus, .ui-icon-minus, .ui-icon-delete, .ui-icon-arrow-r,
 	.ui-icon-arrow-l, .ui-icon-arrow-u, .ui-icon-arrow-d, .ui-icon-check,
 	.ui-icon-gear, .ui-icon-refresh, .ui-icon-forward, .ui-icon-back,
-	.ui-icon-grid, .ui-icon-star, .ui-icon-alert, .ui-icon-info, .ui-icon-home, .ui-icon-search, 
+	.ui-icon-grid, .ui-icon-star, .ui-icon-alert, .ui-icon-info, .ui-icon-home, .ui-icon-search, .ui-icon-searchfield:after, 
 	.ui-icon-checkbox-off, .ui-icon-checkbox-on, .ui-icon-radio-off, .ui-icon-radio-on {
 		background-image: url(images/icons-36-white.png);
 		-moz-background-size: 776px 18px;
@@ -826,7 +827,8 @@ a.ui-link-inherit {
 .ui-icon-home {
 	background-position: 	-576px 50%;
 }
-.ui-icon-search {
+.ui-icon-search,
+.ui-icon-searchfield:after {
 	background-position: 	-612px 50%;
 }
 .ui-icon-checkbox-off {
@@ -856,10 +858,6 @@ a.ui-link-inherit {
 .ui-checkbox-on .ui-icon,
 .ui-radio-on .ui-icon {
 	background-color: #4596ce /*{global-active-background-color}*/; /* NOTE: this hex should match the active state color. It's repeated here for cascade */
-}
-.ui-icon-searchfield {
-	background-image: url(images/icon-search-black.png);
-	background-size: 16px 16px;
 }
 
 /* loading icon */
@@ -997,7 +995,29 @@ a.ui-link-inherit {
 	-webkit-box-shadow: 0px 1px 0 			rgba(255,255,255,.4);
 	box-shadow: 0px 1px 0 					rgba(255,255,255,.4);
 }
-/*
+
+/* Focus state - set here for specificity
+-----------------------------------------------------------------------------------------------------------*/
+
+.ui-focus {
+	-moz-box-shadow: 0px 0px 12px 		#387bbe /*{global-active-background-color}*/;
+	-webkit-box-shadow: 0px 0px 12px 	#387bbe /*{global-active-background-color}*/;
+	box-shadow: 0px 0px 12px 			#387bbe /*{global-active-background-color}*/;
+}
+
+/* unset box shadow in browsers that don't do it right
+-----------------------------------------------------------------------------------------------------------*/
+
+.ui-mobile-nosupport-boxshadow * {
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+/* ...and bring back focus */
+.ui-mobile-nosupport-boxshadow .ui-focus {
+	outline-width: 2px;
+}/*
 * jQuery Mobile Framework
 * Copyright (c) jQuery Project
 * Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
@@ -1015,12 +1035,6 @@ a.ui-link-inherit {
 .ui-mobile [data-role=page], .ui-mobile [data-role=dialog], .ui-page { top: 0; left: 0; width: 100%; min-height: 100%; position: absolute; display: none; border: 0; } 
 .ui-mobile .ui-page-active { display: block; overflow: visible; }
 
-/*orientations from js are available */
-.portrait,
-.portrait .ui-page { min-height: 420px; }
-.landscape,
-.landscape .ui-page  { min-height: 300px; }
-
 /* on ios4, setting focus on the page element causes flashing during transitions when there is an outline, so we turn off outlines */
 .ui-page { outline: none; }
 
@@ -1034,6 +1048,9 @@ a.ui-link-inherit {
 	-o-overflow-scrolling: touch;
 	-ms-overflow-scrolling: touch;
 	overflow-scrolling: touch;
+}
+.ui-page.ui-mobile-touch-overflow,
+.ui-page.ui-mobile-touch-overflow * {
 	/* some level of transform keeps elements from blinking out of visibility on iOS */
 	-webkit-transform: rotateY(0);
 }
@@ -1138,14 +1155,20 @@ Built by David Kaneda and maintained by Jonathan Stark.
 	-webkit-animation-duration: 350ms;
 }
 
+
+.slide.out {
+	-webkit-transform: translateX(-100%);
+	-webkit-animation-name: slideouttoleft;
+}
+
 .slide.in {
 	-webkit-transform: translateX(0);
 	-webkit-animation-name: slideinfromright;
 }
 
-.slide.out {
-	-webkit-transform: translateX(-100%);
-	-webkit-animation-name: slideouttoleft;
+.slide.out.reverse {
+	-webkit-transform: translateX(100%);
+	-webkit-animation-name: slideouttoright;
 }
 
 .slide.in.reverse {
@@ -1153,9 +1176,9 @@ Built by David Kaneda and maintained by Jonathan Stark.
 	-webkit-animation-name: slideinfromleft;
 }
 
-.slide.out.reverse {
-	-webkit-transform: translateX(100%);
-	-webkit-animation-name: slideouttoright;
+.slideup.out {
+	-webkit-animation-name: dontmove;
+	z-index: 0;
 }
 
 .slideup.in {
@@ -1164,9 +1187,9 @@ Built by David Kaneda and maintained by Jonathan Stark.
 	z-index: 10;
 }
 
-.slideup.out {
-	-webkit-animation-name: dontmove;
+.slideup.in.reverse {
 	z-index: 0;
+	-webkit-animation-name: dontmove;
 }
 
 .slideup.out.reverse {
@@ -1175,30 +1198,26 @@ Built by David Kaneda and maintained by Jonathan Stark.
 	-webkit-animation-name: slideouttobottom;
 }
 
-.slideup.in.reverse {
-	z-index: 0;
+.slidedown.out {
 	-webkit-animation-name: dontmove;
+	z-index: 0;
 }
+
 .slidedown.in {
 	-webkit-transform: translateY(0);
 	-webkit-animation-name: slideinfromtop;
 	z-index: 10;
 }
 
-.slidedown.out {
-	-webkit-animation-name: dontmove;
+.slidedown.in.reverse {
 	z-index: 0;
+	-webkit-animation-name: dontmove;
 }
 
 .slidedown.out.reverse {
 	-webkit-transform: translateY(-100%);
 	z-index: 10;
 	-webkit-animation-name: slideouttotop;
-}
-
-.slidedown.in.reverse {
-	z-index: 0;
-	-webkit-animation-name: dontmove;
 }
 
 @-webkit-keyframes slideinfromright {
@@ -1220,7 +1239,6 @@ Built by David Kaneda and maintained by Jonathan Stark.
     from { -webkit-transform: translateX(0); }
     to { -webkit-transform: translateX(100%); }
 }
-
 
 @-webkit-keyframes slideinfromtop {
     from { -webkit-transform: translateY(-100%); }
@@ -1251,14 +1269,15 @@ Built by David Kaneda and maintained by Jonathan Stark.
     to { opacity: 0; }
 }
 
+.fade.out {
+	z-index: 0;
+	-webkit-animation-name: fadeout;
+}
+
 .fade.in {
 	opacity: 1;
 	z-index: 10;
 	-webkit-animation-name: fadein;
-}
-.fade.out {
-	z-index: 0;
-	-webkit-animation-name: fadeout;
 }
 
 /* The properties in this rule are only necessary for the 'flip' transition.
@@ -1285,26 +1304,26 @@ Built by David Kaneda and maintained by Jonathan Stark.
 	-webkit-transform:translateX(0); /* Needed to work around an iOS 3.1 bug that causes listview thumbs to disappear when -webkit-visibility:hidden is used. */
 }
 
-.flip.in {
-	-webkit-transform: rotateY(0) scale(1);
-	-webkit-animation-name: flipinfromleft;
-}
-
 .flip.out {
 	-webkit-transform: rotateY(-180deg) scale(.8);
 	-webkit-animation-name: flipouttoleft;
 }
 
-/* Shake it all about */
-
-.flip.in.reverse {
+.flip.in {
 	-webkit-transform: rotateY(0) scale(1);
-	-webkit-animation-name: flipinfromright;
+	-webkit-animation-name: flipinfromleft;
 }
+
+/* Shake it all about */
 
 .flip.out.reverse {
 	-webkit-transform: rotateY(180deg) scale(.8);
 	-webkit-animation-name: flipouttoright;
+}
+
+.flip.in.reverse {
+	-webkit-transform: rotateY(0) scale(1);
+	-webkit-animation-name: flipinfromright;
 }
 
 @-webkit-keyframes flipinfromright {
@@ -1346,16 +1365,16 @@ Built by David Kaneda and maintained by Jonathan Stark.
 	z-index: 10;
 }
 
+.pop.in.reverse {
+	z-index: 0;
+	-webkit-animation-name: dontmove;
+}
+
 .pop.out.reverse {
 	-webkit-transform: scale(.2);
 	opacity: 0;
 	-webkit-animation-name: popout;
 	z-index: 10;
-}
-
-.pop.in.reverse {
-	z-index: 0;
-	-webkit-animation-name: dontmove;
 }
 
 @-webkit-keyframes popin {
@@ -1456,8 +1475,8 @@ Built by David Kaneda and maintained by Jonathan Stark.
 .ui-btn-inline { display: inline-block; }
 .ui-btn-inner { padding: .6em 25px; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; position: relative; zoom: 1; }
 .ui-header .ui-btn-inner, .ui-footer .ui-btn-inner, .ui-bar .ui-btn-inner { padding: .4em 8px .5em; }
-.ui-btn-icon-notext { width: 20px; height: 20px; padding: 2px 1px 2px 3px; text-indent: -9999px; }
-.ui-btn-icon-notext .ui-btn-inner { padding: 0; }
+.ui-btn-icon-notext { width: 24px; height: 24px; }
+.ui-btn-icon-notext .ui-btn-inner { padding: 2px 1px 2px 3px; }
 .ui-btn-icon-notext .ui-btn-text { position: absolute; left: -999px; }
 .ui-btn-icon-left .ui-btn-inner { padding-left: 33px; }
 .ui-header .ui-btn-icon-left .ui-btn-inner,
@@ -1482,6 +1501,8 @@ Built by David Kaneda and maintained by Jonathan Stark.
 .ui-btn-icon-top .ui-icon, .ui-btn-icon-bottom .ui-icon { position: absolute; left: 50%;  margin-left: -9px; }
 .ui-btn-icon-left .ui-icon { left: 10px; }
 .ui-btn-icon-right .ui-icon { right: 10px; }
+.ui-btn-icon-top .ui-icon { top: 10px; }
+.ui-btn-icon-bottom .ui-icon { bottom: 10px; }
 .ui-header .ui-btn-icon-left .ui-icon,
 .ui-footer .ui-btn-icon-left .ui-icon,
 .ui-bar .ui-btn-icon-left .ui-icon { left: 4px; }
@@ -1494,8 +1515,7 @@ Built by David Kaneda and maintained by Jonathan Stark.
 .ui-header .ui-btn-icon-bottom .ui-icon,
 .ui-footer .ui-btn-icon-bottom .ui-icon,
 .ui-bar .ui-btn-icon-bottom .ui-icon { bottom: 4px; }
-.ui-btn-icon-top .ui-icon { top: 5px; }
-.ui-btn-icon-bottom .ui-icon { bottom: 5px; }
+
 /*hiding native button,inputs */
 .ui-btn-hidden { position: absolute; top: 0; left: 0; width: 100%; height: 100%; -webkit-appearance: button; opacity: .1; cursor: pointer; background: transparent; font-size: 1px; border: none; line-height: 999px; }
 /*
@@ -1537,9 +1557,8 @@ Built by David Kaneda and maintained by Jonathan Stark.
 .ui-controlgroup-vertical .ui-checkbox, .ui-controlgroup-vertical .ui-radio { margin: 0; border-bottom-width: 0;  }
 .ui-controlgroup-vertical .ui-controlgroup-last { border-bottom-width: 1px; }
 .ui-controlgroup-horizontal { padding: 0; }
-.ui-controlgroup-horizontal .ui-btn,
-.ui-controlgroup-horizontal .ui-checkbox, .ui-controlgroup-horizontal .ui-radio { display: inline-block; margin: 0 -1px 0 0; }
-.ui-controlgroup-horizontal .ui-checkbox, .ui-controlgroup-horizontal .ui-radio { float: left; }
+.ui-controlgroup-horizontal .ui-btn { display: inline-block; margin: 0 -5px 0 0; }
+.ui-controlgroup-horizontal .ui-checkbox, .ui-controlgroup-horizontal .ui-radio { float: left; margin: 0 -1px 0 0; }
 .ui-controlgroup-horizontal .ui-checkbox .ui-btn, .ui-controlgroup-horizontal .ui-radio .ui-btn,
 .ui-controlgroup-horizontal .ui-checkbox:last-child, .ui-controlgroup-horizontal .ui-radio:last-child { margin-right: 0; }
 .ui-controlgroup-horizontal .ui-controlgroup-last { margin-right: 0; }
@@ -1591,7 +1610,7 @@ Built by David Kaneda and maintained by Jonathan Stark.
 .ui-select { display: block; position: relative; }
 .ui-select select { position: absolute; left: -9999px; top: -9999px; }
 .ui-select .ui-btn { overflow: hidden; }
-.ui-select .ui-btn select { cursor: pointer; -webkit-appearance: button; left: 0; top:0; width: 100%; height: 100%; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); }
+.ui-select .ui-btn select { cursor: pointer; -webkit-appearance: button; left: 0; top:0; width: 100%;  min-height: 1.5em; min-height: 100%; height: 3em; max-height: 100%; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); z-index: 2; }
 @-moz-document url-prefix() {.ui-select .ui-btn select { opacity: 0.0001; }}
 .ui-select .ui-btn select.ui-select-nativeonly { opacity: 1; text-indent: 0; }
 
@@ -1630,7 +1649,8 @@ label.ui-input-text { font-size: 16px; line-height: 1.4; display: block; font-we
 input.ui-input-text, textarea.ui-input-text { background-image: none; padding: .4em; line-height: 1.4; font-size: 16px; display: block; width: 95%; }
 input.ui-input-text { -webkit-appearance: none; }
 textarea.ui-input-text { height: 50px; -webkit-transition: height 200ms linear; -moz-transition: height 200ms linear; -o-transition: height 200ms linear; transition: height 200ms linear; }
-.ui-input-search { padding: 0 30px; width: 77%; background-position: 8px 50%; background-repeat: no-repeat; position: relative; }
+.ui-input-search { padding: 0 30px; width: 77%; background-image: none; position: relative; }
+.ui-icon-searchfield:after { position: absolute; left: 7px; top: 50%; margin-top: -9px; content: ""; width: 18px; height: 18px; opacity: .5; }
 .ui-input-search input.ui-input-text { border: none; width: 98%; padding: .4em 0; margin: 0; display: block; background: transparent none; outline: 0 !important; }
 .ui-input-search .ui-input-clear { position: absolute; right: 0; top: 50%; margin-top: -14px; }
 .ui-input-search .ui-input-clear-hidden { display: none; }
@@ -1683,9 +1703,9 @@ ol.ui-listview .ui-li-jsnumbering:before { content: "" !important; } /* to avoid
 .ui-li-has-count .ui-li-count { position: absolute; font-size: 11px; font-weight: bold; padding: .2em .5em; top: 50%; margin-top: -.9em; right: 38px; }
 .ui-li-divider .ui-li-count, .ui-li-static .ui-li-count { right: 10px; }
 .ui-li-has-alt .ui-li-count { right: 55px; }
-.ui-li-link-alt { position: absolute; width: 40px; height: 100%; border-width: 0; border-left-width: 1px; top: 0; right: 0; margin: 0; padding: 0; }
-.ui-li-link-alt .ui-btn { overflow: hidden; position: absolute; right: 8px; top: 50%; margin: -11px 0 0 0; border-bottom-width: 1px; }
-.ui-li-link-alt .ui-btn-inner { padding: 0; position: static; }
+.ui-li-link-alt { position: absolute; width: 40px; height: 100%; border-width: 0; border-left-width: 1px; top: 0; right: 0; margin: 0; padding: 0; z-index: 2; }
+.ui-li-link-alt .ui-btn { overflow: hidden; position: absolute; right: 8px; top: 50%; margin: -11px 0 0 0; border-bottom-width: 1px; z-index: -1;}
+.ui-li-link-alt .ui-btn-inner { padding: 0; height: 100%; position: absolute; width: 100%; top: 0; left: 0;}
 .ui-li-link-alt .ui-btn .ui-icon { right: 50%; margin-right: -9px;  }
 
 .ui-listview * .ui-btn-inner > .ui-btn > .ui-btn-inner { border-top: 0px; }

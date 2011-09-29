@@ -1,5 +1,5 @@
 /*!
- * jQuery Mobile v Git || Date: Sat Sep 24 01:00:42 2011 -0400 Info SHA1: e81e3b19c01ea60be46be09e63c6db89c0457046
+ * jQuery Mobile v Git || Date: Thu Sep 29 16:40:55 2011 -0400 Info SHA1: 5b1294f7c4886fc23e74ced1df37ec70decc6b6d
  * http://jquerymobile.com/
  *
  * Copyright 2010, jQuery Project
@@ -311,7 +311,7 @@ $.widget( "mobile.widget", {
 
 })( jQuery );
 /*
-* jQuery Mobile Framework : resolution and CSS media query related helpers and behavior
+* jQuery Mobile Framework : a workaround for window.matchMedia
 * Copyright (c) jQuery Project
 * Dual licensed under the MIT or GPL Version 2 licenses.
 * http://jquery.org/license
@@ -1867,6 +1867,13 @@ $.widget( "mobile.page", $.mobile.widget, {
 		$(elem).jqmData( 'dependents', $.merge(dependents, newDependents) );
 	};
 
+	// note that this helper doesn't attempt to handle the callback
+	// or setting of an html elements text, its only purpose is
+	// to return the html encoded version of the text in all cases. (thus the name)
+	$.fn.getEncodedText = function() {
+		return $( "<div/>" ).text( $(this).text() ).html();
+	};
+
 	// Monkey-patching Sizzle to filter the :jqmData selector
 	var oldFind = $.find;
 
@@ -2551,7 +2558,14 @@ $.widget( "mobile.page", $.mobile.widget, {
 				&& page.is(":jqmData(external-page='true')") ) {
 
 			page.bind( 'pagehide.remove', function() {
-				$( this ).removeWithDependents();
+				var $this = $( this ),
+					prEvent = new $.Event( "pageremove" );
+
+				$this.trigger( prEvent );
+
+				if( !prEvent.isDefaultPrevented() ){
+					$this.removeWithDependents();
+				}
 			});
 		}
 	};
@@ -2696,7 +2710,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 						newPageTitle = html.match( /<title[^>]*>([^<]*)/ ) && RegExp.$1,
 
 						// TODO handle dialogs again
-						pageElemRegex = new RegExp( ".*(<[^>]+\\bdata-" + $.mobile.ns + "role=[\"']?page[\"']?[^>]*>).*" ),
+						pageElemRegex = new RegExp( "(<[^>]+\\bdata-" + $.mobile.ns + "role=[\"']?page[\"']?[^>]*>)" ),
 						dataUrlRegex = new RegExp( "\\bdata-" + $.mobile.ns + "url=[\"']?([^\"'>]*)[\"']?" );
 
 
@@ -2912,13 +2926,17 @@ $.widget( "mobile.page", $.mobile.widget, {
 			pageTitle = document.title,
 			isDialog = settings.role === "dialog" || toPage.jqmData( "role" ) === "dialog";
 
-		// If we are trying to transition to the same page that we are currently on ignore the request.
-		// an illegal same page request is defined by the current page being the same as the url, as long as there's history
-		// and toPage is not an array or object (those are allowed to be "same")
-		//
-		// XXX_jblas: We need to remove this at some point when we allow for transitions
-		//            to the same page.
-		if( fromPage && fromPage[0] === toPage[0] ) {
+		// By default, we prevent changePage requests when the fromPage and toPage
+		// are the same element, but folks that generate content manually/dynamically
+		// and reuse pages want to be able to transition to the same page. To allow
+		// this, they will need to change the default value of allowSamePageTransition
+		// to true, *OR*, pass it in as an option when they manually call changePage().
+		// It should be noted that our default transition animations assume that the
+		// formPage and toPage are different elements, so they may behave unexpectedly.
+		// It is up to the developer that turns on the allowSamePageTransitiona option
+		// to either turn off transition animations, or make sure that an appropriate
+		// animation transition is used.
+		if( fromPage && fromPage[0] === toPage[0] && !settings.allowSamePageTransition ) {
 			isPageTransitioning = false;
 			mpc.trigger( "pagechange", triggerData );
 			return;
@@ -3021,7 +3039,8 @@ $.widget( "mobile.page", $.mobile.widget, {
 		pageContainer: undefined,
 		showLoadMsg: true, //loading message shows by default when pages are being fetched during changePage
 		dataUrl: undefined,
-		fromPage: undefined
+		fromPage: undefined,
+		allowSamePageTransition: false
 	};
 
 /* Event Bindings - hashchange, submit, and click */
@@ -3472,7 +3491,7 @@ function css3TransitionHandler( name, reverse, $to, $from ) {
 
 			$to.add( $from ).removeClass( "out in reverse " + name );
 
-			if ( $from ) {
+			if ( $from && $from[ 0 ] !== $to[ 0 ] ) {
 				$from.removeClass( $.mobile.activePageClass );
 			}
 
@@ -3741,6 +3760,7 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 		collapsed: true,
 		heading: ">:header,>legend",
 		theme: null,
+		contentTheme: null,
 		iconTheme: "d",
 		initSelector: ":jqmData(role='collapsible')"
 	},
@@ -3748,17 +3768,31 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 
 		var $el = this.element,
 			o = this.options,
-			expandedCls = "ui-btn-up-" + (o.theme || "c"),
 			collapsible = $el.addClass( "ui-collapsible" ),
 			collapsibleHeading = $el.find( o.heading ).eq( 0 ),
 			collapsibleContent = collapsible.wrapInner( "<div class='ui-collapsible-content'></div>" ).find( ".ui-collapsible-content" ),
-			collapsibleParent = $el.closest( ":jqmData(role='collapsible-set')" ).addClass( "ui-collapsible-set" );
+			collapsibleSet = $el.closest( ":jqmData(role='collapsible-set')" ).addClass( "ui-collapsible-set" ),
+			colllapsiblesInSet = collapsibleSet.children( ":jqmData(role='collapsible')" );
 
 		// Replace collapsibleHeading if it's a legend
 		if ( collapsibleHeading.is( "legend" ) ) {
 			collapsibleHeading = $( "<div role='heading'>"+ collapsibleHeading.html() +"</div>" ).insertBefore( collapsibleHeading );
 			collapsibleHeading.next().remove();
 		}
+
+		// If we are in a collapsible set
+		if ( collapsibleSet.length ) {
+			// Inherit the theme from collapsible-set
+			if ( !o.theme ) {
+				o.theme = collapsibleSet.jqmData( "theme" );
+			}
+			// Inherit the content-theme from collapsible-set
+			if ( !o.contentTheme ) {
+				o.contentTheme = collapsibleSet.jqmData( "content-theme" );
+			}
+		}
+
+		collapsibleContent.addClass( ( o.contentTheme ) ? ( "ui-body-" + o.contentTheme ) : "");
 
 		collapsibleHeading
 			//drop heading in before content
@@ -3774,22 +3808,44 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 					iconPos: "left",
 					icon: "plus",
 					theme: o.theme
-				})
-				.find( ".ui-icon" )
-					.removeAttr( "class" )
-					.buttonMarkup({
-						shadow: true,
-						corners: true,
-						iconPos: "notext",
-						icon: "plus",
-						theme: o.iconTheme
-					});
+				});
 
-		if ( !collapsibleParent.length ) {
+		if ( !collapsibleSet.length ) {
 			collapsibleHeading
 				.find( "a:eq(0), .ui-btn-inner" )
 					.addClass( "ui-corner-top ui-corner-bottom" );
 		} else {
+			// If we are in a collapsible set
+
+			// Initialize the collapsible set if it's not already initialized
+			if ( !collapsibleSet.jqmData( "collapsiblebound" ) ) {
+
+				collapsibleSet
+					.jqmData( "collapsiblebound", true )
+					.bind( "expand", function( event ) {
+
+						$( event.target )
+							.closest( ".ui-collapsible" )
+							.siblings( ".ui-collapsible" )
+							.trigger( "collapse" );
+
+					});
+			}
+
+			colllapsiblesInSet.first()
+				.find( "a:eq(0)" )
+					.addClass( "ui-corner-top" )
+						.find( ".ui-btn-inner" )
+							.addClass( "ui-corner-top" );
+
+			colllapsiblesInSet.last()
+				.jqmData( "collapsible-last", true )
+				.find( "a:eq(0)" )
+					.addClass( "ui-corner-bottom" )
+						.find( ".ui-btn-inner" )
+							.addClass( "ui-corner-bottom" );
+
+
 			if ( collapsible.jqmData( "collapsible-last" ) ) {
 				collapsibleHeading
 					.find( "a:eq(0), .ui-btn-inner" )
@@ -3804,7 +3860,9 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 
 					event.preventDefault();
 
-					var isCollapse = ( event.type === "collapse" );
+					var $this = $( this ),
+						isCollapse = ( event.type === "collapse" ),
+					    contentTheme = o.contentTheme;
 
 					collapsibleHeading
 						.toggleClass( "ui-collapsible-heading-collapsed", isCollapse)
@@ -3815,11 +3873,10 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 							.toggleClass( "ui-icon-minus", !isCollapse )
 							.toggleClass( "ui-icon-plus", isCollapse );
 
-					collapsible.toggleClass( "ui-collapsible-collapsed", isCollapse );
+					$this.toggleClass( "ui-collapsible-collapsed", isCollapse );
 					collapsibleContent.toggleClass( "ui-collapsible-content-collapsed", isCollapse ).attr( "aria-hidden", isCollapse );
-					collapsibleContent.toggleClass( expandedCls, !isCollapse );
 
-					if ( !collapsibleParent.length || collapsible.jqmData( "collapsible-last" ) ) {
+					if ( contentTheme && ( !collapsibleSet.length || collapsible.jqmData( "collapsible-last" ) ) ) {
 						collapsibleHeading
 							.find( "a:eq(0), .ui-btn-inner" )
 							.toggleClass( "ui-corner-bottom", isCollapse );
@@ -3829,38 +3886,8 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 			})
 			.trigger( o.collapsed ? "collapse" : "expand" );
 
-		// Close others in a set
-		if ( collapsibleParent.length && !collapsibleParent.jqmData( "collapsiblebound" ) ) {
-
-			collapsibleParent
-				.jqmData( "collapsiblebound", true )
-				.bind( "expand", function( event ) {
-
-					$( event.target )
-						.closest( ".ui-collapsible" )
-						.siblings( ".ui-collapsible" )
-						.trigger( "collapse" );
-
-				});
-
-			var set = collapsibleParent.children( ":jqmData(role='collapsible')" );
-
-			set.first()
-				.find( "a:eq(0)" )
-					.addClass( "ui-corner-top" )
-						.find( ".ui-btn-inner" )
-							.addClass( "ui-corner-top" );
-
-			set.last()
-				.jqmData( "collapsible-last", true )
-				.find( "a:eq(0)" )
-					.addClass( "ui-corner-bottom" )
-						.find( ".ui-btn-inner" )
-							.addClass( "ui-corner-bottom" );
-		}
-
 		collapsibleHeading
-			.bind( "vclick", function( event ) {
+			.bind( "click", function( event ) {
 
 				var type = collapsibleHeading.is( ".ui-collapsible-heading-collapsed" ) ?
 										"expand" : "collapse";
@@ -5092,11 +5119,14 @@ $.widget( "mobile.textinput", $.mobile.widget, {
 
 		focusedEl = input;
 
-		// XXX: Temporary workaround for issue 785. Turn off autocorrect and
-		//      autocomplete since the popup they use can't be dismissed by
-		//      the user. Note that we test for the presence of the feature
-		//      by looking for the autocorrect property on the input element.
-		if ( typeof input[0].autocorrect !== "undefined" ) {
+		// XXX: Temporary workaround for issue 785 (Apple bug 8910589).
+		//      Turn off autocorrect and autocomplete on non-iOS 5 devices
+		//      since the popup they use can't be dismissed by the user. Note
+		//      that we test for the presence of the feature by looking for
+		//      the autocorrect property on the input element. We currently
+		//      have no test for iOS 5 or newer so we're temporarily using
+		//      the touchOverflow support flag for jQM 1.0. Yes, I feel dirty. - jblas
+		if ( typeof input[0].autocorrect !== "undefined" && !$.support.touchOverflow ) {
 			// Set the attribute instead of the property just in case there
 			// is code that attempts to make modifications via HTML.
 			input[0].setAttribute( "autocorrect", "off" );
@@ -5212,7 +5242,7 @@ $( document ).bind( "pagecreate create", function( e ){
 			menuId = selectID + "-menu",
 			menuPage = $( "<div data-" + $.mobile.ns + "role='dialog' data-" +$.mobile.ns + "theme='"+ widget.options.menuPageTheme +"'>" +
 				"<div data-" + $.mobile.ns + "role='header'>" +
-				"<div class='ui-title'>" + label.text() + "</div>"+
+				"<div class='ui-title'>" + label.getEncodedText() + "</div>"+
 				"</div>"+
 				"<div data-" + $.mobile.ns + "role='content'></div>"+
 				"</div>" ).appendTo( $.mobile.pageContainer ).page(),
@@ -5607,7 +5637,7 @@ $( document ).bind( "pagecreate create", function( e ){
 				self.select.find( "option" ).each( function( i ) {
 					var $this = $( this ),
 						$parent = $this.parent(),
-						text = $this.text(),
+						text = $this.getEncodedText(),
 						anchor = "<a href='#'>"+ text +"</a>",
 						classes = [],
 						extraAttrs = [];
@@ -5806,7 +5836,7 @@ $.widget( "mobile.selectmenu", $.mobile.widget, {
 			this.buttonCount = $( "<span>" )
 				.addClass( "ui-li-count ui-btn-up-c ui-btn-corner-all" )
 				.hide()
-				.appendTo( button );
+				.appendTo( button.addClass('ui-li-has-count') );
 		}
 
 		// Disable if specified
@@ -6530,7 +6560,11 @@ $( document ).bind( "pagecreate create", function( event ) {
 
 (function( $, undefined ) {
 
-$.mobile.touchOverflowEnabled = true;
+// Enable touch overflow scrolling when it's natively supported
+$.mobile.touchOverflowEnabled = false;
+
+// Enabled zoom when touch overflow is enabled. Can cause usability issues, unfortunately
+$.mobile.touchOverflowZoomEnabled = false;
 
 $( document ).bind( "pagecreate", function( event ) {
 	if( $.support.touchOverflow && $.mobile.touchOverflowEnabled ){
@@ -6580,99 +6614,7 @@ $( document ).bind( "pagecreate", function( event ) {
 });
 
 })( jQuery );
-/*
-* jQuery Mobile Framework : resolution and CSS media query related helpers and behavior
-* Copyright (c) jQuery Project
-* Dual licensed under the MIT or GPL Version 2 licenses.
-* http://jquery.org/license
-*/
-(function( $, undefined ) {
-
-var $window = $( window ),
-	$html = $( "html" ),
-
-	//media-query-like width breakpoints, which are translated to classes on the html element
-	resolutionBreakpoints = [ 320, 480, 768, 1024 ];
-
-/*
-	private function for adding/removing breakpoint classes to HTML element for faux media-query support
-	It does not require media query support, instead using JS to detect screen width > cross-browser support
-	This function is called on orientationchange, resize, and mobileinit, and is bound via the 'htmlclass' event namespace
-*/
-function detectResolutionBreakpoints() {
-	var currWidth = $window.width(),
-		minPrefix = "min-width-",
-		maxPrefix = "max-width-",
-		minBreakpoints = [],
-		maxBreakpoints = [],
-		unit = "px",
-		breakpointClasses;
-
-	$html.removeClass( minPrefix + resolutionBreakpoints.join(unit + " " + minPrefix) + unit + " " +
-		maxPrefix + resolutionBreakpoints.join( unit + " " + maxPrefix) + unit );
-
-	$.each( resolutionBreakpoints, function( i, breakPoint ) {
-		if( currWidth >= breakPoint ) {
-			minBreakpoints.push( minPrefix + breakPoint + unit );
-		}
-		if( currWidth <= breakPoint ) {
-			maxBreakpoints.push( maxPrefix + breakPoint + unit );
-		}
-	});
-
-	if ( minBreakpoints.length ) {
-		breakpointClasses = minBreakpoints.join(" ");
-	}
-	if ( maxBreakpoints.length ) {
-		breakpointClasses += " " +  maxBreakpoints.join(" ");
-	}
-
-	$html.addClass( breakpointClasses );
-};
-
-/* $.mobile.addResolutionBreakpoints method:
-	pass either a number or an array of numbers and they'll be added to the min/max breakpoint classes
-	Examples:
-		$.mobile.addResolutionBreakpoints( 500 );
-		$.mobile.addResolutionBreakpoints( [500, 1200] );
-*/
-$.mobile.addResolutionBreakpoints = function( newbps ) {
-	if( $.type( newbps ) === "array" ){
-		resolutionBreakpoints = resolutionBreakpoints.concat( newbps );
-	} else {
-		resolutionBreakpoints.push( newbps );
-	}
-
-	resolutionBreakpoints.sort(function( a, b ) {
-		return a - b;
-	});
-
-	detectResolutionBreakpoints();
-};
-
-/* add classes to HTML element and set handlers to update those on orientationchange and resize */	
-$window.bind( "orientationchange.htmlclass throttledresize.htmlclass", function( event ) {
-
-	// add orientation class to HTML element on flip/resize.
-	if ( event.orientation ) {
-		$html.removeClass( "portrait landscape" ).addClass( event.orientation );
-	}
-
-	// add classes to HTML element for min/max breakpoints
-	detectResolutionBreakpoints();
-});
-
-/* Manually trigger an orientationchange event when the dom ready event fires.
-	This will ensure that any viewport meta tag that may have been injected
-	has taken effect already, allowing us to properly calculate the width of the
-	document.
-*/
-$(function() {
-	//trigger event manually
-	$window.trigger( "orientationchange.htmlclass" );
-});
-
-})(jQuery);/*!
+/*!
  * jQuery Mobile v@VERSION
  * http://jquerymobile.com/
  *
@@ -6777,6 +6719,24 @@ $(function() {
 			}
 		}
 	});
+	
+	// This function injects a meta viewport tag to prevent scaling. Off by default, on by default when touchOverflow scrolling is enabled
+	function disableZoom() {
+		var cont = "user-scalable=no",
+			meta = $( "meta[name='viewport']" );
+			
+		if( meta.length ){
+			meta.attr( "content", meta.attr( "content" ) + ", " + cont );
+		}
+		else{
+			$( "head" ).prepend( "<meta>", { "name": "viewport", "content": cont } );
+		}
+	}
+	
+	// if touch-overflow is enabled, disable user scaling, as it creates usability issues
+	if( $.support.touchOverflow && $.mobile.touchOverflowEnabled && !$.mobile.touchOverflowZoomEnabled ){
+		disableZoom();
+	}
 
 	// initialize events now, after mobileinit has occurred
 	$.mobile._registerInternalEvents();
