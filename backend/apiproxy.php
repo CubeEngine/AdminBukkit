@@ -22,6 +22,7 @@
     try
     {
         $api = new ApiBukkit($_SESSION['user']->getServerAddress(), $_SESSION['user']->getApiPort(), $_SESSION['user']->getApiAuthKey());
+        $api->setUseragent('AdminBukkit(' . $_SESSION['user']->getName() . ",{$_SERVER['REMOTE_ADDR']})");
         $response = $api->requestPath($_SERVER['PATH_INFO'], array_merge($_POST, $_GET));
         $responseStatus = $response->getStatus();
         
