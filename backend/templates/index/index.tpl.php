@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="shortcut icon" type="image/png" href="<?php $this->res('gfx/favicon.png') ?>">
-        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 163dpi)" href="<?php $this->res('gfx/icon-iphone.png') ?>">
-        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 132dpi)" href="<?php $this->res('gfx/icon-ipad.png') ?>">
-        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 326dpi)" href="<?php $this->res('gfx/icon-iphone4.png') ?>">
-        <link rel="apple-touch-startup-image" media="screen and (resolution: 163dpi)" href="<?php $this->res('gfx/startup-iphone.png') ?>">
-        <link rel="apple-touch-startup-image" media="screen and (resolution: 132dpi)" href="<?php $this->res('gfx/startup-ipad.png') ?>">
-        <link rel="apple-touch-startup-image" media="screen and (resolution: 326dpi)" href="<?php $this->res('gfx/startup-iphone4.png') ?>">
+        <link rel="shortcut icon" type="image/png" href="<?php $this->res('gfx/icons/favicon.png') ?>">
+        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 163dpi)" href="<?php $this->res('gfx/icons/iphone.png') ?>">
+        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 132dpi)" href="<?php $this->res('gfx/icons/ipad.png') ?>">
+        <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 326dpi)" href="<?php $this->res('gfx/icons/iphone4.png') ?>">
+        <link rel="apple-touch-startup-image" media="screen and (resolution: 163dpi)" href="<?php $this->res('gfx/startup/iphone.png') ?>">
+        <link rel="apple-touch-startup-image" media="screen and (resolution: 132dpi)" href="<?php $this->res('gfx/startup/ipad.png') ?>">
+        <link rel="apple-touch-startup-image" media="screen and (resolution: 326dpi)" href="<?php $this->res('gfx/startup/iphone4.png') ?>">
         <style type="text/css" media="screen">@import "<?php $this->res('jquery/jquery.mobile.css') ?>";</style>
         <style type="text/css" media="screen">@import "<?php $this->res('css/main.css') ?>";</style>
         <script type="text/javascript">
