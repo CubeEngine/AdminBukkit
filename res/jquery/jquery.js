@@ -11,7 +11,7 @@
  * Copyright 2011, The Dojo Foundation
  * Released under the MIT, BSD, and GPL Licenses.
  *
- * Date: Thu Sep 29 10:34:40 2011 -0400
+ * Date: Wed Oct 12 00:06:30 2011 -0400
  */
 (function( window, undefined ) {
 
@@ -504,8 +504,8 @@ jQuery.extend({
 		return obj && typeof obj === "object" && "setInterval" in obj;
 	},
 
-	isNaN: function( obj ) {
-		return obj == null || !rdigit.test( obj ) || isNaN( obj );
+	isNumeric: function( obj ) {
+		return obj != null && rdigit.test( obj ) && !isNaN( obj );
 	},
 
 	type: function( obj ) {
@@ -1210,6 +1210,7 @@ jQuery.extend({
 		var doneList = jQuery.Callbacks( "once memory" ),
 			failList = jQuery.Callbacks( "once memory" ),
 			progressList = jQuery.Callbacks( "memory" ),
+			state = "pending",
 			lists = {
 				resolve: doneList,
 				reject: failList,
@@ -1220,11 +1221,13 @@ jQuery.extend({
 				fail: failList.add,
 				progress: progressList.add,
 
+				state: function() {
+					return state;
+				},
+
+				// Deprecated
 				isResolved: doneList.fired,
 				isRejected: failList.fired,
-				isProgressing: function() {
-					return !progressList.locked();
-				},
 
 				then: function( doneCallbacks, failCallbacks, progressCallbacks ) {
 					deferred.done( doneCallbacks ).fail( failCallbacks ).progress( progressCallbacks );
@@ -1279,9 +1282,12 @@ jQuery.extend({
 			deferred[ key + "With" ] = lists[ key ].fireWith;
 		}
 
-		// Handle lists exclusiveness
-		deferred.done( failList.disable, progressList.lock )
-			.fail( doneList.disable, progressList.lock );
+		// Handle state
+		deferred.done( function() {
+			state = "resolved";
+		}, failList.disable, progressList.lock ).fail( function() {
+			state = "rejected";
+		}, doneList.disable, progressList.lock );
 
 		// Call given func if any
 		if ( func ) {
@@ -1403,7 +1409,7 @@ jQuery.support = (function() {
 		// Make sure that element opacity exists
 		// (IE uses filter instead)
 		// Use a regex to work around a WebKit issue. See #5145
-		opacity: /^0.55$/.test( a.style.opacity ),
+		opacity: /^0.55/.test( a.style.opacity ),
 
 		// Verify style float existence
 		// (IE uses styleFloat instead of cssFloat)
@@ -1571,7 +1577,7 @@ jQuery.support = (function() {
 	testElement.innerHTML = "";
 
 	// Technique from Juriy Zaytsev
-	// http://thinkweb2.com/projects/prototype/detecting-event-support-without-browser-sniffing/
+	// http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
 	// We only care about the case where non-standard event systems
 	// are used, namely in IE. Short-circuiting here helps us to
 	// avoid an eval call (in setAttribute) which can cause CSP
@@ -1974,7 +1980,7 @@ function dataAttr( elem, key, data ) {
 				data = data === "true" ? true :
 				data === "false" ? false :
 				data === "null" ? null :
-				!jQuery.isNaN( data ) ? parseFloat( data ) :
+				jQuery.isNumeric( data ) ? parseFloat( data ) :
 					rbrace.test( data ) ? jQuery.parseJSON( data ) :
 					data;
 			} catch( e ) {}
@@ -2475,11 +2481,6 @@ jQuery.extend({
 		offset: true
 	},
 
-	attrFix: {
-		// Always normalize to ensure hook usage
-		tabindex: "tabIndex"
-	},
-
 	attr: function( elem, name, value, pass ) {
 		var nType = elem.nodeType;
 
@@ -2502,20 +2503,8 @@ jQuery.extend({
 
 		// Normalize the name if needed
 		if ( notxml ) {
-			name = jQuery.attrFix[ name ] || name;
-
-			hooks = jQuery.attrHooks[ name ];
-
-			if ( !hooks ) {
-				// Use boolHook for boolean attributes
-				if ( rboolean.test( name ) ) {
-					hooks = boolHook;
-
-				// Use nodeHook if available( IE6/7 )
-				} else if ( nodeHook ) {
-					hooks = nodeHook;
-				}
-			}
+			name = name.toLowerCase();
+			hooks = jQuery.attrHooks[ name ] || (rboolean.test( name ) ? boolHook : nodeHook);
 		}
 
 		if ( value !== undefined ) {
@@ -2555,8 +2544,7 @@ jQuery.extend({
 			l = attrNames.length;
 
 			for ( ; i < l; i++ ) {
-				name = attrNames[ i ];
-				name = jQuery.attrFix[ name ] || name;
+				name = attrNames[ i ].toLowerCase();
 
 				// See #9699 for explanation of this approach (setting first, then removal)
 				jQuery.attr( elem, name, "" );
@@ -2677,8 +2665,8 @@ jQuery.extend({
 	}
 });
 
-// Add the tabindex propHook to attrHooks for back-compat
-jQuery.attrHooks.tabIndex = jQuery.propHooks.tabIndex;
+// Add the tabIndex propHook to attrHooks for back-compat (different case is intentional)
+jQuery.attrHooks.tabindex = jQuery.propHooks.tabIndex;
 
 // Hook for boolean attributes
 boolHook = {
@@ -2740,6 +2728,9 @@ if ( !jQuery.support.getSetAttribute ) {
 		}
 	};
 
+	// Apply the nodeHook to tabindex
+	jQuery.attrHooks.tabindex.set = nodeHook.set;
+
 	// Set width and height to auto instead of 0 on empty string( Bug #8150 )
 	// This is for removals
 	jQuery.each([ "width", "height" ], function( i, name ) {
@@ -2752,6 +2743,18 @@ if ( !jQuery.support.getSetAttribute ) {
 			}
 		});
 	});
+
+	// Set contenteditable to false on removals(#10429)
+	// Setting to empty string throws an error as an invalid value
+	jQuery.attrHooks.contenteditable = {
+		get: nodeHook.get,
+		set: function( elem, value, name ) {
+			if ( value === "" ) {
+				value = "false";
+			}
+			nodeHook.set( elem, value, name );
+		}
+	};
 }
 
 
@@ -2830,7 +2833,7 @@ var rnamespaces = /\.(.*)$/,
 	rspaces = / /g,
 	rescape = /[^\w\s.|`]/g,
 	rtypenamespace = /^([^\.]*)?(?:\.(.+))?$/,
-	rhoverHack =  /\bhover(\.\S+)?/,
+	rhoverHack = /\bhover(\.\S+)?/,
 	rkeyEvent = /^key/,
 	rmouseEvent = /^(?:mouse|contextmenu)|click/,
 	rquickIs = /^([\w\-]+)?(?:#([\w\-]+))?(?:\.([\w\-]+))?(?:\[([\w+\-]+)=["']?([\w\-]*)["']?\])?$/,
@@ -2851,14 +2854,6 @@ var rnamespaces = /\.(.*)$/,
 			(!m[3] || m[3].test( elem.className )) &&
 			(!m[4] || elem.getAttribute( m[4] ) == m[5])
 		);
-	},
-	useNativeMethod = function( event ) {
-		// IE throws error on focus/blur of a hidden element (#1486)
-		var type = event.type;
-		if ( !event.isDefaultPrevented() && this[ type ] && ((type !== "focus" && type !== "blur") || event.target.offsetWidth !== 0) ) {
-			this[ type ]();
-			return false;
-		}
 	};
 
 /*
@@ -2912,13 +2907,17 @@ jQuery.event = {
 		types = types.replace( rhoverHack, "mouseover$1 mouseout$1" ).split( " " );
 		for ( t = 0; t < types.length; t++ ) {
 
-			tns = rtypenamespace.exec( types[t]  ) || [];
+			tns = rtypenamespace.exec( types[t] ) || [];
 			type = tns[1];
 			namespaces = (tns[2] || "").split( "." ).sort();
 
 			// If event changes its type, use the special event handlers for the changed type
 			special = jQuery.event.special[ type ] || {};
-			type = (selector? special.delegateType : special.bindType ) || type;
+
+			// If selector defined, determine special event api type, otherwise given type
+			type = ( selector ? special.delegateType : special.bindType ) || type;
+
+			// Update special based on newly reset type
 			special = jQuery.event.special[ type ] || {};
 
 			// handleObj is passed to all event handlers
@@ -2930,7 +2929,7 @@ jQuery.event = {
 				guid: handler.guid,
 				selector: selector,
 				namespace: namespaces.join(".")
-			}, handleObjIn);
+			}, handleObjIn );
 
 			// Delegated event; pre-analyze selector so it's processed quickly on event dispatch
 			if ( selector ) {
@@ -3009,7 +3008,7 @@ jQuery.event = {
 			namespaces = tns[2];
 
 			// Unbind all events (on this namespace, if provided) for the element
-			if ( !type  ) {
+			if ( !type ) {
 				namespaces = namespaces? "." + namespaces : "";
 				for ( j in events ) {
 					jQuery.event.remove( elem, j + namespaces, handler, selector );
@@ -3018,10 +3017,10 @@ jQuery.event = {
 			}
 
 			special = jQuery.event.special[ type ] || {};
-			type = (selector? special.delegateType : special.bindType ) || type;
+			type = ( selector? special.delegateType : special.bindType ) || type;
 			eventType = events[ type ] || [];
 			origCount = eventType.length;
-			namespaces =  namespaces? new RegExp("(^|\\.)" + namespaces.split(".").sort().join("\\.(?:.*\\.)?") + "(\\.|$)") : null;
+			namespaces = namespaces ? new RegExp("(^|\\.)" + namespaces.split(".").sort().join("\\.(?:.*\\.)?") + "(\\.|$)") : null;
 
 			// Only need to loop for special events or selective removal
 			if ( handler || namespaces || selector || special.remove ) {
@@ -3089,7 +3088,7 @@ jQuery.event = {
 		// Event object or event type
 		var type = event.type || event,
 			namespaces = [],
-			exclusive, i, cur, old, ontype, special, doc, eventPath, bubbleType,
+			cache, exclusive, i, cur, old, ontype, special, doc, eventPath, bubbleType,
 			addHandlers = function( elem, type ) {
 				// Defer getting handler so we don't waste time in case propagation is stopped
 				if ( (jQuery._data( elem, "events" ) || {})[ type ] ) {
@@ -3145,7 +3144,7 @@ jQuery.event = {
 		if ( !elem ) {
 
 			// TODO: Stop taunting the data cache; remove global events and always attach to document
-			var cache = jQuery.cache;
+			cache = jQuery.cache;
 			for ( i in cache ) {
 				if ( cache[ i ].events && cache[ i ].events[ type ] ) {
 					jQuery.event.trigger( event, data, cache[ i ].handle.elem );
@@ -3176,7 +3175,7 @@ jQuery.event = {
 		eventPath = [];
 		addHandlers( elem, special.bindType || type );
 		doc = elem.ownerDocument;
-		if ( doc && !jQuery.isWindow( elem ) & !event.isPropagationStopped() ) {
+		if ( doc && !special.noBubble && !jQuery.isWindow( elem ) & !event.isPropagationStopped() ) {
 			bubbleType = special.delegateType || type;
 			for ( cur = elem.parentNode; cur; cur = cur.parentNode ) {
 				addHandlers( cur, bubbleType );
@@ -3188,7 +3187,7 @@ jQuery.event = {
 		for ( i = 0; i < eventPath.length; i++ ) {
 			cur = eventPath[ i ];
 			event.type = cur.type;
-			(cur.handler ||  jQuery._data( cur.elem, "handle" )).apply( cur.elem, data );
+			( cur.handler || jQuery._data( cur.elem, "handle" ) ).apply( cur.elem, data );
 			if ( event.isPropagationStopped() ) {
 				break;
 			}
@@ -3206,6 +3205,7 @@ jQuery.event = {
 				// Don't do default actions on window, that's where global variables be (#6170)
 				// IE<9 dies on focus/blur to hidden element (#1486)
 				if ( ontype && elem[ type ] && ((type !== "focus" && type !== "blur") || event.target.offsetWidth !== 0) && !jQuery.isWindow( elem ) ) {
+
 					// Don't re-trigger an onFOO event when we call its FOO() method
 					old = elem[ ontype ];
 
@@ -3235,7 +3235,7 @@ jQuery.event = {
 
 		var handlers = ((jQuery._data( this, "events" ) || {})[ event.type ] || []),
 			delegateCount = handlers.delegateCount,
-			args = Array.prototype.slice.call( arguments, 0 ),
+			args = [].slice.call( arguments, 0 ),
 			handlerQueue = [],
 			i, cur, selMatch, matches, handleObj, sel, hit, related;
 
@@ -3244,7 +3244,7 @@ jQuery.event = {
 
 		// Determine handlers that should run if there are delegated events
 		// Avoid disabled elements in IE (#6911) and non-left-click bubbling in Firefox (#3861)
-		if ( delegateCount && !event.target.disabled && !(event.button && event.type === "click")  ) {
+		if ( delegateCount && !event.target.disabled && !(event.button && event.type === "click") ) {
 
 			for ( cur = event.target; cur != this; cur = cur.parentNode || this ) {
 				selMatch = {};
@@ -3256,9 +3256,9 @@ jQuery.event = {
 
 					if ( handleObj.isPositional ) {
 						// Since .is() does not work for positionals; see http://jsfiddle.net/eJ4yd/3/
-						hit = (hit || (selMatch[ sel ] = jQuery( sel ))).index( cur ) >= 0;
+						hit = ( hit || (selMatch[ sel ] = jQuery( sel )) ).index( cur ) >= 0;
 					} else if ( hit === undefined ) {
-						hit = selMatch[ sel ] = (handleObj.quick? quickIs( cur, handleObj.quick ) : jQuery( cur ).is( sel ));
+						hit = selMatch[ sel ] = ( handleObj.quick ? quickIs( cur, handleObj.quick ) : jQuery( cur ).is( sel ) );
 					}
 					if ( hit ) {
 						matches.push( handleObj );
@@ -3293,7 +3293,7 @@ jQuery.event = {
 	// *** attrChange attrName relatedNode srcElement  are not normalized, non-W3C, deprecated, will be removed in 1.8 ***
 	props: "attrChange attrName relatedNode srcElement altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
 
-	propHooks: {},
+	fixHooks: {},
 
 	keyHooks: {
 		props: "char charCode key keyCode".split(" "),
@@ -3333,7 +3333,7 @@ jQuery.event = {
 			// Add which for click: 1 === left; 2 === middle; 3 === right
 			// Note: button is not normalized, so don't use it
 			if ( !event.which && button !== undefined ) {
-				event.which = (button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ));
+				event.which = ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
 			}
 
 			return event;
@@ -3346,13 +3346,14 @@ jQuery.event = {
 		}
 
 		// Create a writable copy of the event object and normalize some properties
-		var originalEvent = event,
-			propHook = jQuery.event.propHooks[ event.type ] || {},
-			copy =  propHook.props ? this.props.concat( propHook.props ) : this.props;
+		var i, prop,
+			originalEvent = event,
+			fixHook = jQuery.event.fixHooks[ event.type ] || {},
+			copy = fixHook.props ? this.props.concat( fixHook.props ) : this.props;
 
 		event = jQuery.Event( originalEvent );
 
-		for ( var i = copy.length, prop; i; ) {
+		for ( i = copy.length; i; ) {
 			prop = copy[ --i ];
 			event[ prop ] = originalEvent[ prop ];
 		}
@@ -3372,14 +3373,8 @@ jQuery.event = {
 			event.metaKey = event.ctrlKey;
 		}
 
-		return propHook.filter? propHook.filter( event, originalEvent ) : event;
+		return fixHook.filter? fixHook.filter( event, originalEvent ) : event;
 	},
-
-	// Deprecated, use jQuery.guid instead
-	guid: 1E8,
-
-	// Deprecated, use jQuery.proxy instead
-	proxy: jQuery.proxy,
 
 	special: {
 		ready: {
@@ -3389,11 +3384,11 @@ jQuery.event = {
 
 		focus: {
 			delegateType: "focusin",
-			trigger: useNativeMethod
+			noBubble: true
 		},
 		blur: {
 			delegateType: "focusout",
-			trigger: useNativeMethod
+			noBubble: true
 		},
 
 		beforeunload: {
@@ -3416,10 +3411,13 @@ jQuery.event = {
 		// Piggyback on a donor event to simulate a different one.
 		// Fake originalEvent to avoid donor's stopPropagation, but if the
 		// simulated event prevents default then we do the same on the donor.
-		var e = jQuery.extend( 
-			new jQuery.Event(), 
-			event, 
-			{ type: type, isSimulated: true, originalEvent: {} }
+		var e = jQuery.extend(
+			new jQuery.Event(),
+			event,
+			{ type: type,
+				isSimulated: true,
+				originalEvent: {}
+			}
 		);
 		if ( bubble ) {
 			jQuery.event.trigger( e, null, elem );
@@ -3435,7 +3433,7 @@ jQuery.event = {
 // Run jQuery handler functions; called from jQuery.event.handle
 function dispatch( target, event, handlers, args ) {
 	var run_all = !event.exclusive && !event.namespace,
-		specialHandle = (jQuery.event.special[event.type] || {}).handle,
+		specialHandle = ( jQuery.event.special[ event.type ] || {} ).handle,
 		j, handleObj, ret;
 
 	event.currentTarget = target;
@@ -3452,7 +3450,7 @@ function dispatch( target, event, handlers, args ) {
 			event.data = handleObj.data;
 			event.handleObj = handleObj;
 
-			ret = (specialHandle || handleObj.handler).apply( target, args );
+			ret = ( specialHandle || handleObj.handler ).apply( target, args );
 
 			if ( ret !== undefined ) {
 				event.result = ret;
@@ -3490,8 +3488,8 @@ jQuery.Event = function( src, props ) {
 
 		// Events bubbling up the document may have been marked as prevented
 		// by a handler lower down the tree; reflect the correct value.
-		this.isDefaultPrevented = (src.defaultPrevented || src.returnValue === false ||
-			src.getPreventDefault && src.getPreventDefault()) ? returnTrue : returnFalse;
+		this.isDefaultPrevented = ( src.defaultPrevented || src.returnValue === false ||
+			src.getPreventDefault && src.getPreventDefault() ) ? returnTrue : returnFalse;
 
 	// Event type
 	} else {
@@ -3660,7 +3658,7 @@ if ( !jQuery.support.changeBubbles ) {
 			jQuery.event.add( this, "beforeactivate._change", function( e ) {
 				var elem = e.target;
 
-				if ( rformElems.test( elem.nodeName ) && !elem._change_attached ) {					
+				if ( rformElems.test( elem.nodeName ) && !elem._change_attached ) {
 					jQuery.event.add( elem, "change._change", function( event ) {
 						if ( this.parentNode && !event.isSimulated ) {
 							jQuery.event.simulate( "change", this.parentNode, event, true );
@@ -3670,7 +3668,7 @@ if ( !jQuery.support.changeBubbles ) {
 				}
 			});
 		},
-		
+
 		handle: function( event ) {
 			var elem = event.target;
 
@@ -3782,7 +3780,7 @@ jQuery.fn.extend({
 			}
 			return this;
 		}
-		if ( typeof selector !== "string" ) {
+		if ( selector === false || typeof selector === "function" ) {
 			// ( types [, fn] )
 			fn = selector;
 			selector = undefined;
@@ -3882,11 +3880,11 @@ jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblcl
 	}
 
 	if ( rkeyEvent.test( name ) ) {
-		jQuery.event.propHooks[ name ] = jQuery.event.keyHooks;
+		jQuery.event.fixHooks[ name ] = jQuery.event.keyHooks;
 	}
 
 	if ( rmouseEvent.test( name ) ) {
-		jQuery.event.propHooks[ name ] = jQuery.event.mouseHooks;
+		jQuery.event.fixHooks[ name ] = jQuery.event.mouseHooks;
 	}
 });
 
@@ -6199,10 +6197,10 @@ jQuery.each({
 });
 
 function getAll( elem ) {
-	if ( "getElementsByTagName" in elem ) {
+	if ( typeof elem.getElementsByTagName !== "undefined" ) {
 		return elem.getElementsByTagName( "*" );
 
-	} else if ( "querySelectorAll" in elem ) {
+	} else if ( typeof elem.querySelectorAll !== "undefined" ) {
 		return elem.querySelectorAll( "*" );
 
 	} else {
@@ -6218,9 +6216,11 @@ function fixDefaultChecked( elem ) {
 }
 // Finds all inputs and passes them to fixDefaultChecked
 function findInputs( elem ) {
-	if ( jQuery.nodeName( elem, "input" ) ) {
+	var nodeName = (elem.nodeName || "").toLowerCase();
+	if ( nodeName === "input" ) {
 		fixDefaultChecked( elem );
-	} else if ( "getElementsByTagName" in elem ) {
+	// Skip scripts, get other children
+	} else if ( nodeName !== "script" && typeof elem.getElementsByTagName !== "undefined" ) {
 		jQuery.grep( elem.getElementsByTagName("input"), fixDefaultChecked );
 	}
 }
@@ -6677,7 +6677,7 @@ if ( !jQuery.support.opacity ) {
 		set: function( elem, value ) {
 			var style = elem.style,
 				currentStyle = elem.currentStyle,
-				opacity = jQuery.isNaN( value ) ? "" : "alpha(opacity=" + value * 100 + ")",
+				opacity = jQuery.isNumeric( value ) ? "alpha(opacity=" + value * 100 + ")" : "",
 				filter = currentStyle && currentStyle.filter || style.filter || "";
 
 			// IE has trouble with opacity if it does not have layout
@@ -8272,7 +8272,7 @@ jQuery.fn.extend({
 					// Set elements which have been overridden with display: none
 					// in a stylesheet to whatever the default browser style is
 					// for such an element
-					if ( display === "" && jQuery.css( elem, "display" ) === "none" ) {
+					if ( display === "none" || ( display === ""  && jQuery.css( elem, "display" ) === "none" ) ) {
 						jQuery._data(elem, "olddisplay", defaultDisplay(elem.nodeName));
 					}
 				}
@@ -8482,7 +8482,12 @@ jQuery.fn.extend({
 			this.queue( optall.queue, doAnimation );
 	},
 
-	stop: function( clearQueue, gotoEnd, type ) {
+	stop: function( type, clearQueue, gotoEnd ) {
+		if ( typeof type !== "string" ) {
+			gotoEnd = clearQueue;
+			clearQueue = type;
+			type = undefined;
+		}
 		if ( clearQueue && type !== false ) {
 			this.queue( type || "fx", [] );
 		}
@@ -8586,8 +8591,8 @@ jQuery.extend({
 		opt.duration = jQuery.fx.off ? 0 : typeof opt.duration === "number" ? opt.duration :
 			opt.duration in jQuery.fx.speeds ? jQuery.fx.speeds[ opt.duration ] : jQuery.fx.speeds._default;
 
-		// if undefined, set to fx
-		if ( opt.queue == null ) {
+		// normalize opt.queue - true/undefined/null -> "fx"
+		if ( opt.queue == null || opt.queue === true ) {
 			opt.queue = "fx";
 		}
 
@@ -9197,16 +9202,20 @@ jQuery.each([ "Height", "Width" ], function( i, name ) {
 	// innerHeight and innerWidth
 	jQuery.fn[ "inner" + name ] = function() {
 		var elem = this[0];
-		return elem && elem.style ?
+		return elem ?
+			elem.style ?
 			parseFloat( jQuery.css( elem, type, "padding" ) ) :
+			this[ type ]() :
 			null;
 	};
 
 	// outerHeight and outerWidth
 	jQuery.fn[ "outer" + name ] = function( margin ) {
 		var elem = this[0];
-		return elem && elem.style ?
+		return elem ?
+			elem.style ?
 			parseFloat( jQuery.css( elem, type, margin ? "margin" : "border" ) ) :
+			this[ type ]() :
 			null;
 	};
 
@@ -9246,7 +9255,7 @@ jQuery.each([ "Height", "Width" ], function( i, name ) {
 			var orig = jQuery.css( elem, type ),
 				ret = parseFloat( orig );
 
-			return jQuery.isNaN( ret ) ? orig : ret;
+			return jQuery.isNumeric( ret ) ? ret : orig;
 
 		// Set the width or height on the element (default to pixels if value is unitless)
 		} else {
