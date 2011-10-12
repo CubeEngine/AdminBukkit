@@ -32,6 +32,9 @@ function appendSession(target)
     return target;
 }
 
+/*
+@todo tooltips need a better implementation
+
 function touchTooltipHandler(event)
 {
     var $target = $(event.target);
@@ -65,7 +68,7 @@ function touchTooltipHandler(event)
     }
     
     $target.bind('touchend', removeTooltip).bind('touchmove', removeTooltip);
-}
+}*/
 
 function prepareForm(query)
 {
@@ -214,5 +217,5 @@ $(function(){
         }
         e.preventDefault();
     });
-    $('*[title]').live('touchstart', touchTooltipHandler);
+    //$('*[title]').live('touchstart', touchTooltipHandler);
 });
