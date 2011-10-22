@@ -89,6 +89,10 @@ function ApiRequest(controller, action)
                     alert(genericLang.error_apinotfound);
                     $broken = true;
                     break;
+                case 6:
+                    alert(genericLang.error_apidisabled);
+                    $broken = true;
+                    break;
                 default:
                     //debug
                     alert('Failed: ' + jqXHR.responseText);

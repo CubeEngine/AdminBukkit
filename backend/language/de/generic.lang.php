@@ -19,6 +19,7 @@
         'error_authfailed'          => "Die Authentifizierung am API Server ist fehlgeschlagen.\nBitte kontrollieren sie ihre Server-Daten.",
         'error_notimplemented'      => "Der Minecraft Server unterstützt diese Aktion nicht.\nEin Update der API-Plugins auf eine neuere Version könnte das Problem lösen.",
         'error_apinotfound'         => "Die angeforderte API wurde nicht gefunden.\nEin Update der API-Plugins auf eine neuere Version könnte das Problem lösen.",
+        'error_apidisabled'         => 'Die angeforderte API ist deaktiviert!.',
         'ajax_error'                => "Beim laden der Daten ist folgender Fehler aufgetreten:\n{0}",
         'redirect_msg'              => 'Prüfe deine Daten oder logge dich neu ein.',
         'confirm_openlink'          => 'Möchten sie diesen Link in einem neuen Fenster öffnen?',
