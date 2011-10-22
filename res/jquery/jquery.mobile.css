@@ -1,5 +1,5 @@
 /*!
- * jQuery Mobile v Git || Date: Wed Oct 12 09:55:34 2011 -0700 Info SHA1: adf55d052cae684ca4dcfa6aa3572e20fef23efc
+ * jQuery Mobile v Git > Date: Thu Oct 20 04:02:40 2011 -0700 Info SHA1: 1d55b38d18e23e743adf135685698092813c73e4
  * http://jquerymobile.com/
  *
  * Copyright 2010, jQuery Project
@@ -836,6 +836,7 @@ a.ui-link-inherit {
 }
 .ui-disabled,
 .ui-disabled a {
+	pointer-events: none;
 	cursor: default;
 }
 
@@ -1205,6 +1206,7 @@ a.ui-link-inherit {
 .ui-header .ui-btn-left { position: absolute; left: 10px; top: .4em;  }
 .ui-header .ui-btn-right { position: absolute; right: 10px; top: .4em; }
 .ui-header .ui-title, .ui-footer .ui-title { min-height: 1.1em; text-align: center; font-size: 16px; display: block; margin: .6em 90px .8em;  padding: 0;  text-overflow: ellipsis; overflow: hidden; white-space: nowrap; outline: 0 !important; }
+.ui-footer .ui-title { margin: .6em 15px .8em;  }
 
 /*content area*/
 .ui-content { border-width: 0; overflow: visible; overflow-x: hidden; padding: 15px; }
@@ -1256,6 +1258,10 @@ a.ui-link-inherit {
 
 /* non-js content hiding */
 .ui-nojs { position: absolute; left: -9999px; }
+
+/* accessible content hiding */
+.ui-hide-label label,
+.ui-hidden-accessible { position: absolute !important; left: -9999px; clip: rect(1px 1px 1px 1px); clip: rect(1px,1px,1px,1px); }
 /*
 * jQuery Mobile Framework
 * Copyright (c) jQuery Project
@@ -1678,13 +1684,15 @@ Built by David Kaneda and maintained by Jonathan Stark.
 .ui-controlgroup, fieldset.ui-controlgroup { padding: 0; margin: .5em 0 1em; }
 .ui-bar .ui-controlgroup { margin: 0 .3em; }
 .ui-controlgroup-label { font-size: 16px; line-height: 1.4; font-weight: normal; margin: 0 0 .3em; }
-.ui-controlgroup-controls { display: block; width: 95%;}
+.ui-controlgroup-controls { display: block; width: 100%;}
 .ui-controlgroup li { list-style: none; }
 .ui-controlgroup-vertical .ui-btn,
 .ui-controlgroup-vertical .ui-checkbox, .ui-controlgroup-vertical .ui-radio { margin: 0; border-bottom-width: 0;  }
+.ui-controlgroup-controls label.ui-select { position: absolute; left: -9999px; }
+
 .ui-controlgroup-vertical .ui-controlgroup-last { border-bottom-width: 1px; }
 .ui-controlgroup-horizontal { padding: 0; }
-.ui-controlgroup-horizontal .ui-btn { display: inline-block; margin: 0 -5px 0 0; }
+.ui-controlgroup-horizontal .ui-btn, .ui-controlgroup-horizontal .ui-select { display: inline-block; margin: 0 -5px 0 0; }
 .ui-controlgroup-horizontal .ui-checkbox, .ui-controlgroup-horizontal .ui-radio { float: left; margin: 0 -1px 0 0; }
 .ui-controlgroup-horizontal .ui-checkbox .ui-btn, .ui-controlgroup-horizontal .ui-radio .ui-btn,
 .ui-controlgroup-horizontal .ui-checkbox:last-child, .ui-controlgroup-horizontal .ui-radio:last-child { margin-right: 0; }
@@ -1696,16 +1704,19 @@ Built by David Kaneda and maintained by Jonathan Stark.
 */
 
 @media all and (min-width: 450px){
-	.ui-controlgroup-label { vertical-align: top; display: inline-block;  width: 20%;  margin: 0 2% 0 0;  }
-	.ui-controlgroup-controls { width: 60%; display: inline-block; } 
+	.ui-field-contain .ui-controlgroup-label { vertical-align: top; display: inline-block;  width: 20%;  margin: 0 2% 0 0;  }
+	.ui-field-contain .ui-controlgroup-controls { width: 60%; display: inline-block; }
+	.ui-field-contain .ui-controlgroup .ui-select { width: 100%; } 
+	.ui-field-contain .ui-controlgroup-horizontal .ui-select { width: auto; }
 }	/*
 * jQuery Mobile Framework
 * Copyright (c) jQuery Project
 * Dual licensed under the MIT (MIT-LICENSE.txt) or GPL (GPL-LICENSE.txt) licenses.
 */
 .ui-dialog { min-height: 480px; }
-.ui-dialog .ui-header, .ui-dialog .ui-content,  .ui-dialog .ui-footer { margin: 15px; position: relative; }
-.ui-dialog .ui-header, .ui-dialog .ui-footer { z-index: 10; width: auto; }
+.ui-dialog .ui-header, .ui-dialog .ui-content,  .ui-dialog .ui-footer { max-width: 500px; margin: 10% auto 0 auto; padding: 15px; width: 85%; position: relative; }
+.ui-dialog .ui-header { padding: 0 15px; }
+.ui-dialog .ui-header, .ui-dialog .ui-footer { z-index: 10; }
 .ui-dialog .ui-content, .ui-dialog .ui-footer { margin-top: -15px;  }/*
 * jQuery Mobile Framework
 * Copyright (c) jQuery Project
@@ -1761,9 +1772,9 @@ label.ui-select { font-size: 16px; line-height: 1.4;  font-weight: normal; margi
 .ui-li.ui-selectmenu-placeholder { display: none; }
 .ui-selectmenu .ui-header .ui-title { margin: 0.6em 46px 0.8em; }
 
-@media all and (min-width: 450px){
-	label.ui-select { vertical-align: top;  display: inline-block;  width: 20%;  margin: 0 2% 0 0; }
-	.ui-select { width: 60%; display: inline-block; }
+@media all and (min-width: 450px){	
+	.ui-field-contain label.ui-select { vertical-align: top;  display: inline-block;  width: 20%;  margin: 0 2% 0 0; }
+	.ui-field-contain .ui-select { width: 60%; display: inline-block; }
 }	
 
 /* when no placeholder is defined in a multiple select, the header height doesn't even extend past the close button.  this shim's content in there */
@@ -1773,10 +1784,10 @@ label.ui-select { font-size: 16px; line-height: 1.4;  font-weight: normal; margi
 * Dual licensed under the MIT (MIT-LICENSE.txt) or GPL (GPL-LICENSE.txt) licenses.
 */
 label.ui-input-text { font-size: 16px; line-height: 1.4; display: block; font-weight: normal; margin: 0 0 .3em; }
-input.ui-input-text, textarea.ui-input-text { background-image: none; padding: .4em; line-height: 1.4; font-size: 16px; display: block; width: 95%; }
+input.ui-input-text, textarea.ui-input-text { background-image: none; padding: .4em 1.5%; line-height: 1.4; font-size: 16px; display: block; width: 97%; }
 input.ui-input-text { -webkit-appearance: none; }
 textarea.ui-input-text { height: 50px; -webkit-transition: height 200ms linear; -moz-transition: height 200ms linear; -o-transition: height 200ms linear; transition: height 200ms linear; }
-.ui-input-search { padding: 0 30px; width: 77%; background-image: none; position: relative; }
+.ui-input-search { padding: 0 30px; background-image: none; position: relative; }
 .ui-icon-searchfield:after { position: absolute; left: 7px; top: 50%; margin-top: -9px; content: ""; width: 18px; height: 18px; opacity: .5; }
 .ui-input-search input.ui-input-text { border: none; width: 98%; padding: .4em 0; margin: 0; display: block; background: transparent none; outline: 0 !important; }
 .ui-input-search .ui-input-clear { position: absolute; right: 0; top: 50%; margin-top: -13px; }
@@ -1784,11 +1795,14 @@ textarea.ui-input-text { height: 50px; -webkit-transition: height 200ms linear; 
 
 /* orientation adjustments - incomplete!*/
 @media all and (min-width: 450px){
-	label.ui-input-text  { vertical-align: top; display: inline-block;  width: 20%;  margin: 0 2% 0 0 }
-	input.ui-input-text, 
-	textarea.ui-input-text, 
-	.ui-input-search { width: 60%; display: inline-block; } 
-	.ui-input-search { width: 50%; }
+	.ui-field-contain label.ui-input-text  { vertical-align: top; display: inline-block;  width: 20%;  margin: 0 2% 0 0 }
+	.ui-field-contain input.ui-input-text, 
+	.ui-field-contain textarea.ui-input-text, 
+	.ui-field-contain .ui-input-search { width: 60%; display: inline-block; } 
+	.ui-field-contain .ui-input-search { width: 50%; }
+	.ui-hide-label input.ui-input-text, 
+	.ui-hide-label textarea.ui-input-text, 
+	.ui-hide-label .ui-input-search { padding: .4em 1.5%; width: 97%; } 
 	.ui-input-search input.ui-input-text { width: 98%; /*echos rule from above*/ }
 }/*
 * jQuery Mobile Framework
@@ -1850,15 +1864,17 @@ ol.ui-listview .ui-li-jsnumbering:before { content: "" !important; } /* to avoid
 * Copyright (c) jQuery Project
 * Dual licensed under the MIT (MIT-LICENSE.txt) or GPL (GPL-LICENSE.txt) licenses.
 */
-label.ui-slider { display: block; }
-input.ui-slider-input  { display: inline-block; width: 50px; }
+label.ui-slider { font-size: 16px; line-height: 1.4;  font-weight: normal; margin: 0 0 .3em; display: block; }
+input.ui-slider-input,
+.ui-field-contain input.ui-slider-input { display: inline-block; width: 50px; }
 select.ui-slider-switch { display: none; }
 div.ui-slider { position: relative; display: inline-block; overflow: visible; height: 15px; padding: 0; margin: 0 2% 0 20px; top: 4px; width: 66%; }
+div.ui-slider-switch { width: 99.8%; }
 a.ui-slider-handle { position: absolute; z-index: 10;  top: 50%; width: 28px; height: 28px; margin-top: -15px; margin-left: -15px; }
 a.ui-slider-handle .ui-btn-inner { padding-left: 0; padding-right: 0; }
 @media all and (min-width: 480px){
-	label.ui-slider { vertical-align: top;  display: inline-block;  width: 20%;  margin: 0 2% 0 0; }
-	div.ui-slider { width: 45%; }
+	.ui-field-contain label.ui-slider { vertical-align: top;  display: inline-block;  width: 20%;  margin: 0 2% 0 0; }
+	.ui-field-contain div.ui-slider { width: 43%; }
 }	
 
 div.ui-slider-switch { height: 32px;  overflow: hidden; margin-left: 0; }

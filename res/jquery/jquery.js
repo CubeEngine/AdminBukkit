@@ -11,7 +11,7 @@
  * Copyright 2011, The Dojo Foundation
  * Released under the MIT, BSD, and GPL Licenses.
  *
- * Date: Wed Oct 12 00:06:30 2011 -0400
+ * Date: Mon Oct 17 16:45:27 2011 -0400
  */
 (function( window, undefined ) {
 
@@ -2197,6 +2197,7 @@ var rclass = /[\n\t\r]/g,
 	rfocusable = /^(?:button|input|object|select|textarea)$/i,
 	rclickable = /^a(?:rea)?$/i,
 	rboolean = /^(?:autofocus|autoplay|async|checked|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped|selected)$/i,
+	getSetAttribute = jQuery.support.getSetAttribute,
 	nodeHook, boolHook, fixSpecified;
 
 jQuery.fn.extend({
@@ -2333,8 +2334,10 @@ jQuery.fn.extend({
 	},
 
 	hasClass: function( selector ) {
-		var className = " " + selector + " ";
-		for ( var i = 0, l = this.length; i < l; i++ ) {
+		var className = " " + selector + " ",
+			i = 0,
+			l = this.length;
+		for ( ; i < l; i++ ) {
 			if ( this[i].nodeType === 1 && (" " + this[i].className + " ").replace(rclass, " ").indexOf( className ) > -1 ) {
 				return true;
 			}
@@ -2344,7 +2347,7 @@ jQuery.fn.extend({
 	},
 
 	val: function( value ) {
-		var hooks, ret,
+		var hooks, ret, isFunction,
 			elem = this[0];
 
 		if ( !arguments.length ) {
@@ -2367,7 +2370,7 @@ jQuery.fn.extend({
 			return undefined;
 		}
 
-		var isFunction = jQuery.isFunction( value );
+		isFunction = jQuery.isFunction( value );
 
 		return this.each(function( i ) {
 			var self = jQuery(this), val;
@@ -2415,7 +2418,7 @@ jQuery.extend({
 		},
 		select: {
 			get: function( elem ) {
-				var value,
+				var value, i, max, option,
 					index = elem.selectedIndex,
 					values = [],
 					options = elem.options,
@@ -2427,8 +2430,10 @@ jQuery.extend({
 				}
 
 				// Loop through all the selected options
-				for ( var i = one ? index : 0, max = one ? index + 1 : options.length; i < max; i++ ) {
-					var option = options[ i ];
+				i = one ? index : 0;
+				max = one ? index + 1 : options.length;
+				for ( ; i < max; i++ ) {
+					option = options[ i ];
 
 					// Don't return options that are disabled or in a disabled optgroup
 					if ( option.selected && (jQuery.support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null) &&
@@ -2482,7 +2487,8 @@ jQuery.extend({
 	},
 
 	attr: function( elem, name, value, pass ) {
-		var nType = elem.nodeType;
+		var ret, hooks, notxml,
+			nType = elem.nodeType;
 
 		// don't get/set attributes on text, comment and attribute nodes
 		if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {
@@ -2498,8 +2504,7 @@ jQuery.extend({
 			return jQuery.prop( elem, name, value );
 		}
 
-		var ret, hooks,
-			notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
+		notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
 
 		// Normalize the name if needed
 		if ( notxml ) {
@@ -2545,13 +2550,14 @@ jQuery.extend({
 
 			for ( ; i < l; i++ ) {
 				name = attrNames[ i ].toLowerCase();
+				propName = jQuery.propFix[ name ] || name;
 
 				// See #9699 for explanation of this approach (setting first, then removal)
 				jQuery.attr( elem, name, "" );
-				elem.removeAttribute( name );
+				elem.removeAttribute( getSetAttribute ? name : propName );
 
 				// Set corresponding property to false for boolean attributes
-				if ( rboolean.test( name ) && (propName = jQuery.propFix[ name ] || name) in elem ) {
+				if ( rboolean.test( name ) && propName in elem ) {
 					elem[ propName ] = false;
 				}
 			}
@@ -2614,15 +2620,15 @@ jQuery.extend({
 	},
 
 	prop: function( elem, name, value ) {
-		var nType = elem.nodeType;
+		var ret, hooks, notxml,
+			nType = elem.nodeType;
 
 		// don't get/set properties on text, comment and attribute nodes
 		if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {
 			return undefined;
 		}
 
-		var ret, hooks,
-			notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
+		notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
 
 		if ( notxml ) {
 			// Fix name and attach hooks
@@ -2700,7 +2706,7 @@ boolHook = {
 };
 
 // IE6/7 do not support getting/setting some attributes with get/setAttribute
-if ( !jQuery.support.getSetAttribute ) {
+if ( !getSetAttribute ) {
 
 	fixSpecified = {
 		name: true,
@@ -3088,17 +3094,7 @@ jQuery.event = {
 		// Event object or event type
 		var type = event.type || event,
 			namespaces = [],
-			cache, exclusive, i, cur, old, ontype, special, doc, eventPath, bubbleType,
-			addHandlers = function( elem, type ) {
-				// Defer getting handler so we don't waste time in case propagation is stopped
-				if ( (jQuery._data( elem, "events" ) || {})[ type ] ) {
-					eventPath.push({ elem: elem, type: type /*, handler: jQuery._data( elem, "handle" ) */ });
-				}
-				// IE doesn't like method names with a colon (#3533, #8272)
-				if ( ontype && jQuery.acceptData( elem ) && elem[ ontype ] ) {
-					eventPath.push({ elem: elem, type: type, handler: elem[ ontype ] });
-				}
-			};
+			cache, exclusive, i, cur, old, ontype, special, handle, eventPath, bubbleType;
 
 		if ( type.indexOf( "!" ) >= 0 ) {
 			// Exclusive events trigger only for the exact event (no namespaces)
@@ -3137,7 +3133,6 @@ jQuery.event = {
 		// triggerHandler() and global events don't bubble or run the default action
 		if ( onlyHandlers || !elem ) {
 			event.preventDefault();
-			event.stopPropagation();
 		}
 
 		// Handle a global trigger
@@ -3145,6 +3140,7 @@ jQuery.event = {
 
 			// TODO: Stop taunting the data cache; remove global events and always attach to document
 			cache = jQuery.cache;
+			event.stopPropagation();
 			for ( i in cache ) {
 				if ( cache[ i ].events && cache[ i ].events[ type ] ) {
 					jQuery.event.trigger( event, data, cache[ i ].handle.elem );
@@ -3171,23 +3167,37 @@ jQuery.event = {
 
 		// Determine event propagation path in advance, per W3C events spec (#9951)
 		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
-		// Always fire handlers for the target, even if prop is stopped in advance
-		eventPath = [];
-		addHandlers( elem, special.bindType || type );
-		doc = elem.ownerDocument;
-		if ( doc && !special.noBubble && !jQuery.isWindow( elem ) & !event.isPropagationStopped() ) {
+		eventPath = [[ elem, special.bindType || type ]];
+		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
+
 			bubbleType = special.delegateType || type;
+			old = null;
 			for ( cur = elem.parentNode; cur; cur = cur.parentNode ) {
-				addHandlers( cur, bubbleType );
+				eventPath.push([ cur, bubbleType ]);
+				old = cur;
 			}
-			addHandlers( doc.defaultView || doc.parentWindow || window, bubbleType );
+
+			// Only add window if we got to document (e.g., not plain obj or detached DOM)
+			if ( old && old === elem.ownerDocument ) {
+				eventPath.push([ old.defaultView || old.parentWindow || window, bubbleType ]);
+			}
 		}
 
-		// Bubble up the DOM tree
+		// Fire handlers on the event path
 		for ( i = 0; i < eventPath.length; i++ ) {
-			cur = eventPath[ i ];
-			event.type = cur.type;
-			( cur.handler || jQuery._data( cur.elem, "handle" ) ).apply( cur.elem, data );
+
+			cur = eventPath[i][0];
+			event.type = eventPath[i][1];
+
+			handle = (jQuery._data( cur, "events" ) || {})[ event.type ] && jQuery._data( cur, "handle" );
+			if ( handle ) {
+				handle.apply( cur, data );
+			}
+			handle = ontype && cur[ ontype ];
+			if ( handle && jQuery.acceptData( cur ) ) {
+				handle.apply( cur, data );
+			}
+
 			if ( event.isPropagationStopped() ) {
 				break;
 			}
@@ -3899,6 +3909,7 @@ jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblcl
 (function(){
 
 var chunker = /((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^\[\]]*\]|['"][^'"]*['"]|[^\[\]'"]+)+\]|\\.|[^ >+~,(\[\\]+)+|[>+~])(\s*,\s*)?((?:.|\r|\n)*)/g,
+	expando = "sizcache" + (Math.random() + '').replace('.', ''),
 	done = 0,
 	toString = Object.prototype.toString,
 	hasDuplicate = false,
@@ -4664,7 +4675,10 @@ var Expr = Sizzle.selectors = {
 		},
 
 		CHILD: function( elem, match ) {
-			var type = match[1],
+			var first, last,
+				doneName, parent, cache,
+				count, diff,
+				type = match[1],
 				node = elem;
 
 			switch ( type ) {
@@ -4692,18 +4706,18 @@ var Expr = Sizzle.selectors = {
 					return true;
 
 				case "nth":
-					var first = match[2],
-						last = match[3];
+					first = match[2];
+					last = match[3];
 
 					if ( first === 1 && last === 0 ) {
 						return true;
 					}
 					
-					var doneName = match[0],
-						parent = elem.parentNode;
+					doneName = match[0];
+					parent = elem.parentNode;
 	
-					if ( parent && (parent.sizcache !== doneName || !elem.nodeIndex) ) {
-						var count = 0;
+					if ( parent && (parent[ expando ] !== doneName || !elem.nodeIndex) ) {
+						count = 0;
 						
 						for ( node = parent.firstChild; node; node = node.nextSibling ) {
 							if ( node.nodeType === 1 ) {
@@ -4711,10 +4725,10 @@ var Expr = Sizzle.selectors = {
 							}
 						} 
 
-						parent.sizcache = doneName;
+						parent[ expando ] = doneName;
 					}
 					
-					var diff = elem.nodeIndex - last;
+					diff = elem.nodeIndex - last;
 
 					if ( first === 0 ) {
 						return diff === 0;
@@ -5212,13 +5226,13 @@ function dirNodeCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 			elem = elem[dir];
 
 			while ( elem ) {
-				if ( elem.sizcache === doneName ) {
+				if ( elem[ expando ] === doneName ) {
 					match = checkSet[elem.sizset];
 					break;
 				}
 
 				if ( elem.nodeType === 1 && !isXML ){
-					elem.sizcache = doneName;
+					elem[ expando ] = doneName;
 					elem.sizset = i;
 				}
 
@@ -5245,14 +5259,14 @@ function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 			elem = elem[dir];
 
 			while ( elem ) {
-				if ( elem.sizcache === doneName ) {
+				if ( elem[ expando ] === doneName ) {
 					match = checkSet[elem.sizset];
 					break;
 				}
 
 				if ( elem.nodeType === 1 ) {
 					if ( !isXML ) {
-						elem.sizcache = doneName;
+						elem[ expando ] = doneName;
 						elem.sizset = i;
 					}
 
