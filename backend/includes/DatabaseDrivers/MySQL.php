@@ -10,7 +10,8 @@
 
         protected $connected;
 
-        protected $INIT_SQL = 'CREATE TABLE IF NOT EXISTS `__PREFIX__users` (
+        protected $INIT_SQL = 'SET CHARACTER SET \'utf8\';
+CREATE TABLE IF NOT EXISTS `__PREFIX__users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   `email` varchar(500) NOT NULL,
