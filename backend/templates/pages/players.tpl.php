@@ -21,7 +21,7 @@
     <?php endif ?>
 
     var oldData = null;
-    var list = $('#<?php echo $pageName ?>_players');
+    var $list = $('#<?php echo $pageName ?>_players');
     var playersRequest = new ApiRequest(dataSource[0], dataSource[1]);
     playersRequest.data(requestData);
     playersRequest.ignoreFirstFail(true);
@@ -54,11 +54,11 @@
             return;
         }
         oldData = players;
-        list.html('');
+        $list.html('');
         if (players.length == 0)
         {
             $('#players_online').text('0');
-            list.append($('<li><?php $lang->noplayers ?></li>'));
+            $list.append($('<li><?php $lang->noplayers ?></li>'));
         }
         else
         {
@@ -75,8 +75,8 @@
                 icon.attr('src', BASE_PATH + 'backend/playerhead.php?size=16&player=' + players[i])
                 mainLink.append(icon);
                 li.append(mainLink);
-                li.append($('<a href="<?php $this->page('playerpopup') ?>?player=' + players[i] + '" data-rel="dialog" data-transition="pop"></a>'));
-                list.append(li);
+                li.append($('<a href="<?php $this->page('playerpopup') ?>?player=' + players[i] + '" data-rel="dialog"></a>'));
+                $list.append(li);
             }
             <?php if (isset($world)): ?>
             var li = $('<li>');
@@ -84,10 +84,10 @@
             link.attr('href', '<?php $this->page('players') ?>');
             link.text('<?php $lang->allplayers ?>');
             li.append(link);
-            list.append(li);
+            $list.append(li);
             <?php endif ?>
         }
-        list.listview('refresh');
+        $list.listview('refresh');
     }
 
 

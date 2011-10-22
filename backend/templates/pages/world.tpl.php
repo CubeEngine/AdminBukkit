@@ -35,7 +35,7 @@
 </ul>
 <div data-role="controlgroup">
     
-    <a data-role="button" href="<?php $this->page('worldpopup') ?>?world=<?php echo $world ?>" data-rel="dialog" data-transition="pop"><?php $lang->utils ?></a>
+    <a data-role="button" href="<?php $this->page('worldpopup') ?>?world=<?php echo $world ?>" data-rel="dialog"><?php $lang->utils ?></a>
 </div>
 <script type="text/javascript">
     var world = '<?php echo $world ?>';

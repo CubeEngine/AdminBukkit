@@ -32,10 +32,10 @@
 <h2><?php $lang->utils ?></h2>
 <div data-role="controlgroup">
     <a data-role="button" href="#" id="server_stats_ram"><?php $lang->ram ?>: <span id="server_stats_ram_free"><?php $genericLang->progress ?></span> / <span id="server_stats_ram_max"><?php $genericLang->progress ?></span> MB</a>
-    <a data-role="button" href="<?php $this->page('playerbanlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->banplayer ?></a>
-    <a data-role="button" href="<?php $this->page('ipbanlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->banip ?></a>
-    <a data-role="button" href="<?php $this->page('whitelist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->addtowhitelist ?></a>
-    <a data-role="button" href="<?php $this->page('operatorlist') ?>" data-rel="dialog" data-transition="pop"><?php $lang->addoperator ?></a>
+    <a data-role="button" href="<?php $this->page('playerbanlist') ?>" data-rel="dialog"><?php $lang->banplayer ?></a>
+    <a data-role="button" href="<?php $this->page('ipbanlist') ?>" data-rel="dialog"><?php $lang->banip ?></a>
+    <a data-role="button" href="<?php $this->page('whitelist') ?>" data-rel="dialog"><?php $lang->addtowhitelist ?></a>
+    <a data-role="button" href="<?php $this->page('operatorlist') ?>" data-rel="dialog"><?php $lang->addoperator ?></a>
     <a data-role="button" href="#" id="server_broadcast"><?php $lang->broadcast ?></a>
     <a data-role="button" href="<?php $this->page('console') ?>"><?php $lang->consoleview ?></a>
     <a data-role="button" href="#" id="server_reload"><?php $lang->reload ?></a>

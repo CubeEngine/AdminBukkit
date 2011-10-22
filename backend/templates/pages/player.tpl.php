@@ -61,7 +61,7 @@
 <div data-role="controlgroup">
     <a href="" id="player_world" data-role="button"><?php $lang->world ?>: <span id="player_world_name"><?php $genericLang->progress ?></span></a>
     <a id="ban_ip" href="#" data-role="button"><?php $lang->ip ?>: <span id="player_ip"><?php $genericLang->progress ?></span></a>
-    <a href="<?php $this->page('playerpopup') ?>?player=<?php echo $player ?>" data-role="button" data-rel="dialog" data-transition="pop"><?php $lang->utils ?></a>
+    <a href="<?php $this->page('playerpopup') ?>?player=<?php echo $player ?>" data-role="button" data-rel="dialog"><?php $lang->utils ?></a>
 </div>
 <script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=serverutils"></script>
 <script type="text/javascript" src="<?php $this->res('js/serverutils.js') ?>"></script>
