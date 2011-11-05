@@ -78,7 +78,15 @@ function ApiRequest(controller, action)
                     // execute onFailure if set
                     if (typeof $onFailure == 'function')
                     {
-                        $onFailure(minor);
+                        try
+                        {
+                            $onFailure(minor);
+                        }
+                        catch (e)
+                        {
+                            // @todo debug
+                            alert(e);
+                        }
                     }
                     break;
                 case 4:
