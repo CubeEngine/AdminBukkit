@@ -7,7 +7,7 @@
         private function __construct()
         {
             $dbDriverName = Config::instance('bukkitweb')->get('database', 'MySQL');
-            $path = INCLUDE_PATH . DS . 'Drivers' . DS . $dbDriverName . '.php';
+            $path = INCLUDE_PATH . DS . 'Database' . DS . 'Drivers' . DS . $dbDriverName . '.php';
             if (is_readable($path))
             {
                 require_once $path;
