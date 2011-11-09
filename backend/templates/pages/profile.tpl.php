@@ -6,3 +6,4 @@
     <li><?php $lang->apiaddr ?>: <span class="value"><?php echo $host . ':' . $port ?></span></li>
     <li><?php $lang->apipass ?>: <span id="profile_authkey" class="value"><?php echo $pass ?></span></li>
 </ul>
+<button type="button"><?php echo $lang->deleteUser ?></button>

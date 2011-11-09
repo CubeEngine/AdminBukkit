@@ -6,6 +6,7 @@
         'email'             => 'Email-address',
         'apiaddr'           => 'API address',
         'apipass'           => 'API auth key',
+        'deleteAccount'     => 'Delete your account',
         
         // Controller
         'edit'              => 'Edit',

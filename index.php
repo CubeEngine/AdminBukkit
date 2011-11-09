@@ -3,7 +3,7 @@
 
     Logger::logLevel(Config::instance('bukkitweb')->get('logLevel', 0));
     $router = Router::instance();
-    $design = new Design('Bukkit Web Admin');
+    $design = new Design('AdminBukkit');
     $design->assign('basePath', $router->getBasePath());
     //$design->addPostFilter(new WhitespaceFilter());
     //$design->addPostFilter(new TidyFilter());
