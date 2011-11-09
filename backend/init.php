@@ -15,18 +15,22 @@
     function __autoload($classname)
     {
         static $classmap = array(
-            'Template'                          => 'Template.php',
-            'Design'                            => 'Design.php',
-            'Config'                            => 'Config.php',
-            'Minecraft'                         => 'Minecraft.php',
             'Router'                            => 'Router.php',
-            'View'                              => 'View.php',
-            'Filter'                            => 'Filter.php',
-            'Registry'                          => 'Registry.php',
-            'Page'                              => 'Page.php',
-            'WhitespaceFilter'                  => 'WhitespaceFilter.php',
-            'TidyFilter'                        => 'TidyFilter.php',
-            'Router'                            => 'Router.php',
+            'Logger'                            => 'Logger.php',
+            'ApiBukkit'                         => 'ApiBukkit.php',
+            
+            'View'                              => 'View/View.php',
+            'Template'                          => 'View/Template.php',
+            'Page'                              => 'View/Page.php',
+            'Design'                            => 'View/Design.php',
+            'Filter'                            => 'View/Filter.php',
+            'WhitespaceFilter'                  => 'View/Filters/WhitespaceFilter.php',
+            'TidyFilter'                        => 'View/Filters/TidyFilter.php',
+            'SessIDFilter'                      => 'View/Filters/SessIDFilter.php',
+            'LinkGenerator'                     => 'View/LinkGenerator.php',
+            'DefaultLinkGenerator'              => 'View/LinkGenerators/DefaultLinkGenerator.php',
+            'ModRewriteLinkGenerator'           => 'View/LinkGenerators/ModRewriteLinkGenerator.php',
+            
             'HttpClient'                        => 'Http/HttpClient.php',
             'HttpHeader'                        => 'Http/HttpHeader.php',
             'HttpCookie'                        => 'Http/HttpCookie.php',
@@ -39,22 +43,20 @@
             'OptionsRequestMethod'              => 'Http/RequestMethods/OptionsRequestMethod.php',
             'TraceRequestMethod'                => 'Http/RequestMethods/TraceRequestMethod.php',
             'HeadRequestMethod'                 => 'Http/RequestMethods/HeadRequestMethod.php',
-            'AESCrypter'                        => 'AESCrypter.php',
-            'User'                              => 'User.php',
-            'Text'                              => 'Text.php',
-            'ApiValidator'                      => 'ApiValidator.php',
-            'SessIDFilter'                      => 'SessIDFilter.php',
-            'Request'                           => 'Request.php',
-            'Lang'                              => 'Lang.php',
-            'Logger'                            => 'Logger.php',
-            'Statistics'                        => 'Statistics.php',
-            'ApiBukkit'                         => 'ApiBukkit.php',
-            'Database'                          => 'Database.php',
-            'DatabaseManager'                   => 'DatabaseManager.php',
-            'DatabaseException'                 => 'DatabaseException.php',
-            'LinkGenerator'                     => 'LinkGenerator.php',
-            'DefaultLinkGenerator'              => 'DefaultLinkGenerator.php',
-            'ModRewriteLinkGenerator'           => 'ModRewriteLinkGenerator.php'
+            
+            'User'                              => 'Model/User.php',
+            'Statistics'                        => 'Model/Statistics.php',
+            'Config'                            => 'Model/Config.php',
+            'Request'                           => 'Model/Request.php',
+            'Lang'                              => 'Model/Lang.php',
+            
+            'Database'                          => 'Database/Database.php',
+            'DatabaseManager'                   => 'Database/DatabaseManager.php',
+            'DatabaseException'                 => 'Database/DatabaseException.php',
+            
+            'AESCrypter'                        => 'Util/AESCrypter.php',
+            'Text'                              => 'Util/Text.php',
+            'ApiValidator'                      => 'Util/ApiValidator.php'
         );
         
         if (isset($classmap[$classname]))
