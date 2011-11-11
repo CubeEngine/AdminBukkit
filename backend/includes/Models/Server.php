@@ -158,6 +158,29 @@
             $this->db->preparedQuery('DELETE FROM ' . $this->db->getPrefix() . 'servers WHERE id=? LIMIT 1', array($this->id));
         }
 
+        /**
+         * Updates a server entry
+         *
+         * @param string $alias the server alias
+         * @param string $host the server host address
+         * @param int $port the port
+         * @param string $authkey the API authkey
+         * @param int $owner the owner's ID
+         * @param int[] $members the members's IDs
+         */
+        public function update($alias, $host, $port, $authkey, $owner, array $members)
+        {
+            $this->db->preparedQuery('UPDATE ' . $this->db->getPrefix() . 'servers SET `alias`=?, host=?, port=?, authkey=?, owner=?, members=? WHERE id=?', array(
+                $alias,
+                $host,
+                $port,
+                $authkey,
+                $owner,
+                implode(',', $members),
+                $this->id
+            ));
+        }
+
         public function serialize()
         {
             return serialize(array($this->id, $this->alias, $this->host, $this->port, $this->authkey, $this->owner, $this->members));
