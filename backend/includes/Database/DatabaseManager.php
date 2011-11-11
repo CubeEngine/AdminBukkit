@@ -40,7 +40,7 @@
 
         /**
          *
-         * @return IDatabase the loaded database
+         * @return Database the loaded database
          */
         public function getDatabase()
         {
