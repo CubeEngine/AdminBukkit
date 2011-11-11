@@ -1,19 +1,25 @@
 <?php
-    class User implements Serializable, ArrayAccess
+    class User implements Serializable
     {
         private static $users = array();
-        protected $userdata;
-        protected $database;
-        protected $loginIp;
+        private $db;
+
+        private $id;
+        private $name;
+        private $email;
+        private $servers;
+
+        private $currentServer;
+        private $loginIp;
         
         private function __construct($name, $password)
         {
             try
             {
-                $this->database = DatabaseManager::instance()->getDatabase();
-                $query = 'SELECT * FROM ' . $this->database->getPrefix() . 'users WHERE name=?';
-                $result = $this->database->preparedQuery($query, array($name));
-                if (count($result) < 1)
+                $this->db = DatabaseManager::instance()->getDatabase();
+                $query = 'SELECT id,name,email,password,servers FROM ' . $this->db->getPrefix() . 'users WHERE name=?';
+                $result = $this->db->preparedQuery($query, array($name));
+                if (!count($result))
                 {
                     throw new Exception('User does not exist!', 1);
                 }
@@ -23,15 +29,19 @@
                 {
                     throw new Exception('Invalid password!', 2);
                 }
-                $crypter = self::getCrypter($password);
-                $mailCrypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
-                
-                $result['email'] = $mailCrypter->decrypt($result['email']);
-                $result['serveraddress'] = $crypter->decrypt($result['serveraddress']);
-                $result['apiport'] = $crypter->decrypt($result['apiport']);
-                $result['apipassword'] = $crypter->decrypt($result['apipassword']);
-                unset($result['password']);
-                $this->userdata = $result;
+
+                $this->id = $result['id'];
+                $this->name = $result['name'];
+                $this->email = $result['email'];
+                if ($result['servers'])
+                {
+                    $this->servers = explode(',', $result['servers']);
+                }
+                else
+                {
+                    $this->servers = array();
+                }
+                $this->currentServer = null;
                 $this->loginIp = $_SERVER['REMOTE_ADDR'];
                 
                 // Stats
@@ -54,30 +64,42 @@
             }
             return self::$users[$username];
         }
+
+        public function getId()
+        {
+            return $this->id;
+        }
         
         public function getName()
         {
-            return $this->userdata['name'];
+            return $this->name;
         }
         
         public function getEmail()
         {
-            return $this->userdata['email'];
+            return $this->email;
         }
-        
-        public function getServerAddress()
+
+        /**
+         * Returns the currently selected server
+         *
+         * @return Server the currently selected server
+         */
+        public function getCurrentServer()
         {
-            return $this->userdata['serveraddress'];
+            return $this->currentServer;
         }
-        
-        public function getApiPort()
+
+        /**
+         * Sets the currently selected server
+         *
+         * @param Server $server the server to set
+         * @return User fluent interface
+         */
+        public function setCurrentServer(Server $server)
         {
-            return $this->userdata['apiport'];
-        }
-        
-        public function getApiAuthKey()
-        {
-            return $this->userdata['apipassword'];
+            $this->currentServer = $server;
+            return $this;
         }
 
         public function getLoginIp()
@@ -85,12 +107,12 @@
             return $this->loginIp;
         }
         
-        public function removeUser()
+        public function delete()
         {
             try
             {
-                $query = 'DELETE FROM ' . $this->database->getPrefix() . 'users WHERE name=?';
-                $this->database->preparedQuery($query, array($this->getName()));
+                $query = 'DELETE FROM ' . $this->db->getPrefix() . 'users WHERE name=? LIMIT 1';
+                $this->db->preparedQuery($query, array($this->name));
                 return true;
             }
             catch (PDOException $e)
@@ -100,7 +122,7 @@
         }
         
         
-        public static function addUser($name, $pass, $email, $serveraddr, $apiport, $apipass)
+        public static function createUser($name, $pass, $email, $serveraddr, $apiport, $apipass)
         {
             try
             {
@@ -110,11 +132,8 @@
                 }
                 
                 $db = DatabaseManager::instance()->getDatabase();
-                $query = 'INSERT INTO ' . $db->getPrefix() . 'users (name, password, email, serveraddress, apiport, apipassword) '
-                       . 'VALUES (?, ?, ?, ?, ?, ?)';
+                $query = 'INSERT INTO ' . $db->getPrefix() . 'users (name, password, email, serveraddress, apiport, apipassword) VALUES (?, ?, ?, ?, ?, ?)';
                 $salt = self::getSalt();
-                $crypter = self::getCrypter($pass);
-                $mailCrypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
                 $db->preparedQuery($query, array(
                     substr($name, 0, 40),
                     hash('SHA512', $pass . $salt),
@@ -133,34 +152,38 @@
             }
         }
         
-        public static function updateUser($oldName, $name, $pass, $email, $serveraddr, $apiport, $apipass)
+        public function update($name, $pass, $email, array $servers)
         {
             try
             {
+                /*
+                 * @todo obsolete?
+                 *
                 if (!User::exists($oldName))
                 {
                     throw new Exception('User does not exist!', 1);
-                };
-                if ($oldName != $name && User::exists($name))
+                }
+                 */
+                if ($this->name != $name && User::exists($name))
                 {
                     throw new Exception('User does already exist!', 5);
                 }
                 
-                $db = DatabaseManager::instance()->getDatabase();
-                $query = 'UPDATE ' . $db->getPrefix() . 'users SET name=?, password =?, email=?, serveraddress=?, apiport=?, '
-                       . 'apipassword=? WHERE name=?';
+                $query = 'UPDATE ' . $this->db->getPrefix() . 'users SET name=?, password=?, email=?, servers=? WHERE id=?';
                 $salt = self::getSalt();
-                $crypter = self::getCrypter($pass);
-                $mailCrypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
-                $db->preparedQuery($query, array(
+                $this->db->preparedQuery($query, array(
                     substr($name, 0, 40),
                     hash('SHA512', $pass . $salt),
-                    $mailCrypter->encrypt($email),
-                    $crypter->encrypt($serveraddr),
-                    $crypter->encrypt($apiport),
-                    $crypter->encrypt($apipass),
-                    $oldName
+                    $email,
+                    implode(',', $servers),
+                    $this->id
                 ), false);
+                $this->name = $name;
+                $this->email = $email;
+                $this->servers = $servers;
+                /*
+                 * @todo obsolete?
+                 *
                 if (
                     isset($_SESSION['user']) &&
                     $_SESSION['user'] instanceof User &&
@@ -169,6 +192,7 @@
                 {
                     unset($_SESSION['user']);
                 }
+                 */
             }
             catch (PDOException $e)
             {
@@ -176,20 +200,25 @@
             }
         }
         
-        public static function exists($name)
+        public static function exists($id)
         {
+            $field = 'id';
+            if (is_string($id))
+            {
+                $field = 'name';
+            }
             $db = DatabaseManager::instance()->getDatabase();
-            $query = 'SELECT count(*) as count FROM ' . $db->getPrefix() . 'users WHERE name=?';
-            $result = $db->preparedQuery($query, array($name));
+            $query = 'SELECT count(*) as count FROM ' . $db->getPrefix() . 'users WHERE ' . $field . '=?';
+            $result = $db->preparedQuery($query, array($id));
             return ($result[0]['count'] > 0);
         }
         
-        public static function login(User $user)
+        public function login()
         {
-            $_SESSION['user'] = $user;
+            $_SESSION['user'] = $this;
         }
         
-        public static function logout()
+        public function logout()
         {
             unset($_SESSION['user']);
                 
@@ -197,9 +226,9 @@
             Statistics::increment('user.logout');
         }
         
-        public static function loggedIn()
+        public function loggedIn()
         {
-            return (isset($_SESSION['user']) && $_SESSION['user'] instanceof User && $_SESSION['user']->getLoginIp() == $_SERVER['REMOTE_ADDR']);
+            return $this->equals($_SESSION['user']);
         }
         
         protected static function getSalt()
@@ -212,50 +241,25 @@
             return $salt;
         }
         
-        protected static function getCrypter($key)
-        {
-            if ($key === null)
-            {
-                throw new Exception('No encryption key specified!', 3);
-            }
-            return new AESCrypter($key, 2);
-        }
-        
-        
         public function serialize()
         {
-            $crypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
-            $data = serialize(array($this->loginIp, $this->userdata));
-            return serialize($crypter->encrypt($data));
+            return serialize(array($this->id, $this->name, $this->email, $this->servers, $this->currentServer, $this->loginIp));
         }
         
         public function unserialize($serialized)
         {
-            $crypter = self::getCrypter(Config::instance('bukkitweb')->get('encryptionKey'));
             $data = unserialize($serialized);
-            $data = @unserialize($crypter->decrypt($data));
-            if ($data === false)
-            {
-                throw new Exception('Decryption seems to have failed due to a wrong encryption key');
-            }
-            $this->loginIp = $data[0];
-            $this->userdata = $data[1];
+            $this->id = $data[0];
+            $this->name = $data[1];
+            $this->email = $data[2];
+            $this->servers = $data[3];
+            $this->currentServer = $data[4];
+            $this->loginIp = $data[5];
         }
 
-        public function offsetExists($offset)
+        public function equals($user)
         {
-            return isset($this->userdata[$offset]);
+            return (is_object($user) && ($user instanceof User) && $this->id === $user->getId());
         }
-
-        public function offsetGet($offset)
-        {
-            return $this->userdata[$offset];
-        }
-
-        public function offsetSet($offset, $value)
-        {} //not supported
-
-        public function offsetUnset($offset)
-        {} //not supported
     }
 ?>
