@@ -39,6 +39,7 @@
         {}
 
         /**
+         * Returns the currently loaded database
          *
          * @return Database the loaded database
          */
@@ -47,6 +48,11 @@
             return $this->database;
         }
 
+        /**
+         * Returns the singleton instance of the DatabaseManager
+         *
+         * @return DatabaseManager instance of DatabaseManager
+         */
         public static function instance()
         {
             Logger::instance('database')->write(0, 'info', 'Db Mgr instance requested!');
