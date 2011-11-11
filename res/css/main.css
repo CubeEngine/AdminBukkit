@@ -170,6 +170,6 @@ a#world_create {
 /**
  * Page - editprofile
  */
-span#profile_authkey {
+span#profile_authkey, span#plugin_datafolder {
     word-wrap: break-word;
 }

@@ -39,10 +39,7 @@
         </div>
     </li>
     <?php endif ?>
-    <?php
-        $offset = strlen($dataFolder) - 30;
-    ?>
-    <li><?php $lang->datafolder ?>: <span class="value" title="<?php echo $dataFolder ?>">...<?php echo substr($dataFolder, $offset) ?></span></li>
+    <li><?php $lang->datafolder ?>: <span class="value" id="plugin_datafolder"><?php echo $dataFolder ?></span></li>
 </ul>
 <script type="text/javascript">
     $('#plugin .contentSlide').click(function(e){
