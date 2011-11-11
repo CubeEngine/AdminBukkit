@@ -203,5 +203,10 @@
             $this->owner = $data[5];
             $this->members = $data[6];
         }
+
+        public function equals($server)
+        {
+            return (is_object($server) && ($server instanceof Server) && $this->id === $server->getId());
+        }
     }
 ?>
