@@ -179,6 +179,12 @@
                 implode(',', $members),
                 $this->id
             ));
+            $this->alias = $alias;
+            $this->host = $host;
+            $this->port = $port;
+            $this->authkey = $authkey;
+            $this->owner = $owner;
+            $this->members = $members;
         }
 
         public function serialize()
