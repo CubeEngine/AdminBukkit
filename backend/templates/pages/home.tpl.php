@@ -1,7 +1,7 @@
 <?php $lang = Lang::instance('home') ?>
 <ul data-role="listview">
     <li data-role="divider" data-theme="e"><?php $lang->pages ?></li>
-    <?php if (!User::loggedIn()): ?>
+    <?php if (!User::currentlyLoggedIn()): ?>
     <li class="arrow"><a href="<?php $this->page('register') ?>"><?php $lang->registration ?></a></li>
     <li class="arrow"><a href="<?php $this->page('login') ?>"><?php $lang->login ?></a></li>
     <li class="arrow"><a href="<?php $this->page('stats') ?>"><?php $lang->stats ?></a></li>

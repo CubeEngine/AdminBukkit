@@ -35,6 +35,7 @@
                 {
                     throw new Exception('User does not exist!', 1);
                 }
+                $result = $result[0];
 
                 $this->id = $result['id'];
                 $this->name = $result['name'];
@@ -115,6 +116,23 @@
                 self::$usersByEmail[$user->getEmail()] =& self::$usersById[$id];
             }
             return $user;
+        }
+
+        /**
+         * Returns the currently logged in user
+         *
+         * @return User the currently logged in user
+         */
+        public static function currentlyLoggedIn()
+        {
+            if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user'] instanceof User)
+            {
+                return $_SESSION['user'];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /**
