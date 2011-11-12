@@ -86,7 +86,7 @@
         /**
          * Synchronizes the database entry with the current values
          */
-        private function syncToDatabase()
+        public function save()
         {
             try
             {
@@ -126,6 +126,19 @@
         }
 
         /**
+         * Sets the server alias
+         *
+         * @param string $alias the new alias
+         * @return Server fluent interface
+         */
+        public function setAlias($alias)
+        {
+            $this->alias = substr($alias, 0, 30);
+
+            return $this;
+        }
+
+        /**
          * Returns the server's host address
          *
          * @return string the server host
@@ -133,6 +146,19 @@
         public function getHost()
         {
             return $this->host;
+        }
+
+        /**
+         * Sets the server host address
+         *
+         * @param string $host the host address
+         * @return Server fluent interface
+         */
+        public function setHost($host)
+        {
+            $this->host = substr($host, 0, 100);
+
+            return $this;
         }
 
         /**
@@ -146,6 +172,27 @@
         }
 
         /**
+         * Sets the server port
+         *
+         * @param int $port the new port
+         * @return Server fluent interface
+         */
+        public function setPort($port)
+        {
+            $port = intval($port);
+            if ($port > 0 && $port < 65536)
+            {
+                $this->port = $port;
+            }
+            else
+            {
+                throw new Exception('Invalid port given!');
+            }
+
+            return $this;
+        }
+
+        /**
          * Returns the API authkey
          *
          * @return string the API authkey
@@ -153,6 +200,26 @@
         public function getAuthKey()
         {
             return $this->authkey;
+        }
+
+        /**
+         * Sets the API authkey
+         *
+         * @param string $authkey the new authkey
+         * @return Server fluent interface
+         */
+        public function setAuthKey($authkey)
+        {
+            if (strlen($authkey) == 32 && !preg_match('/[^a-f0-9]/', $authkey))
+            {
+                $this->authkey = $authkey;
+            }
+            else
+            {
+                throw new Exception('Invalid authkey given!');
+            }
+
+            return $this;
         }
 
         /**
@@ -166,6 +233,27 @@
         }
 
         /**
+         * Sets the server owner
+         *
+         * @param User $owner the new server owner
+         * @return Server fluent interface
+         */
+        public function setOwner($owner)
+        {
+            $userId = null;
+            if (is_object($owner) && $owner instanceof User)
+            {
+                $userId = $owner->getId();
+            }
+            else
+            {
+                $userId = User::get($owner)->getId();
+            }
+
+            return $this;
+        }
+
+        /**
          * Returns the IDs of all members except the owner
          *
          * @return int[] an array of the member IDs
@@ -176,47 +264,45 @@
         }
 
         /**
-         * Removes this server from the database
+         *
+         * @param int[] $members
+         * @return Server
          */
-        public function delete()
+        public function setMembers(array $members)
         {
-            $this->db->preparedQuery('DELETE FROM ' . $this->db->getPrefix() . 'servers WHERE id=? LIMIT 1', array($this->id));
+            foreach ($members as $index => $member)
+            {
+                try
+                {
+                    $members[$index] = User::get($member)->getId();
+                }
+                catch (Exception $e)
+                {
+                    unset($members[$index]);
+                }
+            }
+            $this->members = $members;
+
+            return $this;
         }
 
         /**
-         * Updates a server entry
+         * Removes all members
          *
-         * @param string $alias the server alias
-         * @param string $host the server host address
-         * @param int $port the port
-         * @param string $authkey the API authkey
-         * @param int $owner the owner's ID
-         * @param int[] $members the members's IDs
+         * @return Server fluent interface
          */
-        public function update($alias, $host, $port, $authkey, $owner, array $members)
+        public function clearMembers()
         {
-            $query = 'UPDATE ' . $this->db->getPrefix() . 'servers SET `alias`=?, host=?, port=?, authkey=?, owner=?, members=? WHERE id=?';
-            $this->db->preparedQuery($query, array(
-                $alias,
-                $host,
-                $port,
-                $authkey,
-                $owner,
-                implode(',', $members),
-                $this->id
-            ), false);
-            $this->alias = $alias;
-            $this->host = $host;
-            $this->port = $port;
-            $this->authkey = $authkey;
-            $this->owner = $owner;
-            $this->members = $members;
+            $this->members = array();
+
+            return $this;
         }
 
         /**
          * Adds a member to this server
          *
          * @param mixed $user the user to add as a member
+         * @return Server fluent interface
          */
         public function addMember($user)
         {
@@ -227,13 +313,9 @@
                 {
                     $userId = $user->getId();
                 }
-                elseif (is_int($user) || is_numeric($user))
+                else
                 {
-                    $user = intval($user);
-                    if ($user >= 0)
-                    {
-                        $userId = $user;
-                    }
+                    $userId = User::get($user)->getId();
                 }
             }
             if ($userId !== null && !in_array($userId, $this->members))
@@ -241,13 +323,14 @@
                 $this->members[] = $userId;
             }
 
-            $this->syncToDatabase();
+            return $this;
         }
 
         /**
          * Removes a server from this user
          *
          * @param mixed $user the server to remove
+         * @return Server fluent interface
          */
         public function removeMember($user)
         {
@@ -260,23 +343,27 @@
                 }
                 elseif (is_int($user) || is_numeric($user))
                 {
-                    $user = intval($user);
-                    if ($user >= 0)
-                    {
-                        $userId = $user;
-                    }
+                    $userId = User::get($user)->getId();
                 }
             }
 
-            foreach ($this->members as $index => $id)
-            {
-                if ($id == $userId)
-                {
-                    unset($this->members[$index]);
-                }
-            }
+            unset($this->servers[array_search($userId, $this->members)]);
 
-            $this->syncToDatabase();
+            return $this;
+        }
+
+        /**
+         * Removes this server from the database
+         *
+         * @return Server fluent interface
+         */
+        public function delete()
+        {
+            $query = 'DELETE FROM ' . $this->db->getPrefix() . 'servers WHERE id=? LIMIT 1';
+            $this->db->preparedQuery($query, array($this->id));
+            unset(self::$servers[$this->id]);
+
+            return $this;
         }
 
         /**
@@ -316,6 +403,11 @@
         public function equals($server)
         {
             return (is_object($server) && ($server instanceof Server) && $this->id === $server->getId());
+        }
+
+        public function __toString()
+        {
+            return $this->alias . '(' . $this->host . ':' . $this->port . ')';
         }
     }
 ?>

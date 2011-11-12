@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `__PREFIX__statistics` (
                 }
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->connected = true;
-                $this->query($this->INIT_SQL, false);
+                //$this->query($this->INIT_SQL, false);
             }
         }
         
