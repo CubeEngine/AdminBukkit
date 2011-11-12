@@ -1,7 +1,7 @@
 <?php
     class Server implements Serializable
     {
-        private static $instances = array();
+        private static $servers = array();
         private $db;
 
         private $id;
@@ -18,7 +18,9 @@
             {
                 $this->id = $serverId;
                 $this->db = DatabaseManager::instance()->getDatabase();
-                $result = $this->db->preparedQuery('SELECT id,`alias`,host,port,authkey,owner,members FROM ' . $this->db->getPrefix() . 'servers WHERE id=?', array($serverId));
+                
+                $query = 'SELECT id,`alias`,host,port,authkey,owner,members FROM ' . $this->db->getPrefix() . 'servers WHERE id=?';
+                $result = $this->db->preparedQuery($query, array($serverId));
                 if (count($result))
                 {
                     $result = $result[0];
@@ -48,13 +50,13 @@
             }
         }
 
-        public static function getInstance($serverId)
+        public static function get($id)
         {
-            if (!isset(self::$instances[$serverId]))
+            if (!isset(self::$servers[$id]))
             {
-                self::$instances[$serverId] = new self($serverId);
+                self::$servers[$id] = new self($id);
             }
-            return self::$instances[$serverId];
+            return self::$servers[$id];
         }
 
         /**
@@ -70,14 +72,37 @@
         public static function createServer($alias, $host, $port, $authkey, $owner, array $members = array())
         {
             $db = DatabaseManager::instance()->getDatabase();
-            $db->preparedQuery('INSERT INTO ' . $db->getPrefix() . 'servers (`alias`,host, port, authkey, owner, members) VALUES (?,?,?,?,?,?)', array(
+            $query = 'INSERT INTO ' . $db->getPrefix() . 'servers (`alias`,host, port, authkey, owner, members) VALUES (?,?,?,?,?,?)';
+            $db->preparedQuery($query, array(
                 $alias,
                 $host,
                 $port,
                 $authkey,
                 $owner,
                 implode(',', $members)
-            ));
+            ), false);
+        }
+
+        /**
+         * Synchronizes the database entry with the current values
+         */
+        private function syncToDatabase()
+        {
+            try
+            {
+                $query = 'UPDATE ' . $this->db->getPrefix() . 'servers SET `alias`=?, host=?, port=?, authkey=?, owner=?, members=? WHERE id=?';
+                $this->db->preparedQuery($query, array(
+                    $this->alias,
+                    $this->host,
+                    $this->port,
+                    $this->authkey,
+                    $this->owner,
+                    implode(',', $this->members),
+                    $this->id
+                ), false);
+            }
+            catch (DatabaseException $e)
+            {}
         }
 
         /**
@@ -170,7 +195,8 @@
          */
         public function update($alias, $host, $port, $authkey, $owner, array $members)
         {
-            $this->db->preparedQuery('UPDATE ' . $this->db->getPrefix() . 'servers SET `alias`=?, host=?, port=?, authkey=?, owner=?, members=? WHERE id=?', array(
+            $query = 'UPDATE ' . $this->db->getPrefix() . 'servers SET `alias`=?, host=?, port=?, authkey=?, owner=?, members=? WHERE id=?';
+            $this->db->preparedQuery($query, array(
                 $alias,
                 $host,
                 $port,
@@ -178,7 +204,7 @@
                 $owner,
                 implode(',', $members),
                 $this->id
-            ));
+            ), false);
             $this->alias = $alias;
             $this->host = $host;
             $this->port = $port;
@@ -187,11 +213,87 @@
             $this->members = $members;
         }
 
+        /**
+         * Adds a member to this server
+         *
+         * @param mixed $user the user to add as a member
+         */
+        public function addMember($user)
+        {
+            $userId = null;
+            if ($user !== null)
+            {
+                if (is_object($user) && $user instanceof User)
+                {
+                    $userId = $user->getId();
+                }
+                elseif (is_int($user) || is_numeric($user))
+                {
+                    $user = intval($user);
+                    if ($user >= 0)
+                    {
+                        $userId = $user;
+                    }
+                }
+            }
+            if ($userId !== null && !in_array($userId, $this->members))
+            {
+                $this->members[] = $userId;
+            }
+
+            $this->syncToDatabase();
+        }
+
+        /**
+         * Removes a server from this user
+         *
+         * @param mixed $user the server to remove
+         */
+        public function removeMember($user)
+        {
+            $userId = null;
+            if ($user !== null)
+            {
+                if (is_object($user) && $user instanceof User)
+                {
+                    $userId = $user->getId();
+                }
+                elseif (is_int($user) || is_numeric($user))
+                {
+                    $user = intval($user);
+                    if ($user >= 0)
+                    {
+                        $userId = $user;
+                    }
+                }
+            }
+
+            foreach ($this->members as $index => $id)
+            {
+                if ($id == $userId)
+                {
+                    unset($this->members[$index]);
+                }
+            }
+
+            $this->syncToDatabase();
+        }
+
+        /**
+         * Serializes this server
+         *
+         * @return String the serialized object
+         */
         public function serialize()
         {
             return serialize(array($this->id, $this->alias, $this->host, $this->port, $this->authkey, $this->owner, $this->members));
         }
 
+        /**
+         * Unserializes a serialized Server object
+         *
+         * @param String $serialized the serialized object
+         */
         public function unserialize($serialized)
         {
             $data = unserialize($serialized);
@@ -204,6 +306,13 @@
             $this->members = $data[6];
         }
 
+
+        /**
+         * Checks whether another server equals this one
+         *
+         * @param Server $server
+         * @return bool whether the servers are equal
+         */
         public function equals($server)
         {
             return (is_object($server) && ($server instanceof Server) && $this->id === $server->getId());
