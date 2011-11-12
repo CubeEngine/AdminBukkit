@@ -44,11 +44,12 @@
             'TraceRequestMethod'                => 'Http/RequestMethods/TraceRequestMethod.php',
             'HeadRequestMethod'                 => 'Http/RequestMethods/HeadRequestMethod.php',
             
-            'User'                              => 'Model/User.php',
-            'Statistics'                        => 'Model/Statistics.php',
-            'Config'                            => 'Model/Config.php',
-            'Request'                           => 'Model/Request.php',
-            'Lang'                              => 'Model/Lang.php',
+            'User'                              => 'Models/User.php',
+            'Server'                            => 'Models/Server.php',
+            'Statistics'                        => 'Models/Statistics.php',
+            'Config'                            => 'Models/Config.php',
+            'Request'                           => 'Models/Request.php',
+            'Lang'                              => 'Models/Lang.php',
             
             'Database'                          => 'Database/Database.php',
             'DatabaseManager'                   => 'Database/DatabaseManager.php',
