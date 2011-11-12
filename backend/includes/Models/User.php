@@ -49,7 +49,7 @@
                 }
                 try
                 {
-                    $this->currentServer = Server::get($result);
+                    $this->currentServer = Server::get($result['currentserver']);
                 }
                 catch(Exception $e)
                 {
