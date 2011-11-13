@@ -76,7 +76,7 @@
          *
          * @return string the salt
          */
-        private static function password($pass)
+        public static function password($pass)
         {
             $salt = Config::instance('bukkitweb')->get('staticSalt');
             if ($salt === null)
@@ -181,7 +181,7 @@
                 throw new SimpleException(self::ERR_NOT_FOUND);
             }
             $result = $result[0];
-            return (self::password($password) !== $result['password']);
+            return (self::password($password) === $result['password']);
         }
 
         /**
