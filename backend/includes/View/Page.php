@@ -5,7 +5,7 @@
         protected $info;
         public function __construct($name, $title, $auth = false)
         {
-            if ($auth && !User::loggedIn())
+            if ($auth && !User::currentlyLoggedIn())
             {
                 Router::instance()->redirectToLoginPage(Lang::instance('generic')->get('loginrequired'));
             }
