@@ -212,14 +212,7 @@
          */
         public function setAuthKey($authkey)
         {
-            if (strlen($authkey) == 32 && !preg_match('/[^a-f0-9]/', $authkey))
-            {
-                $this->authkey = $authkey;
-            }
-            else
-            {
-                throw new Exception('Invalid authkey given!');
-            }
+            $this->authkey = $authkey;
 
             return $this;
         }
