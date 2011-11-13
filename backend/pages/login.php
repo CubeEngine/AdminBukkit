@@ -26,7 +26,7 @@
         {
             try
             {
-                User::login(User::get($_POST['user'], $_POST['pass']));
+                User::get($user)->login($pass);
                 if (isset($_SESSION['referrer']))
                 {
                     $referrer = $_SESSION['referrer'];
@@ -38,20 +38,19 @@
                     Router::instance()->redirectToPage('home', $lang['login_success']);
                 }
             }
-            catch (Exception $e)
+            catch (SimpleException $e)
             {
                 switch ($e->getCode())
                 {
-                    case 1: // User does not exist
-                    case 2: // Wrong password
+                    case User::ERR_NOT_FOUND: // User does not exist
+                    case User::ERR_WRONG_PASS: // Wrong password
                         $errors[] = $lang['login_failed'];
                         break;
-                    case -1:
-                    case 3:
-                    case 4:
-                        $errors[] = $lang['internalerror'];
-                        break;
                 }
+            }
+            catch (Exception $e)
+            {
+                $errors[] = $lang['internalerror'];
             }
         }
 

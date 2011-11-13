@@ -14,9 +14,10 @@
         private $currentServer;
         private $loginIp;
 
-        const ERR_NOT_FOUND = 0;
-        const ERR_NAME_USED = 1;
-        const ERR_EMAIL_USED = 2;
+        const ERR_NOT_FOUND = 1;
+        const ERR_WRONG_PASS = 2;
+        const ERR_NAME_USED = 3;
+        const ERR_EMAIL_USED = 4;
         
         private function __construct($id)
         {
@@ -490,13 +491,19 @@
          *
          * @return User fluent interface
          */
-        public function login()
+        public function login($password)
         {
-            $_SESSION['user'] = $this;
+            if ($this->validatePassword($password))
+            {
+                $_SESSION['user'] = $this;
 
-            // Stats
-            Statistics::increment('user.login');
-
+                // Stats
+                Statistics::increment('user.login');
+            }
+            else
+            {
+                throw new SimpleException(self::ERR_WRONG_PASS);
+            }
             return $this;
         }
 
