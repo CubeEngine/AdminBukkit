@@ -53,7 +53,7 @@
             else
             {
                 $this->logger->write(3, 'fail', 'Entry "' . $name . '" NOT found!');
-                return null;
+                return $name;
             }
         }
         
