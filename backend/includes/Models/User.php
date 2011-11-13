@@ -439,6 +439,7 @@
          * @param string $pass the new password
          * @param string $email the new email address
          * @param int[] $servers the new servers
+         * @return User fluent interface
          */
         public function update($name, $pass, $email, array $servers)
         {
@@ -451,7 +452,7 @@
                 $query = 'UPDATE ' . $this->db->getPrefix() . 'users SET name=?, password=?, email=?, servers=? WHERE id=?';
                 $this->db->preparedQuery($query, array(
                     $this->name,
-                    hash('SHA512', $pass . self::password()),
+                    self::password($pass),
                     $this->email,
                     implode(',', $this->servers),
                     $this->id
@@ -461,6 +462,8 @@
             {
                 throw new Exception('Failed to update the user! Error: ' . $e->getMessage());
             }
+
+            return $this;
         }
 
         /**
