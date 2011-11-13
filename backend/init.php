@@ -18,6 +18,8 @@
             'Router'                            => 'Router.php',
             'Logger'                            => 'Logger.php',
             'ApiBukkit'                         => 'ApiBukkit.php',
+            'SimpleException'                   => 'SimpleException.php',
+            'CriticalException'                 => 'CriticalException.php',
             
             'View'                              => 'View/View.php',
             'Template'                          => 'View/Template.php',
@@ -121,7 +123,7 @@
         }
     }
     
-    function onException($e)
+    function onException($e, $forceSilence = false)
     {
         if ($e instanceof CriticalException)
         {
@@ -133,9 +135,9 @@
             $type = get_class($e);
             $logger->write(0, $type, '[' . basename($e->getFile()) . ':' . $e->getLine() . '] ' . $e->getMessage());
             
-            if (Config::instance('bukkitweb')->get('displayErrors', false))
+            if (Config::instance('bukkitweb')->get('displayErrors', false) && !$forceSilence)
             {
-                echo 'An uncaught ' . $type . " occurred!<br />\nMessage: " . $e->getMessage();
+                echo 'An uncaught ' . $type . ' occurred!<br />Message: ' . $e->getMessage() . '<br />Code: ' . $e->getCode();
             }
         }
     }

@@ -1,7 +1,7 @@
 <?php $lang = Lang::instance('login') ?>
 <form id="login_form" action="<?php $this->page('login') ?>" method="post" accept-charset="utf-8" data-ajax="false">
-    <label for="login_user"><?php $lang->username ?></label>
-    <input type="text" name="user" id="login_user" placeholder="<?php $lang->username ?>" value="<?php echo $user ?>" required>
+    <label for="login_id"><?php $lang->loginid ?></label>
+    <input type="text" name="id" id="login_id" placeholder="<?php $lang->loginid ?>" value="<?php echo $id ?>" required>
     <label for="login_pass"><?php $lang->password ?></label>
     <input type="password" name="pass" id="login_pass" placeholder="<?php $lang->password ?>" required value="">
 

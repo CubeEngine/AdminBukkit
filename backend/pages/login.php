@@ -1,22 +1,22 @@
 <?php
     $lang = Lang::instance('login');
-    if (User::loggedIn())
+    if (User::currentlyLoggedIn())
     {
         Router::instance()->redirectToPage('home', $lang['alreadyloggedin']);
     }
 
     $page = new Page('login', $lang['login']);
-    $page->assign('user', '')
+    $page->assign('id', '')
          ->assign('langs', array_unique(array_merge(array(Lang::getLanguage()), Lang::listLanguages())));
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        $user = trim(Request::post('user'));
+        $id = trim(Request::post('id'), ' ');
         $pass = Request::post('pass');
         $errors = array();
-        if (empty($user))
+        if (empty($id))
         {
-            $errors[] = $lang['user_missing'];
+            $errors[] = $lang['id_missing'];
         }
         if (empty($pass))
         {
@@ -26,7 +26,7 @@
         {
             try
             {
-                User::get($user)->login($pass);
+                User::get($id)->login($pass);
                 if (isset($_SESSION['referrer']))
                 {
                     $referrer = $_SESSION['referrer'];
@@ -43,6 +43,8 @@
                 switch ($e->getCode())
                 {
                     case User::ERR_NOT_FOUND: // User does not exist
+                        $errors[] = 'Benutzer nicht gefunden!';
+                        break;
                     case User::ERR_WRONG_PASS: // Wrong password
                         $errors[] = $lang['login_failed'];
                         break;
@@ -50,6 +52,7 @@
             }
             catch (Exception $e)
             {
+                onException($e, true);
                 $errors[] = $lang['internalerror'];
             }
         }
@@ -58,7 +61,7 @@
         {
             $_SESSION['message'] = implode('<br>', $errors);
         }
-        $page->assign('user', $user);
+        $page->assign('id', $id);
     }
     
     $tpl = new Template('pages/login');

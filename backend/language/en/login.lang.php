@@ -4,7 +4,7 @@
         
         // Template
         'errors'                => 'Errors',
-        'username'              => 'Username',
+        'loginid'               => 'Login',
         'password'              => 'Password',
         'language'              => 'Language',
         
@@ -12,7 +12,7 @@
         'home'                  => 'Home',
         'registration'          => 'Registration',
         'alreadyloggedin'       => 'You are already logged in!',
-        'user_missing'          => 'No username has been entered!',
+        'id_missing'            => 'No login has been entered!',
         'pass_missing'          => 'No password has been entered!',
         'login_failed'          => 'Login failed, please check the entered information!',
         'login_success'         => 'Successfully logged in!',

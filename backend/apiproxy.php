@@ -1,13 +1,13 @@
 <?php
     require_once 'init.php';
     
-    
-    if (!User::loggedIn())
+    $user = User::currentlyLoggedIn();
+    if (!$user)
     {
         header('HTTP/1.1 401 Unauthorized');
         die('2');
     }
-    
+
     $path = '';
     if (isset($_SERVER['PATH_INFO']) && trim($_SERVER['PATH_INFO']) !== '')
     {
@@ -21,7 +21,13 @@
     
     try
     {
-        $api = new ApiBukkit($_SESSION['user']->getServerAddress(), $_SESSION['user']->getApiPort(), $_SESSION['user']->getApiAuthKey());
+        $server = $user->getCurrentServer();
+        if (!$server)
+        {
+            header('HTTP/1.1 400 Bad Request');
+            die('No server selected!');
+        }
+        $api = new ApiBukkit($server);
         $api->setUseragent('AdminBukkit(' . $_SESSION['user']->getName() . ",{$_SERVER['REMOTE_ADDR']})");
         $response = $api->requestPath($_SERVER['PATH_INFO'], array_merge($_POST, $_GET));
         $responseStatus = $response->getStatus();
@@ -48,11 +54,13 @@
     }
     catch (NetworkException $e)
     {
+        onException($e, true);
         header('HTTP/1.1 503 Internal Server Error');
         die('0');
     }
     catch (Exception $e)
     {
+        onException($e, true);
         header('HTTP/1.1 503 Internal Server Error');
         die('-1');
     }

@@ -1,8 +1,9 @@
 <?php
     $lang = Lang::instance('logout');
-    if (User::loggedIn())
+    $user = User::currentlyLoggedIn();
+    if ($user)
     {
-        User::logout();
+        $user->logout();
         Router::instance()->redirectToPage('home', $lang['logout_success']);
     }
     else
