@@ -1,16 +1,13 @@
 <?php
     $lang = Lang::instance('register');
-    if (User::loggedIn())
+    if (User::currentlyLoggedIn())
     {
         Router::instance()->redirectToPage('home', $lang['alreadyregistered']);
     }
     
     $page = new Page('register', $lang['registration']);
     $page->assign('user', '')
-         ->assign('email', '')
-         ->assign('serveraddr', '')
-         ->assign('apiport', '6561')
-         ->assign('apiauthkey', '');
+         ->assign('email', '');
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
@@ -27,9 +24,17 @@
         {
             $errors[] = $lang['user_missing'];
         }
-        elseif (!preg_match('/^[\w\d-]{5,40}/i', $user))
+        elseif (!preg_match('/^[a-z][\w\d-]*$/i', $user))
         {
             $errors[] = $lang['user_invalid'];
+        }
+        elseif (strlen($user) < 5)
+        {
+            $errors[] = $lang['user_tooshort'];
+        }
+        elseif (strlen($user) > 40)
+        {
+            $errors[] = $lang['user_toolong'];
         }
         elseif (User::exists($user))
         {
@@ -55,76 +60,40 @@
         {
             $errors[] = $lang['pass_dontmatch'];
         }
-        if (empty($serveraddr))
-        {
-            $errors[] = $lang['serveraddr_missing'];
-        }
-        elseif (!ApiValidator::validHost($serveraddr))
-        {
-            $errors[] = $lang['serveraddr_invalidhost'];
-        }
-        if (empty($apiport))
-        {
-            $errors[] = $lang['apiport_missing'];
-        }
-        elseif (!preg_match('/^\d{2,5}$/', $apiport))
-        {
-            $errors[] = $lang['apiport_invalid'];
-        }
-        if (empty($apiauthkey))
-        {
-            $errors[] = $lang['apiauthkey_missing'];
-        }
-        if (!count($errors) && !ApiValidator::serverReachable($serveraddr, $apiport))
-        {
-            $errors[] = $lang['svr_unreachable'];
-        }
-        elseif (!count($errors) && !ApiValidator::validApiPass($serveraddr, $apiport, $apiauthkey))
-        {
-            $errors[] = $lang['apiauthkey_wrong'];
-        }
         
         if (!count($errors))
         {
             try
             {
-                User::addUser(
-                    $user,
-                    $pass,
-                    $email,
-                    $serveraddr,
-                    $apiport,
-                    $apiauthkey
-                );
-                User::login(User::get($user, $pass));
+                User::createUser($user, $pass, $email)->login($pass);
                 Router::instance()->redirectToPage('home', $lang['registersuccess']);
             }
-            catch (Exception $e)
+            catch (SimpleException $e)
             {
                 switch ($e->getCode())
                 {
-                    case -1:
-                    case 3:
-                    case 4:
-                        $errors[] = $lang['internalerror'];
-                        break;
-                    case 5:
+                    case User::ERR_NAME_USED:
                         $errors[] = $lang['user_alreadyexists'];
                         break;
+                    case User::ERR_EMAIL_USED:
+                        $errors[] = $lang['email_alreadyused'];
+                        break;
                 }
+            }
+            catch (Exception $e)
+            {
+                onException($e, true);
+                $errors[] = $lang['internalerror'];
             }
         }
         
         if (count($errors))
         {
-            $_SESSION['message'] = implode("<br>", $errors);
+            $_SESSION['message'] = '- ' . implode("<br>- ", $errors);
         }
         
         $page->assign('user', $user)
-             ->assign('email', $email)
-             ->assign('serveraddr', $serveraddr)
-             ->assign('apiport', $apiport)
-             ->assign('apiauthkey', $apiauthkey);
+             ->assign('email', $email);
     }
     
     $page->setBack(Lang::instance('generic')->get('btn_back'))

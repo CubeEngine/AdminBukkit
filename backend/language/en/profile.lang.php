@@ -4,9 +4,9 @@
         'userinfos'         => 'Userinfo',
         'username'          => 'Username',
         'email'             => 'Email-address',
-        'apiaddr'           => 'API address',
-        'apipass'           => 'API auth key',
         'deleteAccount'     => 'Delete your account',
+        'currentserver'     => 'Current server',
+        'servers'           => 'Servers',
         
         // Controller
         'edit'              => 'Edit',

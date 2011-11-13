@@ -12,15 +12,6 @@
 
     <label for="register_pass_repeat"><?php $lang->password_repeat ?></label>
     <input name="pass_repeat" id="register_pass_repeat" type="password" placeholder="<?php $lang->password_repeat ?>" required>
-
-    <label for="register_serveraddr"><?php $lang->serveraddr ?></label>
-    <input name="serveraddr" id="register_serveraddr" type="text" placeholder="<?php $lang->serveraddr ?>" value="<?php echo $serveraddr ?>" required>
-
-    <label for="register_apiport"><?php $lang->apiport ?></label>
-    <input name="apiport" id="register_apiport" type="number" placeholder="<?php $lang->apiport ?>" value="<?php echo $apiport ?>" size="5" required>
-    
-    <label for="register_apiauthkey"><?php $lang->apiauthkey ?></label>
-    <input name="apipass" id="register_apiauthkey" type="text" placeholder="<?php $lang->apiauthkey ?>" value="<?php echo $apiauthkey ?>" required>
     
     <input type="submit" value="<?php $lang->register ?>">
 </form>
