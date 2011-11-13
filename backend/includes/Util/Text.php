@@ -190,7 +190,7 @@
          */
         public static function is_email($string)
         {
-            return (bool) preg_match('/[(\w\d\-\.]{3,}@((([a-z\d-]{2,}\.)+[a-z\d]{2,4})|localhost)/', mb_strtolower($string));
+            return (bool) preg_match('/[\w\d\-\.]{3,}@((([a-z\d-]+\.)+[a-z\d]{2,})|localhost)/', mb_strtolower($string));
         }
 
         /**
