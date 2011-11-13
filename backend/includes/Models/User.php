@@ -314,8 +314,17 @@
          */
         public function setServers(array $servers)
         {
-            $this->servers = $servers;
-
+            $this->servers = array();
+            foreach ($servers as $server)
+            {
+                try
+                {
+                    $this->servers[] = Server::get($server)->getId();
+                }
+                catch (Exception $e)
+                {}
+            }
+            
             return $this;
         }
 

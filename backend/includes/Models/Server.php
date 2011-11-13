@@ -274,18 +274,16 @@
          */
         public function setMembers(array $members)
         {
-            foreach ($members as $index => $member)
+            $this->members = array();
+            foreach ($members as $member)
             {
                 try
                 {
-                    $members[$index] = User::get($member)->getId();
+                    $this->members[] = User::get($member)->getId();
                 }
                 catch (Exception $e)
-                {
-                    unset($members[$index]);
-                }
+                {}
             }
-            $this->members = $members;
 
             return $this;
         }
