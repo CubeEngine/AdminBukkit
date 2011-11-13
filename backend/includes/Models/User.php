@@ -145,6 +145,7 @@
          * @param string $name the user name
          * @param string $pass the password
          * @param string $email the email address
+         * @return User the new user
          */
         public static function createUser($name, $pass, $email)
         {
@@ -152,7 +153,11 @@
             {
                 if (User::exists($name))
                 {
-                    throw new Exception('User does already exist!', 5);
+                    throw new SimpleException(self::ERR_NAME_USED);
+                }
+                if (User::exists($email))
+                {
+                    throw new SimpleException(self::ERR_EMAIL_USED);
                 }
 
                 $db = DatabaseManager::instance()->getDatabase();
@@ -160,7 +165,7 @@
                 $db->preparedQuery($query, array(
                     substr($name, 0, 40),
                     self::password($pass),
-                    $email
+                    substr($email, 0, 100)
                 ), false);
 
                 // Stats
@@ -170,6 +175,8 @@
             {
                 throw new Exception('Failed to add the user! Error: ' . $e->getMessage());
             }
+
+            return self::get($name);
         }
 
         public function validatePassword($password)
