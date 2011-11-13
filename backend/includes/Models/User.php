@@ -13,6 +13,10 @@
 
         private $currentServer;
         private $loginIp;
+
+        const ERR_NOT_FOUND = 0;
+        const ERR_NAME_USED = 1;
+        const ERR_EMAIL_USED = 2;
         
         private function __construct($id)
         {
@@ -25,7 +29,6 @@
                 }
                 elseif (is_int($id) || is_numeric($id))
                 {
-                    $id = intval($id);
                     $idField = 'id';
                 }
                 $this->db = DatabaseManager::instance()->getDatabase();
@@ -33,7 +36,7 @@
                 $result = $this->db->preparedQuery($query, array($id));
                 if (!count($result))
                 {
-                    throw new Exception('User does not exist!', 1);
+                    throw new SimpleException(self::ERR_NOT_FOUND);
                 }
                 $result = $result[0];
 
@@ -77,7 +80,7 @@
             $salt = Config::instance('bukkitweb')->get('staticSalt');
             if ($salt === null)
             {
-                throw new Exception('No static salt specified!', 4);
+                throw new Exception('No static salt specified!');
             }
             return hash('SHA512', $pass . $salt);
         }
@@ -174,7 +177,7 @@
             $result = $this->db->preparedQuery($query, array($this->id));
             if (!count($result))
             {
-                throw new Exception('User does not exist!', 1);
+                throw new SimpleException(self::ERR_NOT_FOUND);
             }
             $result = $result[0];
             return (self::password($password) !== $result['password']);
@@ -187,13 +190,18 @@
          */
         public function save()
         {
-            $query = 'UPDATE ' . $this->db->getPrefix() . 'users SET name=?, email=?, servers=? WHERE id=?';
-            $this->db->preparedQuery($query, array(
-                $this->name,
-                $this->email,
-                implode(',', $this->servers),
-                $this->id
-            ), false);
+            try
+            {
+                $query = 'UPDATE ' . $this->db->getPrefix() . 'users SET name=?, email=?, servers=? WHERE id=?';
+                $this->db->preparedQuery($query, array(
+                    $this->name,
+                    $this->email,
+                    implode(',', $this->servers),
+                    $this->id
+                ), false);
+            }
+            catch (DatabaseException $e)
+            {}
 
             return $this;
         }
@@ -231,11 +239,13 @@
             {
                 if (!self::exists($name))
                 {
-                    $this->name;
+                    unset(self::$usersByName[$this->name]);
+                    $this->name = $name;
+                    self::$usersByName[$this->name] =& self::$usersById[$this->id];
                 }
                 else
                 {
-                    throw new Exception('User does already exist!', 5);
+                    throw new SimpleException(self::ERR_NAME_USED);
                 }
             }
             
@@ -260,7 +270,20 @@
          */
         public function setEmail($email)
         {
-            $this->email = substr($email, 0, 100);
+            $email = substr($email, 0, 100);
+            if ($email != $this->email)
+            {
+                if (!self::exists($email))
+                {
+                    unset(self::$usersByEmail[$this->email]);
+                    $this->email = $email;
+                    self::$usersByEmail[$this->email] =& self::$usersById[$this->id];
+                }
+                else
+                {
+                    throw new SimpleException(self::ERR_EMAIL_USED);
+                }
+            }
             
             return $this;
         }
@@ -447,10 +470,14 @@
          */
         public static function exists($id)
         {
-            $field = 'id';
-            if (is_string($id))
+            $field = 'name';
+            if (substr_count($id, '@'))
             {
-                $field = 'name';
+                $field = 'email';
+            }
+            elseif (is_int($id) || is_numeric($id))
+            {
+                $field = 'id';
             }
             $db = DatabaseManager::instance()->getDatabase();
             $query = 'SELECT count(*) as count FROM ' . $db->getPrefix() . 'users WHERE ' . $field . '=?';

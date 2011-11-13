@@ -12,6 +12,8 @@
         private $owner;
         private $members;
 
+        const ERR_NOT_FOUND = 0;
+
         private function __construct($serverId)
         {
             try
@@ -41,12 +43,12 @@
                 }
                 else
                 {
-                    throw new Exception('The requested server was not found!');
+                    throw new SimpleException(self::ERR_NOT_FOUND);
                 }
             }
             catch (Exception $e)
             {
-                throw new Exception('Failed to load the server from database!');
+                throw new Exception('Failed to load the server from database! Error: ' . $e->getMessage());
             }
         }
 
@@ -247,7 +249,16 @@
             }
             else
             {
-                $userId = User::get($owner)->getId();
+                try
+                {
+                    $userId = User::get($owner)->getId();
+                }
+                catch (Exception $e)
+                {}
+            }
+            if ($userId !== null)
+            {
+                $this->owner = $userId;
             }
 
             return $this;
@@ -315,7 +326,12 @@
                 }
                 else
                 {
-                    $userId = User::get($user)->getId();
+                    try
+                    {
+                        $userId = User::get($user)->getId();
+                    }
+                    catch (Exception $e)
+                    {}
                 }
             }
             if ($userId !== null && !in_array($userId, $this->members))
