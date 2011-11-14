@@ -1,7 +1,7 @@
 <?php
+    $lang = Lang::instance('addserver');
+    $page = new Page('addserver', $lang['addserver'], true);
+    $page->setContent(new Template('pages/popups/addserver'));
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    $design->setContentView($page);
 ?>

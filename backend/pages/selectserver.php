@@ -1,7 +1,7 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    $lang = Lang::instance('selectserver');
+    $page = new Page('selectserver', $Lang['selectserver'], true);
+    $page->setContent(new Template('pages/popups/selectserver'));
+    
+    $design->setContentView($page);
 ?>

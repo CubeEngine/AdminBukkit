@@ -1,7 +1,7 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    $lang = Lang::instance('searchserver');
+    $page = new Page('searchserver', $lang['searchserver'], true);
+    $page->setContent(new Template('pages/searchserver'));
+    
+    $design->setContentView($page);
 ?>

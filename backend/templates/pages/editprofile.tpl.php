@@ -14,15 +14,6 @@
     
     <label for="editprofile_pass_repeat"><?php $registerLang->password_repeat ?>:</label>
     <input name="pass_repeat" id="editprofile_pass_repeat" type="password" placeholder="<?php $registerLang->password_repeat ?>">
-    
-    <label for="editprofile_serveraddr"><?php $registerLang->serveraddr ?>:</label>
-    <input name="serveraddr" id="editprofile_serveraddr" type="text" placeholder="<?php $registerLang->serveraddr ?>" value="<?php echo $serveraddr ?>">
-    
-    <label for="editprofile_apiport"><?php $registerLang->apiport ?>:</label>
-    <input name="apiport" id="editprofile_apiport" type="text" placeholder="<?php $registerLang->apipport ?>" value="<?php echo $apiport ?>" size="5">
-    
-    <label for="editprofile_apiauthkey"><?php $registerLang->apiauthkey ?>:</label>
-    <input name="apipass" id="editprofile_apiauthkey" type="text" placeholder="<?php $registerLang->apiauthkey ?>" value="<?php echo $apiauthkey ?>">
 
     <input type="submit" value="<?php $lang->change ?>">
 </form>

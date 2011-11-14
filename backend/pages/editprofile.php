@@ -1,32 +1,35 @@
 <?php
     $lang = Lang::instance('editprofile');
     $registerLang = Lang::instance('register');
+    $user = User::currentlyLoggedIn();
     $page = new Page('editprofile', $lang['edit'], true);
-    $page->assign('user',       $_SESSION['user']->getName())
-         ->assign('email',      $_SESSION['user']->getEmail())
-         ->assign('serveraddr', $_SESSION['user']->getServerAddress())
-         ->assign('apiport',    $_SESSION['user']->getApiPort())
-         ->assign('apiauthkey',    $_SESSION['user']->getApiAuthKey());
+    $page->assign('user',       $user->getName())
+         ->assign('email',      $user->getEmail());
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        $user = trim(Request::post('user'));
+        $name = trim(Request::post('user'));
         $email = trim(Request::post('email'));
         $pass = Request::post('pass');
         $pass_repeat = Request::post('pass_repeat');
-        $serveraddr = trim(Request::post('serveraddr'));
-        $apiport = trim(Request::post('apiport'));
-        $apiauthkey = Request::post('apipass');
         
         $passwordSet = false;
         $errors = array();
-        if (empty($user))
+        if (empty($name))
         {
             $errors[] = $registerLang['user_missing'];
         }
-        elseif (!preg_match('/^[\w\d-]{5,40}/i', $user))
+        elseif (!preg_match('/^[a-z][\w\d-]*$/i', $name))
         {
-            //$errors[] = $registerLang['user_invalid']; @ todo re-enable
+            $errors[] = $registerLang['user_invalid'];
+        }
+        elseif (strlen($name) < 5)
+        {
+            $errors[] = $registerLang['user_tooshort'];
+        }
+        elseif (strlen($name) > 40)
+        {
+            $errors[] = $registerLang['user_toolong'];
         }
         if (empty($email))
         {
@@ -48,64 +51,33 @@
         {
             $errors[] = $registerLang['pass_dontmatch'];
         }
-        if (empty($serveraddr))
-        {
-            $errors[] = $registerLang['serveraddr_missing'];
-        }
-        elseif (!ApiValidator::validHost($serveraddr))
-        {
-            $errors[] = $registerLang['serveraddr_invalidhost'];
-        }
-        if (empty($apiport))
-        {
-            $errors[] = $registerLang['apiport_missing'];
-        }
-        elseif (!preg_match('/^\d{2,5}$/', $apiport))
-        {
-            $errors[] = $registerLang['apiport_invalid'];
-        }
-        if (empty($apiauthkey))
-        {
-            $errors[] = $registerLang['apiauthkey_missing'];
-        }
-        if (!count($errors) && !ApiValidator::serverReachable($serveraddr, $apiport))
-        {
-            $errors[] = $registerLang['svr_unreachable'];
-        }
-        elseif (!count($errors) && !ApiValidator::validApiPass($serveraddr, $apiport, $apiauthkey))
-        {
-            $errors[] = $registerLang['apiauthkey_wrong'];
-        }
         
         if (!count($errors))
         {
             try
             {
-                User::updateUser(
-                    $_SESSION['user']->getName(),
-                    $user,
+                $user->update(
+                    $name,
                     $pass,
                     $email,
-                    $serveraddr,
-                    $apiport,
-                    $apiauthkey
+                    $user->getServers()
                 );
-                User::logout();
+                $user->logout();
                 Router::instance()->redirectToPage('home', $lang['edit_success']);
             }
-            catch (Exception $e)
+            catch (SimpleException $e)
             {
                 switch ($e->getCode())
                 {
-                    case -1:
-                    case 3:
-                    case 4:
-                        $errors[] = $registerLang['internalerror'];
-                        break;
-                    case 5:
+                    case User::ERR_NAME_USED:
                         $errors[] = $registerLang['user_alreadyexists'];
                         break;
                 }
+            }
+            catch (Exception $e)
+            {
+                onException($e, true);
+                $errors[] = $registerLang['internalerror'];
             }
         }
         
@@ -115,10 +87,7 @@
         }
         
         $page->assign('user', $user)
-             ->assign('email', $email)
-             ->assign('serveraddr', $serveraddr)
-             ->assign('apiport', $apiport)
-             ->assign('apiauthkey', $apiauthkey);
+             ->assign('email', $email);
     }
     
     $page->setBack(Lang::instance('generic')->get('btn_back'))
