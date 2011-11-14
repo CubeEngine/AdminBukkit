@@ -1,5 +1,6 @@
 <?php
     import('Models.ModelException');
+    import('Database.DatabaseManager');
 
     class User implements Serializable
     {
@@ -80,8 +81,17 @@
          */
         public static function password($pass)
         {
-            $salt = Config::instance('bukkitweb')->get('staticSalt');
-            if ($salt === null)
+            $salt = '';
+            $config = Registry::get('config');
+            if ($config)
+            {
+                $salt = $config->get('secret');
+                if ($salt === null)
+                {
+                    throw new Exception('No static salt specified!');
+                }
+            }
+            else
             {
                 throw new Exception('No static salt specified!');
             }

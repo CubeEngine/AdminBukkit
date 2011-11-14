@@ -1,5 +1,6 @@
 <?php
     import('Models.ModelException');
+    import('Database.DatabaseManager');
 
     class Server implements Serializable
     {

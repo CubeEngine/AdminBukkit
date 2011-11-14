@@ -1,4 +1,6 @@
 <?php
+    import('Database.DatabaseException');
+
     abstract class Database
     {
         protected $db;

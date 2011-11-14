@@ -1,4 +1,7 @@
 <?php
+    import('Util.Registry');
+    import('Database.DatabaseException');
+
     class MySQL extends Database
     {
         protected $host;
@@ -29,7 +32,11 @@ CREATE TABLE IF NOT EXISTS `__PREFIX__statistics` (
 
         public function __construct()
         {
-            $config = Config::instance('bukkitweb');
+            $config = Registry::get('config');
+            if (!$config)
+            {
+                throw new DatabaseException("No configuration available");
+            }
 
             $this->host = $config->get('mysql_host', 'localhost');
             $this->port = $config->get('mysql_port', 3306);

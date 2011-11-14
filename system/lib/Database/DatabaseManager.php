@@ -1,4 +1,9 @@
 <?php
+    import('Database.Database');
+    import('Database.DatabaseException');
+    import('Debug.Logger');
+    import('Util.Registry');
+
     class DatabaseManager
     {
         private static $instance = null;
@@ -6,8 +11,13 @@
 
         private function __construct()
         {
-            $dbDriverName = Config::instance('bukkitweb')->get('database', 'MySQL');
-            $path = INCLUDE_PATH . DS . 'Database' . DS . 'Drivers' . DS . $dbDriverName . '.php';
+            $config = Registry::get('config');
+            $dbDriverName = 'MySQL';
+            if ($config)
+            {
+                $dbDriverName = $config->get('database', $dbDriverName);
+            }
+            $path = dirname(__FILE__) . DS . 'Drivers' . DS . $dbDriverName . '.php';
             if (is_readable($path))
             {
                 require_once $path;
@@ -55,7 +65,6 @@
          */
         public static function instance()
         {
-            Logger::instance('database')->write(0, 'info', 'Db Mgr instance requested!');
             if (self::$instance === null)
             {
                 self::$instance = new self();
