@@ -1,5 +1,7 @@
 <?php
-    final class PostRequestMethod extends AbstractHttpRequestMethod
+    import('Network.Http.HttpClient');
+
+    final class PostRequestMethod extends HttpRequestMethod
     {
         public function __toString()
         {

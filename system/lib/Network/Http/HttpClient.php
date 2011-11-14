@@ -1,13 +1,16 @@
 <?php
-    class NetworkException extends Exception
-    {}
-
-    class HttpException extends Exception
-    {}
-
-
-    //Loader::addSysDirectoryToMap('lib/Network/Http/RequestMethods');
-    //Loader::addSysDirectoryToMap('lib/Network/Http/AuthenticationMethods');
+    import('Network.Http.HttpReply');
+    import('Network.Http.HttpCookie');
+    import('Network.Http.HttpHeader');
+    import('Network.Http.HttpException');
+    import('Network.Http.HttpAuthentication');
+    import('Network.Http.AuthenticationMethods.BasicAuthentication');
+    import('Network.Http.HttpRequestMethod');
+    import('Network.Http.RequestMethods.GetRequestMethod');
+    import('Network.Http.RequestMethods.PostRequestMethod');
+    import('Network.Http.RequestMethods.HeadRequestMethod');
+    import('Network.Http.RequestMethods.OptionsRequestMethod');
+    import('Network.Http.RequestMethods.TraceRequestMethod');
 
     class HttpClient implements Serializable
     {
@@ -895,10 +898,10 @@
          * Sets the request method to use
          *
          * @access public
-         * @param AbstractHttpRequestMethod $method the request method
+         * @param HttpRequestMethod $method the request method
          * @return HttpClient fluent interface
          */
-        public function setMethod(AbstractHttpRequestMethod $method)
+        public function setMethod(HttpRequestMethod $method)
         {
             $this->requestMethod = $method;
             return $this;
@@ -908,7 +911,7 @@
          * Returns the current request method
          *
          * @access public
-         * @return AbstractHttpRequestMethod the current request method
+         * @return HttpRequestMethod the current request method
          */
         public function getMethod()
         {
@@ -967,10 +970,10 @@
          * Sets the authentication method to use
          *
          * @access public
-         * @param AbstractHttpAuthentication $method the authentication method
+         * @param HttpAuthentication $method the authentication method
          * @return HttpClient fluent interface
          */
-        public function setAuthMethod(AbstractHttpAuthentication $method)
+        public function setAuthMethod(HttpAuthentication $method)
         {
             if ($method !== null)
             {
@@ -1367,7 +1370,7 @@
          * @access public
          * @return HttpResponse a response object
          */
-        public function executeRequest(AbstractHttpRequestMethod $method = null)
+        public function executeRequest(HttpRequestMethod $method = null)
         {
             if (!$this->validateVars())
             {

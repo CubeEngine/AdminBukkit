@@ -1,4 +1,7 @@
 <?php
+    //import('Network.Http.HttpHeader');
+    //import('Network.Http.HttpCookie');
+
     class HttpReply
     {
         protected $status;
@@ -28,7 +31,6 @@
         /**
          * Returns the response body
          *
-         * @access public
          * @return string the response body
          */
         public function getBody()
@@ -39,7 +41,6 @@
         /**
          * Returns the status code
          *
-         * @access public
          * @return int the status code
          */
         public function getStatus()
@@ -50,7 +51,6 @@
         /**
          * Returns the status message
          *
-         * @access public
          * @return string the status message
          */
         public function getMessage()
@@ -61,7 +61,6 @@
         /**
          * Returns the protocol with which the server responded
          *
-         * @access public
          * @return string the protocal
          */
         public function getProtocol()
@@ -72,7 +71,6 @@
         /**
          * Returns the response header as a string
          *
-         * @access public
          * @return string the raw response header
          */
         public function getHead()
@@ -83,7 +81,6 @@
         /**
          * Returns the named response header or null if not found
          *
-         * @access public
          * @param string $name the name
          * @return HttpHeader the response header
          */
@@ -102,16 +99,16 @@
         /**
          * Return all response headers
          *
-         * @access public
          * @return HttpHeader[] the response headers
          */
         public function getHeaders()
         {
             return $this->headers;
-        }        /**
+        }
+
+        /**
          * Returns the named cookie or null if it does not exist
          *
-         * @access public
          * @param string $name the name
          * @return HttpCookie the cookie
          */

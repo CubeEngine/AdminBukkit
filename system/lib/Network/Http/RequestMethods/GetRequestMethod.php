@@ -1,5 +1,7 @@
 <?php
-    final class GetRequestMethod extends AbstractHttpRequestMethod
+    import('Network.Http.HttpClient');
+
+    final class GetRequestMethod extends HttpRequestMethod
     {
         public function __toString()
         {

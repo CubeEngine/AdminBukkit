@@ -1,69 +1,27 @@
 <?php
     import('Controller.ControllerException');
+    import('Models.Request');
+    import('Models.Response');
 
     /**
      * The Frontcontroller which runs the requested page
      */
     final class FrontController
     {
-        //private static $instance = null;
+        private $controllerPath;
 
-        public $controllerPath;
-        
+
         public function __construct()
         {
-            $this->controllerPath = '';
-        }
-
-        public function __destruct()
-        {}
-
-        //private function  __clone()
-        //{}
-
-        public static function &getInstance()
-        {
-            if (self::$instance === null)
-            {
-                self::$instance = new self();
-            }
-            return self::$instance;
-        }
-
-        public function setControllerPath($path)
-        {
-            if (!preg_match('/(\/|\\\)$/', $path))
-            {
-                $path .= '/';
-            }
-            $this->controllerPath = $path;
-        }
-
-        public function getControllerPath()
-        {
-            return $this->controllerPath;
+            $this->controllerPath = Registry::get('paths.controllers', '.' . DS . 'controllers');
         }
 
         public function run(Request $request, Response $response)
         {
             $controller = $request->getController();
             $action = 'action_' . $request->getAction();
-            $controllerPath = '';
-            
-            if (!empty($this->controllerPath))
-            {
-                $controllerPath = $this->controllerPath;
-            }
-            elseif (Registry::exists('paths.controllers'))
-            {
-                $controllerPath = rtrim(Registry::get('paths.controllers'), '/\\') . '/';
-            }
-            else
-            {
-                throw new ControllerException('No valid controller path was found!', 404);
-            }
 
-            $controllerPath .= $controller . '/controller.php';
+            $controllerPath = $this->controllerPath . DS . $controller . DS . 'controller.php';
             $controller = ucfirst(strtolower($controller)) . 'Controller';
 
             if (is_readable($controllerPath))

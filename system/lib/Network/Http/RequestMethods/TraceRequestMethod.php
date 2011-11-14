@@ -1,5 +1,7 @@
 <?php
-    final class TraceRequestMethod extends AbstractHttpRequestMethod
+    import('Network.Http.HttpClient');
+
+    final class TraceRequestMethod extends HttpRequestMethod
     {
         public function __toString()
         {

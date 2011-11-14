@@ -1,5 +1,5 @@
 <?php
-    abstract class AbstractHttpRequestMethod
+    abstract class HttpRequestMethod
     {
         /**
          * @return string the uppercase name of the request method

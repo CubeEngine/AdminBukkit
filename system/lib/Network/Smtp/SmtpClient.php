@@ -1,4 +1,6 @@
 <?php
+    import('Network.NetworkException');
+
     /**
      *
      */
@@ -38,7 +40,6 @@
          * Creates a object of the Smtp-class if a valid configuration was given.
          * Throws a NetworkException an failure.
          *
-         * @access public
          * @param string[] $config the configuration
          */
         public function __construct(array $config)
@@ -54,8 +55,6 @@
         
         /**
          * Destructs the objects
-         * 
-         * @access public
          */
         public function __destruct()
         {
@@ -65,7 +64,6 @@
         /**
          * Gets the last error
          *
-         * @access public
          * @return string the last occurred or a empty string
          */
         public function error()
@@ -78,7 +76,6 @@
         /**
          * Validates the given array
          *
-         * @access protected
          * @param array $config the configuration-array to validate
          * @return bool whether the configuration-array is valid or not
          */
@@ -107,9 +104,7 @@
         }
         
         /**
-         * Closes the connection the the Smtp server if stil open
-         * 
-         * @access protected
+         * Closes the connection the the Smtp server if still open
          */
         protected function disconnect()
         {
@@ -124,7 +119,6 @@
         /**
          * sends an email with the given data
          *
-         * @access public
          * @param string $to address to send to
          * @param string $from the sender address
          * @param string $subject the subject of the email
@@ -193,7 +187,6 @@
         /**
          * Sends a command and checks whether the server responds with the correct status code
          *
-         * @access protected
          * @param string $command the command to send
          * @param int $sucesscode the code which the server returns on success
          */
@@ -213,7 +206,6 @@
         /**
          * receives data from the SMTP server
          *
-         * @access protected
          * @return string the received data as a trimed string
          */
         protected function receive()
@@ -234,7 +226,6 @@
         /**
          * Parses the response and checks if the response contains the given status code
          *
-         * @access protected
          * @param string $response the response data
          * @param int $code the needed code
          */
@@ -250,7 +241,6 @@
         /**
          * A wrapper of Smtp::mail()
          *
-         * @access public
          * @param string $to the email target
          * @param string $from the sender
          * @param string $subject the email subject

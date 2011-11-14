@@ -1,5 +1,7 @@
 <?php
-    final class BasicAuthentication extends AbstractHttpAuthentication
+    import('Network.Http.HttpClient');
+
+    final class BasicAuthentication implements HttpAuthentication
     {
         /**
          * Returns the name of the authentication method when the object is in string context

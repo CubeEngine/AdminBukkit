@@ -4,7 +4,6 @@
         /**
          * Holds all the properties auf the cookie
          *
-         * @access protected
          * @var string[] the properties of the cookie
          */
         protected $data;
@@ -13,7 +12,6 @@
          * Creates an HttpCookie object.
          * All parameters have default values.
          *
-         * @access public
          * @param string $name the name of the cookie
          * @param string $value the value of the cookie
          * @param int $expires the UNIX timestamp of the expire date
@@ -38,7 +36,6 @@
         /**
          * Generates the UNIX timestamp of the expires-property of this cookie
          *
-         * @access public
          * @staticvar long $cache the UNIX timestamp
          * @staticvar HashMap<string,int> $months an array which maps the month names to their number
          * @return long the UNIX timestamp
@@ -68,6 +65,7 @@
 
             if ($this->data['expires'] !== null)
             {
+                $parts = array();
                 if (!preg_match('/[a-z]{3}, (\d{2})\-([a-z]{3})\-(\d{4}) (\d{2})\:(\d{2})\:(\d{2}) GMT/i', $this->data['expires'], $parts))
                 {
                     throw new Exception('Failed to parse the expires value of this cookie!');
@@ -84,7 +82,6 @@
         /**
          * Sets the given name-value-pair if the name is set in the internal data array
          *
-         * @access public
          * @param string $name the name
          * @param mixed $value the value
          * @return HttpCookie fluent-interface
@@ -106,7 +103,6 @@
          * Gets the named value from the internal data array.
          * If it does not exist or is null the given default value will be returned.
          *
-         * @access public
          * @param string $name the name
          * @param mixed $default the default value
          * @return mixed the named value or the default value
@@ -126,7 +122,6 @@
         /**
          * Returns the key-value-pair if the object is in string context
          *
-         * @access public
          * @return string the name-value-pair
          */
         public function __toString()

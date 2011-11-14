@@ -1,4 +1,7 @@
-<?php    
+<?php
+    import('Text.GeSHi.geshi');
+    import('Text.StringParser.StringParser');
+
     /**
      *
      */
