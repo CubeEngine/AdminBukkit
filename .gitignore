@@ -7,3 +7,4 @@ backend/downloads/*
 test.php
 /todo.txt
 /blacklist.txt
+nbproject/
