@@ -1,4 +1,6 @@
 <?php
+    import('Debug.Logger');
+
     /**
      * 
      */
@@ -40,6 +42,15 @@
             }
         }
 
+        public static function fatalerror_handler()
+        {
+            $error = error_get_last();
+            if ($error)
+            {
+                Debug::error_handler($error['type'], $error['message'], $error['file'], $error['line'], array());
+            }
+        }
+
         /**
          * the exception handler
          *
@@ -72,7 +83,6 @@
                         $file,
                         $line
                     );
-                    echo 'An uncaught ' . $type . ' occurred!<br />Message: ' . $e->getMessage() . '<br />Code: ' . $e->getCode();
                 }
             }
         }
@@ -91,6 +101,16 @@
         }
 
         /**
+         * Logs a exception
+         *
+         * @param Exception $e the exception
+         */
+        public static function logException(Exception $e)
+        {
+            Debug::logError(get_class($e), $e->getMessage(), $e->getFile(), $e->getLine());
+        }
+
+        /**
          * Prints an error to the screen
          *
          * @param string $type the type of the error
@@ -101,6 +121,16 @@
         public static function printError($type, $message, $file, $line)
         {
             echo "<div><strong>$type</strong>: $message [$file:$line]</div>";
+        }
+
+        /**
+         * Prints a exception
+         *
+         * @param Exception $e the exception
+         */
+        public static function printException(Exception $e)
+        {
+            Debug::printError(get_class($e), $e->getMessage(), $e->getFile(), $e->getLine());
         }
 
         /**

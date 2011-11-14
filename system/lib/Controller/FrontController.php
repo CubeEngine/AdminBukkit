@@ -1,9 +1,10 @@
 <?php
+    import('Controller.ControllerException');
 
     /**
      * The Frontcontroller which runs the requested page
      */
-    final class Frontcontroller
+    final class FrontController
     {
         //private static $instance = null;
 
@@ -43,7 +44,7 @@
             return $this->controllerPath;
         }
 
-        public function run(IRequest $request, IResponse $response)
+        public function run(Request $request, Response $response)
         {
             $controller = $request->getController();
             $action = 'action_' . $request->getAction();

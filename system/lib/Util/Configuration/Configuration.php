@@ -1,7 +1,6 @@
 <?php
     interface Configuration
     {
-        public function __construct(Configuration $defaults = null)
         public function exists($name);
         public function get($name, $default = null);
         public function set($name, $value, $overwrite = true);

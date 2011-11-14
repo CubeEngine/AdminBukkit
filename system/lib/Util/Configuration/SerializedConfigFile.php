@@ -1,4 +1,7 @@
 <?php
+    import('Util.Configuration.FileConfiguration');
+    import('Util.Configuration.ConfigurationException');
+    
     /**
      *
      */
@@ -26,13 +29,13 @@
                 $tmp = @file_get_contents($this->filepath);
                 if ($tmp === false)
                 {
-                    throw new ConfigException('The config file exists, but could not be loaded!', 401);
+                    throw new ConfigurationException('The config file exists, but could not be loaded!', 401);
                 }
                 
                 $tmp = @unserialize($tmp);
                 if ($tmp === false || !is_array($tmp))
                 {
-                    throw new ConfigException('A invalid config file was given!', 402);
+                    throw new ConfigurationException('A invalid config file was given!', 402);
                 }
                 return $tmp;
             }
@@ -46,7 +49,7 @@
         {
             if (!is_writable($this->filepath))
             {
-                throw new ConfigException('The config file is not writable!', 403);
+                throw new ConfigurationException('The config file is not writable!', 403);
             }
 
             $tmp = serialize($this->activConfig);

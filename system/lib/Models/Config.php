@@ -1,12 +1,15 @@
 <?php
+    import('Util.Registry');
+    import('Debug.LoggerException');
+
     class Config
     {
-        protected $config;
+        private $config;
         private static $configs = array();
         
         private function __construct($name)
         {
-            $path = CONFIG_PATH . DS . $name . '.conf.php';
+            $path = Registry::get('') . DS . $name . '.conf.php';
             if (is_readable($path))
             {
                 $config = include $path;

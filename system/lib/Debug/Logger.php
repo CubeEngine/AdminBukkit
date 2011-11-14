@@ -1,4 +1,7 @@
 <?php
+    import('Util.Registry');
+    import('Debug.LoggerException');
+    
     /**
      * 
      */
@@ -60,7 +63,7 @@
          */
         private function __construct($logfile)
         {
-            $path = LOG_PATH . DS . $logfile . '.log';
+            $path = Registry::get('paths.logs') . DS . $logfile . '.log';
             $writable = (file_exists($path) && is_writable($path)) || is_writable(dirname($path));
             if (!$writable)
             {
@@ -112,7 +115,7 @@
                 $this->fhandle = @fopen($this->filepath, $this->fmode);
                 if ($this->fhandle === false)
                 {
-                    throw new CriticalException('Could not open logfile "' . $this->logfile . '" for writing! Check file permissions!');
+                    throw new LoggerException('Could not open logfile "' . $this->logfile . '" for writing! Check file permissions!');
                 }
                 $this->write(0, 'Logger', '----------> Log opened <----------');
             }

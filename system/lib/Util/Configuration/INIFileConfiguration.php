@@ -1,13 +1,16 @@
 <?php
+    import('Util.Configuration.FileConfiguration');
+    import('Util.Configuration.ConfigurationException');
+    
     /**
      *
      */
     class INIFileConfiguration implements FileConfiguration
     {
         public static $configs = array();
-        protected $filepath;
-        protected $activConfig;
-        protected static $reservedKeywords = array('null', 'yes', 'no', 'true', 'false', 'on', 'off', 'none');
+        private $filepath;
+        private $activConfig;
+        private static $reservedKeywords = array('null', 'yes', 'no', 'true', 'false', 'on', 'off', 'none');
         
         public function __construct($filepath, $suffix = '.php')
         {
@@ -28,7 +31,7 @@
                 $tmp = parse_ini_file($this->filepath);
                 if ($tmp === false || !is_array($tmp))
                 {
-                    throw new ConfigException('A invalid config file was given or the given private key was invalid', 402);
+                    throw new ConfigurationException('A invalid config file was given or the given private key was invalid', 402);
                 }
                 return $tmp;
             }
@@ -38,7 +41,7 @@
             }
         }
 
-        protected function array2ini($name, array $array)
+        private function array2ini($name, array $array)
         {
             $name = strval($name);
             $tmp = '';
@@ -56,9 +59,9 @@
 
         public function save()
         {
-            if (!is_writable($this->filepath))
+            if (!is_writable($this->filepath) && !is_writable(dirname($this->filepath)))
             {
-                throw new ConfigException('The config file is not writable!', 403);
+                throw new ConfigurationException('The config file is not writable!', 403);
             }
 
             $tmp = ";<?php __halt_compiler() ?>\n";

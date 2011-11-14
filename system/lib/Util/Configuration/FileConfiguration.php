@@ -1,4 +1,6 @@
 <?php
+    import('Util.Configuration.Configuration');
+
     /**
      *
      */

@@ -1,4 +1,8 @@
 <?php
+    import('Util.Configuration.FileConfiguration');
+    import('Util.Configuration.ConfigurationException');
+    import('Text.Crypter.AESCrypter');
+
     /**
      *
      */
@@ -28,10 +32,10 @@
                     return array(array(), $crypter);
                 }
 
-                $tmp = @file_get_contents($filepath);
+                $tmp = @file_get_contents($this->filepath);
                 if ($tmp === false)
                 {
-                    throw new ConfigException('The config file exists, butcould not be loaded!', 401);
+                    throw new ConfigurationException('The config file exists, but could not be loaded!', 401);
                 }
 
                 $tmp = $crypter->decrypt($tmp);
@@ -39,7 +43,7 @@
                 $tmp = @unserialize($tmp);
                 if ($tmp === false || !is_array($tmp))
                 {
-                    throw new ConfigException('A invalid config file was given or the given private key was invalid', 402);
+                    throw new ConfigurationException('A invalid config file was given or the given private key was invalid', 402);
                 }
                 return array($tmp, $crypter);
             }
@@ -53,7 +57,7 @@
         {
             if (!is_writable($this->filepath))
             {
-                throw new ConfigException('The config file is not writable!', 403);
+                throw new ConfigurationException('The config file is not writable!', 403);
             }
             $tmp = serialize($this->activConfig);
             $tmp = $this->crypter->encrypt($tmp);

@@ -1,52 +1,97 @@
 <?php
+    import('Models.ModelException');
+
+    /**
+     *
+     */
     class Request
     {
-        public static function get($name, $default = '')
+        private $controller;
+        private $action;
+        private $modRewrite;
+        private $requestUri;
+        private $requestVars;
+
+
+        public function __construct()
         {
-            if (isset($_GET[$name]))
+            $this->requestVars = array();
+            $this->requestVars['get'] = $_GET;
+            $this->requestVars['post'] = $_POST;
+            $this->requestVars['cookie'] = $_COOKIE;
+            $this->requestVars['files'] = $_FILES;
+
+            $this->requestUri = $_SERVER['REQUEST_URI'];
+            $this->modRewrite = isset($_SERVER['REDIRECT_URL']);
+        }
+
+        public function getController()
+        {
+            return $this->controller;
+        }
+
+        public function getAction()
+        {
+            return $this->action;
+        }
+
+        public function get($type, $name)
+        {
+            $type = mb_strtolower($type);
+            if ($this->exists($type, $name))
             {
-                return $_GET[$name];
+                return $this->requestVars[$type][$name];
             }
             else
             {
-                return $default;
+                return null;
             }
         }
-        
-        public static function post($name, $default = '')
+
+        public function getAll($type)
         {
-            if (isset($_POST[$name]))
+            if (isset($this->requestVars[$type]))
             {
-                return $_POST[$name];
+                return $this->requestVars[$type];
             }
             else
             {
-                return $default;
+                return null;
             }
+
         }
-        
-        public static function cookie($name, $default = '')
+
+        public function exists($type, $name)
         {
-            if (isset($_COOKIE[$name]))
-            {
-                return $_COOKIE[$name];
-            }
-            else
-            {
-                return $default;
-            }
+            return isset($this->requestVars[$type][$name]);
         }
-        
-        public static function session($name, $default = '')
+
+
+        public function getRequestUri()
         {
-            if (isset($_SESSION[$name]))
+            return $this->requestUri;
+        }
+
+        public function getModRewrite()
+        {
+            return $this->modRewrite;
+        }
+
+        public function route(IRouter $router = null)
+        {
+            if (!$router instanceof IRouter)
             {
-                return $_SESSION[$name];
+                $router = new DefaultRouter();
             }
-            else
+            if (!$router->resolveRoute($this))
             {
-                return $default;
+                throw new ModelException('resolving the route failed!', 503);
             }
+
+            $this->controller = $router->getController();
+            $this->action = $router->getAction();
+            $this->requestVars['get'] = array_merge($this->requestVars['get'], $router->getParams());
         }
     }
+    
 ?>
