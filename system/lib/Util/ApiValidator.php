@@ -1,4 +1,6 @@
 <?php
+    import('Util.ApiBukkit');
+
     class ApiValidator
     {
         public static function validHost($host)

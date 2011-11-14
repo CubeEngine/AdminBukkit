@@ -38,7 +38,7 @@
                     Router::instance()->redirectToPage('home', $lang['login_success']);
                 }
             }
-            catch (SimpleException $e)
+            catch (ModelException $e)
             {
                 switch ($e->getCode())
                 {

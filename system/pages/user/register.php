@@ -68,7 +68,7 @@
                 User::createUser($user, $pass, $email)->login($pass);
                 Router::instance()->redirectToPage('home', $lang['registersuccess']);
             }
-            catch (SimpleException $e)
+            catch (ModelException $e)
             {
                 switch ($e->getCode())
                 {

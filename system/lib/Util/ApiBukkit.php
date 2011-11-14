@@ -1,4 +1,6 @@
 <?php
+    import('Network.Http.HttpClient');
+
     class ApiBukkit
     {
         private $client;

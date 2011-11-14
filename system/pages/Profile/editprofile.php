@@ -65,7 +65,7 @@
                 $user->logout();
                 Router::instance()->redirectToPage('home', $lang['edit_success']);
             }
-            catch (SimpleException $e)
+            catch (ModelException $e)
             {
                 switch ($e->getCode())
                 {
