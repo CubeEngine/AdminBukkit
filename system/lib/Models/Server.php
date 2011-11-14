@@ -117,6 +117,37 @@
         }
 
         /**
+         * Refreshes the data from the database
+         *
+         * @return Server fluent interface
+         */
+        public function refresh()
+        {
+            try
+            {
+                $query = 'SELECT `alias`,host,port,authkey,owner,members FROM ' . $this->db->getPrefix() . 'servers WHERE id=?';
+                $result = $this->db->preparedQuery($query, array($this->id));
+                if (count($result))
+                {
+                    $result = $result[0];
+                    $this->alias = $result['alias'];
+                    $this->host = $result['host'];
+                    $this->port = $result['port'];
+                    $this->authkey = $result['authkey'];
+                    $this->owner = $result['owner'];
+                    if ($result['members'])
+                    {
+                        $this->members = explode(',', $result['members']);
+                    }
+                }
+            }
+            catch (DatabaseException $e)
+            {}
+
+            return $this;
+        }
+
+        /**
          * Returns the server's ID
          *
          * @return int the server ID
@@ -286,12 +317,11 @@
             $this->members = array();
             foreach ($members as $member)
             {
-                try
+                $user = User::get($member);
+                if ($user)
                 {
-                    $this->members[] = User::get($member)->getId();
+                    $this->members[] = $user->getId();
                 }
-                catch (Exception $e)
-                {}
             }
 
             return $this;
@@ -389,7 +419,7 @@
          */
         public function serialize()
         {
-            return serialize(array($this->id, $this->alias, $this->host, $this->port, $this->authkey, $this->owner, $this->members));
+            return serialize(array($this->id));
         }
 
         /**
@@ -401,12 +431,7 @@
         {
             $data = unserialize($serialized);
             $this->id = $data[0];
-            $this->alias = $data[1];
-            $this->host = $data[2];
-            $this->port = $data[3];
-            $this->authkey = $data[4];
-            $this->owner = $data[5];
-            $this->members = $data[6];
+            $this->refresh();
         }
 
 

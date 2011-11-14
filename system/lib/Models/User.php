@@ -224,6 +224,35 @@
         }
 
         /**
+         * Refreshes the data from the database
+         *
+         * @return User fluent interface
+         */
+        public function refresh()
+        {
+            try
+            {
+                $query = 'SELECT name,email,servers,currentserver FROM ' . $this->db->getPrefix() . 'users WHERE id=?';
+                $result = $this->db->preparedQuery($query, array($this->id));
+                if (count($result))
+                {
+                    $result = $result[0];
+                    $this->name = $result['name'];
+                    $this->email = $result['email'];
+                    if ($result['servers'])
+                    {
+                        $this->servers = explode(',', $result['servers']);
+                    }
+                    $this->currentServer = Server::get($result['currentserver']);
+                }
+            }
+            catch (DatabaseException $e)
+            {}
+
+            return $this;
+        }
+
+        /**
          * Returns the user's ID
          *
          * @return int the user ID
@@ -326,12 +355,11 @@
             $this->servers = array();
             foreach ($servers as $server)
             {
-                try
+                $server = Server::get($server);
+                if ($server)
                 {
-                    $this->servers[] = Server::get($server)->getId();
+                    $this->servers[] = $server->getId();
                 }
-                catch (Exception $e)
-                {}
             }
             
             return $this;
@@ -562,7 +590,7 @@
          */
         public function serialize()
         {
-            return serialize(array($this->id, $this->name, $this->email, $this->servers, $this->currentServer->getId(), $this->loginIp));
+            return serialize(array($this->id, $this->loginIp));
         }
 
         /**
@@ -574,18 +602,8 @@
         {
             $data = unserialize($serialized);
             $this->id = $data[0];
-            $this->name = $data[1];
-            $this->email = $data[2];
-            $this->servers = $data[3];
-            try
-            {
-                $this->currentServer = Server::get($data[4]);
-            }
-            catch (Exception $e)
-            {
-                $this->currentServer = null;
-            }
-            $this->loginIp = $data[5];
+            $this->loginIp = $data[1];
+            $this->refresh();
         }
 
         /**
