@@ -1,4 +1,6 @@
 <?php
+    import('Models.ModelException');
+
     class Server implements Serializable
     {
         private static $servers = array();
@@ -43,7 +45,7 @@
                 }
                 else
                 {
-                    throw new SimpleException(self::ERR_NOT_FOUND);
+                    throw new ModelException(self::ERR_NOT_FOUND);
                 }
             }
             catch (Exception $e)
@@ -54,11 +56,18 @@
 
         public static function get($id)
         {
-            if (!isset(self::$servers[$id]))
+            try
             {
-                self::$servers[$id] = new self($id);
+                if (!isset(self::$servers[$id]))
+                {
+                    self::$servers[$id] = new self($id);
+                }
+                return self::$servers[$id];
             }
-            return self::$servers[$id];
+            catch (ModelException $e)
+            {
+                return null;
+            }
         }
 
         /**

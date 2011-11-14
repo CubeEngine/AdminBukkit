@@ -1,4 +1,6 @@
 <?php
+    import('Models.ModelException');
+
     class User implements Serializable
     {
         private static $usersById = array();
@@ -37,7 +39,7 @@
                 $result = $this->db->preparedQuery($query, array($id));
                 if (!count($result))
                 {
-                    throw new SimpleException(self::ERR_NOT_FOUND);
+                    throw new ModelException(self::ERR_NOT_FOUND);
                 }
                 $result = $result[0];
 
@@ -94,32 +96,39 @@
          */
         public static function get($identifier)
         {
-            if (is_numeric($identifier))
+            try
             {
-                $identifier = intval($identifier);
+                if (is_numeric($identifier))
+                {
+                    $identifier = intval($identifier);
+                }
+                $user = null;
+                if (isset(self::$usersByEmail[$identifier]))
+                {
+                    $user = self::$usersByEmail[$identifier];
+                }
+                elseif (isset(self::$usersByName[$identifier]))
+                {
+                    $user = self::$usersByName[$identifier];
+                }
+                elseif (isset(self::$usersById[$identifier]))
+                {
+                    $user = self::$usersById[$identifier];
+                }
+                if ($user === null)
+                {
+                    $user = new self($identifier);
+                    $id = $user->getId();
+                    self::$usersById[$id] = $user;
+                    self::$usersByName[$user->getName()] =& self::$usersById[$id];
+                    self::$usersByEmail[$user->getEmail()] =& self::$usersById[$id];
+                }
+                return $user;
             }
-            $user = null;
-            if (isset(self::$usersByEmail[$identifier]))
+            catch (ModelException $e)
             {
-                $user = self::$usersByEmail[$identifier];
+                return null;
             }
-            elseif (isset(self::$usersByName[$identifier]))
-            {
-                $user = self::$usersByName[$identifier];
-            }
-            elseif (isset(self::$usersById[$identifier]))
-            {
-                $user = self::$usersById[$identifier];
-            }
-            if ($user === null)
-            {
-                $user = new self($identifier);
-                $id = $user->getId();
-                self::$usersById[$id] = $user;
-                self::$usersByName[$user->getName()] =& self::$usersById[$id];
-                self::$usersByEmail[$user->getEmail()] =& self::$usersById[$id];
-            }
-            return $user;
         }
 
         /**
@@ -153,11 +162,11 @@
             {
                 if (User::exists($name))
                 {
-                    throw new SimpleException(self::ERR_NAME_USED);
+                    throw new ModelException(self::ERR_NAME_USED);
                 }
                 if (User::exists($email))
                 {
-                    throw new SimpleException(self::ERR_EMAIL_USED);
+                    throw new ModelException(self::ERR_EMAIL_USED);
                 }
 
                 $db = DatabaseManager::instance()->getDatabase();
@@ -185,7 +194,7 @@
             $result = $this->db->preparedQuery($query, array($this->id));
             if (!count($result))
             {
-                throw new SimpleException(self::ERR_NOT_FOUND);
+                throw new ModelException(self::ERR_NOT_FOUND);
             }
             $result = $result[0];
             return (self::password($password) === $result['password']);
@@ -253,7 +262,7 @@
                 }
                 else
                 {
-                    throw new SimpleException(self::ERR_NAME_USED);
+                    throw new ModelException(self::ERR_NAME_USED);
                 }
             }
             
@@ -289,7 +298,7 @@
                 }
                 else
                 {
-                    throw new SimpleException(self::ERR_EMAIL_USED);
+                    throw new ModelException(self::ERR_EMAIL_USED);
                 }
             }
             
@@ -521,7 +530,7 @@
             }
             else
             {
-                throw new SimpleException(self::ERR_WRONG_PASS);
+                throw new ModelException(self::ERR_WRONG_PASS);
             }
             return $this;
         }
