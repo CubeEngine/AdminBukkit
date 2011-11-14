@@ -1,10 +1,10 @@
 *.db
 *.db-journal
-res/js/jqtouch.js
-res/js/jquery-1.*.js
-backend/logs/*.log
-backend/downloads/*
-test.php
+/res/js/jqtouch.js
+/res/js/jquery-1.*.js
+/system/logs/*.log
+/system/downloads/*
+/test.php
 /todo.txt
 /blacklist.txt
 nbproject/
