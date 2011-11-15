@@ -1,4 +1,18 @@
 <?php
+    import('Request.Router');
+
+    class DownloadsRouter implements Router
+    {
+        public function route(Request $request)
+        {
+            return array(
+                'action' => 'index'
+            );
+        }
+    }
+    
+    __halt_compiler();
+
     $file = trim(Request::get('file', ''));
     $lang = Lang::instance('downloads');
     $page = new Page('downloads', $lang['downloads']);

@@ -1,7 +1,7 @@
 <?php
     import('Controller.ControllerException');
-    import('Models.Request');
-    import('Models.Response');
+    import('Request.Request');
+    import('Request.Response');
 
     /**
      * The Frontcontroller which runs the requested page
@@ -18,34 +18,36 @@
 
         public function run(Request $request, Response $response)
         {
-            $controller = $request->getController();
-            $action = 'action_' . $request->getAction();
+            $router = $request->getModule();
 
-            $controllerPath = $this->controllerPath . DS . $controller . DS . 'controller.php';
-            $controller = ucfirst(strtolower($controller)) . 'Controller';
+            $routerPath = $this->controllerPath . DS . $router . DS . $router . 'Router.php';
+            $router = ucfirst(strtolower($router)) . 'Router';
 
-            if (is_readable($controllerPath))
+            if (is_readable($routerPath))
             {
-                require_once $controllerPath;
-                if (class_exists($controller))
+                require_once $routerPath;
+                if (class_exists($router))
                 {
-                    $controller = new $controller($request, $response);
-                    if ($controller instanceof  AbstractController)
+                    $router = new $router($request, $response);
+                    if ($router instanceof Router)
                     {
                         try
                         {
-                            if (is_callable(array($controller, $action)))
+                            $route = $router->route($request);
+                            $action = $route->getAction();
+                            if (is_callable(array($router, $action)))
                             {
-                                $controller->$action();
+                                $router->$action();
                             }
                             else
                             {
-                                $controller->action_index();
+                                $router->action_index();
                             }
-                            unset($controller);
+                            unset($router);
                         }
                         catch (ControllerException $e)
                         {
+                            // @todo error pages
                             echo $e->getMessage();
                         }
                         catch (Exception $e)
@@ -55,18 +57,18 @@
                     }
                     else
                     {
-                        throw new ControllerException("Invalid controller!\ncontrollers have to extend AbstractController");
+                        throw new ControllerException("Invalid router!\nRouters have to implement Router");
                     }
                 }
                 else
                 {
-                    throw new ControllerException("Controller class not found!\n$controller");
+                    throw new ControllerException("Router class '$router' not found!\n");
                 }
                 
             }
             else
             {
-                throw new ControllerException("The controller was not found or is not readable!\n$controllerPath");
+                throw new ControllerException("The router was not found or is not readable!\n$routerPath");
             }
         }
     }

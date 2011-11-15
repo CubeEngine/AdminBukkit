@@ -1,16 +1,17 @@
 <?php
-    import('Models.ModelException');
+    //import('Models.ModelException');
 
     /**
      *
      */
     class Request
     {
-        private $controller;
-        private $action;
-        private $modRewrite;
+        private $module;
         private $requestUri;
         private $requestVars;
+        
+        private $routeSeparator;
+        private $routeSegments;
 
 
         public function __construct()
@@ -20,19 +21,29 @@
             $this->requestVars['post'] = $_POST;
             $this->requestVars['cookie'] = $_COOKIE;
             $this->requestVars['files'] = $_FILES;
+            
+            $this->routeSeparator = Registry::get('config')->get('getRouteSeparator', '/');
+            $this->routeSegements = array();
 
             $this->requestUri = $_SERVER['REQUEST_URI'];
-            $this->modRewrite = isset($_SERVER['REDIRECT_URL']);
+            if (isset($_SERVER['PATH_INFO']))
+            {
+                $this->routeSegments = explode($this->routeSeparator, trim($_SERVER['PATH_INFO'], $this->routeSeparator));
+            }
+            if (count($this->routeSegments))
+            {
+                $this->module = ucfirst(strtolower($this->routeSegments[0]));
+            }
+            else
+            {
+                $this->module = 'Index'; // @todo configurable?
+            }
+            
         }
 
-        public function getController()
+        public function getModule()
         {
-            return $this->controller;
-        }
-
-        public function getAction()
-        {
-            return $this->action;
+            return $this->module;
         }
 
         public function get($type, $name)
@@ -70,27 +81,6 @@
         public function getRequestUri()
         {
             return $this->requestUri;
-        }
-
-        public function getModRewrite()
-        {
-            return $this->modRewrite;
-        }
-
-        public function route(IRouter $router = null)
-        {
-            if (!$router instanceof IRouter)
-            {
-                $router = new DefaultRouter();
-            }
-            if (!$router->resolveRoute($this))
-            {
-                throw new ModelException('resolving the route failed!', 503);
-            }
-
-            $this->controller = $router->getController();
-            $this->action = $router->getAction();
-            $this->requestVars['get'] = array_merge($this->requestVars['get'], $router->getParams());
         }
     }
     

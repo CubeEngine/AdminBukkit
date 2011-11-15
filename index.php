@@ -6,8 +6,8 @@
     import('Debug.Debug');
     import('Models.Session');
     import('Controller.FrontController');
-    import('Models.Request');
-    import('Models.Response');
+    import('Request.Request');
+    import('Request.Response');
 
     Registry::set('paths.logs',         SYS_PATH . DS . 'logs'      );
     Registry::set('paths.locales',      SYS_PATH . DS . 'language'  );
@@ -31,6 +31,10 @@
     Session::setName($config->get('sessionName', 'sid'));
     Session::setLifetime($config->get('sessionCookieLiftime', 3600));
     
+    //echo '<pre>';
+    //var_dump($_SERVER);
+    //die();
+    
     try
     {
         $frontcontroller = new FrontController();
@@ -46,6 +50,7 @@
     }
     catch (Exception $e)
     {
+        Debug::printException($e);
         Debug::logException($e);
     }
 ?>
