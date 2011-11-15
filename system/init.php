@@ -4,6 +4,7 @@
     defined('DS')       or define('DS',         DIRECTORY_SEPARATOR);
     defined('SYS_PATH') or define('SYS_PATH',   dirname(__FILE__));
     defined('LIB_PATH') or define('LIB_PATH',   SYS_PATH . DS . 'lib');
+    defined('APP_PATH') or define('APP_PATH',   SYS_PATH . DS . 'apps');
 
     function import($path)
     {

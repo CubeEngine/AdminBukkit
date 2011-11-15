@@ -22,7 +22,7 @@
             $this->requestVars['cookie'] = $_COOKIE;
             $this->requestVars['files'] = $_FILES;
             
-            $this->routeSeparator = Registry::get('config')->get('getRouteSeparator', '/');
+            $this->routeSeparator = Application::getConfig()->get('getRouteSeparator', '/');
             $this->routeSegements = array();
 
             $this->requestUri = $_SERVER['REQUEST_URI'];

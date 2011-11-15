@@ -11,7 +11,7 @@
 
         private function __construct()
         {
-            $config = Registry::get('config');
+            $config = Application::getConfig();
             $dbDriverName = 'MySQL';
             if ($config)
             {

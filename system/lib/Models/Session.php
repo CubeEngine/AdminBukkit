@@ -29,7 +29,6 @@
         public function __destruct()
         {
             unset($this->session);
-            unset(self::$instance);
             self::$instance = null;
         }
 

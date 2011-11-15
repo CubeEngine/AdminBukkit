@@ -2,7 +2,7 @@
     /**
      * Abstract base class for a basic controller which provides basic functionality
      */
-    abstract class AbstractBasicPage extends Controller
+    abstract class BasicPage implements Controller
     {
         protected $design;
         protected $db;
@@ -10,18 +10,16 @@
         protected $request;
         protected $response;
         
-        public function __construct(IRequest $request, IResponse $response)
+        public function __construct()
         {
-            $this->design = new Design();
+            //$this->design = new Design();
             $this->db = Registry::get('database');
             $this->session =& Session::instance();
-            $this->request = $request;
-            $this->response = $response;
         }
         
         public function __destruct()
         {
-            $this->response->setContent($this->design->render());
+            //$this->response->setContent($this->design->render());
         }
     }
 ?>

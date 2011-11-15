@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `__PREFIX__statistics` (
 
         public function __construct()
         {
-            $config = Registry::get('config');
+            $config = Application::getConfig();
             if (!$config)
             {
                 throw new DatabaseException("No configuration available");

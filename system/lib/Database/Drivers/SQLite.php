@@ -34,7 +34,7 @@ CREATE TABLE "servers" (
             $init = false;
             if (!$this->connected)
             {
-                $path = Config::instance('bukkitweb')->get('databaseDir', '.') . DS . 'users.db';
+                $path = Application::getConfig()->get('databaseDir', '.') . DS . 'users.db';
                 $dir = dirname($path);
                 if (!file_exists($path))
                 {

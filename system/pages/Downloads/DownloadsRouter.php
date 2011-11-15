@@ -1,13 +1,12 @@
 <?php
     import('Request.Router');
+    import('Request.Route');
 
     class DownloadsRouter implements Router
     {
         public function route(Request $request)
         {
-            return array(
-                'action' => 'index'
-            );
+            return new Route('index', array());
         }
     }
     

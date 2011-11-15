@@ -81,17 +81,8 @@
          */
         public static function password($pass)
         {
-            $salt = '';
-            $config = Registry::get('config');
-            if ($config)
-            {
-                $salt = $config->get('secret');
-                if ($salt === null)
-                {
-                    throw new Exception('No static salt specified!');
-                }
-            }
-            else
+            $salt = Application::getConfig()->get('secret');
+            if ($salt === null)
             {
                 throw new Exception('No static salt specified!');
             }
