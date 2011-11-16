@@ -1,11 +1,10 @@
 <?php
-    import('Controller.Controller');
     import('Request.Reroute');
 
     /**
      * The Frontcontroller which runs the requested page
      */
-    final class FrontController implements Controller
+    final class FrontController
     {
         private $modulePath;
         private $reroutes;
@@ -30,56 +29,37 @@
             {
                 $modulePath = $this->modulePath . DS . $module;
 
-                $routerPath =  $modulePath . DS . $module . 'Router.php';
-                $routerClass = ucfirst(strtolower($module)) . 'Router';
+                $modulePath =  $modulePath . DS . $module . 'Module.php';
+                $moduleClass = ucfirst(strtolower($module)) . 'Module';
 
-                if (is_readable($routerPath))
+                if (is_readable($modulePath))
                 {
-                    require_once $routerPath;
-                    if (class_exists($routerClass))
+                    require_once $modulePath;
+                    if (class_exists($moduleClass))
                     {
-                        $router = new $routerClass($request, $response);
-                        if ($router instanceof Router)
+                        $moduleInstance = new $moduleClass($request, $response);
+                        if ($moduleInstance instanceof Module)
                         {
                             try
                             {
                                 if (!$route)
                                 {
-                                    $route = $router->route($request);
+                                    $route = $moduleInstance->route($request);
                                 }
-                                $controllerClass = ucfirst(strtolower($route->getController())) . 'Controller';
 
-                                $controllerPath = $modulePath . DS . 'Controllers' . DS . $controllerClass . '.php';
+                                $controller = null;
+                                try
+                                {
+                                    $controller = $moduleInstance->getController($route->getController());
+                                }
+                                catch (ModuleException $e)
+                                {
+                                    $controller = $moduleInstance->getController('Index');
+                                }
 
-                                if (is_readable($controllerPath))
-                                {
-                                    if (!class_exists($controllerClass))
-                                    {
-                                        require $controllerPath;
-                                    }
-                                    
-                                    if (class_exists($controllerClass))
-                                    {
-                                        $controllerInstance = new $controllerClass();
-                                        if ($controllerInstance instanceof Controller)
-                                        {
-                                            $controllerInstance->run($request, $response);
-                                        }
-                                        else
-                                        {
-                                            throw new ControllerException('Controllers have to implement Controller!');
-                                        }
-                                        unset($controllerInstance);
-                                    }
-                                    else
-                                    {
-                                        throw new ControllerException('Invalid controller!');
-                                    }
-                                }
-                                else
-                                {
-                                    throw new ConfigurationException("Controller not found or not readable!\n$controllerPath");
-                                }
+                                $controller->preExecution();
+                                $controller->run($request, $response);
+                                $controller->postExecution();
                             }
                             catch (Reroute $e)
                             {
@@ -94,6 +74,11 @@
                                 // @todo error pages
                                 echo $e->getMessage();
                             }
+                            catch (ModuleException $e)
+                            {
+                                // @todo add real handling
+                                throw $e;
+                            }
                             catch (Exception $e)
                             {
                                 throw new Exception($e->getMessage(), $e->getCode());
@@ -106,13 +91,13 @@
                     }
                     else
                     {
-                        throw new ControllerException("Router class '$module' not found!\n");
+                        throw new ControllerException("Module class '$module' not found!\n");
                     }
 
                 }
                 else
                 {
-                    throw new ControllerException("The router was not found or is not readable!\n$routerPath");
+                    throw new ControllerException("The router was not found or is not readable!\n$modulePath");
                 }
             }
             catch (Reroute $e)

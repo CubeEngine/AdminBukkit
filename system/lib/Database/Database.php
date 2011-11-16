@@ -1,5 +1,6 @@
 <?php
     import('Database.DatabaseException');
+    import('Debug.Logger');
 
     abstract class Database
     {
@@ -25,6 +26,8 @@
         public function query($query, $return = true)
         {
             $this->connect();
+
+            Logger::instance('query')->write(0, 'query', $query);
 
             if ($return)
             {

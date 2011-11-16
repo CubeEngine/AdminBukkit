@@ -4,11 +4,23 @@
     import('Request.Response');
 
     /**
-     * Abstract base class which must be implemented by every controller
+     * Abstract base class which must be extended by every controller
      */
-    interface Controller
+    abstract class Controller
     {
-        public function __construct();
-        public function run(Request $request, Response $response);
+        protected $module;
+        
+        public function __construct(Module $module)
+        {
+            $this->module = $module;
+        }
+        
+        abstract public function run(Request $request, Response $response);
+        
+        public function preExecution()
+        {}
+        
+        public function postExecution()
+        {}
     }
 ?>

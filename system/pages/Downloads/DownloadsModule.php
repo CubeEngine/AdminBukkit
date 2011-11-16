@@ -1,8 +1,8 @@
 <?php
-    import('Request.Router');
+    import('Controller.Module');
     import('Request.Route');
 
-    class DownloadsRouter implements Router
+    class DownloadsModule extends Module
     {
         public function route(Request $request)
         {

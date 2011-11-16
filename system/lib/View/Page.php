@@ -1,5 +1,5 @@
 <?php
-    class Page extends Template
+    class Page extends Template implements MainView
     {
         protected $content;
         protected $info;
@@ -15,6 +15,11 @@
             $this->addSubTemplate('copyright', new Template('generic/copyright'));
             $this->content = null;
             $this->info = $this->getSubtemplate('copyright');
+        }
+
+        public function getContent()
+        {
+            return $this->content;
         }
         
         public function setContent(View $content)
