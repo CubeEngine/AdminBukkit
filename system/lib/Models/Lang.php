@@ -1,4 +1,7 @@
 <?php
+    import('Request.Request');
+    import('Models.ModelException');
+
     class Lang implements ArrayAccess
     {
         private static $instances = array();
@@ -13,7 +16,7 @@
             $this->lang = array();
             $lang = self::getLanguage();
             $this->logger->write(3, 'info', 'Selected language "' . $lang . '"');
-            $path = LANG_PATH . DS . $lang . DS . $name . '.lang.php';
+            $path = Application::getPath('locales') . DS . $lang . DS . $name . '.lang.php';
             if (is_readable($path))
             {
                 $this->lang = include $path;
@@ -108,41 +111,46 @@
                 }
             }
             
-            return Config::instance('bukkitweb')->get('defaultLanguage', 'en');
+            return Application::getConfig()->get('defaultLanguage', 'en');
         }
         
         public static function listLanguages()
         {
             static $langs = array();
+            $path = Application::getPath('locales');
             if (!count($langs))
             {
-                $dir = @opendir(LANG_PATH);
-                if ($dir === false)
+                $dir = @opendir($path);
+                if ($dir)
                 {
-                    throw new Exception('Counld not open the language directory!');
-                }
-                $langs = array();
-                while (($entry = readdir($dir)))
-                {
-                    if (is_dir(LANG_PATH . DS . $entry))
+                    $langs = array();
+                    while (($entry = readdir($dir)))
                     {
-                        if (!preg_match('/^\.\.?$/', $entry))
+                        if (is_dir($path . DS . $entry))
                         {
-                            $langs[] = $entry;
+                            if (!preg_match('/^\.\.?$/', $entry))
+                            {
+                                $langs[] = $entry;
+                            }
                         }
                     }
+                    @closedir($dir);
                 }
-                @closedir($dir);
+                else
+                {
+                    throw new ModelException('Counld not open the language directory!');
+                }
             }
             return $langs;
         }
         
         protected static function parseAcceptLanguage()
         {
-            $langs = array(Config::instance('bukkitweb')->get('defaultLanguage', 'en'));
+            $langs = array(Application::getConfig()->get('defaultLanguage', 'en'));
 
             if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
             {
+                $lang_parse = array();
                 preg_match_all('/(([a-z]{1,8})(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
 
                 if (count($lang_parse[1]))
@@ -163,15 +171,19 @@
             return $langs;
         }
         
-        public static function getLanguage()
+        public static function getLanguage(Request $request)
         {
             if (self::$language === null)
             {
                 $lang = null;
 
-                $post = Request::post('lang');
-                $get = Request::get('lang');
-                $session = ((isset($_SESSION['lang']) && $_SESSION['lang'] !== '') ? $_SESSION['lang'] : '');
+                //$post = Request::post('lang');
+                $post = $request->get('post', 'language', '');
+                //$get = Request::get('lang');
+                $get = $request->get('get', 'language', '');
+                //((isset($_SESSION['lang']) && $_SESSION['lang'] !== '') ? $_SESSION['lang'] : '');
+                $session = Session::instance()->get('language', '');
+
                 if (!empty($post))
                 {
                     $lang =& $post;
@@ -190,7 +202,7 @@
                     $lang = self::getBestLanguage();
                 }
 
-                $_SESSION['lang'] = $lang;
+                Session::instance()->set('language', $lang);
                 self::$language = $lang;
                 return $lang;
             }

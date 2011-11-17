@@ -35,7 +35,12 @@
         private function __clone()
         {}
 
-        public static function &instance()
+        /**
+         * Returns the Session instance
+         *
+         * @return Session the session instance
+         */
+        public static function instance()
         {
             if (self::$instance === null)
             {

@@ -13,13 +13,13 @@
         <link rel="apple-touch-startup-image" media="screen and (resolution: 163dpi)" href="<?php $this->res('gfx/startup/iphone.png') ?>">
         <link rel="apple-touch-startup-image" media="screen and (resolution: 132dpi)" href="<?php $this->res('gfx/startup/ipad.png') ?>">
         <link rel="apple-touch-startup-image" media="screen and (resolution: 326dpi)" href="<?php $this->res('gfx/startup/iphone4.png') ?>">
-        <style type="text/css" media="screen">@import "<?php $this->res('jquery/jquery.mobile.css') ?>";</style>
+        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.css">
         <style type="text/css" media="screen">@import "<?php $this->res('css/main.css') ?>";</style>
         <script type="text/javascript">
             var BASE_PATH = '<?php echo $basePath ?>';
         </script>
         <script type="text/javascript" src="<?php echo $basePath ?>backend/javascriptlang.php?file=generic" charset="utf-8"></script>
-        <script type="text/javascript" src="<?php $this->res('jquery/jquery.js') ?>" charset="utf-8"></script>
+        <script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.js" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('jquery/jquery.mobile.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/apirequest.js') ?>" charset="utf-8"></script>
         <script type="text/javascript" src="<?php $this->res('js/main.js') ?>" charset="utf-8"></script>
