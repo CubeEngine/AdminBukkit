@@ -1,0 +1,2880 @@
+[13.11.11 17:44:57][Logger] ----------> Log opened <----------
+[13.11.11 17:44:57][info] Selected language "de"
+[13.11.11 17:44:57][success] Language loaded
+[13.11.11 17:44:57][info] Entry "home" found!
+[13.11.11 17:44:57][info] Value: "Home"
+[13.11.11 17:44:57][info] Entry "about" found!
+[13.11.11 17:44:57][info] Value: "Über"
+[13.11.11 17:44:57][info] Selected language "de"
+[13.11.11 17:44:57][success] Language loaded
+[13.11.11 17:44:57][info] Entry "pages" found!
+[13.11.11 17:44:57][info] Value: "Seiten"
+[13.11.11 17:44:57][info] Entry "registration" found!
+[13.11.11 17:44:57][info] Value: "Registrierung"
+[13.11.11 17:44:57][info] Entry "login" found!
+[13.11.11 17:44:57][info] Value: "Login"
+[13.11.11 17:44:57][info] Entry "stats" found!
+[13.11.11 17:44:57][info] Value: "Statistiken"
+[13.11.11 17:44:57][info] Entry "downloads" found!
+[13.11.11 17:44:57][info] Value: "Downloads"
+[13.11.11 17:44:57][info] Entry "confirm_logout" found!
+[13.11.11 17:44:57][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 17:44:57][Logger] ----------| Log closed |----------
+[13.11.11 17:44:57][Logger] ----------> Log opened <----------
+[13.11.11 17:44:57][info] Selected language "de"
+[13.11.11 17:44:57][success] Language loaded
+[13.11.11 17:44:57][Logger] ----------| Log closed |----------
+[13.11.11 17:44:58][Logger] ----------> Log opened <----------
+[13.11.11 17:44:58][info] Selected language "de"
+[13.11.11 17:44:58][success] Language loaded
+[13.11.11 17:45:02][Logger] ----------> Log opened <----------
+[13.11.11 17:45:02][info] Selected language "de"
+[13.11.11 17:45:02][success] Language loaded
+[13.11.11 17:46:19][Logger] ----------> Log opened <----------
+[13.11.11 17:46:19][info] Selected language "de"
+[13.11.11 17:46:19][success] Language loaded
+[13.11.11 17:46:19][info] Entry "login" found!
+[13.11.11 17:46:19][info] Value: "Login"
+[13.11.11 17:46:19][info] Selected language "de"
+[13.11.11 17:46:19][success] Language loaded
+[13.11.11 17:46:19][info] Entry "btn_home" found!
+[13.11.11 17:46:19][info] Value: "Home"
+[13.11.11 17:46:19][info] Entry "registration" found!
+[13.11.11 17:46:19][info] Value: "Registrierung"
+[13.11.11 17:46:19][info] Entry "loginid" found!
+[13.11.11 17:46:19][info] Value: "Login"
+[13.11.11 17:46:19][fail] Entry "username" NOT found!
+[13.11.11 17:46:19][info] Entry "password" found!
+[13.11.11 17:46:19][info] Value: "Passwort"
+[13.11.11 17:46:19][info] Entry "password" found!
+[13.11.11 17:46:19][info] Value: "Passwort"
+[13.11.11 17:46:19][info] Entry "language" found!
+[13.11.11 17:46:19][info] Value: "Sprache"
+[13.11.11 17:46:19][info] Entry "lang_de" found!
+[13.11.11 17:46:19][info] Value: "Deutsch"
+[13.11.11 17:46:19][info] Entry "lang_en" found!
+[13.11.11 17:46:19][info] Value: "Englisch"
+[13.11.11 17:46:19][info] Entry "login" found!
+[13.11.11 17:46:19][info] Value: "Login"
+[13.11.11 17:46:19][Logger] ----------| Log closed |----------
+[13.11.11 17:46:19][Logger] ----------> Log opened <----------
+[13.11.11 17:46:19][info] Selected language "de"
+[13.11.11 17:46:19][success] Language loaded
+[13.11.11 17:46:19][Logger] ----------| Log closed |----------
+[13.11.11 17:46:25][Logger] ----------> Log opened <----------
+[13.11.11 17:46:25][info] Selected language "de"
+[13.11.11 17:46:25][success] Language loaded
+[13.11.11 17:46:25][info] Entry "login" found!
+[13.11.11 17:46:25][info] Value: "Login"
+[13.11.11 17:46:25][info] Entry "login_failed" found!
+[13.11.11 17:46:25][info] Value: "Login fehlgeschlagen, prüfen sie ihre Eingaben!"
+[13.11.11 17:46:25][info] Selected language "de"
+[13.11.11 17:46:25][success] Language loaded
+[13.11.11 17:46:25][info] Entry "btn_home" found!
+[13.11.11 17:46:25][info] Value: "Home"
+[13.11.11 17:46:25][info] Entry "registration" found!
+[13.11.11 17:46:25][info] Value: "Registrierung"
+[13.11.11 17:46:25][info] Entry "message" found!
+[13.11.11 17:46:25][info] Value: "Meldung"
+[13.11.11 17:46:25][info] Entry "loginid" found!
+[13.11.11 17:46:25][info] Value: "Login"
+[13.11.11 17:46:25][fail] Entry "username" NOT found!
+[13.11.11 17:46:25][info] Entry "password" found!
+[13.11.11 17:46:25][info] Value: "Passwort"
+[13.11.11 17:46:25][info] Entry "password" found!
+[13.11.11 17:46:25][info] Value: "Passwort"
+[13.11.11 17:46:25][info] Entry "language" found!
+[13.11.11 17:46:25][info] Value: "Sprache"
+[13.11.11 17:46:25][info] Entry "lang_de" found!
+[13.11.11 17:46:25][info] Value: "Deutsch"
+[13.11.11 17:46:25][info] Entry "lang_en" found!
+[13.11.11 17:46:25][info] Value: "Englisch"
+[13.11.11 17:46:25][info] Entry "login" found!
+[13.11.11 17:46:25][info] Value: "Login"
+[13.11.11 17:46:25][Logger] ----------| Log closed |----------
+[13.11.11 18:15:03][Logger] ----------> Log opened <----------
+[13.11.11 18:15:03][info] Selected language "de"
+[13.11.11 18:15:03][success] Language loaded
+[13.11.11 18:15:03][info] Entry "login" found!
+[13.11.11 18:15:03][info] Value: "Login"
+[13.11.11 18:15:03][info] Entry "id_missing" found!
+[13.11.11 18:15:03][info] Value: "Es wurde keine Benutzername einegeben!"
+[13.11.11 18:15:03][info] Selected language "de"
+[13.11.11 18:15:03][success] Language loaded
+[13.11.11 18:15:03][info] Entry "btn_home" found!
+[13.11.11 18:15:03][info] Value: "Home"
+[13.11.11 18:15:03][info] Entry "registration" found!
+[13.11.11 18:15:03][info] Value: "Registrierung"
+[13.11.11 18:15:03][info] Entry "message" found!
+[13.11.11 18:15:03][info] Value: "Meldung"
+[13.11.11 18:15:03][info] Entry "loginid" found!
+[13.11.11 18:15:03][info] Value: "Login"
+[13.11.11 18:15:03][fail] Entry "username" NOT found!
+[13.11.11 18:15:03][info] Entry "password" found!
+[13.11.11 18:15:03][info] Value: "Passwort"
+[13.11.11 18:15:03][info] Entry "password" found!
+[13.11.11 18:15:03][info] Value: "Passwort"
+[13.11.11 18:15:03][info] Entry "language" found!
+[13.11.11 18:15:03][info] Value: "Sprache"
+[13.11.11 18:15:03][info] Entry "lang_de" found!
+[13.11.11 18:15:03][info] Value: "Deutsch"
+[13.11.11 18:15:03][info] Entry "lang_en" found!
+[13.11.11 18:15:03][info] Value: "Englisch"
+[13.11.11 18:15:03][info] Entry "login" found!
+[13.11.11 18:15:03][info] Value: "Login"
+[13.11.11 18:15:03][Logger] ----------| Log closed |----------
+[13.11.11 18:16:58][Logger] ----------> Log opened <----------
+[13.11.11 18:16:58][info] Selected language "de"
+[13.11.11 18:16:58][success] Language loaded
+[13.11.11 18:16:58][info] Entry "login" found!
+[13.11.11 18:16:58][info] Value: "Login"
+[13.11.11 18:16:58][info] Selected language "de"
+[13.11.11 18:16:58][success] Language loaded
+[13.11.11 18:16:58][info] Entry "btn_home" found!
+[13.11.11 18:16:58][info] Value: "Home"
+[13.11.11 18:16:58][info] Entry "registration" found!
+[13.11.11 18:16:58][info] Value: "Registrierung"
+[13.11.11 18:16:58][info] Entry "loginid" found!
+[13.11.11 18:16:58][info] Value: "Login"
+[13.11.11 18:16:58][fail] Entry "username" NOT found!
+[13.11.11 18:16:58][info] Entry "password" found!
+[13.11.11 18:16:58][info] Value: "Passwort"
+[13.11.11 18:16:58][info] Entry "password" found!
+[13.11.11 18:16:58][info] Value: "Passwort"
+[13.11.11 18:16:58][info] Entry "language" found!
+[13.11.11 18:16:58][info] Value: "Sprache"
+[13.11.11 18:16:58][info] Entry "lang_de" found!
+[13.11.11 18:16:58][info] Value: "Deutsch"
+[13.11.11 18:16:58][info] Entry "lang_en" found!
+[13.11.11 18:16:58][info] Value: "Englisch"
+[13.11.11 18:16:58][info] Entry "login" found!
+[13.11.11 18:16:58][info] Value: "Login"
+[13.11.11 18:16:58][Logger] ----------| Log closed |----------
+[13.11.11 18:16:58][Logger] ----------> Log opened <----------
+[13.11.11 18:16:58][info] Selected language "de"
+[13.11.11 18:16:58][success] Language loaded
+[13.11.11 18:16:58][Logger] ----------| Log closed |----------
+[13.11.11 18:17:06][Logger] ----------> Log opened <----------
+[13.11.11 18:17:06][info] Selected language "de"
+[13.11.11 18:17:06][success] Language loaded
+[13.11.11 18:17:06][info] Entry "login" found!
+[13.11.11 18:17:06][info] Value: "Login"
+[13.11.11 18:17:06][info] Entry "login_failed" found!
+[13.11.11 18:17:06][info] Value: "Login fehlgeschlagen, prüfen sie ihre Eingaben!"
+[13.11.11 18:17:06][info] Selected language "de"
+[13.11.11 18:17:06][success] Language loaded
+[13.11.11 18:17:06][info] Entry "btn_home" found!
+[13.11.11 18:17:06][info] Value: "Home"
+[13.11.11 18:17:06][info] Entry "registration" found!
+[13.11.11 18:17:06][info] Value: "Registrierung"
+[13.11.11 18:17:06][info] Entry "message" found!
+[13.11.11 18:17:06][info] Value: "Meldung"
+[13.11.11 18:17:06][info] Entry "loginid" found!
+[13.11.11 18:17:06][info] Value: "Login"
+[13.11.11 18:17:06][fail] Entry "username" NOT found!
+[13.11.11 18:17:06][info] Entry "password" found!
+[13.11.11 18:17:06][info] Value: "Passwort"
+[13.11.11 18:17:06][info] Entry "password" found!
+[13.11.11 18:17:06][info] Value: "Passwort"
+[13.11.11 18:17:06][info] Entry "language" found!
+[13.11.11 18:17:06][info] Value: "Sprache"
+[13.11.11 18:17:06][info] Entry "lang_de" found!
+[13.11.11 18:17:06][info] Value: "Deutsch"
+[13.11.11 18:17:06][info] Entry "lang_en" found!
+[13.11.11 18:17:06][info] Value: "Englisch"
+[13.11.11 18:17:06][info] Entry "login" found!
+[13.11.11 18:17:06][info] Value: "Login"
+[13.11.11 18:17:06][Logger] ----------| Log closed |----------
+[13.11.11 18:18:58][Logger] ----------> Log opened <----------
+[13.11.11 18:18:58][info] Selected language "de"
+[13.11.11 18:18:58][success] Language loaded
+[13.11.11 18:18:58][info] Entry "login" found!
+[13.11.11 18:18:58][info] Value: "Login"
+[13.11.11 18:18:58][info] Selected language "de"
+[13.11.11 18:18:58][success] Language loaded
+[13.11.11 18:18:58][info] Entry "btn_home" found!
+[13.11.11 18:18:58][info] Value: "Home"
+[13.11.11 18:18:58][info] Entry "registration" found!
+[13.11.11 18:18:58][info] Value: "Registrierung"
+[13.11.11 18:18:58][info] Entry "loginid" found!
+[13.11.11 18:18:58][info] Value: "Login"
+[13.11.11 18:18:58][fail] Entry "username" NOT found!
+[13.11.11 18:18:58][info] Entry "password" found!
+[13.11.11 18:18:58][info] Value: "Passwort"
+[13.11.11 18:18:58][info] Entry "password" found!
+[13.11.11 18:18:58][info] Value: "Passwort"
+[13.11.11 18:18:58][info] Entry "language" found!
+[13.11.11 18:18:58][info] Value: "Sprache"
+[13.11.11 18:18:58][info] Entry "lang_de" found!
+[13.11.11 18:18:58][info] Value: "Deutsch"
+[13.11.11 18:18:58][info] Entry "lang_en" found!
+[13.11.11 18:18:58][info] Value: "Englisch"
+[13.11.11 18:18:58][info] Entry "login" found!
+[13.11.11 18:18:58][info] Value: "Login"
+[13.11.11 18:18:58][Logger] ----------| Log closed |----------
+[13.11.11 18:18:58][Logger] ----------> Log opened <----------
+[13.11.11 18:18:58][info] Selected language "de"
+[13.11.11 18:18:58][success] Language loaded
+[13.11.11 18:18:58][Logger] ----------| Log closed |----------
+[13.11.11 18:19:09][Logger] ----------> Log opened <----------
+[13.11.11 18:19:09][info] Selected language "de"
+[13.11.11 18:19:09][success] Language loaded
+[13.11.11 18:19:09][info] Entry "login" found!
+[13.11.11 18:19:09][info] Value: "Login"
+[13.11.11 18:19:09][info] Entry "login_failed" found!
+[13.11.11 18:19:09][info] Value: "Login fehlgeschlagen, prüfen sie ihre Eingaben!"
+[13.11.11 18:19:09][info] Selected language "de"
+[13.11.11 18:19:09][success] Language loaded
+[13.11.11 18:19:09][info] Entry "btn_home" found!
+[13.11.11 18:19:09][info] Value: "Home"
+[13.11.11 18:19:09][info] Entry "registration" found!
+[13.11.11 18:19:09][info] Value: "Registrierung"
+[13.11.11 18:19:09][info] Entry "message" found!
+[13.11.11 18:19:09][info] Value: "Meldung"
+[13.11.11 18:19:09][info] Entry "loginid" found!
+[13.11.11 18:19:09][info] Value: "Login"
+[13.11.11 18:19:09][fail] Entry "username" NOT found!
+[13.11.11 18:19:09][info] Entry "password" found!
+[13.11.11 18:19:09][info] Value: "Passwort"
+[13.11.11 18:19:09][info] Entry "password" found!
+[13.11.11 18:19:09][info] Value: "Passwort"
+[13.11.11 18:19:09][info] Entry "language" found!
+[13.11.11 18:19:09][info] Value: "Sprache"
+[13.11.11 18:19:09][info] Entry "lang_de" found!
+[13.11.11 18:19:09][info] Value: "Deutsch"
+[13.11.11 18:19:09][info] Entry "lang_en" found!
+[13.11.11 18:19:09][info] Value: "Englisch"
+[13.11.11 18:19:09][info] Entry "login" found!
+[13.11.11 18:19:09][info] Value: "Login"
+[13.11.11 18:19:09][Logger] ----------| Log closed |----------
+[13.11.11 18:19:55][Logger] ----------> Log opened <----------
+[13.11.11 18:19:55][info] Selected language "de"
+[13.11.11 18:19:55][success] Language loaded
+[13.11.11 18:19:55][info] Entry "login" found!
+[13.11.11 18:19:55][info] Value: "Login"
+[13.11.11 18:19:55][info] Entry "login_failed" found!
+[13.11.11 18:19:55][info] Value: "Login fehlgeschlagen, prüfen sie ihre Eingaben!"
+[13.11.11 18:19:55][info] Selected language "de"
+[13.11.11 18:19:55][success] Language loaded
+[13.11.11 18:19:55][info] Entry "btn_home" found!
+[13.11.11 18:19:55][info] Value: "Home"
+[13.11.11 18:19:55][info] Entry "registration" found!
+[13.11.11 18:19:55][info] Value: "Registrierung"
+[13.11.11 18:19:55][info] Entry "message" found!
+[13.11.11 18:19:55][info] Value: "Meldung"
+[13.11.11 18:19:55][info] Entry "loginid" found!
+[13.11.11 18:19:55][info] Value: "Login"
+[13.11.11 18:19:55][fail] Entry "username" NOT found!
+[13.11.11 18:19:55][info] Entry "password" found!
+[13.11.11 18:19:55][info] Value: "Passwort"
+[13.11.11 18:19:55][info] Entry "password" found!
+[13.11.11 18:19:55][info] Value: "Passwort"
+[13.11.11 18:19:55][info] Entry "language" found!
+[13.11.11 18:19:55][info] Value: "Sprache"
+[13.11.11 18:19:55][info] Entry "lang_de" found!
+[13.11.11 18:19:55][info] Value: "Deutsch"
+[13.11.11 18:19:55][info] Entry "lang_en" found!
+[13.11.11 18:19:55][info] Value: "Englisch"
+[13.11.11 18:19:55][info] Entry "login" found!
+[13.11.11 18:19:55][info] Value: "Login"
+[13.11.11 18:19:55][Logger] ----------| Log closed |----------
+[13.11.11 18:30:47][Logger] ----------> Log opened <----------
+[13.11.11 18:30:47][info] Selected language "de"
+[13.11.11 18:30:47][success] Language loaded
+[13.11.11 18:30:47][info] Entry "login" found!
+[13.11.11 18:30:47][info] Value: "Login"
+[13.11.11 18:30:47][info] Entry "internalerror" found!
+[13.11.11 18:30:47][info] Value: "Ein interner Fehler ist aufgetreten, bitte informiere einen Administrator."
+[13.11.11 18:30:47][info] Selected language "de"
+[13.11.11 18:30:47][success] Language loaded
+[13.11.11 18:30:47][info] Entry "btn_home" found!
+[13.11.11 18:30:47][info] Value: "Home"
+[13.11.11 18:30:47][info] Entry "registration" found!
+[13.11.11 18:30:47][info] Value: "Registrierung"
+[13.11.11 18:30:47][info] Entry "message" found!
+[13.11.11 18:30:47][info] Value: "Meldung"
+[13.11.11 18:30:47][info] Entry "loginid" found!
+[13.11.11 18:30:47][info] Value: "Login"
+[13.11.11 18:30:47][fail] Entry "username" NOT found!
+[13.11.11 18:30:47][info] Entry "password" found!
+[13.11.11 18:30:47][info] Value: "Passwort"
+[13.11.11 18:30:47][info] Entry "password" found!
+[13.11.11 18:30:47][info] Value: "Passwort"
+[13.11.11 18:30:47][info] Entry "language" found!
+[13.11.11 18:30:47][info] Value: "Sprache"
+[13.11.11 18:30:47][info] Entry "lang_de" found!
+[13.11.11 18:30:47][info] Value: "Deutsch"
+[13.11.11 18:30:47][info] Entry "lang_en" found!
+[13.11.11 18:30:47][info] Value: "Englisch"
+[13.11.11 18:30:47][info] Entry "login" found!
+[13.11.11 18:30:47][info] Value: "Login"
+[13.11.11 18:30:47][Logger] ----------| Log closed |----------
+[13.11.11 18:31:44][Logger] ----------> Log opened <----------
+[13.11.11 18:31:44][info] Selected language "de"
+[13.11.11 18:31:44][success] Language loaded
+[13.11.11 18:31:44][info] Entry "alreadyloggedin" found!
+[13.11.11 18:31:44][info] Value: "Du bist doch schon eingeloggt!"
+[13.11.11 18:31:44][Logger] ----------| Log closed |----------
+[13.11.11 18:31:44][Logger] ----------> Log opened <----------
+[13.11.11 18:31:44][info] Selected language "de"
+[13.11.11 18:31:44][success] Language loaded
+[13.11.11 18:31:44][info] Entry "home" found!
+[13.11.11 18:31:44][info] Value: "Home"
+[13.11.11 18:31:44][info] Entry "about" found!
+[13.11.11 18:31:44][info] Value: "Über"
+[13.11.11 18:31:44][info] Selected language "de"
+[13.11.11 18:31:44][success] Language loaded
+[13.11.11 18:31:44][info] Entry "message" found!
+[13.11.11 18:31:44][info] Value: "Meldung"
+[13.11.11 18:31:44][info] Entry "pages" found!
+[13.11.11 18:31:44][info] Value: "Seiten"
+[13.11.11 18:31:44][info] Entry "serverinfo" found!
+[13.11.11 18:31:44][info] Value: "Server-Informationen"
+[13.11.11 18:31:44][info] Entry "manplayers" found!
+[13.11.11 18:31:44][info] Value: "Spieler-Verwaltung"
+[13.11.11 18:31:44][info] Entry "manworlds" found!
+[13.11.11 18:31:44][info] Value: "Welten-Verwaltung"
+[13.11.11 18:31:44][info] Entry "manplugins" found!
+[13.11.11 18:31:44][info] Value: "Plugin-Verwaltung"
+[13.11.11 18:31:44][info] Entry "stats" found!
+[13.11.11 18:31:44][info] Value: "Statistiken"
+[13.11.11 18:31:44][info] Entry "downloads" found!
+[13.11.11 18:31:44][info] Value: "Downloads"
+[13.11.11 18:31:44][info] Entry "user" found!
+[13.11.11 18:31:44][info] Value: "Benutzer"
+[13.11.11 18:31:44][info] Entry "profile" found!
+[13.11.11 18:31:44][info] Value: "Profil"
+[13.11.11 18:31:44][info] Entry "logout" found!
+[13.11.11 18:31:44][info] Value: "Ausloggen"
+[13.11.11 18:31:44][info] Entry "confirm_logout" found!
+[13.11.11 18:31:44][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 18:31:44][Logger] ----------| Log closed |----------
+[13.11.11 18:31:44][Logger] ----------> Log opened <----------
+[13.11.11 18:31:44][info] Selected language "de"
+[13.11.11 18:31:44][success] Language loaded
+[13.11.11 18:31:44][Logger] ----------| Log closed |----------
+[13.11.11 18:31:51][Logger] ----------> Log opened <----------
+[13.11.11 18:31:51][info] Selected language "de"
+[13.11.11 18:31:51][success] Language loaded
+[13.11.11 18:31:53][Logger] ----------> Log opened <----------
+[13.11.11 18:31:53][info] Selected language "de"
+[13.11.11 18:31:53][success] Language loaded
+[13.11.11 18:32:18][Logger] ----------> Log opened <----------
+[13.11.11 18:32:18][info] Selected language "de"
+[13.11.11 18:32:18][success] Language loaded
+[13.11.11 18:32:18][Logger] ----------| Log closed |----------
+[13.11.11 18:32:48][Logger] ----------> Log opened <----------
+[13.11.11 18:32:48][info] Selected language "de"
+[13.11.11 18:32:48][success] Language loaded
+[13.11.11 18:32:48][info] Entry "notloggedin" found!
+[13.11.11 18:32:48][info] Value: "Du musst dich erst einloggen ;)!"
+[13.11.11 18:32:48][Logger] ----------| Log closed |----------
+[13.11.11 18:32:48][Logger] ----------> Log opened <----------
+[13.11.11 18:32:48][info] Selected language "de"
+[13.11.11 18:32:48][success] Language loaded
+[13.11.11 18:32:48][info] Entry "home" found!
+[13.11.11 18:32:48][info] Value: "Home"
+[13.11.11 18:32:48][info] Entry "about" found!
+[13.11.11 18:32:48][info] Value: "Über"
+[13.11.11 18:32:48][info] Selected language "de"
+[13.11.11 18:32:48][success] Language loaded
+[13.11.11 18:32:48][info] Entry "message" found!
+[13.11.11 18:32:48][info] Value: "Meldung"
+[13.11.11 18:32:48][info] Entry "pages" found!
+[13.11.11 18:32:48][info] Value: "Seiten"
+[13.11.11 18:32:48][info] Entry "registration" found!
+[13.11.11 18:32:48][info] Value: "Registrierung"
+[13.11.11 18:32:48][info] Entry "login" found!
+[13.11.11 18:32:48][info] Value: "Login"
+[13.11.11 18:32:48][info] Entry "stats" found!
+[13.11.11 18:32:48][info] Value: "Statistiken"
+[13.11.11 18:32:48][info] Entry "downloads" found!
+[13.11.11 18:32:48][info] Value: "Downloads"
+[13.11.11 18:32:48][info] Entry "confirm_logout" found!
+[13.11.11 18:32:48][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 18:32:48][Logger] ----------| Log closed |----------
+[13.11.11 18:32:48][Logger] ----------> Log opened <----------
+[13.11.11 18:32:48][info] Selected language "de"
+[13.11.11 18:32:48][success] Language loaded
+[13.11.11 18:32:48][Logger] ----------| Log closed |----------
+[13.11.11 18:32:52][Logger] ----------> Log opened <----------
+[13.11.11 18:32:52][info] Selected language "de"
+[13.11.11 18:32:52][success] Language loaded
+[13.11.11 18:32:52][info] Entry "login" found!
+[13.11.11 18:32:52][info] Value: "Login"
+[13.11.11 18:32:52][info] Selected language "de"
+[13.11.11 18:32:52][success] Language loaded
+[13.11.11 18:32:52][info] Entry "btn_home" found!
+[13.11.11 18:32:52][info] Value: "Home"
+[13.11.11 18:32:52][info] Entry "registration" found!
+[13.11.11 18:32:52][info] Value: "Registrierung"
+[13.11.11 18:32:52][info] Entry "loginid" found!
+[13.11.11 18:32:52][info] Value: "Login"
+[13.11.11 18:32:52][fail] Entry "username" NOT found!
+[13.11.11 18:32:52][info] Entry "password" found!
+[13.11.11 18:32:52][info] Value: "Passwort"
+[13.11.11 18:32:52][info] Entry "password" found!
+[13.11.11 18:32:52][info] Value: "Passwort"
+[13.11.11 18:32:52][info] Entry "language" found!
+[13.11.11 18:32:52][info] Value: "Sprache"
+[13.11.11 18:32:52][info] Entry "lang_de" found!
+[13.11.11 18:32:52][info] Value: "Deutsch"
+[13.11.11 18:32:52][info] Entry "lang_en" found!
+[13.11.11 18:32:52][info] Value: "Englisch"
+[13.11.11 18:32:52][info] Entry "login" found!
+[13.11.11 18:32:52][info] Value: "Login"
+[13.11.11 18:32:52][Logger] ----------| Log closed |----------
+[13.11.11 18:33:31][Logger] ----------> Log opened <----------
+[13.11.11 18:33:31][info] Selected language "de"
+[13.11.11 18:33:31][success] Language loaded
+[13.11.11 18:33:31][info] Entry "login" found!
+[13.11.11 18:33:31][info] Value: "Login"
+[13.11.11 18:33:31][info] Entry "internalerror" found!
+[13.11.11 18:33:31][info] Value: "Ein interner Fehler ist aufgetreten, bitte informiere einen Administrator."
+[13.11.11 18:33:31][info] Selected language "de"
+[13.11.11 18:33:31][success] Language loaded
+[13.11.11 18:33:31][info] Entry "btn_home" found!
+[13.11.11 18:33:31][info] Value: "Home"
+[13.11.11 18:33:31][info] Entry "registration" found!
+[13.11.11 18:33:31][info] Value: "Registrierung"
+[13.11.11 18:33:31][info] Entry "message" found!
+[13.11.11 18:33:31][info] Value: "Meldung"
+[13.11.11 18:33:31][info] Entry "loginid" found!
+[13.11.11 18:33:31][info] Value: "Login"
+[13.11.11 18:33:31][info] Entry "loginid" found!
+[13.11.11 18:33:31][info] Value: "Login"
+[13.11.11 18:33:31][info] Entry "password" found!
+[13.11.11 18:33:31][info] Value: "Passwort"
+[13.11.11 18:33:31][info] Entry "password" found!
+[13.11.11 18:33:31][info] Value: "Passwort"
+[13.11.11 18:33:31][info] Entry "language" found!
+[13.11.11 18:33:31][info] Value: "Sprache"
+[13.11.11 18:33:31][info] Entry "lang_de" found!
+[13.11.11 18:33:31][info] Value: "Deutsch"
+[13.11.11 18:33:31][info] Entry "lang_en" found!
+[13.11.11 18:33:31][info] Value: "Englisch"
+[13.11.11 18:33:31][info] Entry "login" found!
+[13.11.11 18:33:31][info] Value: "Login"
+[13.11.11 18:33:31][Logger] ----------| Log closed |----------
+[13.11.11 18:37:18][Logger] ----------> Log opened <----------
+[13.11.11 18:37:18][info] Selected language "de"
+[13.11.11 18:37:18][success] Language loaded
+[13.11.11 18:37:18][info] Entry "alreadyloggedin" found!
+[13.11.11 18:37:18][info] Value: "Du bist doch schon eingeloggt!"
+[13.11.11 18:37:18][Logger] ----------| Log closed |----------
+[13.11.11 18:37:18][Logger] ----------> Log opened <----------
+[13.11.11 18:37:18][info] Selected language "de"
+[13.11.11 18:37:18][success] Language loaded
+[13.11.11 18:37:18][info] Entry "home" found!
+[13.11.11 18:37:18][info] Value: "Home"
+[13.11.11 18:37:18][info] Entry "about" found!
+[13.11.11 18:37:18][info] Value: "Über"
+[13.11.11 18:37:18][info] Selected language "de"
+[13.11.11 18:37:18][success] Language loaded
+[13.11.11 18:37:18][info] Entry "message" found!
+[13.11.11 18:37:18][info] Value: "Meldung"
+[13.11.11 18:37:18][info] Entry "pages" found!
+[13.11.11 18:37:18][info] Value: "Seiten"
+[13.11.11 18:37:18][info] Entry "serverinfo" found!
+[13.11.11 18:37:18][info] Value: "Server-Informationen"
+[13.11.11 18:37:18][info] Entry "manplayers" found!
+[13.11.11 18:37:18][info] Value: "Spieler-Verwaltung"
+[13.11.11 18:37:18][info] Entry "manworlds" found!
+[13.11.11 18:37:18][info] Value: "Welten-Verwaltung"
+[13.11.11 18:37:18][info] Entry "manplugins" found!
+[13.11.11 18:37:18][info] Value: "Plugin-Verwaltung"
+[13.11.11 18:37:18][info] Entry "stats" found!
+[13.11.11 18:37:18][info] Value: "Statistiken"
+[13.11.11 18:37:18][info] Entry "downloads" found!
+[13.11.11 18:37:18][info] Value: "Downloads"
+[13.11.11 18:37:18][info] Entry "user" found!
+[13.11.11 18:37:18][info] Value: "Benutzer"
+[13.11.11 18:37:18][info] Entry "profile" found!
+[13.11.11 18:37:18][info] Value: "Profil"
+[13.11.11 18:37:18][info] Entry "logout" found!
+[13.11.11 18:37:18][info] Value: "Ausloggen"
+[13.11.11 18:37:18][info] Entry "confirm_logout" found!
+[13.11.11 18:37:18][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 18:37:18][Logger] ----------| Log closed |----------
+[13.11.11 18:37:22][Logger] ----------> Log opened <----------
+[13.11.11 18:37:22][info] Selected language "de"
+[13.11.11 18:37:22][success] Language loaded
+[13.11.11 18:37:22][info] Entry "serverinfos" found!
+[13.11.11 18:37:22][info] Value: "Serverinfos"
+[13.11.11 18:37:25][Logger] ----------> Log opened <----------
+[13.11.11 18:37:25][info] Selected language "de"
+[13.11.11 18:37:25][success] Language loaded
+[13.11.11 18:37:25][info] Entry "serverinfos" found!
+[13.11.11 18:37:25][info] Value: "Serverinfos"
+[13.11.11 18:38:07][Logger] ----------> Log opened <----------
+[13.11.11 18:38:07][info] Selected language "de"
+[13.11.11 18:38:07][success] Language loaded
+[13.11.11 18:38:07][info] Entry "serverinfos" found!
+[13.11.11 18:38:07][info] Value: "Serverinfos"
+[13.11.11 18:38:07][info] Selected language "de"
+[13.11.11 18:38:07][success] Language loaded
+[13.11.11 18:38:07][info] Entry "btn_home" found!
+[13.11.11 18:38:07][info] Value: "Home"
+[13.11.11 18:38:07][info] Entry "refresh" found!
+[13.11.11 18:38:07][info] Value: "Erneuern"
+[13.11.11 18:38:07][info] Entry "serverinfos" found!
+[13.11.11 18:38:07][info] Value: "Serverinfos"
+[13.11.11 18:38:07][info] Entry "servername" found!
+[13.11.11 18:38:07][info] Value: "Servername"
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "serverip" found!
+[13.11.11 18:38:07][info] Value: "Server-IP"
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "serverport" found!
+[13.11.11 18:38:07][info] Value: "Serverport"
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "uptime" found!
+[13.11.11 18:38:07][info] Value: "Laufzeit"
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "players" found!
+[13.11.11 18:38:07][info] Value: "Spieler"
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "worlds" found!
+[13.11.11 18:38:07][info] Value: "Welten"
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "plugins" found!
+[13.11.11 18:38:07][info] Value: "Plugins"
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "utils" found!
+[13.11.11 18:38:07][info] Value: "Funktionen"
+[13.11.11 18:38:07][info] Entry "ram" found!
+[13.11.11 18:38:07][info] Value: "Arbeitsspeicher"
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "progress" found!
+[13.11.11 18:38:07][info] Value: "Lade..."
+[13.11.11 18:38:07][info] Entry "banplayer" found!
+[13.11.11 18:38:07][info] Value: "Ban einen Spieler"
+[13.11.11 18:38:07][info] Entry "banip" found!
+[13.11.11 18:38:07][info] Value: "Ban eine IP"
+[13.11.11 18:38:07][info] Entry "addtowhitelist" found!
+[13.11.11 18:38:07][info] Value: "Whiteliste einen Spieler"
+[13.11.11 18:38:07][info] Entry "addoperator" found!
+[13.11.11 18:38:07][info] Value: "Füg einen Operator hinzu"
+[13.11.11 18:38:07][info] Entry "broadcast" found!
+[13.11.11 18:38:07][info] Value: "Eine Nachricht an den Server"
+[13.11.11 18:38:07][info] Entry "consoleview" found!
+[13.11.11 18:38:07][info] Value: "Konsolenansicht"
+[13.11.11 18:38:07][info] Entry "reload" found!
+[13.11.11 18:38:07][info] Value: "Neuladen"
+[13.11.11 18:38:07][info] Entry "stop" found!
+[13.11.11 18:38:07][info] Value: "Den Server beenden"
+[13.11.11 18:38:07][Logger] ----------> Log opened <----------
+[13.11.11 18:38:07][info] Selected language "de"
+[13.11.11 18:38:07][success] Language loaded
+[13.11.11 18:38:07][Logger] ----------| Log closed |----------
+[13.11.11 18:47:15][Logger] ----------> Log opened <----------
+[13.11.11 18:47:15][info] Selected language "de"
+[13.11.11 18:47:15][success] Language loaded
+[13.11.11 18:47:15][info] Entry "serverinfos" found!
+[13.11.11 18:47:15][info] Value: "Serverinfos"
+[13.11.11 18:47:15][info] Selected language "de"
+[13.11.11 18:47:15][success] Language loaded
+[13.11.11 18:47:15][info] Entry "btn_home" found!
+[13.11.11 18:47:15][info] Value: "Home"
+[13.11.11 18:47:15][info] Entry "refresh" found!
+[13.11.11 18:47:15][info] Value: "Erneuern"
+[13.11.11 18:47:15][info] Entry "serverinfos" found!
+[13.11.11 18:47:15][info] Value: "Serverinfos"
+[13.11.11 18:47:15][info] Entry "servername" found!
+[13.11.11 18:47:15][info] Value: "Servername"
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "serverip" found!
+[13.11.11 18:47:15][info] Value: "Server-IP"
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "serverport" found!
+[13.11.11 18:47:15][info] Value: "Serverport"
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "uptime" found!
+[13.11.11 18:47:15][info] Value: "Laufzeit"
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "players" found!
+[13.11.11 18:47:15][info] Value: "Spieler"
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "worlds" found!
+[13.11.11 18:47:15][info] Value: "Welten"
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "plugins" found!
+[13.11.11 18:47:15][info] Value: "Plugins"
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "utils" found!
+[13.11.11 18:47:15][info] Value: "Funktionen"
+[13.11.11 18:47:15][info] Entry "ram" found!
+[13.11.11 18:47:15][info] Value: "Arbeitsspeicher"
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "progress" found!
+[13.11.11 18:47:15][info] Value: "Lade..."
+[13.11.11 18:47:15][info] Entry "banplayer" found!
+[13.11.11 18:47:15][info] Value: "Ban einen Spieler"
+[13.11.11 18:47:15][info] Entry "banip" found!
+[13.11.11 18:47:15][info] Value: "Ban eine IP"
+[13.11.11 18:47:15][info] Entry "addtowhitelist" found!
+[13.11.11 18:47:15][info] Value: "Whiteliste einen Spieler"
+[13.11.11 18:47:15][info] Entry "addoperator" found!
+[13.11.11 18:47:15][info] Value: "Füg einen Operator hinzu"
+[13.11.11 18:47:15][info] Entry "broadcast" found!
+[13.11.11 18:47:15][info] Value: "Eine Nachricht an den Server"
+[13.11.11 18:47:15][info] Entry "consoleview" found!
+[13.11.11 18:47:15][info] Value: "Konsolenansicht"
+[13.11.11 18:47:15][info] Entry "reload" found!
+[13.11.11 18:47:15][info] Value: "Neuladen"
+[13.11.11 18:47:15][info] Entry "stop" found!
+[13.11.11 18:47:15][info] Value: "Den Server beenden"
+[13.11.11 18:47:15][Logger] ----------> Log opened <----------
+[13.11.11 18:47:15][info] Selected language "de"
+[13.11.11 18:47:15][success] Language loaded
+[13.11.11 18:47:15][Logger] ----------| Log closed |----------
+[13.11.11 18:47:27][Logger] ----------> Log opened <----------
+[13.11.11 18:47:27][info] Selected language "de"
+[13.11.11 18:47:27][success] Language loaded
+[13.11.11 18:47:27][info] Entry "serverinfos" found!
+[13.11.11 18:47:27][info] Value: "Serverinfos"
+[13.11.11 18:47:27][info] Selected language "de"
+[13.11.11 18:47:27][success] Language loaded
+[13.11.11 18:47:27][info] Entry "btn_home" found!
+[13.11.11 18:47:27][info] Value: "Home"
+[13.11.11 18:47:27][info] Entry "refresh" found!
+[13.11.11 18:47:27][info] Value: "Erneuern"
+[13.11.11 18:47:27][info] Entry "serverinfos" found!
+[13.11.11 18:47:27][info] Value: "Serverinfos"
+[13.11.11 18:47:27][info] Entry "servername" found!
+[13.11.11 18:47:27][info] Value: "Servername"
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "serverip" found!
+[13.11.11 18:47:27][info] Value: "Server-IP"
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "serverport" found!
+[13.11.11 18:47:27][info] Value: "Serverport"
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "uptime" found!
+[13.11.11 18:47:27][info] Value: "Laufzeit"
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "players" found!
+[13.11.11 18:47:27][info] Value: "Spieler"
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "worlds" found!
+[13.11.11 18:47:27][info] Value: "Welten"
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "plugins" found!
+[13.11.11 18:47:27][info] Value: "Plugins"
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "utils" found!
+[13.11.11 18:47:27][info] Value: "Funktionen"
+[13.11.11 18:47:27][info] Entry "ram" found!
+[13.11.11 18:47:27][info] Value: "Arbeitsspeicher"
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "progress" found!
+[13.11.11 18:47:27][info] Value: "Lade..."
+[13.11.11 18:47:27][info] Entry "banplayer" found!
+[13.11.11 18:47:27][info] Value: "Ban einen Spieler"
+[13.11.11 18:47:27][info] Entry "banip" found!
+[13.11.11 18:47:27][info] Value: "Ban eine IP"
+[13.11.11 18:47:27][info] Entry "addtowhitelist" found!
+[13.11.11 18:47:27][info] Value: "Whiteliste einen Spieler"
+[13.11.11 18:47:27][info] Entry "addoperator" found!
+[13.11.11 18:47:27][info] Value: "Füg einen Operator hinzu"
+[13.11.11 18:47:27][info] Entry "broadcast" found!
+[13.11.11 18:47:27][info] Value: "Eine Nachricht an den Server"
+[13.11.11 18:47:27][info] Entry "consoleview" found!
+[13.11.11 18:47:27][info] Value: "Konsolenansicht"
+[13.11.11 18:47:27][info] Entry "reload" found!
+[13.11.11 18:47:27][info] Value: "Neuladen"
+[13.11.11 18:47:27][info] Entry "stop" found!
+[13.11.11 18:47:27][info] Value: "Den Server beenden"
+[13.11.11 19:08:16][Logger] ----------> Log opened <----------
+[13.11.11 19:08:16][info] Selected language "de"
+[13.11.11 19:08:16][success] Language loaded
+[13.11.11 19:08:16][info] Entry "serverinfos" found!
+[13.11.11 19:08:16][info] Value: "Serverinfos"
+[13.11.11 19:08:16][info] Selected language "de"
+[13.11.11 19:08:16][success] Language loaded
+[13.11.11 19:08:16][info] Entry "btn_home" found!
+[13.11.11 19:08:16][info] Value: "Home"
+[13.11.11 19:08:16][info] Entry "refresh" found!
+[13.11.11 19:08:16][info] Value: "Erneuern"
+[13.11.11 19:08:16][info] Entry "serverinfos" found!
+[13.11.11 19:08:16][info] Value: "Serverinfos"
+[13.11.11 19:08:16][info] Entry "servername" found!
+[13.11.11 19:08:16][info] Value: "Servername"
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "serverip" found!
+[13.11.11 19:08:16][info] Value: "Server-IP"
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "serverport" found!
+[13.11.11 19:08:16][info] Value: "Serverport"
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "uptime" found!
+[13.11.11 19:08:16][info] Value: "Laufzeit"
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "players" found!
+[13.11.11 19:08:16][info] Value: "Spieler"
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "worlds" found!
+[13.11.11 19:08:16][info] Value: "Welten"
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "plugins" found!
+[13.11.11 19:08:16][info] Value: "Plugins"
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "utils" found!
+[13.11.11 19:08:16][info] Value: "Funktionen"
+[13.11.11 19:08:16][info] Entry "ram" found!
+[13.11.11 19:08:16][info] Value: "Arbeitsspeicher"
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "progress" found!
+[13.11.11 19:08:16][info] Value: "Lade..."
+[13.11.11 19:08:16][info] Entry "banplayer" found!
+[13.11.11 19:08:16][info] Value: "Ban einen Spieler"
+[13.11.11 19:08:16][info] Entry "banip" found!
+[13.11.11 19:08:16][info] Value: "Ban eine IP"
+[13.11.11 19:08:16][info] Entry "addtowhitelist" found!
+[13.11.11 19:08:16][info] Value: "Whiteliste einen Spieler"
+[13.11.11 19:08:16][info] Entry "addoperator" found!
+[13.11.11 19:08:16][info] Value: "Füg einen Operator hinzu"
+[13.11.11 19:08:16][info] Entry "broadcast" found!
+[13.11.11 19:08:16][info] Value: "Eine Nachricht an den Server"
+[13.11.11 19:08:16][info] Entry "consoleview" found!
+[13.11.11 19:08:16][info] Value: "Konsolenansicht"
+[13.11.11 19:08:16][info] Entry "reload" found!
+[13.11.11 19:08:16][info] Value: "Neuladen"
+[13.11.11 19:08:16][info] Entry "stop" found!
+[13.11.11 19:08:16][info] Value: "Den Server beenden"
+[13.11.11 19:08:16][Logger] ----------> Log opened <----------
+[13.11.11 19:08:16][info] Selected language "de"
+[13.11.11 19:08:16][success] Language loaded
+[13.11.11 19:08:16][Logger] ----------| Log closed |----------
+[13.11.11 19:08:25][Logger] ----------> Log opened <----------
+[13.11.11 19:08:25][info] Selected language "de"
+[13.11.11 19:08:25][success] Language loaded
+[13.11.11 19:08:25][info] Entry "serverinfos" found!
+[13.11.11 19:08:25][info] Value: "Serverinfos"
+[13.11.11 19:08:25][info] Selected language "de"
+[13.11.11 19:08:25][success] Language loaded
+[13.11.11 19:08:25][info] Entry "btn_home" found!
+[13.11.11 19:08:25][info] Value: "Home"
+[13.11.11 19:08:25][info] Entry "refresh" found!
+[13.11.11 19:08:25][info] Value: "Erneuern"
+[13.11.11 19:08:25][info] Entry "serverinfos" found!
+[13.11.11 19:08:25][info] Value: "Serverinfos"
+[13.11.11 19:08:25][info] Entry "servername" found!
+[13.11.11 19:08:25][info] Value: "Servername"
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "serverip" found!
+[13.11.11 19:08:25][info] Value: "Server-IP"
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "serverport" found!
+[13.11.11 19:08:25][info] Value: "Serverport"
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "uptime" found!
+[13.11.11 19:08:25][info] Value: "Laufzeit"
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "players" found!
+[13.11.11 19:08:25][info] Value: "Spieler"
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "worlds" found!
+[13.11.11 19:08:25][info] Value: "Welten"
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "plugins" found!
+[13.11.11 19:08:25][info] Value: "Plugins"
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "utils" found!
+[13.11.11 19:08:25][info] Value: "Funktionen"
+[13.11.11 19:08:25][info] Entry "ram" found!
+[13.11.11 19:08:25][info] Value: "Arbeitsspeicher"
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "progress" found!
+[13.11.11 19:08:25][info] Value: "Lade..."
+[13.11.11 19:08:25][info] Entry "banplayer" found!
+[13.11.11 19:08:25][info] Value: "Ban einen Spieler"
+[13.11.11 19:08:25][info] Entry "banip" found!
+[13.11.11 19:08:25][info] Value: "Ban eine IP"
+[13.11.11 19:08:25][info] Entry "addtowhitelist" found!
+[13.11.11 19:08:25][info] Value: "Whiteliste einen Spieler"
+[13.11.11 19:08:25][info] Entry "addoperator" found!
+[13.11.11 19:08:25][info] Value: "Füg einen Operator hinzu"
+[13.11.11 19:08:25][info] Entry "broadcast" found!
+[13.11.11 19:08:25][info] Value: "Eine Nachricht an den Server"
+[13.11.11 19:08:25][info] Entry "consoleview" found!
+[13.11.11 19:08:25][info] Value: "Konsolenansicht"
+[13.11.11 19:08:25][info] Entry "reload" found!
+[13.11.11 19:08:25][info] Value: "Neuladen"
+[13.11.11 19:08:25][info] Entry "stop" found!
+[13.11.11 19:08:25][info] Value: "Den Server beenden"
+[13.11.11 19:08:25][Logger] ----------> Log opened <----------
+[13.11.11 19:08:25][info] Selected language "de"
+[13.11.11 19:08:25][success] Language loaded
+[13.11.11 19:08:25][Logger] ----------| Log closed |----------
+[13.11.11 19:10:37][Logger] ----------> Log opened <----------
+[13.11.11 19:10:37][info] Selected language "de"
+[13.11.11 19:10:37][success] Language loaded
+[13.11.11 19:10:37][info] Entry "serverinfos" found!
+[13.11.11 19:10:37][info] Value: "Serverinfos"
+[13.11.11 19:10:37][info] Selected language "de"
+[13.11.11 19:10:37][success] Language loaded
+[13.11.11 19:10:37][info] Entry "btn_home" found!
+[13.11.11 19:10:37][info] Value: "Home"
+[13.11.11 19:10:37][info] Entry "refresh" found!
+[13.11.11 19:10:37][info] Value: "Erneuern"
+[13.11.11 19:10:37][info] Entry "serverinfos" found!
+[13.11.11 19:10:37][info] Value: "Serverinfos"
+[13.11.11 19:10:37][info] Entry "servername" found!
+[13.11.11 19:10:37][info] Value: "Servername"
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:37][info] Value: "Lade..."
+[13.11.11 19:10:37][info] Entry "serverip" found!
+[13.11.11 19:10:37][info] Value: "Server-IP"
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:37][info] Value: "Lade..."
+[13.11.11 19:10:37][info] Entry "serverport" found!
+[13.11.11 19:10:37][info] Value: "Serverport"
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:37][info] Value: "Lade..."
+[13.11.11 19:10:37][info] Entry "uptime" found!
+[13.11.11 19:10:37][info] Value: "Laufzeit"
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:37][info] Value: "Lade..."
+[13.11.11 19:10:37][info] Entry "players" found!
+[13.11.11 19:10:37][info] Value: "Spieler"
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:37][info] Value: "Lade..."
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:37][info] Value: "Lade..."
+[13.11.11 19:10:37][info] Entry "worlds" found!
+[13.11.11 19:10:37][info] Value: "Welten"
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:37][info] Value: "Lade..."
+[13.11.11 19:10:37][info] Entry "plugins" found!
+[13.11.11 19:10:37][info] Value: "Plugins"
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:37][info] Value: "Lade..."
+[13.11.11 19:10:37][info] Entry "utils" found!
+[13.11.11 19:10:37][info] Value: "Funktionen"
+[13.11.11 19:10:37][info] Entry "ram" found!
+[13.11.11 19:10:37][info] Value: "Arbeitsspeicher"
+[13.11.11 19:10:37][info] Entry "progress" found!
+[13.11.11 19:10:38][info] Value: "Lade..."
+[13.11.11 19:10:38][info] Entry "progress" found!
+[13.11.11 19:10:38][info] Value: "Lade..."
+[13.11.11 19:10:38][info] Entry "banplayer" found!
+[13.11.11 19:10:38][info] Value: "Ban einen Spieler"
+[13.11.11 19:10:38][info] Entry "banip" found!
+[13.11.11 19:10:38][info] Value: "Ban eine IP"
+[13.11.11 19:10:38][info] Entry "addtowhitelist" found!
+[13.11.11 19:10:38][info] Value: "Whiteliste einen Spieler"
+[13.11.11 19:10:38][info] Entry "addoperator" found!
+[13.11.11 19:10:38][info] Value: "Füg einen Operator hinzu"
+[13.11.11 19:10:38][info] Entry "broadcast" found!
+[13.11.11 19:10:38][info] Value: "Eine Nachricht an den Server"
+[13.11.11 19:10:38][info] Entry "consoleview" found!
+[13.11.11 19:10:38][info] Value: "Konsolenansicht"
+[13.11.11 19:10:38][info] Entry "reload" found!
+[13.11.11 19:10:38][info] Value: "Neuladen"
+[13.11.11 19:10:38][info] Entry "stop" found!
+[13.11.11 19:10:38][info] Value: "Den Server beenden"
+[13.11.11 19:10:38][info] Entry "uptime_format" found!
+[13.11.11 19:10:38][info] Value: "{0} Tag(e), {1} Stunde(n), {2} Minute(n) und {3} Sekunde(n)"
+[13.11.11 19:10:38][info] Entry "confirm_reload" found!
+[13.11.11 19:10:38][info] Value: "Willst du den Server wirklich neuladen?"
+[13.11.11 19:10:38][info] Entry "reload_success" found!
+[13.11.11 19:10:38][info] Value: "Server erfolgreich neugeladen!\nDaten werden erneuert..."
+[13.11.11 19:10:38][info] Entry "gc_confirm" found!
+[13.11.11 19:10:38][info] Value: "Willst du den GarbageCollector wirklich aufrufen?"
+[13.11.11 19:10:38][info] Entry "gc_success" found!
+[13.11.11 19:10:38][info] Value: "GarbageCollector erfolgreich ausgeführt!"
+[13.11.11 19:10:38][info] Entry "stop_confirm" found!
+[13.11.11 19:10:38][info] Value: "Willst du den Server wirklich beenden?"
+[13.11.11 19:10:38][info] Entry "stop_confirm2" found!
+[13.11.11 19:10:38][info] Value: "Wirklich wirklich??"
+[13.11.11 19:10:38][info] Entry "stop_success" found!
+[13.11.11 19:10:38][info] Value: "Der Server wurde erfolgreich beendet!"
+[13.11.11 19:10:38][info] Entry "broadcast_prompt" found!
+[13.11.11 19:10:38][info] Value: "Gib die Nachricht ein:"
+[13.11.11 19:10:38][info] Entry "broadcast_success" found!
+[13.11.11 19:10:38][info] Value: "Nachricht erfolgreich gesendet!"
+[13.11.11 19:10:38][Logger] ----------| Log closed |----------
+[13.11.11 19:10:38][Logger] ----------> Log opened <----------
+[13.11.11 19:10:38][info] Selected language "de"
+[13.11.11 19:10:38][success] Language loaded
+[13.11.11 19:10:38][Logger] ----------| Log closed |----------
+[13.11.11 19:11:22][Logger] ----------> Log opened <----------
+[13.11.11 19:11:22][info] Selected language "de"
+[13.11.11 19:11:22][success] Language loaded
+[13.11.11 19:11:22][info] Entry "home" found!
+[13.11.11 19:11:22][info] Value: "Home"
+[13.11.11 19:11:22][info] Entry "about" found!
+[13.11.11 19:11:22][info] Value: "Über"
+[13.11.11 19:11:22][info] Selected language "de"
+[13.11.11 19:11:22][success] Language loaded
+[13.11.11 19:11:22][info] Entry "pages" found!
+[13.11.11 19:11:22][info] Value: "Seiten"
+[13.11.11 19:11:22][info] Entry "serverinfo" found!
+[13.11.11 19:11:22][info] Value: "Server-Informationen"
+[13.11.11 19:11:22][info] Entry "manplayers" found!
+[13.11.11 19:11:22][info] Value: "Spieler-Verwaltung"
+[13.11.11 19:11:22][info] Entry "manworlds" found!
+[13.11.11 19:11:22][info] Value: "Welten-Verwaltung"
+[13.11.11 19:11:22][info] Entry "manplugins" found!
+[13.11.11 19:11:22][info] Value: "Plugin-Verwaltung"
+[13.11.11 19:11:22][info] Entry "stats" found!
+[13.11.11 19:11:22][info] Value: "Statistiken"
+[13.11.11 19:11:22][info] Entry "downloads" found!
+[13.11.11 19:11:22][info] Value: "Downloads"
+[13.11.11 19:11:22][info] Entry "user" found!
+[13.11.11 19:11:22][info] Value: "Benutzer"
+[13.11.11 19:11:22][info] Entry "profile" found!
+[13.11.11 19:11:22][info] Value: "Profil"
+[13.11.11 19:11:22][info] Entry "logout" found!
+[13.11.11 19:11:22][info] Value: "Ausloggen"
+[13.11.11 19:11:22][info] Entry "confirm_logout" found!
+[13.11.11 19:11:22][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 19:11:22][Logger] ----------| Log closed |----------
+[13.11.11 19:11:23][Logger] ----------> Log opened <----------
+[13.11.11 19:11:23][info] Selected language "de"
+[13.11.11 19:11:23][success] Language loaded
+[13.11.11 19:11:23][info] Entry "serverinfos" found!
+[13.11.11 19:11:23][info] Value: "Serverinfos"
+[13.11.11 19:11:23][info] Selected language "de"
+[13.11.11 19:11:23][success] Language loaded
+[13.11.11 19:11:23][info] Entry "btn_home" found!
+[13.11.11 19:11:23][info] Value: "Home"
+[13.11.11 19:11:23][info] Entry "refresh" found!
+[13.11.11 19:11:23][info] Value: "Erneuern"
+[13.11.11 19:11:23][info] Entry "serverinfos" found!
+[13.11.11 19:11:23][info] Value: "Serverinfos"
+[13.11.11 19:11:23][info] Entry "servername" found!
+[13.11.11 19:11:23][info] Value: "Servername"
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "serverip" found!
+[13.11.11 19:11:23][info] Value: "Server-IP"
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "serverport" found!
+[13.11.11 19:11:23][info] Value: "Serverport"
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "uptime" found!
+[13.11.11 19:11:23][info] Value: "Laufzeit"
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "players" found!
+[13.11.11 19:11:23][info] Value: "Spieler"
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "worlds" found!
+[13.11.11 19:11:23][info] Value: "Welten"
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "plugins" found!
+[13.11.11 19:11:23][info] Value: "Plugins"
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "utils" found!
+[13.11.11 19:11:23][info] Value: "Funktionen"
+[13.11.11 19:11:23][info] Entry "ram" found!
+[13.11.11 19:11:23][info] Value: "Arbeitsspeicher"
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "progress" found!
+[13.11.11 19:11:23][info] Value: "Lade..."
+[13.11.11 19:11:23][info] Entry "banplayer" found!
+[13.11.11 19:11:23][info] Value: "Ban einen Spieler"
+[13.11.11 19:11:23][info] Entry "banip" found!
+[13.11.11 19:11:23][info] Value: "Ban eine IP"
+[13.11.11 19:11:23][info] Entry "addtowhitelist" found!
+[13.11.11 19:11:23][info] Value: "Whiteliste einen Spieler"
+[13.11.11 19:11:23][info] Entry "addoperator" found!
+[13.11.11 19:11:23][info] Value: "Füg einen Operator hinzu"
+[13.11.11 19:11:23][info] Entry "broadcast" found!
+[13.11.11 19:11:23][info] Value: "Eine Nachricht an den Server"
+[13.11.11 19:11:23][info] Entry "consoleview" found!
+[13.11.11 19:11:23][info] Value: "Konsolenansicht"
+[13.11.11 19:11:23][info] Entry "reload" found!
+[13.11.11 19:11:23][info] Value: "Neuladen"
+[13.11.11 19:11:23][info] Entry "stop" found!
+[13.11.11 19:11:23][info] Value: "Den Server beenden"
+[13.11.11 19:11:23][info] Entry "uptime_format" found!
+[13.11.11 19:11:23][info] Value: "{0} Tag(e), {1} Stunde(n), {2} Minute(n) und {3} Sekunde(n)"
+[13.11.11 19:11:23][info] Entry "confirm_reload" found!
+[13.11.11 19:11:23][info] Value: "Willst du den Server wirklich neuladen?"
+[13.11.11 19:11:23][info] Entry "reload_success" found!
+[13.11.11 19:11:23][info] Value: "Server erfolgreich neugeladen!\nDaten werden erneuert..."
+[13.11.11 19:11:23][info] Entry "gc_confirm" found!
+[13.11.11 19:11:23][info] Value: "Willst du den GarbageCollector wirklich aufrufen?"
+[13.11.11 19:11:23][info] Entry "gc_success" found!
+[13.11.11 19:11:23][info] Value: "GarbageCollector erfolgreich ausgeführt!"
+[13.11.11 19:11:23][info] Entry "stop_confirm" found!
+[13.11.11 19:11:23][info] Value: "Willst du den Server wirklich beenden?"
+[13.11.11 19:11:23][info] Entry "stop_confirm2" found!
+[13.11.11 19:11:23][info] Value: "Wirklich wirklich??"
+[13.11.11 19:11:23][info] Entry "stop_success" found!
+[13.11.11 19:11:23][info] Value: "Der Server wurde erfolgreich beendet!"
+[13.11.11 19:11:23][info] Entry "broadcast_prompt" found!
+[13.11.11 19:11:23][info] Value: "Gib die Nachricht ein:"
+[13.11.11 19:11:23][info] Entry "broadcast_success" found!
+[13.11.11 19:11:23][info] Value: "Nachricht erfolgreich gesendet!"
+[13.11.11 19:11:23][Logger] ----------| Log closed |----------
+[13.11.11 19:11:25][Logger] ----------> Log opened <----------
+[13.11.11 19:11:25][info] Selected language "de"
+[13.11.11 19:11:25][success] Language loaded
+[13.11.11 19:11:25][info] Entry "playerlist" found!
+[13.11.11 19:11:25][info] Value: "Playerlist"
+[13.11.11 19:11:25][info] Selected language "de"
+[13.11.11 19:11:25][success] Language loaded
+[13.11.11 19:11:25][info] Entry "btn_back" found!
+[13.11.11 19:11:25][info] Value: "Zurück"
+[13.11.11 19:11:25][info] Entry "refresh" found!
+[13.11.11 19:11:25][info] Value: "Erneuern"
+[13.11.11 19:11:25][info] Entry "pageinfo" found!
+[13.11.11 19:11:25][info] Value: "Die Spielerliste wird alle 10 Sekunden erneuert."
+[13.11.11 19:11:25][info] Entry "allplayers" found!
+[13.11.11 19:11:25][info] Value: "Alle Spieler"
+[13.11.11 19:11:25][info] Entry "loadinglist" found!
+[13.11.11 19:11:25][info] Value: "Spielerliste wird geladen..."
+[13.11.11 19:11:25][info] Entry "noworld" found!
+[13.11.11 19:11:25][info] Value: "Es wurde keine Welt angegeben!\n\nEs wurden nun alle Spieler angezeigt."
+[13.11.11 19:11:25][info] Entry "unknownworld" found!
+[13.11.11 19:11:25][info] Value: "Die angegebene Welt wurde nicht gefunden!\n\nEs wurden nun alle Spieler angezeigt."
+[13.11.11 19:11:25][info] Entry "noplayers" found!
+[13.11.11 19:11:25][info] Value: "Es sind keine Spieler vorhanden"
+[13.11.11 19:11:25][Logger] ----------| Log closed |----------
+[13.11.11 19:11:27][Logger] ----------> Log opened <----------
+[13.11.11 19:11:27][info] Selected language "de"
+[13.11.11 19:11:27][success] Language loaded
+[13.11.11 19:11:27][info] Entry "playerinfos" found!
+[13.11.11 19:11:27][info] Value: "Spielerinfos"
+[13.11.11 19:11:27][info] Selected language "de"
+[13.11.11 19:11:27][success] Language loaded
+[13.11.11 19:11:27][info] Entry "btn_back" found!
+[13.11.11 19:11:27][info] Value: "Zurück"
+[13.11.11 19:11:27][info] Entry "refresh" found!
+[13.11.11 19:11:27][info] Value: "Erneuern"
+[13.11.11 19:11:27][info] Entry "info" found!
+[13.11.11 19:11:27][info] Value: "Die angezeigten Informationen werden alle 10 Sekunden erneuert."
+[13.11.11 19:11:27][info] Entry "progress" found!
+[13.11.11 19:11:27][info] Value: "Lade..."
+[13.11.11 19:11:27][info] Entry "progress" found!
+[13.11.11 19:11:27][info] Value: "Lade..."
+[13.11.11 19:11:27][info] Entry "progress" found!
+[13.11.11 19:11:27][info] Value: "Lade..."
+[13.11.11 19:11:27][info] Entry "progress" found!
+[13.11.11 19:11:27][info] Value: "Lade..."
+[13.11.11 19:11:27][info] Entry "progress" found!
+[13.11.11 19:11:27][info] Value: "Lade..."
+[13.11.11 19:11:27][info] Entry "direction" found!
+[13.11.11 19:11:27][info] Value: "Richtung"
+[13.11.11 19:11:27][info] Entry "progress" found!
+[13.11.11 19:11:27][info] Value: "Lade..."
+[13.11.11 19:11:27][info] Entry "world" found!
+[13.11.11 19:11:27][info] Value: "Welt"
+[13.11.11 19:11:27][info] Entry "progress" found!
+[13.11.11 19:11:27][info] Value: "Lade..."
+[13.11.11 19:11:27][info] Entry "ip" found!
+[13.11.11 19:11:27][info] Value: "IP Adresse"
+[13.11.11 19:11:27][info] Entry "progress" found!
+[13.11.11 19:11:27][info] Value: "Lade..."
+[13.11.11 19:11:27][info] Entry "utils" found!
+[13.11.11 19:11:27][info] Value: "Werkzeuge"
+[13.11.11 19:11:27][info] Entry "disabled" found!
+[13.11.11 19:11:27][info] Value: "Diese Funktion ist nicht mehr aktiv, da der Spieler nicht mehr verfügbar ist.\nLade die Seite neu um es erneut zu versuchen."
+[13.11.11 19:11:27][info] Entry "playerleft_alert" found!
+[13.11.11 19:11:27][info] Value: "Der Spieler hat Spiel das verlassen.\nDie Daten werden nun nicht mehr erneuert."
+[13.11.11 19:11:27][info] Entry "playerleft_msg" found!
+[13.11.11 19:11:27][info] Value: "Der Spieler hat Spiel das verlassen."
+[13.11.11 19:11:27][info] Entry "displayname_enter" found!
+[13.11.11 19:11:27][info] Value: "Gib den neuen Anzeigenamen ein:"
+[13.11.11 19:11:27][info] Entry "displayname_success" found!
+[13.11.11 19:11:27][info] Value: "Der Anzeigename wurde erfolgreich geändert!"
+[13.11.11 19:11:27][info] Entry "displayname_noplayer" found!
+[13.11.11 19:11:27][info] Value: "Es wurde kein Spieler angegeben!"
+[13.11.11 19:11:27][info] Entry "displayname_playernotfound" found!
+[13.11.11 19:11:27][info] Value: "Der angegebene Spieler wurde nicht gefunden!"
+[13.11.11 19:11:27][info] Entry "displayname_nodisplayname" found!
+[13.11.11 19:11:27][info] Value: "Es wurde kein neuer Anzeigename angegben!"
+[13.11.11 19:11:27][Logger] ----------| Log closed |----------
+[13.11.11 19:11:27][Logger] ----------> Log opened <----------
+[13.11.11 19:11:27][info] Selected language "de"
+[13.11.11 19:11:27][success] Language loaded
+[13.11.11 19:11:27][Logger] ----------| Log closed |----------
+[13.11.11 19:11:32][Logger] ----------> Log opened <----------
+[13.11.11 19:11:32][info] Selected language "de"
+[13.11.11 19:11:32][success] Language loaded
+[13.11.11 19:11:32][info] Selected language "de"
+[13.11.11 19:11:32][success] Language loaded
+[13.11.11 19:11:32][info] Selected language "de"
+[13.11.11 19:11:32][success] Language loaded
+[13.11.11 19:11:32][info] Entry "kick" found!
+[13.11.11 19:11:32][info] Value: "Kicken"
+[13.11.11 19:11:32][info] Entry "ban" found!
+[13.11.11 19:11:32][info] Value: "Verbannen"
+[13.11.11 19:11:32][info] Entry "teleport" found!
+[13.11.11 19:11:32][info] Value: "Teleportieren"
+[13.11.11 19:11:32][info] Entry "tell" found!
+[13.11.11 19:11:32][info] Value: "Eine Nachricht schicken"
+[13.11.11 19:11:32][info] Entry "burn" found!
+[13.11.11 19:11:32][info] Value: "Anzünden"
+[13.11.11 19:11:32][info] Entry "heal" found!
+[13.11.11 19:11:32][info] Value: "Heilen"
+[13.11.11 19:11:32][info] Entry "kill" found!
+[13.11.11 19:11:32][info] Value: "Töten"
+[13.11.11 19:11:32][info] Entry "clearinv" found!
+[13.11.11 19:11:32][info] Value: "Inventar leeren"
+[13.11.11 19:11:32][info] Entry "give" found!
+[13.11.11 19:11:32][info] Value: "Etwas geben"
+[13.11.11 19:11:32][info] Entry "op" found!
+[13.11.11 19:11:32][info] Value: "Oppen"
+[13.11.11 19:11:32][info] Entry "deop" found!
+[13.11.11 19:11:32][info] Value: "Deoppen"
+[13.11.11 19:11:32][Logger] ----------| Log closed |----------
+[13.11.11 19:11:32][Logger] ----------> Log opened <----------
+[13.11.11 19:11:32][info] Selected language "de"
+[13.11.11 19:11:32][success] Language loaded
+[13.11.11 19:11:32][Logger] ----------| Log closed |----------
+[13.11.11 19:11:32][Logger] ----------> Log opened <----------
+[13.11.11 19:11:32][info] Selected language "de"
+[13.11.11 19:11:32][success] Language loaded
+[13.11.11 19:11:32][Logger] ----------| Log closed |----------
+[13.11.11 19:11:34][Logger] ----------> Log opened <----------
+[13.11.11 19:11:34][info] Selected language "de"
+[13.11.11 19:11:34][success] Language loaded
+[13.11.11 19:11:34][info] Entry "playerinfos" found!
+[13.11.11 19:11:34][info] Value: "Spielerinfos"
+[13.11.11 19:11:34][info] Selected language "de"
+[13.11.11 19:11:34][success] Language loaded
+[13.11.11 19:11:34][info] Entry "btn_back" found!
+[13.11.11 19:11:34][info] Value: "Zurück"
+[13.11.11 19:11:34][info] Entry "refresh" found!
+[13.11.11 19:11:34][info] Value: "Erneuern"
+[13.11.11 19:11:34][info] Entry "info" found!
+[13.11.11 19:11:34][info] Value: "Die angezeigten Informationen werden alle 10 Sekunden erneuert."
+[13.11.11 19:11:34][info] Entry "progress" found!
+[13.11.11 19:11:34][info] Value: "Lade..."
+[13.11.11 19:11:34][info] Entry "progress" found!
+[13.11.11 19:11:34][info] Value: "Lade..."
+[13.11.11 19:11:34][info] Entry "progress" found!
+[13.11.11 19:11:34][info] Value: "Lade..."
+[13.11.11 19:11:34][info] Entry "progress" found!
+[13.11.11 19:11:34][info] Value: "Lade..."
+[13.11.11 19:11:34][info] Entry "progress" found!
+[13.11.11 19:11:34][info] Value: "Lade..."
+[13.11.11 19:11:34][info] Entry "direction" found!
+[13.11.11 19:11:34][info] Value: "Richtung"
+[13.11.11 19:11:34][info] Entry "progress" found!
+[13.11.11 19:11:34][info] Value: "Lade..."
+[13.11.11 19:11:34][info] Entry "world" found!
+[13.11.11 19:11:34][info] Value: "Welt"
+[13.11.11 19:11:34][info] Entry "progress" found!
+[13.11.11 19:11:34][info] Value: "Lade..."
+[13.11.11 19:11:34][info] Entry "ip" found!
+[13.11.11 19:11:34][info] Value: "IP Adresse"
+[13.11.11 19:11:34][info] Entry "progress" found!
+[13.11.11 19:11:34][info] Value: "Lade..."
+[13.11.11 19:11:34][info] Entry "utils" found!
+[13.11.11 19:11:34][info] Value: "Werkzeuge"
+[13.11.11 19:11:34][info] Entry "disabled" found!
+[13.11.11 19:11:34][info] Value: "Diese Funktion ist nicht mehr aktiv, da der Spieler nicht mehr verfügbar ist.\nLade die Seite neu um es erneut zu versuchen."
+[13.11.11 19:11:34][info] Entry "playerleft_alert" found!
+[13.11.11 19:11:34][info] Value: "Der Spieler hat Spiel das verlassen.\nDie Daten werden nun nicht mehr erneuert."
+[13.11.11 19:11:34][info] Entry "playerleft_msg" found!
+[13.11.11 19:11:34][info] Value: "Der Spieler hat Spiel das verlassen."
+[13.11.11 19:11:34][info] Entry "displayname_enter" found!
+[13.11.11 19:11:34][info] Value: "Gib den neuen Anzeigenamen ein:"
+[13.11.11 19:11:34][info] Entry "displayname_success" found!
+[13.11.11 19:11:34][info] Value: "Der Anzeigename wurde erfolgreich geändert!"
+[13.11.11 19:11:34][info] Entry "displayname_noplayer" found!
+[13.11.11 19:11:34][info] Value: "Es wurde kein Spieler angegeben!"
+[13.11.11 19:11:34][info] Entry "displayname_playernotfound" found!
+[13.11.11 19:11:34][info] Value: "Der angegebene Spieler wurde nicht gefunden!"
+[13.11.11 19:11:34][info] Entry "displayname_nodisplayname" found!
+[13.11.11 19:11:34][info] Value: "Es wurde kein neuer Anzeigename angegben!"
+[13.11.11 19:11:34][Logger] ----------| Log closed |----------
+[13.11.11 19:11:34][Logger] ----------> Log opened <----------
+[13.11.11 19:11:34][info] Selected language "de"
+[13.11.11 19:11:34][success] Language loaded
+[13.11.11 19:11:34][Logger] ----------| Log closed |----------
+[13.11.11 19:11:36][Logger] ----------> Log opened <----------
+[13.11.11 19:11:36][info] Selected language "de"
+[13.11.11 19:11:36][success] Language loaded
+[13.11.11 19:11:36][info] Entry "playerlist" found!
+[13.11.11 19:11:36][info] Value: "Playerlist"
+[13.11.11 19:11:36][info] Selected language "de"
+[13.11.11 19:11:36][success] Language loaded
+[13.11.11 19:11:36][info] Entry "btn_back" found!
+[13.11.11 19:11:36][info] Value: "Zurück"
+[13.11.11 19:11:36][info] Entry "refresh" found!
+[13.11.11 19:11:36][info] Value: "Erneuern"
+[13.11.11 19:11:36][info] Entry "pageinfo" found!
+[13.11.11 19:11:36][info] Value: "Die Spielerliste wird alle 10 Sekunden erneuert."
+[13.11.11 19:11:36][info] Entry "allplayers" found!
+[13.11.11 19:11:36][info] Value: "Alle Spieler"
+[13.11.11 19:11:36][info] Entry "loadinglist" found!
+[13.11.11 19:11:36][info] Value: "Spielerliste wird geladen..."
+[13.11.11 19:11:36][info] Entry "noworld" found!
+[13.11.11 19:11:36][info] Value: "Es wurde keine Welt angegeben!\n\nEs wurden nun alle Spieler angezeigt."
+[13.11.11 19:11:36][info] Entry "unknownworld" found!
+[13.11.11 19:11:36][info] Value: "Die angegebene Welt wurde nicht gefunden!\n\nEs wurden nun alle Spieler angezeigt."
+[13.11.11 19:11:36][info] Entry "noplayers" found!
+[13.11.11 19:11:36][info] Value: "Es sind keine Spieler vorhanden"
+[13.11.11 19:11:36][Logger] ----------| Log closed |----------
+[13.11.11 19:11:38][Logger] ----------> Log opened <----------
+[13.11.11 19:11:38][info] Selected language "de"
+[13.11.11 19:11:38][success] Language loaded
+[13.11.11 19:11:38][info] Entry "downloads" found!
+[13.11.11 19:11:38][info] Value: "Downloads"
+[13.11.11 19:11:38][info] Entry "home" found!
+[13.11.11 19:11:38][info] Value: "Home"
+[13.11.11 19:11:38][info] Selected language "de"
+[13.11.11 19:11:38][success] Language loaded
+[13.11.11 19:11:38][info] Entry "baseplugin" found!
+[13.11.11 19:11:38][info] Value: "Basisplugin"
+[13.11.11 19:11:38][info] Entry "apiplugins" found!
+[13.11.11 19:11:38][info] Value: "API Plugins"
+[13.11.11 19:11:38][info] Entry "downloaded" found!
+[13.11.11 19:11:38][info] Value: "Der Download wurde gestartet."
+[13.11.11 19:11:38][Logger] ----------| Log closed |----------
+[13.11.11 19:11:41][Logger] ----------> Log opened <----------
+[13.11.11 19:11:41][info] Selected language "de"
+[13.11.11 19:11:41][success] Language loaded
+[13.11.11 19:11:41][info] Entry "stats" found!
+[13.11.11 19:11:41][info] Value: "Statistiken"
+[13.11.11 19:11:41][info] Selected language "de"
+[13.11.11 19:11:41][success] Language loaded
+[13.11.11 19:11:41][info] Entry "btn_home" found!
+[13.11.11 19:11:41][info] Value: "Home"
+[13.11.11 19:11:41][info] Entry "failed_requests" found!
+[13.11.11 19:11:41][info] Value: "{0} Anfragen sind fehlgeschlagen."
+[13.11.11 19:11:41][Logger] ----------| Log closed |----------
+[13.11.11 19:11:46][Logger] ----------> Log opened <----------
+[13.11.11 19:11:46][info] Selected language "de"
+[13.11.11 19:11:46][success] Language loaded
+[13.11.11 19:11:46][info] Entry "worlds" found!
+[13.11.11 19:11:46][info] Value: "Welten"
+[13.11.11 19:11:46][info] Selected language "de"
+[13.11.11 19:11:46][success] Language loaded
+[13.11.11 19:11:46][info] Entry "btn_back" found!
+[13.11.11 19:11:46][info] Value: "Zurück"
+[13.11.11 19:11:46][info] Entry "refresh" found!
+[13.11.11 19:11:46][info] Value: "Erneuern"
+[13.11.11 19:11:46][info] Entry "create" found!
+[13.11.11 19:11:46][info] Value: "Neue Welt erstellen"
+[13.11.11 19:11:46][info] Entry "loadedworlds" found!
+[13.11.11 19:11:46][info] Value: "Geladene Welten"
+[13.11.11 19:11:46][info] Entry "loadinglist" found!
+[13.11.11 19:11:46][info] Value: "Liste wird geladen..."
+[13.11.11 19:11:46][info] Entry "noworlds" found!
+[13.11.11 19:11:46][info] Value: "Es sind keine Welten vorhanden"
+[13.11.11 19:11:46][Logger] ----------| Log closed |----------
+[13.11.11 19:11:47][Logger] ----------> Log opened <----------
+[13.11.11 19:11:47][info] Selected language "de"
+[13.11.11 19:11:47][success] Language loaded
+[13.11.11 19:11:47][info] Entry "worldinfo" found!
+[13.11.11 19:11:47][info] Value: "Weltinfos"
+[13.11.11 19:11:47][info] Selected language "de"
+[13.11.11 19:11:47][success] Language loaded
+[13.11.11 19:11:47][info] Entry "btn_back" found!
+[13.11.11 19:11:47][info] Value: "Zurück"
+[13.11.11 19:11:47][info] Entry "refresh" found!
+[13.11.11 19:11:47][info] Value: "Erneuern"
+[13.11.11 19:11:47][info] Entry "world" found!
+[13.11.11 19:11:47][info] Value: "Welt "{0}":"
+[13.11.11 19:11:47][info] Entry "name" found!
+[13.11.11 19:11:47][info] Value: "Name:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "type" found!
+[13.11.11 19:11:47][info] Value: "Typ:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "seed" found!
+[13.11.11 19:11:47][info] Value: "Seed:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "pvp" found!
+[13.11.11 19:11:47][info] Value: "PVP:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "spawnpoint" found!
+[13.11.11 19:11:47][info] Value: "Spawn:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "time" found!
+[13.11.11 19:11:47][info] Value: "Zeit:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "weatherduration" found!
+[13.11.11 19:11:47][info] Value: "Wetterdauer:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "seconds" found!
+[13.11.11 19:11:47][info] Value: "Sekunde(n)"
+[13.11.11 19:11:47][info] Entry "thunderduration" found!
+[13.11.11 19:11:47][info] Value: "Sturmdauer:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "seconds" found!
+[13.11.11 19:11:47][info] Value: "Sekunde(n)"
+[13.11.11 19:11:47][info] Entry "players" found!
+[13.11.11 19:11:47][info] Value: "Spieler:"
+[13.11.11 19:11:47][info] Entry "progress" found!
+[13.11.11 19:11:47][info] Value: "Lade..."
+[13.11.11 19:11:47][info] Entry "utils" found!
+[13.11.11 19:11:47][info] Value: "Werkzeuge"
+[13.11.11 19:11:47][info] Entry "disabled" found!
+[13.11.11 19:11:47][info] Value: "Diese Funktion ist nicht mehr aktiv, da die Welt nicht (mehr) verfügbar ist.\nLade die Seite neu um es erneut zu versuchen."
+[13.11.11 19:11:47][info] Entry "worldremoved_alert" found!
+[13.11.11 19:11:47][info] Value: "Die Welt wurde gelöscht.\nDie Daten können nun nicht mehr erneuert werden."
+[13.11.11 19:11:47][info] Entry "worldremoved_msg" found!
+[13.11.11 19:11:47][info] Value: "Die Welt existiert nicht (mehr)."
+[13.11.11 19:11:47][info] Entry "Yes" found!
+[13.11.11 19:11:47][info] Value: "Ja"
+[13.11.11 19:11:47][info] Entry "No" found!
+[13.11.11 19:11:47][info] Value: "Nein"
+[13.11.11 19:11:47][Logger] ----------| Log closed |----------
+[13.11.11 19:11:50][Logger] ----------> Log opened <----------
+[13.11.11 19:11:50][info] Selected language "de"
+[13.11.11 19:11:50][success] Language loaded
+[13.11.11 19:11:50][info] Entry "worlds" found!
+[13.11.11 19:11:50][info] Value: "Welten"
+[13.11.11 19:11:50][info] Selected language "de"
+[13.11.11 19:11:50][success] Language loaded
+[13.11.11 19:11:50][info] Entry "btn_back" found!
+[13.11.11 19:11:50][info] Value: "Zurück"
+[13.11.11 19:11:50][info] Entry "refresh" found!
+[13.11.11 19:11:50][info] Value: "Erneuern"
+[13.11.11 19:11:50][info] Entry "create" found!
+[13.11.11 19:11:50][info] Value: "Neue Welt erstellen"
+[13.11.11 19:11:50][info] Entry "loadedworlds" found!
+[13.11.11 19:11:50][info] Value: "Geladene Welten"
+[13.11.11 19:11:50][info] Entry "loadinglist" found!
+[13.11.11 19:11:50][info] Value: "Liste wird geladen..."
+[13.11.11 19:11:50][info] Entry "noworlds" found!
+[13.11.11 19:11:50][info] Value: "Es sind keine Welten vorhanden"
+[13.11.11 19:11:50][Logger] ----------| Log closed |----------
+[13.11.11 19:34:07][Logger] ----------> Log opened <----------
+[13.11.11 19:34:07][info] Selected language "de"
+[13.11.11 19:34:07][success] Language loaded
+[13.11.11 19:34:07][info] Entry "serverinfos" found!
+[13.11.11 19:34:07][info] Value: "Serverinfos"
+[13.11.11 19:34:07][info] Selected language "de"
+[13.11.11 19:34:07][success] Language loaded
+[13.11.11 19:34:07][info] Entry "loginrequired" found!
+[13.11.11 19:34:07][info] Value: "Login benötigt"
+[13.11.11 19:34:07][Logger] ----------| Log closed |----------
+[13.11.11 19:34:07][Logger] ----------> Log opened <----------
+[13.11.11 19:34:07][info] Selected language "de"
+[13.11.11 19:34:07][success] Language loaded
+[13.11.11 19:34:07][info] Entry "login" found!
+[13.11.11 19:34:07][info] Value: "Login"
+[13.11.11 19:34:07][info] Selected language "de"
+[13.11.11 19:34:07][success] Language loaded
+[13.11.11 19:34:07][info] Entry "btn_home" found!
+[13.11.11 19:34:07][info] Value: "Home"
+[13.11.11 19:34:07][info] Entry "registration" found!
+[13.11.11 19:34:07][info] Value: "Registrierung"
+[13.11.11 19:34:07][info] Entry "message" found!
+[13.11.11 19:34:07][info] Value: "Meldung"
+[13.11.11 19:34:07][info] Entry "loginid" found!
+[13.11.11 19:34:07][info] Value: "Login"
+[13.11.11 19:34:07][info] Entry "loginid" found!
+[13.11.11 19:34:07][info] Value: "Login"
+[13.11.11 19:34:07][info] Entry "password" found!
+[13.11.11 19:34:07][info] Value: "Passwort"
+[13.11.11 19:34:07][info] Entry "password" found!
+[13.11.11 19:34:07][info] Value: "Passwort"
+[13.11.11 19:34:07][info] Entry "language" found!
+[13.11.11 19:34:07][info] Value: "Sprache"
+[13.11.11 19:34:07][info] Entry "lang_de" found!
+[13.11.11 19:34:07][info] Value: "Deutsch"
+[13.11.11 19:34:07][info] Entry "lang_en" found!
+[13.11.11 19:34:07][info] Value: "Englisch"
+[13.11.11 19:34:07][info] Entry "login" found!
+[13.11.11 19:34:07][info] Value: "Login"
+[13.11.11 19:34:07][Logger] ----------| Log closed |----------
+[13.11.11 20:02:47][Logger] ----------> Log opened <----------
+[13.11.11 20:02:47][info] Selected language "de"
+[13.11.11 20:02:47][success] Language loaded
+[13.11.11 20:02:47][info] Entry "notloggedin" found!
+[13.11.11 20:02:47][info] Value: "Du musst dich erst einloggen ;)!"
+[13.11.11 20:02:47][Logger] ----------| Log closed |----------
+[13.11.11 20:02:47][Logger] ----------> Log opened <----------
+[13.11.11 20:02:47][info] Selected language "de"
+[13.11.11 20:02:47][success] Language loaded
+[13.11.11 20:02:47][info] Entry "home" found!
+[13.11.11 20:02:47][info] Value: "Home"
+[13.11.11 20:02:47][info] Entry "about" found!
+[13.11.11 20:02:47][info] Value: "Über"
+[13.11.11 20:02:47][info] Selected language "de"
+[13.11.11 20:02:47][success] Language loaded
+[13.11.11 20:02:47][info] Entry "message" found!
+[13.11.11 20:02:47][info] Value: "Meldung"
+[13.11.11 20:02:47][info] Entry "pages" found!
+[13.11.11 20:02:47][info] Value: "Seiten"
+[13.11.11 20:02:47][info] Entry "registration" found!
+[13.11.11 20:02:47][info] Value: "Registrierung"
+[13.11.11 20:02:47][info] Entry "login" found!
+[13.11.11 20:02:47][info] Value: "Login"
+[13.11.11 20:02:47][info] Entry "stats" found!
+[13.11.11 20:02:47][info] Value: "Statistiken"
+[13.11.11 20:02:47][info] Entry "downloads" found!
+[13.11.11 20:02:47][info] Value: "Downloads"
+[13.11.11 20:02:47][info] Entry "confirm_logout" found!
+[13.11.11 20:02:47][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 20:02:47][Logger] ----------| Log closed |----------
+[13.11.11 20:03:05][Logger] ----------> Log opened <----------
+[13.11.11 20:03:05][info] Selected language "de"
+[13.11.11 20:03:05][success] Language loaded
+[13.11.11 20:03:05][info] Entry "login" found!
+[13.11.11 20:03:05][info] Value: "Login"
+[13.11.11 20:03:05][info] Selected language "de"
+[13.11.11 20:03:05][success] Language loaded
+[13.11.11 20:03:05][info] Entry "btn_home" found!
+[13.11.11 20:03:05][info] Value: "Home"
+[13.11.11 20:03:05][info] Entry "registration" found!
+[13.11.11 20:03:05][info] Value: "Registrierung"
+[13.11.11 20:03:05][info] Entry "loginid" found!
+[13.11.11 20:03:05][info] Value: "Login"
+[13.11.11 20:03:05][info] Entry "loginid" found!
+[13.11.11 20:03:05][info] Value: "Login"
+[13.11.11 20:03:05][info] Entry "password" found!
+[13.11.11 20:03:05][info] Value: "Passwort"
+[13.11.11 20:03:05][info] Entry "password" found!
+[13.11.11 20:03:05][info] Value: "Passwort"
+[13.11.11 20:03:05][info] Entry "language" found!
+[13.11.11 20:03:05][info] Value: "Sprache"
+[13.11.11 20:03:05][info] Entry "lang_de" found!
+[13.11.11 20:03:05][info] Value: "Deutsch"
+[13.11.11 20:03:05][info] Entry "lang_en" found!
+[13.11.11 20:03:05][info] Value: "Englisch"
+[13.11.11 20:03:05][info] Entry "login" found!
+[13.11.11 20:03:05][info] Value: "Login"
+[13.11.11 20:03:05][Logger] ----------| Log closed |----------
+[13.11.11 20:03:16][Logger] ----------> Log opened <----------
+[13.11.11 20:03:16][info] Selected language "de"
+[13.11.11 20:03:16][success] Language loaded
+[13.11.11 20:03:16][info] Entry "registration" found!
+[13.11.11 20:03:16][info] Value: "Registrierung"
+[13.11.11 20:03:16][info] Selected language "de"
+[13.11.11 20:03:16][success] Language loaded
+[13.11.11 20:03:16][info] Entry "btn_back" found!
+[13.11.11 20:03:16][info] Value: "Zurück"
+[13.11.11 20:03:16][info] Entry "login" found!
+[13.11.11 20:03:16][info] Value: "Login"
+[13.11.11 20:03:16][info] Entry "fillin" found!
+[13.11.11 20:03:16][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:03:16][info] Entry "username" found!
+[13.11.11 20:03:16][info] Value: "Benutzername"
+[13.11.11 20:03:16][info] Entry "username" found!
+[13.11.11 20:03:16][info] Value: "Benutzername"
+[13.11.11 20:03:16][info] Entry "email" found!
+[13.11.11 20:03:16][info] Value: "Email"
+[13.11.11 20:03:16][info] Entry "exampleemail" found!
+[13.11.11 20:03:16][info] Value: "beispiel@domain.tld"
+[13.11.11 20:03:16][info] Entry "password" found!
+[13.11.11 20:03:16][info] Value: "Passwort"
+[13.11.11 20:03:16][info] Entry "password" found!
+[13.11.11 20:03:16][info] Value: "Passwort"
+[13.11.11 20:03:16][info] Entry "password_repeat" found!
+[13.11.11 20:03:16][info] Value: "Passwort wiederholen"
+[13.11.11 20:03:16][info] Entry "password_repeat" found!
+[13.11.11 20:03:16][info] Value: "Passwort wiederholen"
+[13.11.11 20:03:16][info] Entry "register" found!
+[13.11.11 20:03:16][info] Value: "Registrieren"
+[13.11.11 20:03:16][Logger] ----------| Log closed |----------
+[13.11.11 20:03:28][Logger] ----------> Log opened <----------
+[13.11.11 20:03:28][info] Selected language "de"
+[13.11.11 20:03:28][success] Language loaded
+[13.11.11 20:03:28][info] Entry "registration" found!
+[13.11.11 20:03:28][info] Value: "Registrierung"
+[13.11.11 20:03:28][fail] Entry "user_tooshort" NOT found!
+[13.11.11 20:03:29][info] Entry "email_invalid" found!
+[13.11.11 20:03:29][info] Value: "Die angegebene Email-Adresse ist ungültig!"
+[13.11.11 20:03:29][info] Selected language "de"
+[13.11.11 20:03:29][success] Language loaded
+[13.11.11 20:03:29][info] Entry "btn_back" found!
+[13.11.11 20:03:29][info] Value: "Zurück"
+[13.11.11 20:03:29][info] Entry "login" found!
+[13.11.11 20:03:29][info] Value: "Login"
+[13.11.11 20:03:29][info] Entry "message" found!
+[13.11.11 20:03:29][info] Value: "Meldung"
+[13.11.11 20:03:29][info] Entry "fillin" found!
+[13.11.11 20:03:29][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:03:29][info] Entry "username" found!
+[13.11.11 20:03:29][info] Value: "Benutzername"
+[13.11.11 20:03:29][info] Entry "username" found!
+[13.11.11 20:03:29][info] Value: "Benutzername"
+[13.11.11 20:03:29][info] Entry "email" found!
+[13.11.11 20:03:29][info] Value: "Email"
+[13.11.11 20:03:29][info] Entry "exampleemail" found!
+[13.11.11 20:03:29][info] Value: "beispiel@domain.tld"
+[13.11.11 20:03:29][info] Entry "password" found!
+[13.11.11 20:03:29][info] Value: "Passwort"
+[13.11.11 20:03:29][info] Entry "password" found!
+[13.11.11 20:03:29][info] Value: "Passwort"
+[13.11.11 20:03:29][info] Entry "password_repeat" found!
+[13.11.11 20:03:29][info] Value: "Passwort wiederholen"
+[13.11.11 20:03:29][info] Entry "password_repeat" found!
+[13.11.11 20:03:29][info] Value: "Passwort wiederholen"
+[13.11.11 20:03:29][info] Entry "register" found!
+[13.11.11 20:03:29][info] Value: "Registrieren"
+[13.11.11 20:03:29][Logger] ----------| Log closed |----------
+[13.11.11 20:04:23][Logger] ----------> Log opened <----------
+[13.11.11 20:04:23][info] Selected language "de"
+[13.11.11 20:04:23][success] Language loaded
+[13.11.11 20:04:23][info] Entry "registration" found!
+[13.11.11 20:04:23][info] Value: "Registrierung"
+[13.11.11 20:04:23][info] Selected language "de"
+[13.11.11 20:04:23][success] Language loaded
+[13.11.11 20:04:23][info] Entry "btn_back" found!
+[13.11.11 20:04:23][info] Value: "Zurück"
+[13.11.11 20:04:23][info] Entry "login" found!
+[13.11.11 20:04:23][info] Value: "Login"
+[13.11.11 20:04:23][info] Entry "fillin" found!
+[13.11.11 20:04:23][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:04:23][info] Entry "username" found!
+[13.11.11 20:04:23][info] Value: "Benutzername"
+[13.11.11 20:04:23][info] Entry "username" found!
+[13.11.11 20:04:23][info] Value: "Benutzername"
+[13.11.11 20:04:23][info] Entry "email" found!
+[13.11.11 20:04:23][info] Value: "Email"
+[13.11.11 20:04:23][info] Entry "exampleemail" found!
+[13.11.11 20:04:23][info] Value: "beispiel@domain.tld"
+[13.11.11 20:04:23][info] Entry "password" found!
+[13.11.11 20:04:23][info] Value: "Passwort"
+[13.11.11 20:04:23][info] Entry "password" found!
+[13.11.11 20:04:23][info] Value: "Passwort"
+[13.11.11 20:04:23][info] Entry "password_repeat" found!
+[13.11.11 20:04:23][info] Value: "Passwort wiederholen"
+[13.11.11 20:04:23][info] Entry "password_repeat" found!
+[13.11.11 20:04:23][info] Value: "Passwort wiederholen"
+[13.11.11 20:04:23][info] Entry "register" found!
+[13.11.11 20:04:23][info] Value: "Registrieren"
+[13.11.11 20:04:23][Logger] ----------| Log closed |----------
+[13.11.11 20:04:23][Logger] ----------> Log opened <----------
+[13.11.11 20:04:23][info] Selected language "de"
+[13.11.11 20:04:23][success] Language loaded
+[13.11.11 20:04:23][Logger] ----------| Log closed |----------
+[13.11.11 20:04:39][Logger] ----------> Log opened <----------
+[13.11.11 20:04:39][info] Selected language "de"
+[13.11.11 20:04:39][success] Language loaded
+[13.11.11 20:04:39][info] Entry "registration" found!
+[13.11.11 20:04:39][info] Value: "Registrierung"
+[13.11.11 20:04:39][info] Entry "user_tooshort" found!
+[13.11.11 20:04:39][info] Value: "Der Benutzername muss mindestens 5 Zeichen lang sein."
+[13.11.11 20:04:39][info] Entry "email_invalid" found!
+[13.11.11 20:04:39][info] Value: "Die angegebene Email-Adresse ist ungültig!"
+[13.11.11 20:04:39][info] Entry "pass_dontmatch" found!
+[13.11.11 20:04:39][info] Value: "Die Passwörter stimmen nicht überein!"
+[13.11.11 20:04:39][info] Selected language "de"
+[13.11.11 20:04:39][success] Language loaded
+[13.11.11 20:04:39][info] Entry "btn_back" found!
+[13.11.11 20:04:39][info] Value: "Zurück"
+[13.11.11 20:04:39][info] Entry "login" found!
+[13.11.11 20:04:39][info] Value: "Login"
+[13.11.11 20:04:39][info] Entry "message" found!
+[13.11.11 20:04:39][info] Value: "Meldung"
+[13.11.11 20:04:39][info] Entry "fillin" found!
+[13.11.11 20:04:39][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:04:39][info] Entry "username" found!
+[13.11.11 20:04:39][info] Value: "Benutzername"
+[13.11.11 20:04:39][info] Entry "username" found!
+[13.11.11 20:04:39][info] Value: "Benutzername"
+[13.11.11 20:04:39][info] Entry "email" found!
+[13.11.11 20:04:39][info] Value: "Email"
+[13.11.11 20:04:39][info] Entry "exampleemail" found!
+[13.11.11 20:04:39][info] Value: "beispiel@domain.tld"
+[13.11.11 20:04:39][info] Entry "password" found!
+[13.11.11 20:04:39][info] Value: "Passwort"
+[13.11.11 20:04:39][info] Entry "password" found!
+[13.11.11 20:04:39][info] Value: "Passwort"
+[13.11.11 20:04:39][info] Entry "password_repeat" found!
+[13.11.11 20:04:39][info] Value: "Passwort wiederholen"
+[13.11.11 20:04:39][info] Entry "password_repeat" found!
+[13.11.11 20:04:39][info] Value: "Passwort wiederholen"
+[13.11.11 20:04:39][info] Entry "register" found!
+[13.11.11 20:04:39][info] Value: "Registrieren"
+[13.11.11 20:04:39][Logger] ----------| Log closed |----------
+[13.11.11 20:04:59][Logger] ----------> Log opened <----------
+[13.11.11 20:04:59][info] Selected language "de"
+[13.11.11 20:04:59][success] Language loaded
+[13.11.11 20:04:59][info] Entry "registration" found!
+[13.11.11 20:04:59][info] Value: "Registrierung"
+[13.11.11 20:04:59][info] Entry "user_invalid" found!
+[13.11.11 20:04:59][info] Value: "Der Benutzername darf nur Ziffern, Buchstaben, _ und - enthalten und muss mit einem Buchstabe beginnen!"
+[13.11.11 20:04:59][info] Entry "email_invalid" found!
+[13.11.11 20:04:59][info] Value: "Die angegebene Email-Adresse ist ungültig!"
+[13.11.11 20:04:59][info] Selected language "de"
+[13.11.11 20:04:59][success] Language loaded
+[13.11.11 20:04:59][info] Entry "btn_back" found!
+[13.11.11 20:04:59][info] Value: "Zurück"
+[13.11.11 20:04:59][info] Entry "login" found!
+[13.11.11 20:04:59][info] Value: "Login"
+[13.11.11 20:04:59][info] Entry "message" found!
+[13.11.11 20:04:59][info] Value: "Meldung"
+[13.11.11 20:04:59][info] Entry "fillin" found!
+[13.11.11 20:04:59][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:04:59][info] Entry "username" found!
+[13.11.11 20:04:59][info] Value: "Benutzername"
+[13.11.11 20:04:59][info] Entry "username" found!
+[13.11.11 20:04:59][info] Value: "Benutzername"
+[13.11.11 20:04:59][info] Entry "email" found!
+[13.11.11 20:04:59][info] Value: "Email"
+[13.11.11 20:04:59][info] Entry "exampleemail" found!
+[13.11.11 20:04:59][info] Value: "beispiel@domain.tld"
+[13.11.11 20:04:59][info] Entry "password" found!
+[13.11.11 20:04:59][info] Value: "Passwort"
+[13.11.11 20:04:59][info] Entry "password" found!
+[13.11.11 20:04:59][info] Value: "Passwort"
+[13.11.11 20:04:59][info] Entry "password_repeat" found!
+[13.11.11 20:04:59][info] Value: "Passwort wiederholen"
+[13.11.11 20:04:59][info] Entry "password_repeat" found!
+[13.11.11 20:04:59][info] Value: "Passwort wiederholen"
+[13.11.11 20:04:59][info] Entry "register" found!
+[13.11.11 20:04:59][info] Value: "Registrieren"
+[13.11.11 20:04:59][Logger] ----------| Log closed |----------
+[13.11.11 20:08:37][Logger] ----------> Log opened <----------
+[13.11.11 20:08:37][info] Selected language "de"
+[13.11.11 20:08:37][success] Language loaded
+[13.11.11 20:08:37][info] Entry "registration" found!
+[13.11.11 20:08:37][info] Value: "Registrierung"
+[13.11.11 20:08:37][info] Entry "user_invalid" found!
+[13.11.11 20:08:37][info] Value: "Der Benutzername darf nur Ziffern, Buchstaben, _ und - enthalten und muss mit einem Buchstabe beginnen!"
+[13.11.11 20:08:37][info] Entry "email_invalid" found!
+[13.11.11 20:08:37][info] Value: "Die angegebene Email-Adresse ist ungültig!"
+[13.11.11 20:08:37][info] Selected language "de"
+[13.11.11 20:08:37][success] Language loaded
+[13.11.11 20:08:37][info] Entry "btn_back" found!
+[13.11.11 20:08:37][info] Value: "Zurück"
+[13.11.11 20:08:37][info] Entry "login" found!
+[13.11.11 20:08:37][info] Value: "Login"
+[13.11.11 20:08:37][info] Entry "message" found!
+[13.11.11 20:08:37][info] Value: "Meldung"
+[13.11.11 20:08:37][info] Entry "fillin" found!
+[13.11.11 20:08:37][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:08:37][info] Entry "username" found!
+[13.11.11 20:08:37][info] Value: "Benutzername"
+[13.11.11 20:08:37][info] Entry "username" found!
+[13.11.11 20:08:37][info] Value: "Benutzername"
+[13.11.11 20:08:37][info] Entry "email" found!
+[13.11.11 20:08:37][info] Value: "Email"
+[13.11.11 20:08:37][info] Entry "exampleemail" found!
+[13.11.11 20:08:37][info] Value: "beispiel@domain.tld"
+[13.11.11 20:08:37][info] Entry "password" found!
+[13.11.11 20:08:37][info] Value: "Passwort"
+[13.11.11 20:08:37][info] Entry "password" found!
+[13.11.11 20:08:37][info] Value: "Passwort"
+[13.11.11 20:08:37][info] Entry "password_repeat" found!
+[13.11.11 20:08:37][info] Value: "Passwort wiederholen"
+[13.11.11 20:08:37][info] Entry "password_repeat" found!
+[13.11.11 20:08:37][info] Value: "Passwort wiederholen"
+[13.11.11 20:08:37][info] Entry "register" found!
+[13.11.11 20:08:37][info] Value: "Registrieren"
+[13.11.11 20:08:37][Logger] ----------| Log closed |----------
+[13.11.11 20:09:11][Logger] ----------> Log opened <----------
+[13.11.11 20:09:11][info] Selected language "de"
+[13.11.11 20:09:11][success] Language loaded
+[13.11.11 20:09:11][info] Entry "registration" found!
+[13.11.11 20:09:11][info] Value: "Registrierung"
+[13.11.11 20:09:11][info] Entry "user_invalid" found!
+[13.11.11 20:09:11][info] Value: "Der Benutzername darf nur Ziffern, Buchstaben, _ und - enthalten und muss mit einem Buchstabe beginnen!"
+[13.11.11 20:09:11][info] Selected language "de"
+[13.11.11 20:09:11][success] Language loaded
+[13.11.11 20:09:11][info] Entry "btn_back" found!
+[13.11.11 20:09:11][info] Value: "Zurück"
+[13.11.11 20:09:11][info] Entry "login" found!
+[13.11.11 20:09:11][info] Value: "Login"
+[13.11.11 20:09:11][info] Entry "message" found!
+[13.11.11 20:09:11][info] Value: "Meldung"
+[13.11.11 20:09:11][info] Entry "fillin" found!
+[13.11.11 20:09:11][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:09:11][info] Entry "username" found!
+[13.11.11 20:09:11][info] Value: "Benutzername"
+[13.11.11 20:09:11][info] Entry "username" found!
+[13.11.11 20:09:11][info] Value: "Benutzername"
+[13.11.11 20:09:11][info] Entry "email" found!
+[13.11.11 20:09:11][info] Value: "Email"
+[13.11.11 20:09:11][info] Entry "exampleemail" found!
+[13.11.11 20:09:11][info] Value: "beispiel@domain.tld"
+[13.11.11 20:09:11][info] Entry "password" found!
+[13.11.11 20:09:11][info] Value: "Passwort"
+[13.11.11 20:09:11][info] Entry "password" found!
+[13.11.11 20:09:11][info] Value: "Passwort"
+[13.11.11 20:09:11][info] Entry "password_repeat" found!
+[13.11.11 20:09:11][info] Value: "Passwort wiederholen"
+[13.11.11 20:09:11][info] Entry "password_repeat" found!
+[13.11.11 20:09:11][info] Value: "Passwort wiederholen"
+[13.11.11 20:09:11][info] Entry "register" found!
+[13.11.11 20:09:11][info] Value: "Registrieren"
+[13.11.11 20:09:11][Logger] ----------| Log closed |----------
+[13.11.11 20:09:25][Logger] ----------> Log opened <----------
+[13.11.11 20:09:25][info] Selected language "de"
+[13.11.11 20:09:25][success] Language loaded
+[13.11.11 20:09:25][info] Entry "registration" found!
+[13.11.11 20:09:25][info] Value: "Registrierung"
+[13.11.11 20:09:25][info] Entry "pass_dontmatch" found!
+[13.11.11 20:09:25][info] Value: "Die Passwörter stimmen nicht überein!"
+[13.11.11 20:09:25][info] Selected language "de"
+[13.11.11 20:09:25][success] Language loaded
+[13.11.11 20:09:25][info] Entry "btn_back" found!
+[13.11.11 20:09:25][info] Value: "Zurück"
+[13.11.11 20:09:25][info] Entry "login" found!
+[13.11.11 20:09:25][info] Value: "Login"
+[13.11.11 20:09:25][info] Entry "message" found!
+[13.11.11 20:09:25][info] Value: "Meldung"
+[13.11.11 20:09:25][info] Entry "fillin" found!
+[13.11.11 20:09:25][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:09:25][info] Entry "username" found!
+[13.11.11 20:09:25][info] Value: "Benutzername"
+[13.11.11 20:09:25][info] Entry "username" found!
+[13.11.11 20:09:25][info] Value: "Benutzername"
+[13.11.11 20:09:25][info] Entry "email" found!
+[13.11.11 20:09:25][info] Value: "Email"
+[13.11.11 20:09:25][info] Entry "exampleemail" found!
+[13.11.11 20:09:25][info] Value: "beispiel@domain.tld"
+[13.11.11 20:09:25][info] Entry "password" found!
+[13.11.11 20:09:25][info] Value: "Passwort"
+[13.11.11 20:09:25][info] Entry "password" found!
+[13.11.11 20:09:25][info] Value: "Passwort"
+[13.11.11 20:09:25][info] Entry "password_repeat" found!
+[13.11.11 20:09:25][info] Value: "Passwort wiederholen"
+[13.11.11 20:09:25][info] Entry "password_repeat" found!
+[13.11.11 20:09:25][info] Value: "Passwort wiederholen"
+[13.11.11 20:09:25][info] Entry "register" found!
+[13.11.11 20:09:25][info] Value: "Registrieren"
+[13.11.11 20:09:25][Logger] ----------| Log closed |----------
+[13.11.11 20:09:44][Logger] ----------> Log opened <----------
+[13.11.11 20:09:44][info] Selected language "de"
+[13.11.11 20:09:44][success] Language loaded
+[13.11.11 20:09:44][info] Entry "registration" found!
+[13.11.11 20:09:44][info] Value: "Registrierung"
+[13.11.11 20:09:44][info] Entry "pass_dontmatch" found!
+[13.11.11 20:09:44][info] Value: "Die Passwörter stimmen nicht überein!"
+[13.11.11 20:09:44][info] Selected language "de"
+[13.11.11 20:09:44][success] Language loaded
+[13.11.11 20:09:44][info] Entry "btn_back" found!
+[13.11.11 20:09:44][info] Value: "Zurück"
+[13.11.11 20:09:44][info] Entry "login" found!
+[13.11.11 20:09:44][info] Value: "Login"
+[13.11.11 20:09:44][info] Entry "message" found!
+[13.11.11 20:09:44][info] Value: "Meldung"
+[13.11.11 20:09:44][info] Entry "fillin" found!
+[13.11.11 20:09:44][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:09:44][info] Entry "username" found!
+[13.11.11 20:09:44][info] Value: "Benutzername"
+[13.11.11 20:09:44][info] Entry "username" found!
+[13.11.11 20:09:44][info] Value: "Benutzername"
+[13.11.11 20:09:44][info] Entry "email" found!
+[13.11.11 20:09:44][info] Value: "Email"
+[13.11.11 20:09:44][info] Entry "exampleemail" found!
+[13.11.11 20:09:44][info] Value: "beispiel@domain.tld"
+[13.11.11 20:09:44][info] Entry "password" found!
+[13.11.11 20:09:44][info] Value: "Passwort"
+[13.11.11 20:09:44][info] Entry "password" found!
+[13.11.11 20:09:44][info] Value: "Passwort"
+[13.11.11 20:09:44][info] Entry "password_repeat" found!
+[13.11.11 20:09:44][info] Value: "Passwort wiederholen"
+[13.11.11 20:09:44][info] Entry "password_repeat" found!
+[13.11.11 20:09:44][info] Value: "Passwort wiederholen"
+[13.11.11 20:09:44][info] Entry "register" found!
+[13.11.11 20:09:44][info] Value: "Registrieren"
+[13.11.11 20:09:44][Logger] ----------| Log closed |----------
+[13.11.11 20:09:48][Logger] ----------> Log opened <----------
+[13.11.11 20:09:48][info] Selected language "de"
+[13.11.11 20:09:48][success] Language loaded
+[13.11.11 20:09:48][info] Entry "registration" found!
+[13.11.11 20:09:48][info] Value: "Registrierung"
+[13.11.11 20:09:48][info] Entry "user_toolong" found!
+[13.11.11 20:09:48][info] Value: "Der Benutzername darf höchstens 40 Zeichen lang sein."
+[13.11.11 20:09:48][info] Entry "pass_dontmatch" found!
+[13.11.11 20:09:48][info] Value: "Die Passwörter stimmen nicht überein!"
+[13.11.11 20:09:48][info] Selected language "de"
+[13.11.11 20:09:48][success] Language loaded
+[13.11.11 20:09:48][info] Entry "btn_back" found!
+[13.11.11 20:09:48][info] Value: "Zurück"
+[13.11.11 20:09:48][info] Entry "login" found!
+[13.11.11 20:09:48][info] Value: "Login"
+[13.11.11 20:09:48][info] Entry "message" found!
+[13.11.11 20:09:48][info] Value: "Meldung"
+[13.11.11 20:09:48][info] Entry "fillin" found!
+[13.11.11 20:09:48][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:09:48][info] Entry "username" found!
+[13.11.11 20:09:48][info] Value: "Benutzername"
+[13.11.11 20:09:48][info] Entry "username" found!
+[13.11.11 20:09:48][info] Value: "Benutzername"
+[13.11.11 20:09:48][info] Entry "email" found!
+[13.11.11 20:09:48][info] Value: "Email"
+[13.11.11 20:09:48][info] Entry "exampleemail" found!
+[13.11.11 20:09:48][info] Value: "beispiel@domain.tld"
+[13.11.11 20:09:48][info] Entry "password" found!
+[13.11.11 20:09:48][info] Value: "Passwort"
+[13.11.11 20:09:48][info] Entry "password" found!
+[13.11.11 20:09:48][info] Value: "Passwort"
+[13.11.11 20:09:48][info] Entry "password_repeat" found!
+[13.11.11 20:09:48][info] Value: "Passwort wiederholen"
+[13.11.11 20:09:48][info] Entry "password_repeat" found!
+[13.11.11 20:09:48][info] Value: "Passwort wiederholen"
+[13.11.11 20:09:48][info] Entry "register" found!
+[13.11.11 20:09:48][info] Value: "Registrieren"
+[13.11.11 20:09:48][Logger] ----------| Log closed |----------
+[13.11.11 20:51:22][Logger] ----------> Log opened <----------
+[13.11.11 20:51:22][info] Selected language "de"
+[13.11.11 20:51:22][success] Language loaded
+[13.11.11 20:51:22][info] Entry "registration" found!
+[13.11.11 20:51:22][info] Value: "Registrierung"
+[13.11.11 20:51:22][info] Selected language "de"
+[13.11.11 20:51:22][success] Language loaded
+[13.11.11 20:51:22][info] Entry "btn_back" found!
+[13.11.11 20:51:22][info] Value: "Zurück"
+[13.11.11 20:51:22][info] Entry "login" found!
+[13.11.11 20:51:22][info] Value: "Login"
+[13.11.11 20:51:22][info] Entry "fillin" found!
+[13.11.11 20:51:22][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:51:22][info] Entry "username" found!
+[13.11.11 20:51:22][info] Value: "Benutzername"
+[13.11.11 20:51:22][info] Entry "username" found!
+[13.11.11 20:51:22][info] Value: "Benutzername"
+[13.11.11 20:51:22][info] Entry "email" found!
+[13.11.11 20:51:22][info] Value: "Email"
+[13.11.11 20:51:22][info] Entry "exampleemail" found!
+[13.11.11 20:51:22][info] Value: "beispiel@domain.tld"
+[13.11.11 20:51:22][info] Entry "password" found!
+[13.11.11 20:51:22][info] Value: "Passwort"
+[13.11.11 20:51:22][info] Entry "password" found!
+[13.11.11 20:51:22][info] Value: "Passwort"
+[13.11.11 20:51:22][info] Entry "password_repeat" found!
+[13.11.11 20:51:22][info] Value: "Passwort wiederholen"
+[13.11.11 20:51:22][info] Entry "password_repeat" found!
+[13.11.11 20:51:22][info] Value: "Passwort wiederholen"
+[13.11.11 20:51:22][info] Entry "register" found!
+[13.11.11 20:51:22][info] Value: "Registrieren"
+[13.11.11 20:51:22][Logger] ----------| Log closed |----------
+[13.11.11 20:51:26][Logger] ----------> Log opened <----------
+[13.11.11 20:51:26][info] Selected language "de"
+[13.11.11 20:51:26][success] Language loaded
+[13.11.11 20:51:26][info] Entry "registration" found!
+[13.11.11 20:51:26][info] Value: "Registrierung"
+[13.11.11 20:51:26][info] Selected language "de"
+[13.11.11 20:51:26][success] Language loaded
+[13.11.11 20:51:26][info] Entry "btn_back" found!
+[13.11.11 20:51:26][info] Value: "Zurück"
+[13.11.11 20:51:26][info] Entry "login" found!
+[13.11.11 20:51:26][info] Value: "Login"
+[13.11.11 20:51:26][info] Entry "fillin" found!
+[13.11.11 20:51:26][info] Value: "Füllen sie das Formular vollständig aus."
+[13.11.11 20:51:26][info] Entry "username" found!
+[13.11.11 20:51:26][info] Value: "Benutzername"
+[13.11.11 20:51:26][info] Entry "username" found!
+[13.11.11 20:51:26][info] Value: "Benutzername"
+[13.11.11 20:51:26][info] Entry "email" found!
+[13.11.11 20:51:26][info] Value: "Email"
+[13.11.11 20:51:26][info] Entry "exampleemail" found!
+[13.11.11 20:51:26][info] Value: "beispiel@domain.tld"
+[13.11.11 20:51:26][info] Entry "password" found!
+[13.11.11 20:51:26][info] Value: "Passwort"
+[13.11.11 20:51:26][info] Entry "password" found!
+[13.11.11 20:51:26][info] Value: "Passwort"
+[13.11.11 20:51:26][info] Entry "password_repeat" found!
+[13.11.11 20:51:26][info] Value: "Passwort wiederholen"
+[13.11.11 20:51:26][info] Entry "password_repeat" found!
+[13.11.11 20:51:26][info] Value: "Passwort wiederholen"
+[13.11.11 20:51:26][info] Entry "register" found!
+[13.11.11 20:51:26][info] Value: "Registrieren"
+[13.11.11 20:51:26][Logger] ----------| Log closed |----------
+[13.11.11 20:51:29][Logger] ----------> Log opened <----------
+[13.11.11 20:51:29][info] Selected language "de"
+[13.11.11 20:51:29][success] Language loaded
+[13.11.11 20:51:29][info] Entry "home" found!
+[13.11.11 20:51:29][info] Value: "Home"
+[13.11.11 20:51:29][info] Entry "about" found!
+[13.11.11 20:51:29][info] Value: "Über"
+[13.11.11 20:51:29][info] Selected language "de"
+[13.11.11 20:51:29][success] Language loaded
+[13.11.11 20:51:29][info] Entry "pages" found!
+[13.11.11 20:51:29][info] Value: "Seiten"
+[13.11.11 20:51:29][info] Entry "registration" found!
+[13.11.11 20:51:29][info] Value: "Registrierung"
+[13.11.11 20:51:29][info] Entry "login" found!
+[13.11.11 20:51:29][info] Value: "Login"
+[13.11.11 20:51:29][info] Entry "stats" found!
+[13.11.11 20:51:29][info] Value: "Statistiken"
+[13.11.11 20:51:29][info] Entry "downloads" found!
+[13.11.11 20:51:29][info] Value: "Downloads"
+[13.11.11 20:51:29][info] Entry "confirm_logout" found!
+[13.11.11 20:51:29][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 20:51:29][Logger] ----------| Log closed |----------
+[13.11.11 20:51:33][Logger] ----------> Log opened <----------
+[13.11.11 20:51:33][info] Selected language "de"
+[13.11.11 20:51:33][success] Language loaded
+[13.11.11 20:51:33][info] Entry "login" found!
+[13.11.11 20:51:33][info] Value: "Login"
+[13.11.11 20:51:33][info] Selected language "de"
+[13.11.11 20:51:33][success] Language loaded
+[13.11.11 20:51:33][info] Entry "btn_home" found!
+[13.11.11 20:51:33][info] Value: "Home"
+[13.11.11 20:51:33][info] Entry "registration" found!
+[13.11.11 20:51:33][info] Value: "Registrierung"
+[13.11.11 20:51:33][info] Entry "loginid" found!
+[13.11.11 20:51:33][info] Value: "Login"
+[13.11.11 20:51:33][info] Entry "loginid" found!
+[13.11.11 20:51:33][info] Value: "Login"
+[13.11.11 20:51:33][info] Entry "password" found!
+[13.11.11 20:51:33][info] Value: "Passwort"
+[13.11.11 20:51:33][info] Entry "password" found!
+[13.11.11 20:51:33][info] Value: "Passwort"
+[13.11.11 20:51:33][info] Entry "language" found!
+[13.11.11 20:51:33][info] Value: "Sprache"
+[13.11.11 20:51:33][info] Entry "lang_de" found!
+[13.11.11 20:51:33][info] Value: "Deutsch"
+[13.11.11 20:51:33][info] Entry "lang_en" found!
+[13.11.11 20:51:33][info] Value: "Englisch"
+[13.11.11 20:51:33][info] Entry "login" found!
+[13.11.11 20:51:33][info] Value: "Login"
+[13.11.11 20:51:33][Logger] ----------| Log closed |----------
+[13.11.11 20:51:37][Logger] ----------> Log opened <----------
+[13.11.11 20:51:37][info] Selected language "de"
+[13.11.11 20:51:37][success] Language loaded
+[13.11.11 20:51:37][info] Entry "login" found!
+[13.11.11 20:51:37][info] Value: "Login"
+[13.11.11 20:51:37][info] Entry "login_success" found!
+[13.11.11 20:51:37][info] Value: "Erfolgreich eingeloggt!"
+[13.11.11 20:51:37][Logger] ----------| Log closed |----------
+[13.11.11 20:51:37][Logger] ----------> Log opened <----------
+[13.11.11 20:51:37][info] Selected language "de"
+[13.11.11 20:51:37][success] Language loaded
+[13.11.11 20:51:37][info] Entry "home" found!
+[13.11.11 20:51:37][info] Value: "Home"
+[13.11.11 20:51:37][info] Entry "about" found!
+[13.11.11 20:51:37][info] Value: "Über"
+[13.11.11 20:51:37][info] Selected language "de"
+[13.11.11 20:51:37][success] Language loaded
+[13.11.11 20:51:37][info] Entry "message" found!
+[13.11.11 20:51:37][info] Value: "Meldung"
+[13.11.11 20:51:37][info] Entry "pages" found!
+[13.11.11 20:51:37][info] Value: "Seiten"
+[13.11.11 20:51:37][info] Entry "serverinfo" found!
+[13.11.11 20:51:37][info] Value: "Server-Informationen"
+[13.11.11 20:51:37][info] Entry "manplayers" found!
+[13.11.11 20:51:37][info] Value: "Spieler-Verwaltung"
+[13.11.11 20:51:37][info] Entry "manworlds" found!
+[13.11.11 20:51:37][info] Value: "Welten-Verwaltung"
+[13.11.11 20:51:37][info] Entry "manplugins" found!
+[13.11.11 20:51:37][info] Value: "Plugin-Verwaltung"
+[13.11.11 20:51:37][info] Entry "stats" found!
+[13.11.11 20:51:37][info] Value: "Statistiken"
+[13.11.11 20:51:37][info] Entry "downloads" found!
+[13.11.11 20:51:37][info] Value: "Downloads"
+[13.11.11 20:51:37][info] Entry "user" found!
+[13.11.11 20:51:37][info] Value: "Benutzer"
+[13.11.11 20:51:37][info] Entry "profile" found!
+[13.11.11 20:51:37][info] Value: "Profil"
+[13.11.11 20:51:37][info] Entry "logout" found!
+[13.11.11 20:51:37][info] Value: "Ausloggen"
+[13.11.11 20:51:37][info] Entry "confirm_logout" found!
+[13.11.11 20:51:37][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 20:51:37][Logger] ----------| Log closed |----------
+[13.11.11 20:51:51][Logger] ----------> Log opened <----------
+[13.11.11 20:51:51][info] Selected language "de"
+[13.11.11 20:51:51][success] Language loaded
+[13.11.11 20:51:51][info] Entry "profile" found!
+[13.11.11 20:51:51][info] Value: "Profil"
+[13.11.11 20:51:51][info] Selected language "de"
+[13.11.11 20:51:51][success] Language loaded
+[13.11.11 20:51:51][info] Entry "btn_home" found!
+[13.11.11 20:51:51][info] Value: "Home"
+[13.11.11 20:51:51][info] Entry "edit" found!
+[13.11.11 20:51:51][info] Value: "Bearbeiten"
+[13.11.11 20:51:51][info] Entry "userinfos" found!
+[13.11.11 20:51:51][info] Value: "Nutzerdaten"
+[13.11.11 20:51:51][info] Entry "username" found!
+[13.11.11 20:51:51][info] Value: "Benutzername"
+[13.11.11 20:51:51][info] Entry "email" found!
+[13.11.11 20:51:51][info] Value: "Email-Adresse"
+[13.11.11 20:51:51][fail] Entry "apiaddr" NOT found!
+[13.11.11 20:51:51][fail] Entry "apipass" NOT found!
+[13.11.11 20:51:51][fail] Entry "deleteUser" NOT found!
+[13.11.11 20:51:51][Logger] ----------| Log closed |----------
+[13.11.11 20:52:09][Logger] ----------> Log opened <----------
+[13.11.11 20:52:09][info] Selected language "de"
+[13.11.11 20:52:09][success] Language loaded
+[13.11.11 20:52:09][info] Entry "profile" found!
+[13.11.11 20:52:09][info] Value: "Profil"
+[13.11.11 20:52:09][info] Selected language "de"
+[13.11.11 20:52:09][success] Language loaded
+[13.11.11 20:52:09][info] Entry "btn_home" found!
+[13.11.11 20:52:09][info] Value: "Home"
+[13.11.11 20:52:09][info] Entry "edit" found!
+[13.11.11 20:52:09][info] Value: "Bearbeiten"
+[13.11.11 20:52:09][info] Entry "userinfos" found!
+[13.11.11 20:52:09][info] Value: "Nutzerdaten"
+[13.11.11 20:52:09][info] Entry "username" found!
+[13.11.11 20:52:09][info] Value: "Benutzername"
+[13.11.11 20:52:09][info] Entry "email" found!
+[13.11.11 20:52:09][info] Value: "Email-Adresse"
+[13.11.11 20:52:09][fail] Entry "deleteUser" NOT found!
+[13.11.11 20:52:09][Logger] ----------| Log closed |----------
+[13.11.11 20:52:09][Logger] ----------> Log opened <----------
+[13.11.11 20:52:09][info] Selected language "de"
+[13.11.11 20:52:09][success] Language loaded
+[13.11.11 20:52:09][Logger] ----------| Log closed |----------
+[13.11.11 21:06:40][Logger] ----------> Log opened <----------
+[13.11.11 21:06:40][info] Selected language "de"
+[13.11.11 21:06:40][success] Language loaded
+[13.11.11 21:06:40][info] Entry "profile" found!
+[13.11.11 21:06:40][info] Value: "Profil"
+[13.11.11 21:06:40][info] Selected language "de"
+[13.11.11 21:06:40][success] Language loaded
+[13.11.11 21:06:40][info] Entry "btn_home" found!
+[13.11.11 21:06:40][info] Value: "Home"
+[13.11.11 21:06:40][info] Entry "edit" found!
+[13.11.11 21:06:40][info] Value: "Bearbeiten"
+[13.11.11 21:06:40][info] Entry "userinfos" found!
+[13.11.11 21:06:40][info] Value: "Nutzerdaten"
+[13.11.11 21:06:40][info] Entry "username" found!
+[13.11.11 21:06:40][info] Value: "Benutzername"
+[13.11.11 21:06:40][info] Entry "email" found!
+[13.11.11 21:06:40][info] Value: "Email-Adresse"
+[13.11.11 21:06:40][info] Entry "currentserver" found!
+[13.11.11 21:06:40][info] Value: "Aktueller Server"
+[13.11.11 21:06:40][info] Entry "servers" found!
+[13.11.11 21:06:40][info] Value: "Server"
+[13.11.11 21:06:40][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:06:40][Logger] ----------| Log closed |----------
+[13.11.11 21:06:40][Logger] ----------> Log opened <----------
+[13.11.11 21:06:40][info] Selected language "de"
+[13.11.11 21:06:40][success] Language loaded
+[13.11.11 21:06:40][Logger] ----------| Log closed |----------
+[13.11.11 21:07:24][Logger] ----------> Log opened <----------
+[13.11.11 21:07:24][info] Selected language "de"
+[13.11.11 21:07:24][success] Language loaded
+[13.11.11 21:07:24][info] Entry "profile" found!
+[13.11.11 21:07:24][info] Value: "Profil"
+[13.11.11 21:07:24][info] Selected language "de"
+[13.11.11 21:07:24][success] Language loaded
+[13.11.11 21:07:24][info] Entry "btn_home" found!
+[13.11.11 21:07:24][info] Value: "Home"
+[13.11.11 21:07:24][info] Entry "edit" found!
+[13.11.11 21:07:24][info] Value: "Bearbeiten"
+[13.11.11 21:07:24][info] Entry "userinfos" found!
+[13.11.11 21:07:24][info] Value: "Nutzerdaten"
+[13.11.11 21:07:24][info] Entry "username" found!
+[13.11.11 21:07:24][info] Value: "Benutzername"
+[13.11.11 21:07:24][info] Entry "email" found!
+[13.11.11 21:07:24][info] Value: "Email-Adresse"
+[13.11.11 21:07:24][info] Entry "currentserver" found!
+[13.11.11 21:07:24][info] Value: "Aktueller Server"
+[13.11.11 21:07:24][info] Entry "servers" found!
+[13.11.11 21:07:24][info] Value: "Server"
+[13.11.11 21:07:24][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:07:24][Logger] ----------| Log closed |----------
+[13.11.11 21:07:24][Logger] ----------> Log opened <----------
+[13.11.11 21:07:24][info] Selected language "de"
+[13.11.11 21:07:24][success] Language loaded
+[13.11.11 21:07:24][Logger] ----------| Log closed |----------
+[13.11.11 21:07:44][Logger] ----------> Log opened <----------
+[13.11.11 21:07:44][info] Selected language "de"
+[13.11.11 21:07:44][success] Language loaded
+[13.11.11 21:07:44][info] Entry "profile" found!
+[13.11.11 21:07:44][info] Value: "Profil"
+[13.11.11 21:07:44][info] Selected language "de"
+[13.11.11 21:07:44][success] Language loaded
+[13.11.11 21:07:44][info] Entry "btn_home" found!
+[13.11.11 21:07:44][info] Value: "Home"
+[13.11.11 21:07:44][info] Entry "edit" found!
+[13.11.11 21:07:44][info] Value: "Bearbeiten"
+[13.11.11 21:07:44][info] Entry "userinfos" found!
+[13.11.11 21:07:44][info] Value: "Nutzerdaten"
+[13.11.11 21:07:44][info] Entry "username" found!
+[13.11.11 21:07:44][info] Value: "Benutzername"
+[13.11.11 21:07:44][info] Entry "email" found!
+[13.11.11 21:07:44][info] Value: "Email-Adresse"
+[13.11.11 21:07:44][info] Entry "currentserver" found!
+[13.11.11 21:07:44][info] Value: "Aktueller Server"
+[13.11.11 21:07:44][info] Entry "servers" found!
+[13.11.11 21:07:44][info] Value: "Server"
+[13.11.11 21:07:44][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:07:44][Logger] ----------| Log closed |----------
+[13.11.11 21:07:44][Logger] ----------> Log opened <----------
+[13.11.11 21:07:44][info] Selected language "de"
+[13.11.11 21:07:44][success] Language loaded
+[13.11.11 21:07:44][Logger] ----------| Log closed |----------
+[13.11.11 21:09:29][Logger] ----------> Log opened <----------
+[13.11.11 21:09:29][info] Selected language "de"
+[13.11.11 21:09:29][success] Language loaded
+[13.11.11 21:09:29][info] Entry "pagenotfound" found!
+[13.11.11 21:09:29][info] Value: "Die angeforderte Seite konnte nicht gefunden werden!"
+[13.11.11 21:09:29][info] Selected language "de"
+[13.11.11 21:09:29][success] Language loaded
+[13.11.11 21:09:29][info] Entry "home" found!
+[13.11.11 21:09:29][info] Value: "Home"
+[13.11.11 21:09:29][info] Entry "about" found!
+[13.11.11 21:09:29][info] Value: "Über"
+[13.11.11 21:09:29][info] Entry "message" found!
+[13.11.11 21:09:29][info] Value: "Meldung"
+[13.11.11 21:09:29][info] Entry "pages" found!
+[13.11.11 21:09:29][info] Value: "Seiten"
+[13.11.11 21:09:29][info] Entry "serverinfo" found!
+[13.11.11 21:09:29][info] Value: "Server-Informationen"
+[13.11.11 21:09:29][info] Entry "manplayers" found!
+[13.11.11 21:09:29][info] Value: "Spieler-Verwaltung"
+[13.11.11 21:09:29][info] Entry "manworlds" found!
+[13.11.11 21:09:29][info] Value: "Welten-Verwaltung"
+[13.11.11 21:09:29][info] Entry "manplugins" found!
+[13.11.11 21:09:29][info] Value: "Plugin-Verwaltung"
+[13.11.11 21:09:29][info] Entry "stats" found!
+[13.11.11 21:09:29][info] Value: "Statistiken"
+[13.11.11 21:09:29][info] Entry "downloads" found!
+[13.11.11 21:09:29][info] Value: "Downloads"
+[13.11.11 21:09:29][info] Entry "user" found!
+[13.11.11 21:09:29][info] Value: "Benutzer"
+[13.11.11 21:09:29][info] Entry "profile" found!
+[13.11.11 21:09:29][info] Value: "Profil"
+[13.11.11 21:09:29][info] Entry "logout" found!
+[13.11.11 21:09:29][info] Value: "Ausloggen"
+[13.11.11 21:09:29][info] Entry "confirm_logout" found!
+[13.11.11 21:09:29][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 21:09:29][Logger] ----------| Log closed |----------
+[13.11.11 21:10:21][Logger] ----------> Log opened <----------
+[13.11.11 21:10:21][info] Selected language "de"
+[13.11.11 21:10:21][success] Language loaded
+[13.11.11 21:10:21][info] Entry "profile" found!
+[13.11.11 21:10:21][info] Value: "Profil"
+[13.11.11 21:10:21][info] Selected language "de"
+[13.11.11 21:10:21][success] Language loaded
+[13.11.11 21:10:21][info] Entry "btn_home" found!
+[13.11.11 21:10:21][info] Value: "Home"
+[13.11.11 21:10:21][info] Entry "edit" found!
+[13.11.11 21:10:21][info] Value: "Bearbeiten"
+[13.11.11 21:10:21][info] Entry "userinfos" found!
+[13.11.11 21:10:21][info] Value: "Nutzerdaten"
+[13.11.11 21:10:21][info] Entry "username" found!
+[13.11.11 21:10:21][info] Value: "Benutzername"
+[13.11.11 21:10:21][info] Entry "email" found!
+[13.11.11 21:10:21][info] Value: "Email-Adresse"
+[13.11.11 21:10:21][info] Entry "currentserver" found!
+[13.11.11 21:10:21][info] Value: "Aktueller Server"
+[13.11.11 21:10:21][info] Entry "servers" found!
+[13.11.11 21:10:21][info] Value: "Server"
+[13.11.11 21:10:21][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:10:21][Logger] ----------| Log closed |----------
+[13.11.11 21:10:21][Logger] ----------> Log opened <----------
+[13.11.11 21:10:21][info] Selected language "de"
+[13.11.11 21:10:21][success] Language loaded
+[13.11.11 21:10:21][Logger] ----------| Log closed |----------
+[13.11.11 21:11:03][Logger] ----------> Log opened <----------
+[13.11.11 21:11:03][info] Selected language "de"
+[13.11.11 21:11:03][success] Language loaded
+[13.11.11 21:11:03][info] Entry "profile" found!
+[13.11.11 21:11:03][info] Value: "Profil"
+[13.11.11 21:11:03][info] Selected language "de"
+[13.11.11 21:11:03][success] Language loaded
+[13.11.11 21:11:03][info] Entry "btn_home" found!
+[13.11.11 21:11:03][info] Value: "Home"
+[13.11.11 21:11:03][info] Entry "edit" found!
+[13.11.11 21:11:03][info] Value: "Bearbeiten"
+[13.11.11 21:11:03][info] Entry "userinfos" found!
+[13.11.11 21:11:03][info] Value: "Nutzerdaten"
+[13.11.11 21:11:03][info] Entry "username" found!
+[13.11.11 21:11:03][info] Value: "Benutzername"
+[13.11.11 21:11:03][info] Entry "email" found!
+[13.11.11 21:11:03][info] Value: "Email-Adresse"
+[13.11.11 21:11:03][info] Entry "currentserver" found!
+[13.11.11 21:11:03][info] Value: "Aktueller Server"
+[13.11.11 21:11:03][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:11:03][Logger] ----------| Log closed |----------
+[13.11.11 21:11:04][Logger] ----------> Log opened <----------
+[13.11.11 21:11:04][info] Selected language "de"
+[13.11.11 21:11:04][success] Language loaded
+[13.11.11 21:11:04][Logger] ----------| Log closed |----------
+[13.11.11 21:18:09][Logger] ----------> Log opened <----------
+[13.11.11 21:18:09][info] Selected language "de"
+[13.11.11 21:18:09][success] Language loaded
+[13.11.11 21:18:09][info] Entry "profile" found!
+[13.11.11 21:18:09][info] Value: "Profil"
+[13.11.11 21:18:09][info] Selected language "de"
+[13.11.11 21:18:09][success] Language loaded
+[13.11.11 21:18:09][info] Entry "btn_home" found!
+[13.11.11 21:18:09][info] Value: "Home"
+[13.11.11 21:18:09][info] Entry "edit" found!
+[13.11.11 21:18:09][info] Value: "Bearbeiten"
+[13.11.11 21:18:09][info] Entry "userinfos" found!
+[13.11.11 21:18:09][info] Value: "Nutzerdaten"
+[13.11.11 21:18:09][info] Entry "username" found!
+[13.11.11 21:18:09][info] Value: "Benutzername"
+[13.11.11 21:18:09][info] Entry "email" found!
+[13.11.11 21:18:09][info] Value: "Email-Adresse"
+[13.11.11 21:18:09][info] Entry "currentserver" found!
+[13.11.11 21:18:09][info] Value: "Aktueller Server"
+[13.11.11 21:18:09][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:18:09][Logger] ----------| Log closed |----------
+[13.11.11 21:18:09][Logger] ----------> Log opened <----------
+[13.11.11 21:18:09][info] Selected language "de"
+[13.11.11 21:18:09][success] Language loaded
+[13.11.11 21:18:09][Logger] ----------| Log closed |----------
+[13.11.11 21:18:11][Logger] ----------> Log opened <----------
+[13.11.11 21:18:11][info] Selected language "de"
+[13.11.11 21:18:11][success] Language loaded
+[13.11.11 21:18:11][info] Entry "profile" found!
+[13.11.11 21:18:11][info] Value: "Profil"
+[13.11.11 21:18:11][info] Selected language "de"
+[13.11.11 21:18:11][success] Language loaded
+[13.11.11 21:18:11][info] Entry "btn_home" found!
+[13.11.11 21:18:11][info] Value: "Home"
+[13.11.11 21:18:11][info] Entry "edit" found!
+[13.11.11 21:18:11][info] Value: "Bearbeiten"
+[13.11.11 21:18:11][info] Entry "userinfos" found!
+[13.11.11 21:18:11][info] Value: "Nutzerdaten"
+[13.11.11 21:18:11][info] Entry "username" found!
+[13.11.11 21:18:11][info] Value: "Benutzername"
+[13.11.11 21:18:11][info] Entry "email" found!
+[13.11.11 21:18:11][info] Value: "Email-Adresse"
+[13.11.11 21:18:11][info] Entry "currentserver" found!
+[13.11.11 21:18:11][info] Value: "Aktueller Server"
+[13.11.11 21:18:11][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:18:11][Logger] ----------| Log closed |----------
+[13.11.11 21:18:11][Logger] ----------> Log opened <----------
+[13.11.11 21:18:11][info] Selected language "de"
+[13.11.11 21:18:11][success] Language loaded
+[13.11.11 21:18:11][Logger] ----------| Log closed |----------
+[13.11.11 21:18:14][Logger] ----------> Log opened <----------
+[13.11.11 21:18:14][info] Selected language "de"
+[13.11.11 21:18:14][success] Language loaded
+[13.11.11 21:18:14][info] Entry "profile" found!
+[13.11.11 21:18:14][info] Value: "Profil"
+[13.11.11 21:18:14][info] Selected language "de"
+[13.11.11 21:18:14][success] Language loaded
+[13.11.11 21:18:14][info] Entry "btn_home" found!
+[13.11.11 21:18:14][info] Value: "Home"
+[13.11.11 21:18:14][info] Entry "edit" found!
+[13.11.11 21:18:14][info] Value: "Bearbeiten"
+[13.11.11 21:18:14][info] Entry "userinfos" found!
+[13.11.11 21:18:14][info] Value: "Nutzerdaten"
+[13.11.11 21:18:14][info] Entry "username" found!
+[13.11.11 21:18:14][info] Value: "Benutzername"
+[13.11.11 21:18:14][info] Entry "email" found!
+[13.11.11 21:18:14][info] Value: "Email-Adresse"
+[13.11.11 21:18:14][info] Entry "currentserver" found!
+[13.11.11 21:18:14][info] Value: "Aktueller Server"
+[13.11.11 21:18:14][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:18:14][Logger] ----------| Log closed |----------
+[13.11.11 21:18:14][Logger] ----------> Log opened <----------
+[13.11.11 21:18:14][info] Selected language "de"
+[13.11.11 21:18:14][success] Language loaded
+[13.11.11 21:18:14][Logger] ----------| Log closed |----------
+[13.11.11 21:21:57][Logger] ----------> Log opened <----------
+[13.11.11 21:21:57][info] Selected language "de"
+[13.11.11 21:21:57][success] Language loaded
+[13.11.11 21:21:57][info] Entry "profile" found!
+[13.11.11 21:21:57][info] Value: "Profil"
+[13.11.11 21:21:57][info] Selected language "de"
+[13.11.11 21:21:57][success] Language loaded
+[13.11.11 21:21:57][info] Entry "btn_home" found!
+[13.11.11 21:21:57][info] Value: "Home"
+[13.11.11 21:21:57][info] Entry "edit" found!
+[13.11.11 21:21:57][info] Value: "Bearbeiten"
+[13.11.11 21:21:57][info] Entry "userinfos" found!
+[13.11.11 21:21:57][info] Value: "Nutzerdaten"
+[13.11.11 21:21:57][info] Entry "username" found!
+[13.11.11 21:21:57][info] Value: "Benutzername"
+[13.11.11 21:21:57][info] Entry "email" found!
+[13.11.11 21:21:57][info] Value: "Email-Adresse"
+[13.11.11 21:21:57][info] Entry "currentserver" found!
+[13.11.11 21:21:57][info] Value: "Aktueller Server"
+[13.11.11 21:21:57][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:21:57][Logger] ----------| Log closed |----------
+[13.11.11 21:21:58][Logger] ----------> Log opened <----------
+[13.11.11 21:21:58][info] Selected language "de"
+[13.11.11 21:21:58][success] Language loaded
+[13.11.11 21:21:58][Logger] ----------| Log closed |----------
+[13.11.11 21:22:41][Logger] ----------> Log opened <----------
+[13.11.11 21:22:41][info] Selected language "de"
+[13.11.11 21:22:41][success] Language loaded
+[13.11.11 21:22:41][info] Entry "profile" found!
+[13.11.11 21:22:41][info] Value: "Profil"
+[13.11.11 21:22:41][Logger] ----------| Log closed |----------
+[13.11.11 21:22:57][Logger] ----------> Log opened <----------
+[13.11.11 21:22:57][info] Selected language "de"
+[13.11.11 21:22:57][success] Language loaded
+[13.11.11 21:22:57][info] Entry "profile" found!
+[13.11.11 21:22:57][info] Value: "Profil"
+[13.11.11 21:22:57][Logger] ----------| Log closed |----------
+[13.11.11 21:36:59][Logger] ----------> Log opened <----------
+[13.11.11 21:36:59][info] Selected language "de"
+[13.11.11 21:36:59][success] Language loaded
+[13.11.11 21:36:59][info] Entry "profile" found!
+[13.11.11 21:36:59][info] Value: "Profil"
+[13.11.11 21:36:59][Logger] ----------| Log closed |----------
+[13.11.11 21:37:15][Logger] ----------> Log opened <----------
+[13.11.11 21:37:15][info] Selected language "de"
+[13.11.11 21:37:15][success] Language loaded
+[13.11.11 21:37:15][info] Entry "profile" found!
+[13.11.11 21:37:15][info] Value: "Profil"
+[13.11.11 21:37:15][info] Selected language "de"
+[13.11.11 21:37:15][success] Language loaded
+[13.11.11 21:37:15][info] Entry "btn_home" found!
+[13.11.11 21:37:15][info] Value: "Home"
+[13.11.11 21:37:15][info] Entry "edit" found!
+[13.11.11 21:37:15][info] Value: "Bearbeiten"
+[13.11.11 21:37:15][info] Entry "userinfos" found!
+[13.11.11 21:37:15][info] Value: "Nutzerdaten"
+[13.11.11 21:37:15][info] Entry "username" found!
+[13.11.11 21:37:15][info] Value: "Benutzername"
+[13.11.11 21:37:15][info] Entry "email" found!
+[13.11.11 21:37:15][info] Value: "Email-Adresse"
+[13.11.11 21:37:15][info] Entry "currentserver" found!
+[13.11.11 21:37:15][info] Value: "Aktueller Server"
+[13.11.11 21:37:15][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:37:15][Logger] ----------| Log closed |----------
+[13.11.11 21:37:15][Logger] ----------> Log opened <----------
+[13.11.11 21:37:15][info] Selected language "de"
+[13.11.11 21:37:15][success] Language loaded
+[13.11.11 21:37:15][Logger] ----------| Log closed |----------
+[13.11.11 21:37:32][Logger] ----------> Log opened <----------
+[13.11.11 21:37:32][info] Selected language "de"
+[13.11.11 21:37:32][success] Language loaded
+[13.11.11 21:37:32][info] Entry "profile" found!
+[13.11.11 21:37:32][info] Value: "Profil"
+[13.11.11 21:37:32][Logger] ----------| Log closed |----------
+[13.11.11 21:38:45][Logger] ----------> Log opened <----------
+[13.11.11 21:38:45][info] Selected language "de"
+[13.11.11 21:38:45][success] Language loaded
+[13.11.11 21:38:45][info] Entry "profile" found!
+[13.11.11 21:38:45][info] Value: "Profil"
+[13.11.11 21:38:45][info] Selected language "de"
+[13.11.11 21:38:45][success] Language loaded
+[13.11.11 21:38:45][info] Entry "btn_home" found!
+[13.11.11 21:38:45][info] Value: "Home"
+[13.11.11 21:38:45][info] Entry "edit" found!
+[13.11.11 21:38:45][info] Value: "Bearbeiten"
+[13.11.11 21:38:45][info] Entry "userinfos" found!
+[13.11.11 21:38:45][info] Value: "Nutzerdaten"
+[13.11.11 21:38:45][info] Entry "username" found!
+[13.11.11 21:38:45][info] Value: "Benutzername"
+[13.11.11 21:38:45][info] Entry "email" found!
+[13.11.11 21:38:45][info] Value: "Email-Adresse"
+[13.11.11 21:38:45][info] Entry "currentserver" found!
+[13.11.11 21:38:45][info] Value: "Aktueller Server"
+[13.11.11 21:38:45][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:38:45][Logger] ----------| Log closed |----------
+[13.11.11 21:38:45][Logger] ----------> Log opened <----------
+[13.11.11 21:38:45][info] Selected language "de"
+[13.11.11 21:38:45][success] Language loaded
+[13.11.11 21:38:45][Logger] ----------| Log closed |----------
+[13.11.11 21:38:48][Logger] ----------> Log opened <----------
+[13.11.11 21:38:48][info] Selected language "de"
+[13.11.11 21:38:48][success] Language loaded
+[13.11.11 21:38:48][info] Entry "home" found!
+[13.11.11 21:38:48][info] Value: "Home"
+[13.11.11 21:38:48][info] Entry "about" found!
+[13.11.11 21:38:48][info] Value: "Über"
+[13.11.11 21:38:48][info] Selected language "de"
+[13.11.11 21:38:48][success] Language loaded
+[13.11.11 21:38:48][info] Entry "pages" found!
+[13.11.11 21:38:48][info] Value: "Seiten"
+[13.11.11 21:38:48][info] Entry "serverinfo" found!
+[13.11.11 21:38:48][info] Value: "Server-Informationen"
+[13.11.11 21:38:48][info] Entry "manplayers" found!
+[13.11.11 21:38:48][info] Value: "Spieler-Verwaltung"
+[13.11.11 21:38:48][info] Entry "manworlds" found!
+[13.11.11 21:38:48][info] Value: "Welten-Verwaltung"
+[13.11.11 21:38:48][info] Entry "manplugins" found!
+[13.11.11 21:38:48][info] Value: "Plugin-Verwaltung"
+[13.11.11 21:38:48][info] Entry "stats" found!
+[13.11.11 21:38:48][info] Value: "Statistiken"
+[13.11.11 21:38:48][info] Entry "downloads" found!
+[13.11.11 21:38:48][info] Value: "Downloads"
+[13.11.11 21:38:48][info] Entry "user" found!
+[13.11.11 21:38:48][info] Value: "Benutzer"
+[13.11.11 21:38:48][info] Entry "profile" found!
+[13.11.11 21:38:48][info] Value: "Profil"
+[13.11.11 21:38:48][info] Entry "logout" found!
+[13.11.11 21:38:48][info] Value: "Ausloggen"
+[13.11.11 21:38:48][info] Entry "confirm_logout" found!
+[13.11.11 21:38:48][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 21:38:48][Logger] ----------| Log closed |----------
+[13.11.11 21:38:50][Logger] ----------> Log opened <----------
+[13.11.11 21:38:50][info] Selected language "de"
+[13.11.11 21:38:50][success] Language loaded
+[13.11.11 21:38:50][info] Entry "logout_success" found!
+[13.11.11 21:38:50][info] Value: "Erfolgreich ausgeloggt"
+[13.11.11 21:38:50][Logger] ----------| Log closed |----------
+[13.11.11 21:38:50][Logger] ----------> Log opened <----------
+[13.11.11 21:38:50][info] Selected language "de"
+[13.11.11 21:38:50][success] Language loaded
+[13.11.11 21:38:50][info] Entry "home" found!
+[13.11.11 21:38:50][info] Value: "Home"
+[13.11.11 21:38:50][info] Entry "about" found!
+[13.11.11 21:38:50][info] Value: "Über"
+[13.11.11 21:38:50][info] Selected language "de"
+[13.11.11 21:38:50][success] Language loaded
+[13.11.11 21:38:50][info] Entry "message" found!
+[13.11.11 21:38:50][info] Value: "Meldung"
+[13.11.11 21:38:50][info] Entry "pages" found!
+[13.11.11 21:38:50][info] Value: "Seiten"
+[13.11.11 21:38:50][info] Entry "registration" found!
+[13.11.11 21:38:50][info] Value: "Registrierung"
+[13.11.11 21:38:50][info] Entry "login" found!
+[13.11.11 21:38:50][info] Value: "Login"
+[13.11.11 21:38:50][info] Entry "stats" found!
+[13.11.11 21:38:50][info] Value: "Statistiken"
+[13.11.11 21:38:50][info] Entry "downloads" found!
+[13.11.11 21:38:50][info] Value: "Downloads"
+[13.11.11 21:38:50][info] Entry "confirm_logout" found!
+[13.11.11 21:38:50][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 21:38:50][Logger] ----------| Log closed |----------
+[13.11.11 21:38:51][Logger] ----------> Log opened <----------
+[13.11.11 21:38:51][info] Selected language "de"
+[13.11.11 21:38:51][success] Language loaded
+[13.11.11 21:38:51][info] Entry "login" found!
+[13.11.11 21:38:51][info] Value: "Login"
+[13.11.11 21:38:51][info] Selected language "de"
+[13.11.11 21:38:51][success] Language loaded
+[13.11.11 21:38:51][info] Entry "btn_home" found!
+[13.11.11 21:38:51][info] Value: "Home"
+[13.11.11 21:38:51][info] Entry "registration" found!
+[13.11.11 21:38:51][info] Value: "Registrierung"
+[13.11.11 21:38:51][info] Entry "loginid" found!
+[13.11.11 21:38:51][info] Value: "Login"
+[13.11.11 21:38:51][info] Entry "loginid" found!
+[13.11.11 21:38:51][info] Value: "Login"
+[13.11.11 21:38:51][info] Entry "password" found!
+[13.11.11 21:38:51][info] Value: "Passwort"
+[13.11.11 21:38:51][info] Entry "password" found!
+[13.11.11 21:38:51][info] Value: "Passwort"
+[13.11.11 21:38:51][info] Entry "language" found!
+[13.11.11 21:38:51][info] Value: "Sprache"
+[13.11.11 21:38:51][info] Entry "lang_de" found!
+[13.11.11 21:38:51][info] Value: "Deutsch"
+[13.11.11 21:38:51][info] Entry "lang_en" found!
+[13.11.11 21:38:51][info] Value: "Englisch"
+[13.11.11 21:38:51][info] Entry "login" found!
+[13.11.11 21:38:51][info] Value: "Login"
+[13.11.11 21:38:51][Logger] ----------| Log closed |----------
+[13.11.11 21:38:56][Logger] ----------> Log opened <----------
+[13.11.11 21:38:56][info] Selected language "de"
+[13.11.11 21:38:56][success] Language loaded
+[13.11.11 21:38:56][info] Entry "login" found!
+[13.11.11 21:38:56][info] Value: "Login"
+[13.11.11 21:38:56][info] Entry "login_success" found!
+[13.11.11 21:38:56][info] Value: "Erfolgreich eingeloggt!"
+[13.11.11 21:38:56][Logger] ----------| Log closed |----------
+[13.11.11 21:38:56][Logger] ----------> Log opened <----------
+[13.11.11 21:38:56][info] Selected language "de"
+[13.11.11 21:38:56][success] Language loaded
+[13.11.11 21:38:56][info] Entry "home" found!
+[13.11.11 21:38:56][info] Value: "Home"
+[13.11.11 21:38:56][info] Entry "about" found!
+[13.11.11 21:38:56][info] Value: "Über"
+[13.11.11 21:38:56][info] Selected language "de"
+[13.11.11 21:38:56][success] Language loaded
+[13.11.11 21:38:56][info] Entry "message" found!
+[13.11.11 21:38:56][info] Value: "Meldung"
+[13.11.11 21:38:56][info] Entry "pages" found!
+[13.11.11 21:38:56][info] Value: "Seiten"
+[13.11.11 21:38:56][info] Entry "serverinfo" found!
+[13.11.11 21:38:56][info] Value: "Server-Informationen"
+[13.11.11 21:38:56][info] Entry "manplayers" found!
+[13.11.11 21:38:56][info] Value: "Spieler-Verwaltung"
+[13.11.11 21:38:56][info] Entry "manworlds" found!
+[13.11.11 21:38:56][info] Value: "Welten-Verwaltung"
+[13.11.11 21:38:56][info] Entry "manplugins" found!
+[13.11.11 21:38:56][info] Value: "Plugin-Verwaltung"
+[13.11.11 21:38:56][info] Entry "stats" found!
+[13.11.11 21:38:56][info] Value: "Statistiken"
+[13.11.11 21:38:56][info] Entry "downloads" found!
+[13.11.11 21:38:56][info] Value: "Downloads"
+[13.11.11 21:38:56][info] Entry "user" found!
+[13.11.11 21:38:56][info] Value: "Benutzer"
+[13.11.11 21:38:56][info] Entry "profile" found!
+[13.11.11 21:38:56][info] Value: "Profil"
+[13.11.11 21:38:56][info] Entry "logout" found!
+[13.11.11 21:38:56][info] Value: "Ausloggen"
+[13.11.11 21:38:56][info] Entry "confirm_logout" found!
+[13.11.11 21:38:56][info] Value: "Willst du wirklich ausloggen?"
+[13.11.11 21:38:56][Logger] ----------| Log closed |----------
+[13.11.11 21:38:59][Logger] ----------> Log opened <----------
+[13.11.11 21:38:59][info] Selected language "de"
+[13.11.11 21:38:59][success] Language loaded
+[13.11.11 21:38:59][info] Entry "profile" found!
+[13.11.11 21:38:59][info] Value: "Profil"
+[13.11.11 21:38:59][info] Selected language "de"
+[13.11.11 21:38:59][success] Language loaded
+[13.11.11 21:38:59][info] Entry "btn_home" found!
+[13.11.11 21:38:59][info] Value: "Home"
+[13.11.11 21:38:59][info] Entry "edit" found!
+[13.11.11 21:38:59][info] Value: "Bearbeiten"
+[13.11.11 21:38:59][info] Entry "userinfos" found!
+[13.11.11 21:38:59][info] Value: "Nutzerdaten"
+[13.11.11 21:38:59][info] Entry "username" found!
+[13.11.11 21:38:59][info] Value: "Benutzername"
+[13.11.11 21:38:59][info] Entry "email" found!
+[13.11.11 21:38:59][info] Value: "Email-Adresse"
+[13.11.11 21:38:59][info] Entry "currentserver" found!
+[13.11.11 21:38:59][info] Value: "Aktueller Server"
+[13.11.11 21:38:59][info] Entry "servers" found!
+[13.11.11 21:38:59][info] Value: "Server"
+[13.11.11 21:38:59][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:38:59][Logger] ----------| Log closed |----------
+[13.11.11 21:39:18][Logger] ----------> Log opened <----------
+[13.11.11 21:39:18][info] Selected language "de"
+[13.11.11 21:39:18][success] Language loaded
+[13.11.11 21:39:18][info] Entry "profile" found!
+[13.11.11 21:39:18][info] Value: "Profil"
+[13.11.11 21:39:18][info] Selected language "de"
+[13.11.11 21:39:18][success] Language loaded
+[13.11.11 21:39:18][info] Entry "btn_home" found!
+[13.11.11 21:39:18][info] Value: "Home"
+[13.11.11 21:39:18][info] Entry "edit" found!
+[13.11.11 21:39:18][info] Value: "Bearbeiten"
+[13.11.11 21:39:18][info] Entry "userinfos" found!
+[13.11.11 21:39:18][info] Value: "Nutzerdaten"
+[13.11.11 21:39:18][info] Entry "username" found!
+[13.11.11 21:39:18][info] Value: "Benutzername"
+[13.11.11 21:39:18][info] Entry "email" found!
+[13.11.11 21:39:18][info] Value: "Email-Adresse"
+[13.11.11 21:39:18][info] Entry "currentserver" found!
+[13.11.11 21:39:18][info] Value: "Aktueller Server"
+[13.11.11 21:39:18][info] Entry "servers" found!
+[13.11.11 21:39:18][info] Value: "Server"
+[13.11.11 21:39:18][fail] Entry "deleteUser" NOT found!
+[13.11.11 21:39:18][Logger] ----------| Log closed |----------
+[13.11.11 21:39:18][Logger] ----------> Log opened <----------
+[13.11.11 21:39:18][info] Selected language "de"
+[13.11.11 21:39:18][success] Language loaded
+[13.11.11 21:39:18][Logger] ----------| Log closed |----------
+[14.11.11 16:08:53][Logger] ----------> Log opened <----------
+[14.11.11 16:08:53][info] Selected language "de"
+[14.11.11 16:08:53][success] Language loaded
+[14.11.11 16:08:53][info] Entry "profile" found!
+[14.11.11 16:08:53][info] Value: "Profil"
+[14.11.11 16:08:53][info] Selected language "de"
+[14.11.11 16:08:53][success] Language loaded
+[14.11.11 16:08:53][info] Entry "loginrequired" found!
+[14.11.11 16:08:53][info] Value: "Login benötigt"
+[14.11.11 16:08:53][Logger] ----------| Log closed |----------
+[14.11.11 16:08:53][Logger] ----------> Log opened <----------
+[14.11.11 16:08:53][info] Selected language "de"
+[14.11.11 16:08:53][success] Language loaded
+[14.11.11 16:08:53][info] Entry "login" found!
+[14.11.11 16:08:53][info] Value: "Login"
+[14.11.11 16:08:53][info] Selected language "de"
+[14.11.11 16:08:53][success] Language loaded
+[14.11.11 16:08:53][info] Entry "btn_home" found!
+[14.11.11 16:08:53][info] Value: "Home"
+[14.11.11 16:08:53][info] Entry "registration" found!
+[14.11.11 16:08:53][info] Value: "Registrierung"
+[14.11.11 16:08:53][info] Entry "loginid" found!
+[14.11.11 16:08:53][info] Value: "Login"
+[14.11.11 16:08:53][info] Entry "loginid" found!
+[14.11.11 16:08:53][info] Value: "Login"
+[14.11.11 16:08:53][info] Entry "password" found!
+[14.11.11 16:08:53][info] Value: "Passwort"
+[14.11.11 16:08:53][info] Entry "password" found!
+[14.11.11 16:08:53][info] Value: "Passwort"
+[14.11.11 16:08:53][info] Entry "language" found!
+[14.11.11 16:08:53][info] Value: "Sprache"
+[14.11.11 16:08:53][info] Entry "lang_de" found!
+[14.11.11 16:08:53][info] Value: "Deutsch"
+[14.11.11 16:08:53][info] Entry "lang_en" found!
+[14.11.11 16:08:53][info] Value: "Englisch"
+[14.11.11 16:08:53][info] Entry "login" found!
+[14.11.11 16:08:53][info] Value: "Login"
+[14.11.11 16:08:53][Logger] ----------| Log closed |----------
+[14.11.11 16:09:15][Logger] ----------> Log opened <----------
+[14.11.11 16:09:15][info] Selected language "de"
+[14.11.11 16:09:15][success] Language loaded
+[14.11.11 16:09:15][info] Entry "login" found!
+[14.11.11 16:09:15][info] Value: "Login"
+[14.11.11 16:09:15][info] Entry "login_success" found!
+[14.11.11 16:09:15][info] Value: "Erfolgreich eingeloggt!"
+[14.11.11 16:09:15][Logger] ----------| Log closed |----------
+[14.11.11 16:09:15][Logger] ----------> Log opened <----------
+[14.11.11 16:09:15][info] Selected language "de"
+[14.11.11 16:09:15][success] Language loaded
+[14.11.11 16:09:15][info] Entry "home" found!
+[14.11.11 16:09:15][info] Value: "Home"
+[14.11.11 16:09:15][info] Entry "about" found!
+[14.11.11 16:09:15][info] Value: "Über"
+[14.11.11 16:09:15][info] Selected language "de"
+[14.11.11 16:09:15][success] Language loaded
+[14.11.11 16:09:15][info] Entry "message" found!
+[14.11.11 16:09:15][info] Value: "Meldung"
+[14.11.11 16:09:15][info] Entry "pages" found!
+[14.11.11 16:09:15][info] Value: "Seiten"
+[14.11.11 16:09:15][info] Entry "serverinfo" found!
+[14.11.11 16:09:15][info] Value: "Server-Informationen"
+[14.11.11 16:09:15][info] Entry "manplayers" found!
+[14.11.11 16:09:15][info] Value: "Spieler-Verwaltung"
+[14.11.11 16:09:15][info] Entry "manworlds" found!
+[14.11.11 16:09:15][info] Value: "Welten-Verwaltung"
+[14.11.11 16:09:15][info] Entry "manplugins" found!
+[14.11.11 16:09:15][info] Value: "Plugin-Verwaltung"
+[14.11.11 16:09:15][info] Entry "stats" found!
+[14.11.11 16:09:15][info] Value: "Statistiken"
+[14.11.11 16:09:15][info] Entry "downloads" found!
+[14.11.11 16:09:15][info] Value: "Downloads"
+[14.11.11 16:09:15][info] Entry "user" found!
+[14.11.11 16:09:15][info] Value: "Benutzer"
+[14.11.11 16:09:15][info] Entry "profile" found!
+[14.11.11 16:09:15][info] Value: "Profil"
+[14.11.11 16:09:15][info] Entry "logout" found!
+[14.11.11 16:09:15][info] Value: "Ausloggen"
+[14.11.11 16:09:15][info] Entry "confirm_logout" found!
+[14.11.11 16:09:15][info] Value: "Willst du wirklich ausloggen?"
+[14.11.11 16:09:15][Logger] ----------| Log closed |----------
+[14.11.11 16:10:21][Logger] ----------> Log opened <----------
+[14.11.11 16:10:21][info] Selected language "de"
+[14.11.11 16:10:22][success] Language loaded
+[14.11.11 16:10:22][info] Entry "serverinfos" found!
+[14.11.11 16:10:22][info] Value: "Serverinfos"
+[14.11.11 16:10:22][info] Selected language "de"
+[14.11.11 16:10:22][success] Language loaded
+[14.11.11 16:10:22][info] Entry "btn_home" found!
+[14.11.11 16:10:22][info] Value: "Home"
+[14.11.11 16:10:22][info] Entry "refresh" found!
+[14.11.11 16:10:22][info] Value: "Erneuern"
+[14.11.11 16:10:22][info] Entry "serverinfos" found!
+[14.11.11 16:10:22][info] Value: "Serverinfos"
+[14.11.11 16:10:22][info] Entry "servername" found!
+[14.11.11 16:10:22][info] Value: "Servername"
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "serverip" found!
+[14.11.11 16:10:22][info] Value: "Server-IP"
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "serverport" found!
+[14.11.11 16:10:22][info] Value: "Serverport"
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "uptime" found!
+[14.11.11 16:10:22][info] Value: "Laufzeit"
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "players" found!
+[14.11.11 16:10:22][info] Value: "Spieler"
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "worlds" found!
+[14.11.11 16:10:22][info] Value: "Welten"
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "plugins" found!
+[14.11.11 16:10:22][info] Value: "Plugins"
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "utils" found!
+[14.11.11 16:10:22][info] Value: "Funktionen"
+[14.11.11 16:10:22][info] Entry "ram" found!
+[14.11.11 16:10:22][info] Value: "Arbeitsspeicher"
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "progress" found!
+[14.11.11 16:10:22][info] Value: "Lade..."
+[14.11.11 16:10:22][info] Entry "banplayer" found!
+[14.11.11 16:10:22][info] Value: "Ban einen Spieler"
+[14.11.11 16:10:22][info] Entry "banip" found!
+[14.11.11 16:10:22][info] Value: "Ban eine IP"
+[14.11.11 16:10:22][info] Entry "addtowhitelist" found!
+[14.11.11 16:10:22][info] Value: "Whiteliste einen Spieler"
+[14.11.11 16:10:22][info] Entry "addoperator" found!
+[14.11.11 16:10:22][info] Value: "Füg einen Operator hinzu"
+[14.11.11 16:10:22][info] Entry "broadcast" found!
+[14.11.11 16:10:22][info] Value: "Eine Nachricht an den Server"
+[14.11.11 16:10:22][info] Entry "consoleview" found!
+[14.11.11 16:10:22][info] Value: "Konsolenansicht"
+[14.11.11 16:10:22][info] Entry "reload" found!
+[14.11.11 16:10:22][info] Value: "Neuladen"
+[14.11.11 16:10:22][info] Entry "stop" found!
+[14.11.11 16:10:22][info] Value: "Den Server beenden"
+[14.11.11 16:10:22][info] Entry "uptime_format" found!
+[14.11.11 16:10:22][info] Value: "{0} Tag(e), {1} Stunde(n), {2} Minute(n) und {3} Sekunde(n)"
+[14.11.11 16:10:22][info] Entry "confirm_reload" found!
+[14.11.11 16:10:22][info] Value: "Willst du den Server wirklich neuladen?"
+[14.11.11 16:10:22][info] Entry "reload_success" found!
+[14.11.11 16:10:22][info] Value: "Server erfolgreich neugeladen!\nDaten werden erneuert..."
+[14.11.11 16:10:22][info] Entry "gc_confirm" found!
+[14.11.11 16:10:22][info] Value: "Willst du den GarbageCollector wirklich aufrufen?"
+[14.11.11 16:10:22][info] Entry "gc_success" found!
+[14.11.11 16:10:22][info] Value: "GarbageCollector erfolgreich ausgeführt!"
+[14.11.11 16:10:22][info] Entry "stop_confirm" found!
+[14.11.11 16:10:22][info] Value: "Willst du den Server wirklich beenden?"
+[14.11.11 16:10:22][info] Entry "stop_confirm2" found!
+[14.11.11 16:10:22][info] Value: "Wirklich wirklich??"
+[14.11.11 16:10:22][info] Entry "stop_success" found!
+[14.11.11 16:10:22][info] Value: "Der Server wurde erfolgreich beendet!"
+[14.11.11 16:10:22][info] Entry "broadcast_prompt" found!
+[14.11.11 16:10:22][info] Value: "Gib die Nachricht ein:"
+[14.11.11 16:10:22][info] Entry "broadcast_success" found!
+[14.11.11 16:10:22][info] Value: "Nachricht erfolgreich gesendet!"
+[14.11.11 16:10:22][Logger] ----------| Log closed |----------
+[14.11.11 16:10:42][Logger] ----------> Log opened <----------
+[14.11.11 16:10:42][info] Selected language "de"
+[14.11.11 16:10:42][success] Language loaded
+[14.11.11 16:10:42][info] Entry "pluginlist" found!
+[14.11.11 16:10:42][info] Value: "Pluginliste"
+[14.11.11 16:10:42][info] Selected language "de"
+[14.11.11 16:10:42][success] Language loaded
+[14.11.11 16:10:42][info] Entry "btn_back" found!
+[14.11.11 16:10:42][info] Value: "Zurück"
+[14.11.11 16:10:42][info] Entry "refresh" found!
+[14.11.11 16:10:42][info] Value: "Erneuern"
+[14.11.11 16:10:42][info] Entry "info" found!
+[14.11.11 16:10:42][info] Value: "Die Liste wird nicht automatisch erneuert!"
+[14.11.11 16:10:42][info] Entry "loadinglist" found!
+[14.11.11 16:10:42][info] Value: "Pluginliste wird geladen..."
+[14.11.11 16:10:42][info] Entry "noplugins" found!
+[14.11.11 16:10:42][info] Value: "Es sind keine Plugins vorhanden"
+[14.11.11 16:10:42][Logger] ----------| Log closed |----------
+[14.11.11 16:10:47][Logger] ----------> Log opened <----------
+[14.11.11 16:10:47][info] Selected language "de"
+[14.11.11 16:10:47][success] Language loaded
+[14.11.11 16:10:47][info] Entry "profile" found!
+[14.11.11 16:10:47][info] Value: "Profil"
+[14.11.11 16:10:47][info] Selected language "de"
+[14.11.11 16:10:47][success] Language loaded
+[14.11.11 16:10:47][info] Entry "btn_home" found!
+[14.11.11 16:10:47][info] Value: "Home"
+[14.11.11 16:10:47][info] Entry "edit" found!
+[14.11.11 16:10:47][info] Value: "Bearbeiten"
+[14.11.11 16:10:47][info] Entry "userinfos" found!
+[14.11.11 16:10:47][info] Value: "Nutzerdaten"
+[14.11.11 16:10:47][info] Entry "username" found!
+[14.11.11 16:10:47][info] Value: "Benutzername"
+[14.11.11 16:10:47][info] Entry "email" found!
+[14.11.11 16:10:47][info] Value: "Email-Adresse"
+[14.11.11 16:10:47][info] Entry "currentserver" found!
+[14.11.11 16:10:47][info] Value: "Aktueller Server"
+[14.11.11 16:10:47][info] Entry "servers" found!
+[14.11.11 16:10:47][info] Value: "Server"
+[14.11.11 16:10:47][fail] Entry "deleteUser" NOT found!
+[14.11.11 16:10:47][Logger] ----------| Log closed |----------
+[14.11.11 16:10:49][Logger] ----------> Log opened <----------
+[14.11.11 16:10:49][info] Selected language "de"
+[14.11.11 16:10:49][success] Language loaded
+[14.11.11 16:10:49][info] Selected language "de"
+[14.11.11 16:10:49][success] Language loaded
+[14.11.11 16:10:49][info] Entry "edit" found!
+[14.11.11 16:10:49][info] Value: "Bearbeiten"
+[14.11.11 16:10:49][info] Selected language "de"
+[14.11.11 16:10:49][success] Language loaded
+[14.11.11 16:10:49][info] Entry "btn_back" found!
+[14.11.11 16:10:49][info] Value: "Zurück"
+[14.11.11 16:10:49][info] Entry "changeinfos" found!
+[14.11.11 16:10:49][info] Value: "Ändere die Daten und gibt das Passwort ein"
+[14.11.11 16:10:49][info] Entry "username" found!
+[14.11.11 16:10:49][info] Value: "Benutzername"
+[14.11.11 16:10:49][info] Entry "username" found!
+[14.11.11 16:10:49][info] Value: "Benutzername"
+[14.11.11 16:10:49][info] Entry "email" found!
+[14.11.11 16:10:49][info] Value: "Email"
+[14.11.11 16:10:49][info] Entry "exampleemail" found!
+[14.11.11 16:10:49][info] Value: "beispiel@domain.tld"
+[14.11.11 16:10:49][info] Entry "password" found!
+[14.11.11 16:10:49][info] Value: "Passwort"
+[14.11.11 16:10:49][info] Entry "password" found!
+[14.11.11 16:10:49][info] Value: "Passwort"
+[14.11.11 16:10:49][info] Entry "password_repeat" found!
+[14.11.11 16:10:49][info] Value: "Passwort wiederholen"
+[14.11.11 16:10:49][info] Entry "password_repeat" found!
+[14.11.11 16:10:49][info] Value: "Passwort wiederholen"
+[14.11.11 16:10:49][info] Entry "change" found!
+[14.11.11 16:10:49][info] Value: "Ändern"
+[14.11.11 16:10:49][Logger] ----------| Log closed |----------
+[14.11.11 16:10:52][Logger] ----------> Log opened <----------
+[14.11.11 16:10:52][info] Selected language "de"
+[14.11.11 16:10:52][success] Language loaded
+[14.11.11 16:10:52][info] Selected language "de"
+[14.11.11 16:10:52][success] Language loaded
+[14.11.11 16:10:52][info] Entry "edit" found!
+[14.11.11 16:10:52][info] Value: "Bearbeiten"
+[14.11.11 16:10:52][info] Entry "user_tooshort" found!
+[14.11.11 16:10:52][info] Value: "Der Benutzername muss mindestens 5 Zeichen lang sein."
+[14.11.11 16:10:52][info] Entry "pass_missing" found!
+[14.11.11 16:10:52][info] Value: "Das Passwort wurde nicht angegeben!"
+[14.11.11 16:10:52][info] Selected language "de"
+[14.11.11 16:10:52][success] Language loaded
+[14.11.11 16:10:52][info] Entry "btn_back" found!
+[14.11.11 16:10:52][info] Value: "Zurück"
+[14.11.11 16:10:52][info] Entry "message" found!
+[14.11.11 16:10:52][info] Value: "Meldung"
+[14.11.11 16:10:52][info] Entry "changeinfos" found!
+[14.11.11 16:10:52][info] Value: "Ändere die Daten und gibt das Passwort ein"
+[14.11.11 16:10:52][info] Entry "username" found!
+[14.11.11 16:10:52][info] Value: "Benutzername"
+[14.11.11 16:10:52][info] Entry "username" found!
+[14.11.11 16:10:52][info] Value: "Benutzername"
+[14.11.11 16:10:52][info] Entry "email" found!
+[14.11.11 16:10:52][info] Value: "Email"
+[14.11.11 16:10:52][info] Entry "exampleemail" found!
+[14.11.11 16:10:52][info] Value: "beispiel@domain.tld"
+[14.11.11 16:10:52][info] Entry "password" found!
+[14.11.11 16:10:52][info] Value: "Passwort"
+[14.11.11 16:10:52][info] Entry "password" found!
+[14.11.11 16:10:52][info] Value: "Passwort"
+[14.11.11 16:10:52][info] Entry "password_repeat" found!
+[14.11.11 16:10:52][info] Value: "Passwort wiederholen"
+[14.11.11 16:10:52][info] Entry "password_repeat" found!
+[14.11.11 16:10:52][info] Value: "Passwort wiederholen"
+[14.11.11 16:10:52][info] Entry "change" found!
+[14.11.11 16:10:52][info] Value: "Ändern"
+[14.11.11 16:10:52][Logger] ----------| Log closed |----------
