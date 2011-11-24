@@ -1,0 +1,764 @@
+2011/11/21 22:23:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "asite/contact".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('asite/contact')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php?r=asite/contact
+2011/11/22 15:22:33 [error] [exception.CException] exception 'CException' with message 'SiteController and its behaviors do not have a method or closure named "res".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CComponent.php:269
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\protected\views\layouts\main.php(13): CComponent->__call('res', Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\views\layouts\main.php(13): SiteController->res('gfx/icons/favic...')
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CBaseController.php(119): require('F:\xampp\htdocs...')
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CBaseController.php(88): CBaseController->renderInternal('F:\xampp\htdocs...', Array, true)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\widgets\CContentDecorator.php(78): CBaseController->renderFile('F:\xampp\htdocs...', Array, true)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\widgets\CContentDecorator.php(56): CContentDecorator->decorate('<div class="con...')
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div class="con...')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CBaseController.php(199): COutputProcessor->run()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CBaseController.php(294): CBaseController->endWidget('CContentDecorat...')
+#9 F:\xampp\htdocs\AdminBukkit_Yii\protected\views\layouts\column1.php(7): CBaseController->endContent()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CBaseController.php(119): require('F:\xampp\htdocs...')
+#11 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CBaseController.php(88): CBaseController->renderInternal('F:\xampp\htdocs...', Array, true)
+#12 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(781): CBaseController->renderFile('F:\xampp\htdocs...', Array, true)
+#13 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\SiteController.php(32): CController->render('index')
+#14 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionIndex()
+#15 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#16 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#17 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('')
+#19 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('')
+#20 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#21 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#22 {main} REQUEST_URI=/AdminBukkit_Yii/index.php?r=site/index
+2011/11/23 12:10:13 [error] [php] Undefined variable: pageName (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\layouts\page.php:2)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(781): SiteController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\SiteController.php(32): SiteController->render()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionIndex()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): SiteController->runAction()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): SiteController->runActionWithFilters()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): SiteController->run()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/?r=gii
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\layouts\page.php (2)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\SiteController.php (32)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 12:16:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "index".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/?r=gii
+2011/11/23 12:19:30 [error] [exception.CException] exception 'CException' with message 'IndexController cannot find the requested view "home.index".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php:875
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): CController->renderPartial('home.index', NULL, true)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(34): CController->render('home.index')
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionIndex()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/?r=gii
+2011/11/23 12:28:50 [error] [php] Undefined variable: lang (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\index.php:3)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): IndexController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): IndexController->renderPartial()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(34): IndexController->render()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionIndex()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/?r=gii
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\index.php (3)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (34)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 12:48:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stats/index".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('stats/index')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/stats/index
+2011/11/23 12:48:31 [error] [exception.CException] exception 'CException' with message 'Property "IndexController.breadcrumbs" is not defined.' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CComponent.php:174
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\about.php(3): CComponent->__set('breadcrumbs', Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CBaseController.php(119): require('F:\xampp\htdocs...')
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CBaseController.php(88): CBaseController->renderInternal('F:\xampp\htdocs...', Array, true)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): CBaseController->renderFile('F:\xampp\htdocs...', Array, true)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): CController->renderPartial('about', Array, true)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(52): CController->render('about', Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionAbout()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('about')
+#11 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/about')
+#12 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#13 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#14 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/about
+2011/11/23 12:51:04 [error] [php] Undefined variable: lang (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\about.php:2)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): IndexController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): IndexController->renderPartial()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(53): IndexController->render()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionAbout()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/about
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\about.php (2)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (53)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 12:51:18 [error] [php] Undefined variable: lang (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\about.php:2)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): IndexController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): IndexController->renderPartial()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(53): IndexController->render()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionAbout()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/about
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\about.php (2)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (53)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 12:51:25 [error] [php] Undefined variable: lang (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\about.php:2)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): IndexController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): IndexController->renderPartial()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(53): IndexController->render()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionAbout()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/about
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\about.php (2)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (53)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 13:09:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/register".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/register')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/register
+2011/11/23 13:11:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads/index".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads/index')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads/index
+2011/11/23 13:11:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads
+2011/11/23 13:11:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads
+2011/11/23 13:12:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads
+2011/11/23 13:12:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads
+2011/11/23 13:14:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads
+2011/11/23 13:14:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads
+2011/11/23 13:14:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads/index".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads/index')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads/index
+2011/11/23 13:14:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/downloads
+2011/11/23 13:19:15 [error] [php] Undefined variable: lang (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\downloads.php:5)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): IndexController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): IndexController->renderPartial()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(61): IndexController->render()
+#3 unknown(0): IndexController->actionDownloads()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#11 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#12 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\downloads.php (5)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (61)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 13:19:23 [error] [php] Undefined variable: lang (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\downloads.php:5)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): IndexController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): IndexController->renderPartial()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(61): IndexController->render()
+#3 unknown(0): IndexController->actionDownloads()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#11 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#12 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\downloads.php (5)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (61)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 13:29:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/login".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/login')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/login
+2011/11/23 13:29:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/register".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/register')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/register
+2011/11/23 13:42:47 [error] [php] Use of undefined constant DS - assumed 'DS' (F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:73)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=BasicApi.jar
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (73)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 13:42:56 [error] [php] filesize() [<a href='function.filesize'>function.filesize</a>]: stat failed for /BasicApi.jar (F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:75)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=BasicApi.jar
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (75)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 13:43:03 [error] [php] filesize() [<a href='function.filesize'>function.filesize</a>]: stat failed for /BasicApi.jar (F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:75)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=BasicApi.jar
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (75)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 13:43:26 [error] [php] filesize() [<a href='function.filesize'>function.filesize</a>]: stat failed for /a (F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:75)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=a
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (75)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 13:53:20 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Invalid file name!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:91
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('../downloads/te...')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=../downloads/test.txt
+2011/11/23 13:53:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:86
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('asda')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=asda
+2011/11/23 13:53:46 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Invalid file name!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:91
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('../downloads/te...')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=../downloads/test.txt
+2011/11/23 13:54:03 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Invalid file name!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:91
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('../downloads/te...')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=../downloads/test.txt
+2011/11/23 15:39:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/login".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/login')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/login
+2011/11/23 22:06:10 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection konnte keine DB-Verbindung herstellen: SQLSTATE[42000] [1049] Unknown database 'adminbukkit_yii'' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbConnection.php:364
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbConnection.php(313): CDbConnection->open()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbConnection.php(291): CDbConnection->setActive(true)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CModule.php(372): CDbConnection->init()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CModule.php(86): CModule->getComponent('db')
+#4 F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php(62): CModule->__get('db')
+#5 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(98): Statistics::getValues('user.*')
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#11 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#12 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#13 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#14 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:14:24 [error] [system.db.CDbCommand] CDbCommand:: fehlgeschlagen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. Der SQL-Ausdruck war: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index.
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php (66)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (98)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:14:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand konnte das SQL-Statement nicht ausführen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. The SQL statement executed was: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php:516
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php(355): CDbCommand->queryInternal('', 0, Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php(66): CDbCommand->query()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(98): Statistics::getValues('user.*')
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:16:18 [error] [system.db.CDbCommand] CDbCommand:: fehlgeschlagen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. Der SQL-Ausdruck war: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index.
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php (66)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (98)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:16:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand konnte das SQL-Statement nicht ausführen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. The SQL statement executed was: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php:516
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php(355): CDbCommand->queryInternal('', 0, Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php(66): CDbCommand->query()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(98): Statistics::getValues('user.*')
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:16:49 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. The SQL statement executed was: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index.
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php (66)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (98)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:16:49 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. The SQL statement executed was: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php:516
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php(355): CDbCommand->queryInternal('', 0, Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php(66): CDbCommand->query()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(98): Statistics::getValues('user.*')
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:16:50 [error] [system.db.CDbCommand] CDbCommand:: fehlgeschlagen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. Der SQL-Ausdruck war: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index.
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php (66)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (98)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:16:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand konnte das SQL-Statement nicht ausführen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. The SQL statement executed was: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php:516
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php(355): CDbCommand->queryInternal('', 0, Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php(66): CDbCommand->query()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(98): Statistics::getValues('user.*')
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:21:45 [error] [system.db.CDbCommand] CDbCommand:: fehlgeschlagen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. Der SQL-Ausdruck war: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index.
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php (66)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (98)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:21:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand konnte das SQL-Statement nicht ausführen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. The SQL statement executed was: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php:516
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php(355): CDbCommand->queryInternal('', 0, Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php(66): CDbCommand->query()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(98): Statistics::getValues('user.*')
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:21:51 [error] [system.db.CDbCommand] CDbCommand:: fehlgeschlagen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. Der SQL-Ausdruck war: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index.
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php (66)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (98)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:21:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand konnte das SQL-Statement nicht ausführen: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'index like 'user.%'' at line 3. The SQL statement executed was: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE index like :index' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php:516
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php(355): CDbCommand->queryInternal('', 0, Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php(66): CDbCommand->query()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(98): Statistics::getValues('user.*')
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:22:26 [error] [system.db.CDbCommand] CDbCommand:: fehlgeschlagen: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'adminbukkit_yii.{{statistics}}' doesn't exist. Der SQL-Ausdruck war: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE `index` like :index.
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php (66)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (98)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:22:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand konnte das SQL-Statement nicht ausführen: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'adminbukkit_yii.{{statistics}}' doesn't exist. The SQL statement executed was: SELECT `index`, `value`
+FROM `{{statistics}}`
+WHERE `index` like :index' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php:516
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\db\CDbCommand.php(355): CDbCommand->queryInternal('', 0, Array)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\models\Statistics.php(66): CDbCommand->query()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(98): Statistics::getValues('user.*')
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#11 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:28:08 [error] [exception.CException] exception 'CException' with message 'IndexController kann den angeforderten View "stats" nicht finden.' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php:875
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): CController->renderPartial('stats', Array, true)
+#1 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(116): CController->render('stats', Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('stats')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/stats')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+2011/11/23 22:28:29 [error] [php] Undefined variable: lang (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\stats.php:5)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): IndexController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): IndexController->renderPartial()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(116): IndexController->render()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\stats.php (5)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (116)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:29:22 [error] [php] Undefined variable: stats (F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\stats.php:17)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(866): IndexController->renderFile()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(779): IndexController->renderPartial()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(116): IndexController->render()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#10 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\views\index\stats.php (17)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (116)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 22:36:35 [error] [php] require(F:\xampp\htdocs\AdminBukkit_Yii\protected\messages/en/stats.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory (F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:104)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (104)
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (104)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 23:10:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "i".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('i')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/i
+2011/11/23 23:11:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/login".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/login')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/login
+2011/11/23 23:12:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:84
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('ApiBukkit.jar')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=ApiBukkit.jar
+2011/11/23 23:12:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/register".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/register')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/register
+2011/11/23 23:12:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/login".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/login')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/login
+2011/11/23 23:12:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:84
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('BasicApi.jar')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=BasicApi.jar
+2011/11/23 23:12:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:84
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('ApiBukkit.jar')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=ApiBukkit.jar
+2011/11/23 23:12:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/register".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/register')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/register
+2011/11/23 23:12:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:84
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('ApiBukkit.jar')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=ApiBukkit.jar
+2011/11/23 23:13:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/register".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/register')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/register
+2011/11/23 23:24:10 [error] [php] include(Statistic.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\YiiBase.php:421)
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php(99): spl_autoload_call()
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(50): IndexController->actionStats()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams()
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): IndexController->runAction()
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): IndexController->runActionWithFilters()
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): IndexController->run()
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#8 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CWebApplication->run()
+REQUEST_URI=/AdminBukkit_Yii/index.php/index/stats
+in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php (99)
+in F:\xampp\htdocs\AdminBukkit_Yii\index.php (13)
+2011/11/23 23:25:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:84
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('ApiBukkit.jar')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=ApiBukkit.jar
+2011/11/24 21:12:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/register".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/register')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/register
+2011/11/24 21:12:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/login".' in F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php:281
+Stack trace:
+#0 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('user/login')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#2 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#3 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/user/login
+2011/11/24 21:12:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:84
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('ApiBukkit.jar')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=ApiBukkit.jar
+2011/11/24 21:12:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found!' in F:\xampp\htdocs\AdminBukkit_Yii\protected\controllers\IndexController.php:84
+Stack trace:
+#0 [internal function]: IndexController->actionDownloads('BasicApi.jar')
+#1 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(IndexController), Array)
+#2 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(IndexController), Object(ReflectionMethod), Array)
+#3 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(277): CController->run('downloads')
+#7 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\web\CWebApplication.php(136): CWebApplication->runController('index/downloads')
+#8 F:\xampp\htdocs\AdminBukkit_Yii\yii\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\AdminBukkit_Yii\index.php(13): CApplication->run()
+#10 {main} REQUEST_URI=/AdminBukkit_Yii/index.php/index/downloads?file=BasicApi.jar
