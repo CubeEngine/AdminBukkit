@@ -12,6 +12,8 @@
         private $name;
         private $email;
         private $servers;
+        
+        private $password;
 
         private $currentServer;
         private $loginIp;
@@ -59,6 +61,7 @@
                 {
                     $this->servers = array();
                 }
+                $this->password = null;
                 try
                 {
                     $this->currentServer = Server::get($result['currentserver']);
@@ -207,7 +210,7 @@
             return self::get($name);
         }
 
-        public function authenticate($password)
+        public function authenticate()
         {
             $result = $this->db->createCommand()
                     ->select('password')
@@ -220,7 +223,7 @@
                 throw new CModelException('User does not exist!', self::ERR_NOT_FOUND);
             }
             $result = $result->read();
-            if (self::password($password) === $result['password'])
+            if ($this->password === $result['password'])
             {
                 $this->isAuthenticated = true;
                 return true;
@@ -240,15 +243,21 @@
          */
         public function save()
         {
+            $data = array(
+                'name' => $this->name,
+                'email' => $this->email,
+                'servers' => implode(',', $this->servers)
+            );
+            if ($this->password !== null)
+            {
+                $data['password'] = $this->password;
+                $this->password = null;
+            }
             try
             {
                 $this->db->createCommand()->update(
                     'users',
-                    array(
-                        'name' => $this->name,
-                        'email' => $this->email,
-                        'servers' => implode(',', $this->servers)
-                    ),
+                    $data,
                     'id = :id',
                     array(':id' => $this->id)
                 );
@@ -295,6 +304,18 @@
                 throw $e;
             }
 
+            return $this;
+        }
+        
+        /**
+         * Sets the password for authentication and change
+         *
+         * @param stirng $password the password to set
+         * @return User fluet interface
+         */
+        public function setPassword($password)
+        {
+            $this->password = self::password($password);
             return $this;
         }
 
@@ -527,45 +548,6 @@
             unset(self::$usersByName[$this->name]);
             unset(self::$usersById[$this->id]);
             
-            return $this;
-        }
-
-        /**
-         * Updates the user information
-         *
-         * @param string $name the new user name
-         * @param string $pass the new password
-         * @param string $email the new email address
-         * @param int[] $servers the new servers
-         * @return User fluent interface
-         */
-        public function update($name, $pass, $email, array $servers)
-        {
-            try
-            {
-                $this->setName($name)
-                     ->setEmail($email)
-                     ->setServers($servers);
-
-                $this->db->createCommand()->update(
-                    'users',
-                    array(
-                        'name' => $this->name,
-                        'password' => self::password($pass),
-                        'email' => $this->email,
-                        implode(',', $this->servers)
-                    ),
-                    'id = :id',
-                    array(':id' => $this->id)
-                );
-            }
-            catch (CDbException $e)
-            {
-                // @todo handle ths different
-                throw $e;
-                throw new Exception('Failed to update the user! Error: ' . $e->getMessage());
-            }
-
             return $this;
         }
 
