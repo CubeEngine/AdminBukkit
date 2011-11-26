@@ -5,7 +5,7 @@
         <h1><?php echo $this->title ?></h1>
         <?php echo $this->utilButton ?>
     </div>
-    <?php $this->widget('Message') ?>
+    <?php $this->widget('MessageBox') ?>
     <div data-role="content" data-theme="c">
         <?php echo $content ?>
     </div>

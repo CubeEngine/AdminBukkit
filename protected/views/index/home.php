@@ -9,7 +9,7 @@
 
     <li data-role="divider" data-theme="e">User</li>
     <li class="arrow"><a href="<?php echo $this->createUrl('profile/index') ?>"><?php echo Yii::t('home', 'Profile') ?></a></li>
-    <li class="arrow"><a href="<?php echo $this->createUrl('user/logout') ?>" id="logout"><?php echo Yii::t('home', 'Logout') ?></a></li>
+    <li class="arrow"><a href="<?php echo $this->createUrl('user/logout') ?>" id="logout" data-ajax="false"><?php echo Yii::t('home', 'Logout') ?></a></li>
 </ul>
 <script type="text/javascript">
     $('#logout').click(function(){

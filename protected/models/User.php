@@ -1,7 +1,7 @@
 <?php
     class User implements Serializable, IUserIdentity
     {
-        private static $tableName = 'users';
+        private static $tableName = '{{users}}';
 
         private static $usersById = array();
         private static $usersByName = array();

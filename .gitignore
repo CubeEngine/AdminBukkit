@@ -1,0 +1,6 @@
+*.db
+*.db-journal
+*.log
+/old/
+/blacklist.txt
+nbproject/

@@ -19,6 +19,7 @@ class Controller extends CController
     public function init()
     {
         parent::init();
+        $matches = array();
         if( isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && ($n = preg_match_all('/([\w\-_]+)\s*(;\s*q\s*=\s*(\d*\.\d*))?/', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $matches)) > 0)
         {
             $path = Yii::getPathOfAlias('application.messages') . '/';
@@ -33,7 +34,7 @@ class Controller extends CController
                 $language = CLocale::getCanonicalID($language);
                 if (is_readable($path . $language))
                 {
-                    Yii::app()->language = $language;
+                    Yii::app()->setLanguage($language);
                     break;
                 }
             }

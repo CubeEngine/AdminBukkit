@@ -1,9 +1,0 @@
-[14.11.11 22:38:19][Logger] ----------> Log opened <----------
-[14.11.11 22:38:19][ControllerException] [FrontController.php:69] The controller was not found or is not readable! F:\xampp\htdocs\BukkitWebAdmin\system\pages\\controller.php
-[14.11.11 22:38:19][Logger] ----------| Log closed |----------
-[15.11.11 16:38:36][Logger] ----------> Log opened <----------
-[15.11.11 16:38:36][ControllerException] [FrontController.php:69] The controller was not found or is not readable! F:\xampp\htdocs\BukkitWebAdmin\system\pages\\controller.php
-[15.11.11 16:38:36][Logger] ----------| Log closed |----------
-[15.11.11 16:38:40][Logger] ----------> Log opened <----------
-[15.11.11 16:38:40][ControllerException] [FrontController.php:69] The controller was not found or is not readable! F:\xampp\htdocs\BukkitWebAdmin\system\pages\\controller.php
-[15.11.11 16:38:40][Logger] ----------| Log closed |----------

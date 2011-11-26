@@ -1,7 +1,7 @@
 <?php
     class Server implements Serializable
     {
-        private static $tableName = 'servers';
+        private static $tableName = '{{servers}}';
 
         private static $servers = array();
         private $db;
@@ -26,7 +26,7 @@
                 $result = $this->db->createCommand()
                         ->select(array('id', 'alias', 'host', 'port', 'authkey', 'owner', 'members'))
                         ->from(self::$tableName)
-                        ->where('id = :d', array(':id' => intval($serverId)))
+                        ->where('id = :id', array(':id' => intval($serverId)))
                         ->limit(1)
                             ->query();
                 if (count($result))
