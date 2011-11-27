@@ -4,7 +4,7 @@
     <input type="text" name="RegisterForm[username]" id="register_username" placeholder="<?php echo Yii::t('register', 'Username') ?>" value="<?php echo $model->username ?>" size="40" required="" />
 
     <label for="register_email"><?php echo Yii::t('register', 'Email addess') ?></label>
-    <input type="email" name="RegisterForm[email]" id="register_email" placeholder="<?php echo Yii::t('register', 'example@email.com') ?>" value="<?php echo $model->email ?>" required="" />
+    <input type="email" name="RegisterForm[email]" id="register_email" placeholder="<?php echo Yii::t('register', 'example@email.com') ?>" value="<?php echo $model->email ?>" size="100" required="" />
 
     <label for="register_password"><?php echo Yii::t('register', 'Password') ?></label>
     <input type="password" name="RegisterForm[password]" id="register_password" placeholder="<?php echo Yii::t('register', 'Password') ?>" required="" />

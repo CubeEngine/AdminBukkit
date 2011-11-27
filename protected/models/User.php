@@ -36,6 +36,7 @@
                 elseif (is_int($id) || is_numeric($id))
                 {
                     $idField = 'id';
+                    $id = intval($id);
                 }
                 $this->db = Yii::app()->db;
                 $result = $this->db->createCommand()
@@ -46,7 +47,7 @@
                             ->query();
                 if (!count($result))
                 {
-                    throw new CModelException('User not found!', self::ERR_NOT_FOUND);
+                    throw new CModelException('User ' . $id . ' (' . $idField . ') not found!', self::ERR_NOT_FOUND);
                 }
                 $result = $result->read();
 
@@ -658,7 +659,7 @@
 
         public function getPersistentStates()
         {
-            return array($this->id);
+            return array('id' => $this->id);
         }
     }
 ?>

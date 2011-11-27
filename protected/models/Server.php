@@ -40,7 +40,7 @@
                     $this->owner = $result['owner'];
                     if ($result['members'])
                     {
-                        $this->members = explode(',', $result['host']);
+                        $this->members = explode(',', $result['members']);
                     }
                     else
                     {

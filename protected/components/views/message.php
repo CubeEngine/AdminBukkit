@@ -6,7 +6,7 @@
             <li><?php echo $message ?></li>
         <?php endforeach ?>
         </ul>
-    <?php else: ?>
+    <?php elseif (count($messages)): ?>
         <?php echo $messages[0] ?>
     <?php endif ?>
 </div>

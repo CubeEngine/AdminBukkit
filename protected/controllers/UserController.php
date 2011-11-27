@@ -6,14 +6,17 @@
         public function accessRules()
         {
             return array(
-                'deny' => array(
-                    'users' => '?',
+                array(
+                    'allow',
+                    'users' => array('@'),
                     'actions' => array('logout'),
                 ),
-                'allow' => array(
-                    'users' => '?',
+                array(
+                    'allow',
+                    'users' => array('?'),
                     'actions' => array('login', 'register')
                 ),
+                array('deny')
             );
         }
         
@@ -21,7 +24,7 @@
         {
             $this->title = Yii::t('login', 'Login');
             $this->backButton = new BackToolbarButton();
-            $this->utilButton = new ToolbarButton('register', Yii::t('register', 'Registration'), Yii::app()->createUrl('register'));
+            $this->utilButton = new ToolbarButton('register', Yii::t('register', 'Registration'), Yii::app()->createUrl('user/register'));
 
             $loginForm = new LoginForm();
             if (isset($_REQUEST['LoginForm']))
@@ -53,7 +56,7 @@
         {
             $this->title = Yii::t('register', 'Registration');
             $this->backButton = new BackToolbarButton();
-            $this->utilButton = new ToolbarButton('login', Yii::t('login', 'Login'), Yii::app()->createUrl('Login'));
+            $this->utilButton = new ToolbarButton('login', Yii::t('login', 'Login'), Yii::app()->createUrl('user/login'));
 
             $registerForm = new RegisterForm();
             if (isset($_POST['RegisterForm']))
