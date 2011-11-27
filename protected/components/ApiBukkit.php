@@ -72,10 +72,5 @@
         {
             return $this->client;
         }
-
-        public function getServer()
-        {
-            return $this->server;
-        }
     }
 ?>

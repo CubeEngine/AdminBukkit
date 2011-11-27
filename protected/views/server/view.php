@@ -13,4 +13,5 @@
             <?php endforeach ?>
         </ul>
     </li>
+    <li><a href="<?php echo $this->createUrl('server/info') ?>"><?php echo Yii::t('server', 'Informaion') ?></a></li>
 </ul>

@@ -20,8 +20,9 @@
         </script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/jquery/jquery.js" charset="utf-8"></script>
         <script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.js" charset="utf-8"></script>
-        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/backend/javascriptlang.php?file=generic" charset="utf-8"></script>
-        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/js/apirequest.js" charset="utf-8"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/js/AdminBukkit.js" charset="utf-8"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->createUrl('javascript/translation', array('cat' => 'generic')) ?>" charset="utf-8"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/js/ApiRequest.js" charset="utf-8"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/js/main.js" charset="utf-8"></script>
     </head>
     <body>

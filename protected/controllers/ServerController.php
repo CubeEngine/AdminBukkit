@@ -5,6 +5,7 @@
 
         public function actionView($id = null)
         {
+            $server = null;
             if ($id !== null)
             {
                 $server = Server::get($id);
@@ -40,6 +41,7 @@
 
         public function actionEdit($id = null)
         {
+            $server = null;
             if ($id !== null)
             {
                 $server = Server::get($id);
@@ -78,6 +80,7 @@
 
         public function actionDelete($id = null)
         {
+            $server = null;
             if ($id !== null)
             {
                 $server = Server::get($id);
@@ -127,6 +130,21 @@
                 }
             }
             $this->render('add', array('model' => $serverForm));
+        }
+
+        public function actionInfo($id = null)
+        {
+            $server = null;
+            if ($id !== null)
+            {
+                $server = Server::get($id);
+            }
+            else
+            {
+                $server = $this->user->getCurrentServer();
+            }
+
+            $this->render('info', array('server' => $server));
         }
     }
 ?>

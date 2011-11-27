@@ -13,7 +13,7 @@ function ApiRequest(controller, action)
     var $this = this;
     var $controller = controller;
     var $action = (!!action ? action : '');
-    var $url = BASE_PATH + 'backend/apiproxy.php/' + $controller + '/' + $action;
+    var $url = BASE_PATH + '/proxy.php/' + $controller + '/' + $action;
     var $data = null;
     var $sync = false;
     var $method = 'GET';
@@ -58,7 +58,7 @@ function ApiRequest(controller, action)
                         __APIREQUESTS_ENABLED = false;
                         if (confirm(genericLang.error_serverunavailable))
                         {
-                            redirectTo(BASE_PATH + 'index.php/home/');
+                            redirectTo(BASE_PATH + '/index.php');
                         }
                     }
                     else
@@ -71,7 +71,7 @@ function ApiRequest(controller, action)
                     break;
                 case 2:
                     alert(genericLang.error_authfailed);
-                    redirectTo(BASE_PATH + 'index.php/home/?msg=' + urlencode(genericLang.redirect_msg));
+                    redirectTo(BASE_PATH + 'index.php/index?_message=' + urlencode(genericLang.redirect_msg));
                     // @todo find a better method to redirect
                     break;
                 case 3:

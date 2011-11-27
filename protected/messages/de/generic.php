@@ -1,6 +1,6 @@
 <?php
     return array(
-        'progress'                  => 'Lade...',
+        'Loading...' => 'Lade...',
         'message'                   => 'Meldung',
         'btn_back'                  => 'Zurück',
         'btn_home'                  => 'Home',

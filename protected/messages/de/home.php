@@ -12,7 +12,7 @@
         'Downloads' => 'Downloads',
         'Profile' => 'Profil',
         'Logout' => 'Ausloggen',
-        'Do you really want to logout?' => 'Willst du wirklich ausloggen?',
+        'Do you really want to logout?' => 'Willst du dich wirklich ausloggen?',
         'Home' => 'Home',
         'About' => 'Über'
     );

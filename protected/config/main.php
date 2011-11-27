@@ -25,10 +25,8 @@
 
         ),
 
-        // application components
         'components' => array(
             'user' => array(
-                // enable cookie-based authentication
                 'allowAutoLogin' => true,
                 'autoRenewCookie' => true,
                 'loginUrl' => array('user/login'),
@@ -55,7 +53,7 @@
             ),
             'errorHandler' => array(
                 'errorAction' => 'index/error',
-                'discardOutput' => false
+                //'discardOutput' => false
             ),
             'log' => array(
                 'class' => 'CLogRouter',
