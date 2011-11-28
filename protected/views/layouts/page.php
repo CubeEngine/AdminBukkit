@@ -10,7 +10,7 @@
         <?php echo $content ?>
     </div>
     <div data-role="footer">
-        Copyright © 2011 by Code Infection
+        Copyright © 2011 by <a href="http://code-infection.de" data-role="none" target="_blank">Code Infection</a>
     </div>
 </div>
 <?php $this->endContent() ?>

@@ -2,12 +2,6 @@ $.mobile.loadingMessage = $AB.t('generic', 'Loading...');
 $.mobile.pageloadErrorMessage = $AB.t('generic', 'The page could not be loaded!');
 $.mobile.listview.prototype.options.filterPlaceholder = $AB.t('generic', 'Search...');
 
-String.prototype.t = function(cat) {
-    return AdminBukkit.t(cat, this);
-}
-
-alert('test'.t('generic'));
-
 $(window).unload(function(){
     $.mobile.showPageLoadingMsg();
 });

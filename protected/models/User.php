@@ -526,6 +526,21 @@
             $this->currentServer = $server;
             return $this;
         }
+        
+        /**
+         * Gets a server from the user
+         *
+         * @param int $serverId the server to get
+         * @return Server the server
+         */
+        public function getServer($serverId)
+        {
+            if (in_array($serverId, $this->servers))
+            {
+                return Server::get($serverId);
+            }
+            return null;
+        }
 
         /**
          * Returns the IP the user logged in with
@@ -576,40 +591,6 @@
                     ->limit(1)
                         ->query();
             return (count($result) > 0);
-        }
-
-        /**
-         * Loggs this user in
-         *
-         * @todo figure out how to do this with Yii
-         * @return User fluent interface
-         */
-        public function login($password)
-        {
-            if ($this->authenticate($password))
-            {
-                $_SESSION['user'] = $this;
-
-                // Stats
-                $stat = new Statistic('user.login');
-                $stat->increment();
-            }
-            else
-            {
-                throw new ModelException(self::ERR_WRONG_PASS);
-            }
-            return $this;
-        }
-
-        /**
-         * Checks whether the user is logged in
-         *
-         * @todo see User::login()
-         * @return bool true if the user is logged in
-         */
-        public function loggedIn()
-        {
-            return $this->equals($_SESSION['user']);
         }
 
         /**

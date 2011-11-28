@@ -5,15 +5,16 @@
 
         public function actionView($id = null)
         {
-            $server = null;
+            $server = $this->user->getCurrentServer();
             if ($id !== null)
             {
                 $server = Server::get($id);
             }
-            else
+            if ($server === null)
             {
-                $server = $this->user->getCurrentServer();
+                $this->redirect(array('server/list'));
             }
+                
 
             $this->title = $server->getAlias();
             $this->backButton = new BackToolbarButton();
@@ -41,14 +42,14 @@
 
         public function actionEdit($id = null)
         {
-            $server = null;
+            $server = $this->user->getCurrentServer();
             if ($id !== null)
             {
                 $server = Server::get($id);
             }
-            else
+            if ($server === null)
             {
-                $server = $this->user->getCurrentServer();
+                $this->redirect(array('server/list'));
             }
 
             $this->title = $server->getAlias();
@@ -80,14 +81,14 @@
 
         public function actionDelete($id = null)
         {
-            $server = null;
+            $server = $this->user->getCurrentServer();
             if ($id !== null)
             {
                 $server = Server::get($id);
             }
-            else
+            if ($server === null)
             {
-                $server = $this->user->getCurrentServer();
+                $this->redirect(array('server/list'));
             }
 
             $this->title = Yii::t('server', 'Delete server');
@@ -134,17 +135,27 @@
 
         public function actionInfo($id = null)
         {
-            $server = null;
+            $server = $this->user->getCurrentServer();
             if ($id !== null)
             {
                 $server = Server::get($id);
             }
-            else
+            if ($server === null)
             {
-                $server = $this->user->getCurrentServer();
+                $this->redirect(array('server/list'));
             }
 
             $this->render('info', array('server' => $server));
+        }
+        
+        public function actionSelect($id)
+        {
+            $server = Server::get($id);
+            if ($server !== null)
+            {
+                $this->user->setCurrentServer($server);
+                
+            }
         }
     }
 ?>

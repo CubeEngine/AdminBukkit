@@ -32,6 +32,9 @@
                 $loginForm->setAttributes($_REQUEST['LoginForm']);
                 if ($loginForm->validate() && $loginForm->login())
                 {
+                    $stat = new Statistic('user.login');
+                    $stat->increment();
+                    
                     Yii::app()->session['message'] = new Message(Yii::t('login', 'Logged in!'), Yii::t('login', 'You are now logged in!'));
                     $this->redirect(Yii::app()->user->returnUrl);
                 }
@@ -49,6 +52,10 @@
         {
             Yii::app()->session['message'] = new Message(Yii::t('logout', 'Logged out!'), Yii::t('logout', 'You are now logged out!'));
             Yii::app()->user->logout();
+
+            $stat = new Statistic('user.logout');
+            $stat->increment();
+
             $this->redirect(array('index/home'));
         }
 
