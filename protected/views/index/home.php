@@ -8,7 +8,8 @@
     <li class="arrow"><a href="<?php echo $this->createUrl('downloads') ?>"><?php echo Yii::t('home', 'Downloads') ?></a></li>
 
     <li data-role="divider" data-theme="e">User</li>
-    <li class="arrow"><a href="<?php echo $this->createUrl('profile/index') ?>"><?php echo Yii::t('home', 'Profile') ?></a></li>
+    <li class="arrow"><a href="<?php echo $this->createUrl('server/list') ?>"><?php echo Yii::t('server', 'Serverlist') ?></a></li>
+    <li class="arrow"><a href="<?php echo $this->createUrl('profile/index') ?>"><?php echo Yii::t('profile', 'Profile') ?></a></li>
     <li class="arrow"><a href="<?php echo $this->createUrl('user/logout') ?>" id="logout" data-ajax="false"><?php echo Yii::t('home', 'Logout') ?></a></li>
 </ul>
 <script type="text/javascript">

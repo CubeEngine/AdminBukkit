@@ -40,7 +40,6 @@
     <a data-role="button" href="#" id="server_stop"><?php echo Yii::t('server', 'Shutdown') ?></a>
 </div>
 <script type="text/javascript">
-
     var infoRequest = new ApiRequest('server', 'info');
     infoRequest.onSuccess(refreshData);
     infoRequest.data({format: 'json'});
@@ -54,7 +53,7 @@
 
     function refreshData(data)
     {
-        data = eval('(' + data + ')');
+        //data = eval('(' + data + ')');
         $('#server_name').html(data.name);
         $('#server_name').attr('title', 'ID: ' + data.id);
         if (data.ip)
@@ -83,7 +82,7 @@
 
     function refreshMemStats(data)
     {
-        data = eval('(' + data + ')');
+        //data = eval('(' + data + ')');
         var max = Math.round(data.maxmemory / 1024 / 1024);
         var free = Math.round(data.freememory / 1024 / 1024);
         $('#server_stats_ram_max').html(max);

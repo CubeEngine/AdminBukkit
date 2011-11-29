@@ -1,8 +1,6 @@
 <?php
     class JavascriptController extends Controller
     {
-        public $layout = null;
-
         public function actionIndex()
         {}
 

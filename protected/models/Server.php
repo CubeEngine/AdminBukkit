@@ -62,6 +62,10 @@
 
         public static function get($id)
         {
+            if ($id === null)
+            {
+                return null;
+            }
             if (is_object($id) && $id instanceof Server)
             {
                 return $id;
@@ -89,10 +93,12 @@
          * @param string $authkey
          * @param int $owner
          * @param int[] $members
+         * @return int the ID of the server
          */
         public static function createServer($alias, $host, $port, $authkey, $owner, array $members = array())
         {
-            $db = Yii::app()->db->createCommand()->insert(self::$tableName, array(
+            $db = Yii::app()->db;
+            $db->createCommand()->insert(self::$tableName, array(
                 'alias' => $alias,
                 'host' => $host,
                 'port' => $port,
@@ -100,6 +106,7 @@
                 'owner' => User::get($owner)->getId(),
                 'members' => implode(',', $members)
             ));
+            return $db->getLastInsertID();
         }
 
         /**

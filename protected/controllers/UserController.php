@@ -71,12 +71,27 @@
                 $registerForm->setAttributes($_POST['RegisterForm']);
                 if ($registerForm->validate())
                 {
-                    $user = User::createUser($registerForm->username, $registerForm->password, $registerForm->email);
-                    if ($user)
+                    try
                     {
-                        Yii::app()->user->login($user);
-                        Yii::app()->session['message'] = new Message(Yii::t('register', 'Registration complete!'), Yii::t('register', 'You have been successfully registered and logged in!'));
-                        $this->redirect(array('index/home'));
+                        $user = User::createUser($registerForm->username, $registerForm->password, $registerForm->email);
+                        if ($user)
+                        {
+                            Yii::app()->user->login($user);
+                            Yii::app()->session['message'] = new Message(Yii::t('register', 'Registration complete!'), Yii::t('register', 'You have been successfully registered and logged in!'));
+                            $this->redirect(array('index/home'));
+                        }
+                    }
+                    catch (CModelException $e)
+                    {
+                        switch ($e->getCode())
+                        {
+                            case User::ERR_NAME_USED:
+                                $registerForm->addError('username', Yii::t('register', 'The given username is already in use!'));
+                                break;
+                            case User::ERR_EMAIL_USED:
+                                $registerForm->addError('email', Yii::t('register', 'The given email address is already in use!'));
+                                break;
+                        }
                     }
                 }
                 Yii::app()->session['message'] = new Message(Yii::t('register', 'Registration failed!'), $registerForm->getErrors());

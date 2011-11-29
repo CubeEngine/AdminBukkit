@@ -3,7 +3,7 @@
     <?php foreach ($servers as $server): ?>
         <li>
             <a href="<?php echo $this->createUrl('server/view', array('id' => $server->getId())) ?>"><?php echo $server->getAlias() ?></a>
-            <a href="<?php echo $this->createUrl('server/select', array('id' => $server->getId())) ?>" data-icon="check"></a>
+            <a href="<?php echo $this->createUrl('server/select', array('id' => $server->getId())) ?>" data-rel="dialog" data-icon="check"></a>
         </li>
     <?php endforeach ?>
 <?php else: ?>

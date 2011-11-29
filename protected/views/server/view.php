@@ -13,5 +13,11 @@
             <?php endforeach ?>
         </ul>
     </li>
-    <li><a href="<?php echo $this->createUrl('server/info') ?>"><?php echo Yii::t('server', 'Informaion') ?></a></li>
+    <li>
+    <?php if ($serverSelected): ?>
+        <a href="<?php echo $this->createUrl('server/info', array('id' => $server->getId())) ?>"><?php echo Yii::t('server', 'Information') ?></a>
+    <?php else: ?>
+        <a href="<?php echo $this->createUrl('server/select', array('id' => $server->getId())) ?>" data-rel="dialog"><?php echo Yii::t('server', 'Select') ?></a>
+    <?php endif ?>
+    </li>
 </ul>

@@ -63,14 +63,7 @@
                     $this->servers = array();
                 }
                 $this->password = null;
-                try
-                {
-                    $this->currentServer = Server::get($result['currentserver']);
-                }
-                catch(Exception $e)
-                {
-                    $this->currentServer = null;
-                }
+                $this->currentServer = Server::get($result['currentserver']);
                 $this->loginIp = $_SERVER['REMOTE_ADDR'];
                 $this->isAuthenticated = false;
             }
@@ -113,6 +106,10 @@
          */
         public static function get($identifier)
         {
+            if ($identifier === null)
+            {
+                return null;
+            }
             if (is_object($identifier) && $identifier instanceof User)
             {
                 return $identifier;
@@ -247,7 +244,8 @@
             $data = array(
                 'name' => $this->name,
                 'email' => $this->email,
-                'servers' => implode(',', $this->servers)
+                'servers' => implode(',', $this->servers),
+                'currentserver' => ($this->currentServer ? $this->currentServer->getId() : null)
             );
             if ($this->password !== null)
             {
@@ -452,21 +450,11 @@
          */
         public function addServer($server)
         {
+            $server = $server = Server::get($server);
             $serverId = null;
-            if ($server !== null)
+            if ($server)
             {
-                if (is_object($server) && $server instanceof Server)
-                {
-                    $serverId = $server->getId();
-                }
-                elseif (is_int($server) || is_numeric($server))
-                {
-                    $server = intval($server);
-                    if ($server >= 0)
-                    {
-                        $serverId = $server;
-                    }
-                }
+                $serverId = $server->getId();
             }
             if ($serverId !== null && !in_array($serverId, $this->servers))
             {
@@ -483,24 +471,21 @@
          */
         public function removeServer($server)
         {
+            $server = $server = Server::get($server);
             $serverId = null;
-            if ($server !== null)
+            if ($server)
             {
-                if (is_object($server) && $server instanceof Server)
-                {
-                    $serverId = $server->getId();
-                }
-                elseif (is_int($server) || is_numeric($server))
-                {
-                    $server = intval($server);
-                    if ($server >= 0)
-                    {
-                        $serverId = $server;
-                    }
-                }
+                $serverId = $server->getId();
             }
 
-            unset($this->servers[array_search($serverId, $this->servers)]);
+            if ($serverId !== null)
+            {
+                $index = array_search($serverId, $this->servers);
+                if ($index !== false)
+                {
+                    unset($this->servers[$index]);
+                }
+            }
 
             return $this;
         }

@@ -5,11 +5,11 @@ function ban_player(player, sync)
     var $result = false;
     if (!player)
     {
-        player = prompt(serverutilsLang.banplayer_prompt, '');
+        player = prompt(AdminBukkit.t('serverutils', 'Enter the playnername which should be banned:'), '');
     }
     else
     {
-        if (!confirm(serverutilsLang.banplayer_confirm))
+        if (!confirm(AdminBukkit.t('serverutils', 'Do you really want to ban this Player?')))
         {
             return $result;
         }
@@ -21,29 +21,29 @@ function ban_player(player, sync)
     player = player.replace(/\s/g, '');
     if (!player.match(/^[\w\d\.]+$/i))
     {
-        alert(serverutilsLang.name_invalid);
+        alert(AdminBukkit.t('serverutils', 'Your input was invalid!\nAllowed: A-Z, a-z, 0-9, _, .'));
         return $result;
     }
     var data = Object();
     data.player = player;
-    var reason = prompt(serverutilsLang.banplayer_reason, '');
+    var reason = prompt(AdminBukkit.t('serverutils', 'Why do you want to ban him? (not important)'), '');
     if (reason)
     {
         data.reason = reason;
     }
     var request = new ApiRequest('ban', 'add');
     request.onSuccess(function(){
-        alert(serverutilsLang.banplayer_success);
+        alert(AdminBukkit.t('serverutils', 'The player was successfully banned!'));
         $result = true;
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
-                alert(serverutilsLang.name_missing);
+                alert(AdminBukkit.t('serverutils', 'This player is already banned!'));
                 break;
             case 3:
-                alert(serverutilsLang.banplayer_alreadybanned);
+                alert(AdminBukkit.t('serverutils', 'No player name given!'));
                 break;
         }
     });
@@ -56,11 +56,11 @@ function ban_ip(ip, sync)
     var $result = false;
     if (!ip)
     {
-        ip = prompt(serverutilsLang.banip_prompt, '');
+        ip = prompt(AdminBukkit.t('serverutils', 'Write the IP(v4) which should be banned:'), '');
     }
     else
     {
-        if (!confirm(serverutilsLang.banip_confirm))
+        if (!confirm(AdminBukkit.t('serverutils', 'Do you really want to ban this IP?')))
         {
             return false;
         }
@@ -77,17 +77,17 @@ function ban_ip(ip, sync)
     }
     var request = new ApiRequest('ban', 'add');
     request.onSuccess(function(){
-        alert(serverutilsLang.banip_success);
+        alert(AdminBukkit.t('serverutils', 'The IP was successfully banned!'));
         $result = true;
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
-                alert(serverutilsLang.ip_missing);
+                alert(AdminBukkit.t('serverutils', 'Your input was not a valid IP(v4)!'));
                 break;
             case 2:
-                alert(serverutilsLang.ip_invalid);
+                alert(AdminBukkit.t('serverutils', 'No IP given!'));
                 break;
         }
     });
@@ -101,11 +101,11 @@ function unban_player(player, sync)
     var $result = false;
     if (!player)
     {
-        player = prompt(serverutilsLang.unbanplayer_prompt, '');
+        player = prompt(AdminBukkit.t('serverutils', 'Enter the playername which should be unbanned:'), '');
     }
     else
     {
-        if (!confirm(serverutilsLang.unbanplayer_confirm))
+        if (!confirm(AdminBukkit.t('serverutils', 'Player was successfully unbanned!')))
         {
             return false;
         }
@@ -117,22 +117,22 @@ function unban_player(player, sync)
     player = player.replace(/\s/g, '');
     if (!player.match(/^[\w\d\.]+$/i))
     {
-        alert(serverutilsLang.name_invalid);
+        alert(AdminBukki.t('serverutils', 'Your input was invalid!\nAllowed: A-Z, a-z, 0-9, _, .'));
         return false;
     }
     var request = new ApiRequest('ban', 'remove');
     request.onSuccess(function(){
-        alert(serverutilsLang.unbanplayer_success);
+        alert(AdminBukkit.t('serverutils', 'layer was successfully unbanned!'));
         $result = true;
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
-                alert(serverutilsLang.name_missing);
+                alert(AdminBukkit.t('serverutils', 'No player name given!'));
                 break;
             case 3:
-                alert(serverutilsLang.unbanplayer_isnotbanned);
+                alert(AdminBukkit.t('serverutils', 'The player is not banned!'));
                 break;
         }
     });
@@ -145,11 +145,11 @@ function unban_ip(ip, sync)
     var $result = false;
     if (!ip)
     {
-        ip = prompt(serverutilsLang.unbanip_prompt, '');
+        ip = prompt(AdminBukkit.t('serverutils', 'Enter the IP(v4) which should be unbanned:'), '');
     }
     else
     {
-        if (!confirm(serverutilsLang.unbanip_confirm))
+        if (!confirm(AdminBukkit.t('serverutils', 'Are you sure to unban this IP(v4)?')))
         {
             return false;
         }
@@ -161,22 +161,22 @@ function unban_ip(ip, sync)
     ip = ip.replace(/\s/g, '');
     if (!ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/))
     {
-        alert(serverutilsLang.ip_invalid);
+        alert(AdminBukkit.t('serverutils', 'Your input was not a valid IP(v4)!'));
         return false;
     }
     var request = new ApiRequest('ban', 'remove');
     request.onSuccess(function(){
-        alert(serverutilsLang.unbanip_success);
+        alert(AdminBukkit.t('serverutils', 'IP was successfully unbanned!'));
         $result = true;
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
-                alert(serverutilsLang.ip_missing);
+                alert(AdminBukkit.t('serverutils', 'No IP given!'));
                 break;
             case 2:
-                alert(serverutilsLang.ip_invalid);
+                alert(AdminBukkit.t('serverutils', 'Your input was not a valid IP(v4)!'));
                 break;
         }
     });
@@ -190,11 +190,11 @@ function whitelist_add(player, sync)
     var $result = false;
     if (!player)
     {
-        player = prompt(serverutilsLang.whitelist_add_prompt, '');
+        player = prompt(AdminBukkit.t('serverutils', 'Enter the player name to add:'), '');
     }
     else
     {
-        if (!confirm(serverutilsLang.whitelist_add_confirm))
+        if (!confirm(AdminBukkit.t('serverutils', 'Do you really want to add this player to the whitelist?')))
         {
             return false;
         }
@@ -205,17 +205,17 @@ function whitelist_add(player, sync)
     }
     var request = new ApiRequest('whitelist', 'add');
     request.onSuccess(function(){
-        alert(serverutilsLang.whitelist_add_success);
+        alert(AdminBukkit.t('serverutils', 'The player was successfully added to the whitelist!'));
         $result = true;
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
-                alert(serverutilsLang.whitelist_add_noplayer);
+                alert(AdminBukkit.t('serverutils', 'No player given!'));
                 break;
             case 2:
-                alert(serverutilsLang.whitelist_add_alreadylisted);
+                alert(AdminBukkit.t('serverutils', 'The player is already on the whitelist!'));
                 break;
         }
     });
@@ -229,11 +229,11 @@ function whitelist_remove(player, sync)
     var $result = false;
     if (!player)
     {
-        player = prompt(serverutilsLang.whitelist_remove_prompt, '');
+        player = prompt(AdminBukkit.t('serverutils', 'Enter the player name to remove:'), '');
     }
     else
     {
-        if (!confirm(serverutilsLang.whitelist_remove_confirm))
+        if (!confirm(AdminBukkit.t('serverutils', 'Do you really want to remove this player from the whitelist?')))
         {
             return false;
         }
@@ -244,17 +244,17 @@ function whitelist_remove(player, sync)
     }
     var request = new ApiRequest('whitelist', 'remove');
     request.onSuccess(function(){
-        alert(serverutilsLang.whitelist_remove_success);
+        alert(AdminBukkit.t('serverutils', 'The player was successfully removed from the whitelist!'));
         $result = true;
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
-                alert(serverutilsLang.whitelist_remove_noplayer);
+                alert(AdminBukkit.t('serverutils', 'No player given!'));
                 break;
             case 2:
-                alert(serverutilsLang.whitelist_add_notlisted);
+                alert(AdminBukkit.t('serverutils', 'The player is not on the whitelist!'));
                 break;
         }
     });
@@ -268,11 +268,11 @@ function operator_add(player, sync)
     var $result = false;
     if (!player)
     {
-        player = prompt(serverutilsLang.operator_add_prompt, '');
+        player = prompt(AdminBukkit.t('serverutils', 'Enter the player name to op:'), '');
     }
     else
     {
-        if (!confirm(serverutilsLang.operator_add_confirm))
+        if (!confirm(AdminBukkit.t('serverutils', 'Do you really want to op this player?')))
         {
             return false;
         }
@@ -283,17 +283,17 @@ function operator_add(player, sync)
     }
     var request = new ApiRequest('operator', 'add');
     request.onSuccess(function(){
-        alert(serverutilsLang.operator_add_success);
+        alert(AdminBukkit.t('servverutils', 'The player was successfully opped!'));
         $result = true;
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
-                alert(serverutilsLang.operator_add_noplayer);
+                alert(AdminBukkit.t('serverutils', 'No player given!'));
                 break;
             case 2:
-                alert(serverutilsLang.operator_add_alreadyop);
+                alert(AdminBukkit.t('serverutils', 'The player is already an operator!'));
                 break;
         }
     });
@@ -307,11 +307,11 @@ function operator_remove(player, sync)
     var $result = false;
     if (!player)
     {
-        player = prompt(serverutilsLang.operator_remove_prompt, '');
+        player = prompt(AdminBukkit.t('serverutils', 'Enter the player name to deop:'), '');
     }
     else
     {
-        if (!confirm(serverutilsLang.operator_remove_confirm))
+        if (!confirm(AdminBukkit.t('serverutils', 'Do you really want to deop this player?')))
         {
             return false;
         }
@@ -322,17 +322,17 @@ function operator_remove(player, sync)
     }
     var request = new ApiRequest('operator', 'remove');
     request.onSuccess(function(){
-        alert(serverutilsLang.operator_remove_success);
+        alert(AdminBukkit.t('serverutils', 'The player was successfully deopped!'));
         $result = true;
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
-                alert(serverutilsLang.operator_remove_noplayer);
+                alert(AdminBukkit.t('serverutils', 'No player given!'));
                 break;
             case 2:
-                alert(serverutilsLang.operator_remove_noop);
+                alert(AdminBukkit.t('serverutils', 'The player is no operator!'));
                 break;
         }
     });

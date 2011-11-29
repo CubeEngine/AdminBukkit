@@ -50,15 +50,15 @@ function ApiRequest(controller, action)
             switch (major)
             {
                 case -1:
-                    alert(genericLang.error_unknown);
+                    alert(AdminBukkit.t('generic', 'An unknown error occured.\nPlease inform an administrator about this error'));
                     break;
                 case 0:
                     if (!$ignoreFirstFail || ($ignoreFirstFail && $lastFailed))
                     {
                         __APIREQUESTS_ENABLED = false;
-                        if (confirm(genericLang.error_serverunavailable))
+                        if (confirm(AdminBukkit.t('generic', 'The server isn\'t reachable (anymore).\nCheck your server info and the server.\n\nBack to the main page?')))
                         {
-                            redirectTo(BASE_PATH + '/index.php');
+                            AdminBukkit.redirectTo(BASE_PATH + '/index.php');
                         }
                     }
                     else
@@ -67,11 +67,11 @@ function ApiRequest(controller, action)
                     }
                     break;
                 case 1:
-                    alert(genericLang.error_invalidpath);
+                    alert(AdminBukkit.t('generic', 'An invalid path was entered!\nPlease inform an administrator about this error'));
                     break;
                 case 2:
-                    alert(genericLang.error_authfailed);
-                    redirectTo(BASE_PATH + 'index.php/index?_message=' + urlencode(genericLang.redirect_msg));
+                    alert(AdminBukkit.t('generic', 'The given API password was invalid!\nPlease check your server data.'));
+                    AdminBukkit.redirectTo(BASE_PATH + 'index.php/index?_message=' + urlencode(genericLang.redirect_msg));
                     // @todo find a better method to redirect
                     break;
                 case 3:
@@ -90,15 +90,15 @@ function ApiRequest(controller, action)
                     }
                     break;
                 case 4:
-                    alert(genericLang.error_notimplemented);
+                    alert(AdminBukkit.t('generic', 'The requested action is not (yet) implemented!\nUpgrading your API-plugins to a newer version could solve the problem.'));
                     $broken = true;
                     break;
                 case 5:
-                    alert(genericLang.error_apinotfound);
+                    alert(AdminBukkit.t('generic', 'The requested API controller does not exist!\nUpgrading your API-plugins to a newer version could solve the problem.'));
                     $broken = true;
                     break;
                 case 6:
-                    alert(genericLang.error_apidisabled);
+                    alert(AdminBukkit.t('generic', 'The requested API is disabled!.'));
                     $broken = true;
                     break;
                 default:

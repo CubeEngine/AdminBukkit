@@ -1,4 +1,6 @@
 <?php
+    Yii::import('application.components.Network.NetworkException');
+
     function HttpAutoloader($classname)
     {
         $path = null;

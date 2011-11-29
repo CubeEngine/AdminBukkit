@@ -41,11 +41,11 @@
                 ),
             ),
             'db' => array(
-                'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+                'connectionString' => 'sqlite:' . dirname(dirname(__FILE__)) . '/data/testdrive.db',
                 'tablePrefix' => '',
             ),
             'db' => array(
-                'connectionString'  => 'mysql:host=localhost;port=3307;dbname=adminbukkit_yii',
+                'connectionString'  => 'mysql:host=localhost;port=3306;dbname=adminbukkit_yii',
                 'emulatePrepare'    => true,
                 'username'          => 'root',
                 'password'          => '',
