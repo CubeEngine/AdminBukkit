@@ -2,7 +2,7 @@
     <li><?php echo Yii::t('server', 'Loading the banned players...') ?></li>
 </ul>
 <script type="text/javascript" src="<?php echo $this->createUrl('javascript/translation', array('cat' => 'serverutils')) ?>"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->basePath ?>/res/js/serverutils.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/res/js/serverutils.js"></script>
 <script type="text/javascript">
     var listRequest = new ApiRequest('ban', 'get');
     listRequest.data({format: 'json'});
@@ -46,7 +46,7 @@
     }
 
     $('#server_playerbans').bind('pagecreate', function(){
-        $('#playerbanlist_toolbar_button').click(function(){
+        $('#toolbar_server_banplayer').click(function(){
             if (ban_player(null, true))
             {
                 listRequest.execute();

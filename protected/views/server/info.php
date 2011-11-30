@@ -101,7 +101,7 @@
             clearInterval(statsInterval);
         }
     }).bind('pagecreate', function(){
-        $('#server_toolbar_button').click(function(){
+        $('#toolbar_server_refresh').click(function(){
             infoRequest.execute();
         });
         $('#server_reload').click(function(){

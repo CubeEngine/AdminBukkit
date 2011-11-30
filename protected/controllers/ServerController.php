@@ -143,7 +143,7 @@
             $this->id = 'server';
             $this->title = Yii::t('server', 'Serverinfo');
             $this->backButton = new BackToolbarButton();
-            $this->utilButton = new ToolbarButton('refresh', Yii::t('generic', 'Refresh'));
+            $this->utilButton = new ToolbarButton('server_refresh', Yii::t('generic', 'Refresh'));
             
             $server = $this->user->getCurrentServer();
             if ($id !== null)
@@ -190,7 +190,7 @@
         {
             $this->id = 'server_playerbans';
             $this->title = Yii::t('server', 'Playerbans');
-            $this->utilButton = new ToolbarButton('banplayer', Yii::t('server', 'Ban'));
+            $this->utilButton = new ToolbarButton('server_banplayer', Yii::t('server', 'Ban'));
 
             $this->render('popups/playerbans', array('server' => $this->user->getCurrentServer()));
         }
@@ -199,7 +199,7 @@
         {
             $this->id = 'server_ipbans';
             $this->title = Yii::t('server', 'IP Bans');
-            $this->utilButton = new ToolbarButton('banip', Yii::t('server', 'Ban'));
+            $this->utilButton = new ToolbarButton('server_banip', Yii::t('server', 'Ban'));
 
             $this->render('popups/ipbans', array('server' => $this->user->getCurrentServer()));
         }
@@ -208,7 +208,7 @@
         {
             $this->id = 'server_whitelist';
             $this->title = Yii::t('server', 'Whitelist');
-            $this->utilButton = new ToolbarButton('add', Yii::t('server', 'Add'));
+            $this->utilButton = new ToolbarButton('server_addwhitelist', Yii::t('server', 'Add'));
 
             $this->render('popups/whitelist', array('server' => $this->user->getCurrentServer()));
         }
@@ -217,7 +217,7 @@
         {
             $this->id = 'server_operators';
             $this->title = Yii::t('server', 'Operators');
-            $this->utilButton = new ToolbarButton('op', Yii::t('server', 'Op'));
+            $this->utilButton = new ToolbarButton('server_op', Yii::t('server', 'Op'));
 
             $this->render('popups/operators', array('server' => $this->user->getCurrentServer()));
         }

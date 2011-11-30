@@ -2,7 +2,7 @@
     <li><?php echo Yii::t('generic', 'Loading...') ?></li>
 </ul>
 <script type="text/javascript" src="<?php echo $this->createUrl('javascript/translation', array('cat' => 'serverutils')) ?>"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->basePath ?>/res/js/serverutils.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/res/js/serverutils.js"></script>
 <script type="text/javascript">
     var listRequest = new ApiRequest('operator', 'get');
     listRequest.data({format: 'json'});
@@ -45,7 +45,7 @@
     }
 
     $('#server_operators').bind('pagecreate', function(){
-        $('#operatorlist_toolbar_button').bind('vmousedown', function(){
+        $('#toolbar_server_op').click(function(){
             if (operator_add(null, true))
             {
                 listRequest.execute();

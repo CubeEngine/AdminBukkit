@@ -2,7 +2,7 @@
     <li><?php echo Yii::t('server', 'Loading the whitelist...') ?></li>
 </ul>
 <script type="text/javascript" src="<?php echo $this->createUrl('javascript/translation', array('cat' => 'serverutils')) ?>"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->basePath ?>/res/js/serverutils.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/res/js/serverutils.js"></script>
 <script type="text/javascript">
     var listRequest = new ApiRequest('whitelist', 'get');
     listRequest.data({format: 'json'});
@@ -45,7 +45,7 @@
     }
 
     $('#server_whitelist').bind('pagecreate', function(){
-        $('#whitelist_toolbar_button').click(function(){
+        $('#toolbar_server_addwhitelist').click(function(){
             if (whitelist_add(null, true))
             {
                 listRequest.execute();

@@ -2,7 +2,7 @@
     <li><?php echo Yii::t('generic', 'Loading the banned IPs...') ?></li>
 </ul>
 <script type="text/javascript" src="<?php echo $this->createUrl('javascript/translation', array('cat' => 'serverutils')) ?>"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->basePath ?>/res/js/serverutils.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/res/js/serverutils.js"></script>
 <script type="text/javascript">
     var listRequest = new ApiRequest('ban', 'get');
     listRequest.data({format: 'json'});
@@ -46,7 +46,7 @@
     }
 
     $('#server_ipbans').bind('pagecreate', function(){
-        $('#ipbanlist_toolbar_button').click(function(){
+        $('#toolbar_server_banip').click(function(){
             if (ban_ip(null, true))
             {
                 listRequest.execute();
