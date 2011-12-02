@@ -20,7 +20,7 @@ function ApiRequest(controller, action)
     var $ignoreFirstFail = false;
     var $lastFailed = false;
     var $broken = false;
-    
+
     var $onSuccess = null;
     var $onFailure = null;
     var $onBeforeSend = function(){
@@ -29,7 +29,7 @@ function ApiRequest(controller, action)
     var $onComplete = function(){
         $.mobile.hidePageLoadingMsg();
     };
-    
+
     function onError(jqXHR, textStatus, thrownError)
     {
         if (!__APIREQUESTS_ENABLED)
@@ -71,8 +71,8 @@ function ApiRequest(controller, action)
                     break;
                 case 2:
                     alert(AdminBukkit.t('generic', 'The given API password was invalid!\nPlease check your server data.'));
-                    AdminBukkit.redirectTo(BASE_PATH + 'index.php/index?_message=' + urlencode(genericLang.redirect_msg));
-                    // @todo find a better method to redirect
+                    AdminBukkit.redirectTo(BASE_PATH + '/index.php/server/view', AdminBukkit.t('generic', 'Check your data or relog.'));
+                    // @todo find a better method to redirect (message removal could be handled by the widget)
                     break;
                 case 3:
                     // execute onFailure if set
@@ -84,7 +84,7 @@ function ApiRequest(controller, action)
                         }
                         catch (e)
                         {
-                            // @todo debug
+                            // @todo handle this different
                             alert(e);
                         }
                     }
@@ -118,7 +118,7 @@ function ApiRequest(controller, action)
             $onSuccess(data, textStatus, jqXHR);
         }
     }
-    
+
     this.onSuccess = function(callback)
     {
         if (typeof callback == 'function' || callback == null)
@@ -126,7 +126,7 @@ function ApiRequest(controller, action)
             $onSuccess = callback;
         }
     }
-    
+
     this.onFailure = function(callback)
     {
         if (typeof callback == 'function' || callback == null)
@@ -134,7 +134,7 @@ function ApiRequest(controller, action)
             $onFailure = callback;
         }
     }
-    
+
     this.onBeforeSend = function(callback)
     {
         if (typeof callback == 'function' || callback == null)
@@ -142,7 +142,7 @@ function ApiRequest(controller, action)
             $onBeforeSend = callback;
         }
     }
-    
+
     this.onComplete = function(callback)
     {
         if (typeof callback == 'function' || callback == null)
@@ -150,7 +150,7 @@ function ApiRequest(controller, action)
             $onComplete = callback;
         }
     }
-    
+
     this.sync = function(state)
     {
         if (typeof state !== 'undefined')
@@ -163,7 +163,7 @@ function ApiRequest(controller, action)
             return $sync;
         }
     }
-    
+
     this.method = function(method)
     {
         if (typeof method !== 'undefined')
@@ -176,12 +176,12 @@ function ApiRequest(controller, action)
             return $method;
         }
     }
-    
+
     this.url = function()
     {
         return $url;
     }
-    
+
     this.data = function(data)
     {
         if (typeof data !== 'undefined')
@@ -217,7 +217,7 @@ function ApiRequest(controller, action)
     {
         return $broken;
     }
-    
+
     this.execute = function(data)
     {
         if (!__APIREQUESTS_ENABLED)
@@ -233,7 +233,7 @@ function ApiRequest(controller, action)
         {
             requestData = data;
         }
-        
+
         var options = {
             url: $url,
             type: $method,
@@ -248,7 +248,7 @@ function ApiRequest(controller, action)
         {
             options.timeout = 2;
         }
-        
+
         return $.ajax(options);
     }
 }

@@ -3,10 +3,6 @@ window.AdminBukkit = (function(){
         var self = this;
         var languages = [];
 
-        var registerLanguage = function(cat) {
-            
-        }
-
         var loadLanguage = function(cat) {
             $.ajax({
                 url: BASE_PATH + '/index.php/javascript/translation?cat=' + cat,
@@ -39,7 +35,7 @@ window.AdminBukkit = (function(){
             {
                 return message;
             }
-            
+
         }
 
         this.urlencode = function(str) {
@@ -55,9 +51,16 @@ window.AdminBukkit = (function(){
             return escape(str).replace(/%[a-f0-9]{2}/ig, parse);
         }
 
-        this.redirectTo = function(target) {
+        this.redirectTo = function(target, message) {
             if (target)
             {
+                if (message)
+                {
+                    target += (target.indexOf('?') == -1 ? '?' : '&')
+                            + '_message='
+                            + this.urlencode(message);
+
+                }
                 document.location.href = target;
             }
         }

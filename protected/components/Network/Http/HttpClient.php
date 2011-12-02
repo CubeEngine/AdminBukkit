@@ -1270,12 +1270,12 @@
             $proto_end = @strpos($responseHeaderLines[0], ' ');
             if ($proto_end === false)
             {
-                throw new HttpException("Failed to parse the protocol header");
+                throw new HttpException("Failed to parse the protocol header (proto_end not found)\n" . trim($rawResponseHead));
             }
             $code_end = @strpos($responseHeaderLines[0], ' ', $proto_end + 1);
             if ($code_end === false)
             {
-                throw new HttpException("Failed to parse the protocol header");
+                throw new HttpException("Failed to parse the protocol header (code_end not found)\n" . trim($rawResponseHead));
             }
 
             return array(
