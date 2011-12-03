@@ -62,7 +62,7 @@
     <a href="<?php $this->createUrl('player/utils', array('player' => $player)) ?>" data-role="button" data-rel="dialog"><?php echo Yii::t('player', 'Utilities') ?></a>
 </div>
 <script type="text/javascript" src="<?php echo $this->createUrl('javascript/translation', array('cat' => 'serverutils')) ?>"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/js/serverutils.js"></script>
+<script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/res/js/serverutils.js"></script>
 <script type="text/javascript">
     var playerIntervalID = null;
     var succeeded = false;
@@ -94,9 +94,8 @@
     function refreshData(data)
     {
         succeeded = true;
-        data = eval('(' + data + ')');
         $('#player_name span:first').text(data.name);
-        $('#player_displayname a:first').html(parseColors(data.displayName));
+        $('#player_displayname a:first').html(AdminBukkit.parseColors(data.displayName));
         var hearts = Math.floor(data.health / 2);
         $('#player_health').attr('title', data.health);
         $('#player_health span.heart span').removeClass('full');

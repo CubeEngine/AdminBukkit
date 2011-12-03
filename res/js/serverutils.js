@@ -1,5 +1,3 @@
-var serverutilsLang = new ServerutilsLang();
-
 function ban_player(player, sync)
 {
     var $result = false;

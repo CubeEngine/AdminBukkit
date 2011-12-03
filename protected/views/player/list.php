@@ -68,7 +68,7 @@
                 var li = $('<li>');
                 var mainLink = $('<a>');
                 mainLink.text(players[i]);
-                mainLink.attr('href', '<?php echo $this->createUrl('player/show') ?>/' + players[i]);
+                mainLink.attr('href', '<?php echo $this->createUrl('player/view') ?>?player=' + players[i]);
                 var icon = $('<img>');
                 icon.addClass('ui-li-icon');
                 icon.attr('src', '<?php echo $this->createUrl('player/head') ?>?size=16&player=' + players[i])
