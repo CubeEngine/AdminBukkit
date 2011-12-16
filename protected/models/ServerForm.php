@@ -62,7 +62,7 @@
 
             try
             {
-                if ($apiBukkit->request('validate', 'authkey')->getStatus() != 204)
+                if ($apiBukkit->request('apibukkit')->getStatus() != 200)
                 {
                     $this->addError('authkey', Yii::t('server', 'The given authkey is wrong!'));
                     return false;

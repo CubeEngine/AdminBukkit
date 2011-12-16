@@ -43,7 +43,7 @@
                 'tablePrefix' => '',
             ),
             'db' => array(
-                'connectionString'  => 'mysql:host=localhost;port=3307;dbname=adminbukkit_yii',
+                'connectionString'  => 'mysql:host=localhost;port=3306;dbname=adminbukkit_yii',
                 'emulatePrepare'    => true,
                 'username'          => 'root',
                 'password'          => '',

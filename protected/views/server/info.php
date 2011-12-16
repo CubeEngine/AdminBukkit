@@ -25,6 +25,9 @@
     <li>
         <a href="<?php echo $this->createUrl('plugin/list') ?>"><?php echo Yii::t('plugin', 'Plugins') ?>: <span id="server_plugins" class="value"><?php echo Yii::t('generic', 'Loading...') ?></span></a>
     </li>
+    <li>
+        <a href="<?php echo $this->createUrl('server/console') ?>"><?php echo Yii::t('server', 'Console') ?></a>
+    </li>
 </ul>
 
 <h2><?php echo Yii::t('server', 'Utilities') ?></h2>
@@ -35,7 +38,6 @@
     <a data-role="button" href="<?php echo $this->createUrl('server/whitelist') ?>" data-rel="dialog"><?php echo Yii::t('server', 'Whitelist') ?></a>
     <a data-role="button" href="<?php echo $this->createUrl('server/operators') ?>" data-rel="dialog"><?php echo Yii::t('server', 'Operators') ?></a>
     <a data-role="button" href="#" id="server_broadcast"><?php echo Yii::t('server', 'Broadcast') ?></a>
-    <a data-role="button" href="<?php echo $this->createUrl('server/console') ?>"><?php echo Yii::t('server', 'Console view') ?></a>
     <a data-role="button" href="#" id="server_reload"><?php echo Yii::t('server', 'Reload') ?></a>
     <a data-role="button" href="#" id="server_stop"><?php echo Yii::t('server', 'Shutdown') ?></a>
 </div>

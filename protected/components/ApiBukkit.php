@@ -52,9 +52,9 @@
             return $this->client->executeRequest();
         }
         
-        public function request($controller, $action, array $params = array())
+        public function request($controller, $action = null, array $params = array())
         {
-            return $this->requestPath("/$controller/$action", $params);
+            return $this->requestPath('/' . $controller . ($action !== null ? '/' . strval($action) : ''), $params);
         }
 
         public function getUseragent()
