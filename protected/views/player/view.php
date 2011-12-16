@@ -59,7 +59,7 @@
 <div data-role="controlgroup">
     <a href="" id="player_world" data-role="button"><?php echo Yii::t('player', 'World') ?>: <span id="player_world_name"><?php echo Yii::t('generic', 'Loading...') ?></span></a>
     <a id="ban_ip" href="#" data-role="button"><?php echo Yii::t('player', 'IP Address') ?>: <span id="player_ip"><?php echo Yii::t('generic', 'Loading...') ?></span></a>
-    <a href="<?php $this->createUrl('player/utils', array('player' => $player)) ?>" data-role="button" data-rel="dialog"><?php echo Yii::t('player', 'Utilities') ?></a>
+    <a href="<?php echo $this->createUrl('player/utils', array('player' => $player)) ?>" data-role="button" data-rel="dialog"><?php echo Yii::t('player', 'Utilities') ?></a>
 </div>
 <script type="text/javascript" src="<?php echo $this->createUrl('javascript/translation', array('cat' => 'serverutils')) ?>"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/res/js/serverutils.js"></script>

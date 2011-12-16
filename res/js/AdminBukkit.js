@@ -174,6 +174,22 @@ window.AdminBukkit = (function(){
 
             return string + (new Array(counter)).join('</span>');
         };
+        
+        this.getEnvById = function(id) {
+            switch (id) {
+                case -1:
+                    return 'NETHER';
+                    break;
+                case 0:
+                    return 'NORMAL';
+                    break;
+                case 1:
+                    return 'THE_END';
+                    break;
+                default:
+                    throw 'Unknown environment';
+            }
+        }
 
     };
 

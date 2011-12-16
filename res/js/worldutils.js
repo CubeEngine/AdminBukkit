@@ -1,17 +1,15 @@
-var worldutilsLang = new WorldutilsLang();
-
 function world_create(world, seed, environment, generator, onSuccess)
 {
     var data = new Object();
     if (!world)
     {
-        alert(worldutilsLang.create_noname);
+        alert(AdminBukkit.t('worldutils', 'No world name has been entered.'));
         return false;
     }
     world = world.replace(/\s/g, '');
     if (!world.match(/^[\w\d-]+$/))
     {
-        alert(worldutilsLang.create_invalidname);
+        alert(AdminBukkit.t('worldutils', 'The name is invalid!'));
     }
     data.world = world;
     if (seed)
@@ -25,18 +23,18 @@ function world_create(world, seed, environment, generator, onSuccess)
     }
     else
     {
-        alert(worldutilsLang.create_invalidenv);
+        alert(AdminBukkit.t('worldutils', 'You entered nothing or an invalid type!'));
         return false;
     }
     if (generator)
     {
         data.generator = generator;
     }
-    if (confirm(worldutilsLang.create_warning))
+    if (confirm(AdminBukkit.t('worldutils', 'Warning!\nIf a world with the same name does already exist(not loaded) the world will be overwritten, if the settings (seed, type) are different!')))
     {
         var request = new ApiRequest('world', 'create');
         request.onSuccess(function(){
-            alert(worldutilsLang.create_success);
+            alert(AdminBukkit.t('worldutils', 'World was successfully created!'));
             if (onSuccess && onSuccess instanceof Function)
             {
                 onSuccess();
@@ -46,16 +44,16 @@ function world_create(world, seed, environment, generator, onSuccess)
             switch (code)
             {
                 case 1:
-                    alert(worldutilsLang.create_noname);
+                    alert(AdminBukkit.t('worldutils', 'No world name has been entered.'));
                     break;
                 case 2:
-                    alert(worldutilsLang.create_alreadyexists);
+                    alert(AdminBukkit.t('worldutils', 'There is already a world with the given name.'));
                     break;
                 case 3:
-                    alert(worldutilsLang.create_invalidenv);
+                    alert(AdminBukkit.t('worldutils', 'You entered nothing or an invalid type.'));
                     break;
                 case 4:
-                    alert(worldutilsLang.create_generatornotfound);
+                    alert(AdminBukkit.t('worldutils', 'The given generator was not found.'));
                     break;
             }
         });
@@ -66,7 +64,7 @@ function world_create(world, seed, environment, generator, onSuccess)
 
 function world_time(world)
 {
-    var time = prompt(worldutilsLang.time_enter, '');
+    var time = prompt(AdminBukkit.t('worldutils', 'Enter the time:'), '');
     if (!time)
     {
         return;
@@ -105,18 +103,18 @@ function world_time(world)
     
     var request = new ApiRequest('world', 'time');
     request.onSuccess(function(){
-        alert(worldutilsLang.time_success);
+        alert(AdminBukkit.t('worldurils', 'The time was successfully set!'));
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
             case 2:
-                alert(worldutilsLang.world_notfound)
+                alert(AdminBukkit.t('worldutils', 'You have to regard the format!'))
                 break;
             case 3:
             case 4:
-                alert(worldutilsLang.time_invalid);
+                alert(AdminBukkit.t('worldutils', 'No valid time has been entered.'));
                 break;
         }
     });
@@ -125,21 +123,21 @@ function world_time(world)
 
 function world_pvp(world)
 {
-    var state = confirm(worldutilsLang.pvp_state);
+    var state = confirm(AdminBukkit.t('worldutils', 'Should PVP be activated or deactivated?\n\nOK to activate it, Cancel to deactivate it.'));
     state = (state ? 'on' : 'off');
     var request = new ApiRequest('world', 'pvp');
     request.onSuccess(function(){
-        alert(state == 'on' ? worldutilsLang.pvp_success_on : worldutilsLang.pvp_success_off);
+        alert(state == 'on' ? AdminBukkit.t('worldutils', 'PVP was successfully activated!') : AdminBukkit.t('worldutils', 'PVP was successfully deactivated!'));
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
             case 2:
-                alert(worldutilsLang.world_notfound);
+                alert(AdminBukkit.t('worldutils', 'World not found.'));
                 break;
             case 3:
-                alert(worldutilsLang.world_invalidstate);
+                alert(AdminBukkit.t('worldutils', 'Invalid state has been entered.\nPlease inform an administrator.'));
                 break;
         }
     });
@@ -148,21 +146,21 @@ function world_pvp(world)
 
 function world_storm(world)
 {
-    var state = confirm(worldutilsLang.storm_state);
+    var state = confirm(AdminBukkit.t('worldutils', 'Should it be stormy or not?\n\nOK to turn it stormy, Cancel to turn it sunny.'));
     state = (state ? 'on' : 'off');
     var request = new ApiRequest('world', 'storm');
     request.onSuccess(function(){
-        alert(state == 'on' ? worldutilsLang.storm_success_on : worldutilsLang.storm_success_off);
+        alert(state == 'on' ? AdminBukkit.t('worldutils', 'It is stormy now!') : AdminBukkit.t('worldutils', 'It is not stormy anymore!'));
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
             case 2:
-                alert(worldutilsLang.world_notfound);
+                alert(AdminBukkit.t('worldutils', 'World not found.'));
                 break;
             case 3:
-                alert(worldutilsLang.world_invalidstate);
+                alert(AdminBukkit.t('worldutils', 'Invalid state has been entered.\nPlease inform an administrator.'));
                 break;
         }
     });
@@ -171,7 +169,7 @@ function world_storm(world)
 
 function world_spawn(world)
 {
-    var target = prompt(worldutilsLang.spawn_location, '');
+    var target = prompt(AdminBukkit.t('worldutils', 'Enter the spawn location (format: x,y,z) or a player name:'), '');
     if (!target)
     {
         return;
@@ -195,21 +193,21 @@ function world_spawn(world)
     }
     var request = new ApiRequest('world', 'spawn');
     request.onSuccess(function(){
-        alert(worldutilsLang.spawn_success);
+        alert(AdminBukkit.t('worldutils', 'The spawn was successfully moved!'));
     });
     request.onFailure(function(code){
         switch (code)
         {
             case 1:
             case 2:
-                alert(worldutilsLang.world_notfound);
+                alert(AdminBukkit.t('worldutils', 'World not found.'));
                 break;
             case 3:
             case 5:
-                alert(worldutilsLang.spawn_invalidlocation);
+                alert(AdminBukkit.t('worldutils', 'Invalid location!'));
                 break;
             case 4:
-                alert(worldutilsLang.spawn_playernotfound);
+                alert(AdminBukkit.t('worldutils', 'The location has the wrong format!'));
                 break;
         }
     });

@@ -39,9 +39,14 @@
             ));
         }
 
-        public function actionUtils()
+        public function actionUtils($player)
         {
-            $this->render('utils', array('server' => $this->user->getCurrentServer()));
+            $this->id = 'player_utils';
+            $this->title = $player;
+            $this->render('utils', array(
+                'server' => $this->user->getCurrentServer(),
+                'player' => $player
+            ));
         }
 
         public function actionHead($player, $size = 24)

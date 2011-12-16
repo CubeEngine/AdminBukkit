@@ -29,7 +29,7 @@
 
 <h2><?php echo Yii::t('server', 'Utilities') ?></h2>
 <div data-role="controlgroup">
-    <a data-role="button" href="#" id="server_stats_ram"><?php echo Yii::t('server', 'Memory') ?>: <span id="server_stats_ram_free"><?php echo Yii::t('generic', 'Loading...') ?></span> / <span id="server_stats_ram_max"><?php echo Yii::t('generic', 'Loading...') ?></span> MB</a>
+    <a data-role="button" href="#" id="server_ram"><?php echo Yii::t('server', 'Memory') ?>: <span id="server_ram_free"><?php echo Yii::t('generic', 'Loading...') ?></span> / <span id="server_ram_max"><?php echo Yii::t('generic', 'Loading...') ?></span> MB</a>
     <a data-role="button" href="<?php echo $this->createUrl('server/playerbans') ?>" data-rel="dialog"><?php echo Yii::t('server', 'Banned players') ?></a>
     <a data-role="button" href="<?php echo $this->createUrl('server/ipbans') ?>" data-rel="dialog"><?php echo Yii::t('server', 'Banned IPs') ?></a>
     <a data-role="button" href="<?php echo $this->createUrl('server/whitelist') ?>" data-rel="dialog"><?php echo Yii::t('server', 'Whitelist') ?></a>
@@ -43,17 +43,12 @@
     var infoRequest = new ApiRequest('server', 'info');
     infoRequest.onSuccess(refreshData);
     infoRequest.data({format: 'json'});
-
-    var statsRequest = new ApiRequest('server', 'stats');
-    statsRequest.onSuccess(refreshMemStats);
-    statsRequest.onBeforeSend(null);
-    statsRequest.onComplete(null);
-    statsRequest.data({format: 'json'});
-    statsRequest.ignoreFirstFail(true);
+    infoRequest.onBeforeSend(null);
+    infoRequest.onComplete(null);
+    infoRequest.ignoreFirstFail(true);
 
     function refreshData(data)
     {
-        //data = eval('(' + data + ')');
         $('#server_name').html(data.name);
         $('#server_name').attr('title', 'ID: ' + data.id);
         if (data.ip)
@@ -69,6 +64,11 @@
         $('#server_maxplayers').html(data.maxplayers);
         $('#server_worlds').html(data.worlds);
         $('#server_plugins').html(data.plugins);
+        
+        var max = Math.round(data.maxmemory / 1024 / 1024);
+        var free = Math.round(data.freememory / 1024 / 1024);
+        $('#server_ram_max').html(max);
+        $('#server_ram_free').html(max - free);
 
         var minutes = Math.floor(data.uptime / 60);
         var seconds = data.uptime % 60;
@@ -80,25 +80,15 @@
         $('#server_uptime').html(format.replace('{0}', days).replace('{1}', hours).replace('{2}', minutes).replace('{3}', seconds));
     }
 
-    function refreshMemStats(data)
-    {
-        //data = eval('(' + data + ')');
-        var max = Math.round(data.maxmemory / 1024 / 1024);
-        var free = Math.round(data.freememory / 1024 / 1024);
-        $('#server_stats_ram_max').html(max);
-        $('#server_stats_ram_free').html(max - free);
-    }
-
-    var statsInterval = null;
+    var infoInterval = null;
 
     $('#server').bind('pageshow', function(){
         infoRequest.execute();
-        statsRequest.execute();
-        statsInterval = setInterval(statsRequest.execute, 5000);
+        infoInterval = setInterval(infoRequest.execute, 5000);
     }).bind('pagehide', function(){
-        if (statsInterval)
+        if (infoInterval)
         {
-            clearInterval(statsInterval);
+            clearInterval(infoInterval);
         }
     }).bind('pagecreate', function(){
         $('#toolbar_server_refresh').click(function(){
@@ -117,7 +107,7 @@
             return false;
         });
 
-        $('#server_stats_ram').click(function(e){
+        $('#server_ram').click(function(e){
             e.preventDefault();
             if (confirm('<?php echo Yii::t('server', 'Do you really want to run the garbage collector?') ?>'))
             {
