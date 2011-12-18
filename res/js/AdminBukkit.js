@@ -9,7 +9,7 @@ window.AdminBukkit = (function(){
                 async: false,
                 timeout: 2,
                 success: function(data, textStatus, jqXHR) {
-                    eval(data);
+                    jQuery.globalEval(data);
                 }
             });
         }
@@ -179,18 +179,23 @@ window.AdminBukkit = (function(){
             switch (id) {
                 case -1:
                     return 'NETHER';
-                    break;
                 case 0:
                     return 'NORMAL';
-                    break;
                 case 1:
                     return 'THE_END';
-                    break;
                 default:
                     throw 'Unknown environment';
             }
         }
 
+        this.getGamemodeById = function(id) {
+            switch (id) {
+                case 0:
+                    return 'SURVIVAL';
+                case 1:
+                    return 'CREATIVE';
+            }
+        }
     };
 
     return new AdminBukkit();

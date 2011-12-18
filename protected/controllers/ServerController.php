@@ -140,10 +140,10 @@
 
         public function actionInfo($id = null)
         {
-            $this->id = 'server';
+            $this->id = 'server_info';
             $this->title = Yii::t('server', 'Serverinfo');
             $this->backButton = new BackToolbarButton();
-            $this->utilButton = new ToolbarButton('server_refresh', Yii::t('generic', 'Refresh'));
+            $this->utilButton = new ToolbarButton('server_info_refresh', Yii::t('generic', 'Refresh'));
             
             $server = $this->user->getCurrentServer();
             if ($id !== null)

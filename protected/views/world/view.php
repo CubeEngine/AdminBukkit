@@ -1,4 +1,3 @@
-<h2><?php echo Yii::t('world', 'World "{world}":', array('{world}' => $world)) ?></h2>
 <ul data-role="listview" data-inset="true">
     <li>
         <?php echo Yii::t('world', 'Name:') ?> <span class="value" id="world_view_name"><?php echo Yii::t('generic', 'Loading...') ?></span>
