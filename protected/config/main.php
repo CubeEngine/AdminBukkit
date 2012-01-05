@@ -22,6 +22,9 @@
             ),
 
         ),
+        
+        'behaviors' => array(
+        ),
 
         'components' => array(
             'user' => array(
@@ -33,6 +36,9 @@
                 'urlFormat' => 'path',
                 'showScriptName' => false,
                 'rules' => array(
+                    '<language:[a-z][a-z]>/<controller:\w+>s' => '<controller>/list',
+                    '<language:[a-z][a-z]>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                    '<language:[a-z][a-z]>/<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                     '<controller:\w+>s' => '<controller>/list',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

@@ -5,6 +5,7 @@
 
         public function actionHome()
         {
+
             $this->id = 'home';
             $this->title = Yii::t('home', Yii::t('home', 'Home'));
             $this->utilButton = new ToolbarButton('about', Yii::t('home', 'About'), $this->createUrl('about'));

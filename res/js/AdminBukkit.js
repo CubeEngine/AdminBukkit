@@ -107,6 +107,9 @@ window.AdminBukkit = (function(){
             var counter = 0;
             var last = '';
 
+            /**
+             * @todo rework for classes
+             */
             function parse(match) {
                 if (last != match[1]) {
                     var color = '';
