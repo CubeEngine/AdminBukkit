@@ -1,4 +1,4 @@
-<?php if ($messageCount): ?>
+<?php if ($messages !== null): ?>
 AdminBukkit.registerLanguage('<?php echo strtolower($cat) ?>',
 {
 <?php

@@ -16,15 +16,25 @@
 
         public function actionTranslation($cat)
         {
-            $messageProvider = Yii::app()->getMessages();
-            $loadMessages = new ReflectionMethod(get_class($messageProvider), 'loadMessages');
-            $loadMessages->setAccessible(true);
-            $messages = $loadMessages->invokeArgs($messageProvider, array($cat, Yii::app()->getLanguage()));
+            $messages = array();
+            $messageCount = 0;
+            if (Yii::app()->language != Yii::app()->sourceLanguage)
+            {
+                $messageProvider = Yii::app()->getMessages();
+                $loadMessages = new ReflectionMethod(get_class($messageProvider), 'loadMessages');
+                $loadMessages->setAccessible(true);
+                $messages = $loadMessages->invokeArgs($messageProvider, array($cat, Yii::app()->getLanguage()));
+                $messageCount = count($messages);
+                if (!$messageCount)
+                {
+                    $messages = null;
+                }
+            }
 
             $this->renderPartial('translation', array(
                 'cat'           => $cat,
                 'messages'      => $messages,
-                'messageCount'  => count($messages)
+                'messageCount'  => $messageCount
             ));
         }
         
