@@ -28,7 +28,7 @@
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/js/main.js" charset="utf-8"></script>
     </head>
     <body>
-        <div>
+        <div id="container">
             <?php echo $content; ?>
         </div>
     </body>

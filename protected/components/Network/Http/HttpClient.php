@@ -191,7 +191,7 @@
                 $this->connection = @fsockopen(($this->ssl ? 'ssl://' : '') . $this->hostIp, $this->port, $this->ERRNO, $this->ERRSTR, $this->timeout);
                 if ($this->connection === false)
                 {
-                    throw new NetworkException('Failed to connect to the remote host! Error: ' . $this->ERRSTR);
+                    throw new NetworkException('Failed to connect to the remote host ' . $this->hostIp . '! Error: ' . $this->ERRSTR);
                 }
                 $this->connected = true;
 

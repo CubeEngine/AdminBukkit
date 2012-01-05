@@ -17,5 +17,6 @@ $(function(){
         }
         e.preventDefault();
     });
-    //$('*[title]').live('touchstart', touchTooltipHandler);
+    $('*[title]').on('taphold', AdminBukkit.tooltipHandler);
+    $('div#container').on('swiperight', history.back);
 });
