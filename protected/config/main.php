@@ -3,6 +3,7 @@
         'basePath' => dirname(dirname(__FILE__)),
         'name' => 'AdminBukkit',
         'defaultController' => 'index',
+        'sourceLanguage' => 'en',
 
         'preload' => array('log'),
 
