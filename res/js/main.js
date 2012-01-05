@@ -18,7 +18,7 @@ $(function(){
         }
     });
     $('*[title]').on('taphold', AdminBukkit.tooltipHandler);
-    $('div[data-role=header]').on('taphold', function(){
+    $('div.ui-header').on('taphold', function(){
         AdminBukkit.redirectTo(BASE_PATH);
     })
     $('div#container')
