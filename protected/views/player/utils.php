@@ -18,61 +18,63 @@
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/res/js/serverutils.js"></script>
 <script type="text/javascript">
 
-    var player = '<?php echo $player ?>';
+    (function(){
+        var player = '<?php echo $player ?>';
 
-    $('#player_utils').bind('pagecreate', function(){
-        $('#player_utils_kick').click(function(){
-            if (player_kick(player, true))
-            {
-                refreshData();
-                toggleOverlay('#player_utils_overlay');
-            }
-            return false;
+        $('#player_utils').bind('pagecreate', function(){
+            $('#player_utils_kick').click(function(){
+                if (player_kick(player, true))
+                {
+                    refreshData();
+                    toggleOverlay('#player_utils_overlay');
+                }
+                return false;
+            });
+            $('#player_utils_ban').click(function(){
+                if (ban_player(player, true))
+                {
+                    refreshData();
+                    toggleOverlay('#player_utils_overlay');
+                }
+                return false;
+            });
+            $('#player_utils_teleport').click(function(){
+                player_teleport(player);
+                return false;
+            });
+            $('#player_utils_tell').click(function(){
+                player_tell(player);
+                return false;
+            });
+            $('#player_utils_burn').click(function(){
+                player_burn(player);
+                return false;
+            });
+            $('#player_utils_heal').click(function(){
+                player_heal(player);
+                return false;
+            });
+            $('#player_utils_kill').click(function(){
+                player_kill(player);
+                return false;
+            });
+            $('#player_utils_clearinv').click(function(){
+                player_clearinv(player);
+                return false;
+            });
+            $('#player_utils_give').click(function(){
+                player_give(player);
+                return false;
+            });
+            $('#player_utils_op').click(function(){
+                player_op(player);
+                return false;
+            });
+            $('#player_utils_deop').click(function(){
+                player_deop(player);
+                return false;
+            });
         });
-        $('#player_utils_ban').click(function(){
-            if (ban_player(player, true))
-            {
-                refreshData();
-                toggleOverlay('#player_utils_overlay');
-            }
-            return false;
-        });
-        $('#player_utils_teleport').click(function(){
-            player_teleport(player);
-            return false;
-        });
-        $('#player_utils_tell').click(function(){
-            player_tell(player);
-            return false;
-        });
-        $('#player_utils_burn').click(function(){
-            player_burn(player);
-            return false;
-        });
-        $('#player_utils_heal').click(function(){
-            player_heal(player);
-            return false;
-        });
-        $('#player_utils_kill').click(function(){
-            player_kill(player);
-            return false;
-        });
-        $('#player_utils_clearinv').click(function(){
-            player_clearinv(player);
-            return false;
-        });
-        $('#player_utils_give').click(function(){
-            player_give(player);
-            return false;
-        });
-        $('#player_utils_op').click(function(){
-            player_op(player);
-            return false;
-        });
-        $('#player_utils_deop').click(function(){
-            player_deop(player);
-            return false;
-        });
-    });
+    })();
 
 </script>

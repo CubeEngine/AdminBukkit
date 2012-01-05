@@ -131,127 +131,130 @@
     </li>
 </ul>
 <script type="text/javascript">
-    var infoRequest = new ApiRequest('server', 'info');
-    infoRequest.onSuccess(refreshData);
-    infoRequest.data({format: 'json'});
-    infoRequest.onBeforeSend(null);
-    infoRequest.onComplete(null);
-    infoRequest.ignoreFirstFail(true);
 
-    function refreshData(data)
-    {
-        $('#server_info_basic_name').html(data.name);
-        $('#server_info_basic_name').attr('title', 'ID: ' + data.id);
-        if (data.ip)
+    (function(){
+        var infoRequest = new ApiRequest('server', 'info');
+        infoRequest.onSuccess(refreshData);
+        infoRequest.data({format: 'json'});
+        infoRequest.onBeforeSend(null);
+        infoRequest.onComplete(null);
+        infoRequest.ignoreFirstFail(true);
+
+        function refreshData(data)
         {
-            $('#server_info_basic_ip').html(data.ip);
+            $('#server_info_basic_name').html(data.name);
+            $('#server_info_basic_name').attr('title', 'ID: ' + data.id);
+            if (data.ip)
+            {
+                $('#server_info_basic_ip').html(data.ip);
+            }
+            else
+            {
+                $('#server_info_basic_ip').html('<?php echo gethostbyname($server->getHost()) ?>');
+            }
+            $('#server_info_basic_port').html(data.port);
+
+            $('#server_info_config_mode').html(AdminBukkit.t('server', data.onlinemode ? 'Online' : 'Offline'));
+            $('#server_info_config_whitelist').html(AdminBukkit.t('server', data.awhitelisted ? 'Enabled' : 'Disabled'));
+            $('#server_info_config_flying').html(AdminBukkit.t('generic', data.allowNether ? 'Allowed' : 'Disallowed'));
+            $('#server_info_config_nether').html(AdminBukkit.t('generic', data.allowEnd ? 'Enabled' : 'Disabled'));
+            $('#server_info_config_end').html(AdminBukkit.t('generic', data.allowFlight ? 'Enabled' : 'Disabled'));
+            $('#server_info_config_defgamemode').html(AdminBukkit.t('generic', AdminBukkit.getGamemodeById(data.defaultGamemode).toLowerCase()));
+            $('#server_info_config_viewdistance').html(data.viewDistance);
+            $('#server_info_config_spawnradius').html(data.spawnRadius);
+
+            $('#server_info_versions_bukkit').html(data.versions.bukkit);
+            $('#server_info_versions_implementation').html(data.versions.server);
+            $('#server_info_versions_apibukkit').html(data.versions.apibukkit);
+            $('#server_info_versions_basicapi').html(data.versions.basicapi);
+
+            $('#server_info_numbers_online').html(data.players);
+            $('#server_info_numbers_maxplayers').html(data.maxplayers);
+            $('#server_info_numbers_worlds').html(data.worlds);
+            $('#server_info_numbers_plugins').html(data.plugins);
+
+            var max = Math.round(data.maxmemory / 1024 / 1024);
+            var free = Math.round(data.freememory / 1024 / 1024);
+            $('#server_info_numbers_ram_max').html(max);
+            $('#server_info_numbers_ram_free').html(max - free);
+
+            var minutes = Math.floor(data.uptime / 60);
+            var seconds = data.uptime % 60;
+            var hours = Math.floor(minutes / 60);
+            minutes = minutes % 60;
+            var days = Math.floor(hours / 24);
+            hours = hours % 24;
+            var format = '<?php echo Yii::t('server', '{0} Day(s), {1} Hour(s), {2} Minute(s) and {3} Second(s)') ?>';
+            $('#server_info_basic_uptime').html(format.replace('{0}', days).replace('{1}', hours).replace('{2}', minutes).replace('{3}', seconds));
         }
-        else
-        {
-            $('#server_info_basic_ip').html('<?php echo gethostbyname($server->getHost()) ?>');
-        }
-        $('#server_info_basic_port').html(data.port);
 
-        $('#server_info_config_mode').html(AdminBukkit.t('server', data.onlinemode ? 'Online' : 'Offline'));
-        $('#server_info_config_whitelist').html(AdminBukkit.t('server', data.awhitelisted ? 'Enabled' : 'Disabled'));
-        $('#server_info_config_flying').html(AdminBukkit.t('generic', data.allowNether ? 'Allowed' : 'Disallowed'));
-        $('#server_info_config_nether').html(AdminBukkit.t('generic', data.allowEnd ? 'Enabled' : 'Disabled'));
-        $('#server_info_config_end').html(AdminBukkit.t('generic', data.allowFlight ? 'Enabled' : 'Disabled'));
-        $('#server_info_config_defgamemode').html(AdminBukkit.t('generic', AdminBukkit.getGamemodeById(data.defaultGamemode).toLowerCase()));
-        $('#server_info_config_viewdistance').html(data.viewDistance);
-        $('#server_info_config_spawnradius').html(data.spawnRadius);
+        var infoInterval = null;
 
-        $('#server_info_versions_bukkit').html(data.versions.bukkit);
-        $('#server_info_versions_implementation').html(data.versions.server);
-        $('#server_info_versions_apibukkit').html(data.versions.apibukkit);
-        $('#server_info_versions_basicapi').html(data.versions.basicapi);
-        
-        $('#server_info_numbers_online').html(data.players);
-        $('#server_info_numbers_maxplayers').html(data.maxplayers);
-        $('#server_info_numbers_worlds').html(data.worlds);
-        $('#server_info_numbers_plugins').html(data.plugins);
-        
-        var max = Math.round(data.maxmemory / 1024 / 1024);
-        var free = Math.round(data.freememory / 1024 / 1024);
-        $('#server_info_numbers_ram_max').html(max);
-        $('#server_info_numbers_ram_free').html(max - free);
-
-        var minutes = Math.floor(data.uptime / 60);
-        var seconds = data.uptime % 60;
-        var hours = Math.floor(minutes / 60);
-        minutes = minutes % 60;
-        var days = Math.floor(hours / 24);
-        hours = hours % 24;
-        var format = '<?php echo Yii::t('server', '{0} Day(s), {1} Hour(s), {2} Minute(s) and {3} Second(s)') ?>';
-        $('#server_info_basic_uptime').html(format.replace('{0}', days).replace('{1}', hours).replace('{2}', minutes).replace('{3}', seconds));
-    }
-
-    var infoInterval = null;
-
-    $('#server_info').bind('pageshow', function(){
-        infoRequest.execute();
-        infoInterval = setInterval(infoRequest.execute, 5000);
-    }).bind('pagehide', function(){
-        if (infoInterval)
-        {
-            clearInterval(infoInterval);
-        }
-    }).bind('pagecreate', function(){
-        $('#toolbar_server_info_refresh').click(function(){
+        $('#server_info').bind('pageshow', function(){
             infoRequest.execute();
-        });
-
-        $('#server_info_utilities_reload').click(function(){
-            if (confirm('<?php echo Yii::t('server', 'Are you sure to reload the server?') ?>'))
+            infoInterval = setInterval(infoRequest.execute, 5000);
+        }).bind('pagehide', function(){
+            if (infoInterval)
             {
-                var request = new ApiRequest('server', 'reload');
-                request.onSuccess(function(){
-                    alert('<?php echo Yii::t('server', 'Server successfully reloaded!\nInfos will be reloaded...') ?>');
-                    infoRequest.execute();
-                });
-                request.execute();
+                clearInterval(infoInterval);
             }
-            return false;
-        });
+        }).bind('pagecreate', function(){
+            $('#toolbar_server_info_refresh').click(function(){
+                infoRequest.execute();
+            });
 
-        $('#server_info_numbers_ram').click(function(e){
-            e.preventDefault();
-            if (confirm('<?php echo Yii::t('server', 'Do you really want to run the garbage collector?') ?>'))
-            {
-                var request = new ApiRequest('server', 'garbagecollect');
-                request.onSuccess(function(){
-                    alert('<?php echo Yii::t('server', 'Garbage collector was successfully executed!') ?>');
-                });
-                request.execute();
-            }
-        });
-
-        $('#server_info_utilities_stop').click(function(){
-            if (confirm('<?php echo Yii::t('server', 'Are you sure you want to stop the server?') ?>'))
-            {
-                if (confirm('<?php echo Yii::t('server', 'Are you really really sure??') ?>'))
+            $('#server_info_utilities_reload').click(function(){
+                if (confirm('<?php echo Yii::t('server', 'Are you sure to reload the server?') ?>'))
                 {
-                    var request = new ApiRequest('server', 'stop');
+                    var request = new ApiRequest('server', 'reload');
                     request.onSuccess(function(){
-                        alert('<?php echo Yii::t('server', 'The server was successfully stopped!') ?>');
+                        alert('<?php echo Yii::t('server', 'Server successfully reloaded!\nInfos will be reloaded...') ?>');
+                        infoRequest.execute();
                     });
                     request.execute();
                 }
-            }
-        });
-
-        $('#server_info_utilities_broadcast').click(function(){
-            var message = prompt('<?php echo Yii::t('server', 'Please enter a message:') ?>', '');
-            if (!message)
-            {
                 return false;
-            }
-            var request = new ApiRequest('server', 'broadcast')
-            request.onSuccess(function(){
-                alert('<?php echo Yii::t('server', 'Message was successfully sent!') ?>');
             });
-            request.execute({message: message.substr(0, 100)});
-            return false;
+
+            $('#server_info_numbers_ram').click(function(e){
+                e.preventDefault();
+                if (confirm('<?php echo Yii::t('server', 'Do you really want to run the garbage collector?') ?>'))
+                {
+                    var request = new ApiRequest('server', 'garbagecollect');
+                    request.onSuccess(function(){
+                        alert('<?php echo Yii::t('server', 'Garbage collector was successfully executed!') ?>');
+                    });
+                    request.execute();
+                }
+            });
+
+            $('#server_info_utilities_stop').click(function(){
+                if (confirm('<?php echo Yii::t('server', 'Are you sure you want to stop the server?') ?>'))
+                {
+                    if (confirm('<?php echo Yii::t('server', 'Are you really really sure??') ?>'))
+                    {
+                        var request = new ApiRequest('server', 'stop');
+                        request.onSuccess(function(){
+                            alert('<?php echo Yii::t('server', 'The server was successfully stopped!') ?>');
+                        });
+                        request.execute();
+                    }
+                }
+            });
+
+            $('#server_info_utilities_broadcast').click(function(){
+                var message = prompt('<?php echo Yii::t('server', 'Please enter a message:') ?>', '');
+                if (!message)
+                {
+                    return false;
+                }
+                var request = new ApiRequest('server', 'broadcast')
+                request.onSuccess(function(){
+                    alert('<?php echo Yii::t('server', 'Message was successfully sent!') ?>');
+                });
+                request.execute({message: message.substr(0, 100)});
+                return false;
+            });
         });
-    });
+    })();
 </script>

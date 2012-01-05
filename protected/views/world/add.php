@@ -17,16 +17,18 @@
 <script type="text/javascript" src="<?php echo Router::instance()->getBasePath() ?>backend/javascriptlang.php?file=worldutils"></script>
 <script type="text/javascript" src="<?php $this->res('js/worldutils.js') ?>"></script>
 <script type="text/javascript">
-$('#addworld_form').bind('submit', function(){
-    world_create(
-        $('#addworld_name').val(),
-        $('#addworld_seed').val(),
-        $('#addworld_environment').val(),
-        $('#addworld_generator').val(),
-        function(){
-            $('#addworld').dialog('close');
-        }
-    );
-    return false;
-});
+    (function(){
+        $('#addworld_form').bind('submit', function(){
+            world_create(
+                $('#addworld_name').val(),
+                $('#addworld_seed').val(),
+                $('#addworld_environment').val(),
+                $('#addworld_generator').val(),
+                function(){
+                    $('#addworld').dialog('close');
+                }
+            );
+            return false;
+        });
+    })();
 </script>
