@@ -1,6 +1,6 @@
 <ul data-role="listview">
     <li>
-        <?php $lang->status ?>:
+        <?php echo Yii::t('plugin', 'Status') ?>:
         <span class="value">
             <?php if ($enabled): ?>
                 <?php echo Yii::t('plugin', 'active') ?>
@@ -9,48 +9,76 @@
             <?php endif ?>
         </span>
     </li>
-    <li title="<?php echo $fullName ?>"><?php $lang->name ?>: <span class="value"><?php echo $pluginName ?></span></li>
-    <li><?php $lang->version ?>: <span class="value"><?php echo $version ?></span></li>
+    <li title="<?php echo $fullName ?>">
+        <?php echo Yii::t('plugin', 'Name') ?>:
+        <span class="value"><?php echo $pluginName ?></span>
+    </li>
+    <li>
+        <?php echo Yii::t('plugin', 'Version') ?>:
+        <span class="value"><?php echo $version ?></span>
+    </li>
     <?php if ($website !== null): ?>
-    <li class="forward"><a href="<?php echo $website ?>" target="_blank"><?php $lang->website ?>: <span class="value"><?php echo $website ?></span></a></li>
+    <li class="forward">
+        <a href="<?php echo $website ?>" target="_blank">
+            <?php echo Yii::t('plugin', 'Website') ?>:
+            <span class="value"><?php echo $website ?></span>
+        </a>
+    </li>
     <?php endif ?>
     <?php if ($description !== null): ?>
-    <li><?php $lang->description ?>:<br><?php echo $description ?></li>
+    <li>
+        <?php echo Yii::t('plugin', 'Description') ?>:<br>
+        <?php echo $description ?>
+    </li>
     <?php endif ?>
     <?php if ($authors !== null): ?>
-    <li class="contentSlide">
-        <?php $lang->authors ?>:<br>
-        <div>
-        <?php foreach ($authors as $command): ?>
-        &nbsp;&nbsp;- <?php echo $command ?><br>
+    <li>
+        <?php echo Yii::t('plugin', 'Authors') ?>
+        <ul data-role="listview">
+        <?php foreach ($authors as $author): ?>
+            <li><?php echo $author ?></li>
         <?php endforeach ?>
-        </div>
+        </ul>
     </li>
     <?php endif ?>
     <?php if ($commands !== null): ?>
-    <li class="contentSlide">
-        <?php $lang->commands ?>:<br>
-        <div>
-        <?php foreach ($commands as $command => $infos): ?>
-        &nbsp;&nbsp;- <?php echo $command ?><br>
+    <li>
+        <?php echo Yii::t('plugin', 'Commands') ?>
+        <ul data-role="listview" data-filter="true">
+        <?php foreach ($commands as $command => $info): ?>
+            <li>
+                <?php echo $command ?>
+                <ul data-role="listview">
+                    <?php if ($info->usage): ?>
+                    <li>
+                        <?php echo Yii::t('plugin', 'Usage') ?>:
+                        <span class="value"><?php echo str_replace('/<command>', '/' . $command, $info->usage) ?></span>
+                    </li>
+                    <?php endif ?>
+                    <?php if ($info->description): ?>
+                    <li>
+                        <?php echo Yii::t('plugin', 'Description') ?>:
+                        <span class="value"><?php echo $info->description ?></span>
+                    </li>
+                    <?php endif ?>
+                </ul>
+            </li>
         <?php endforeach ?>
-        </div>
+        </ul>
     </li>
     <?php endif ?>
     <?php if ($depend !== null): ?>
-    <li class="contentSlide">
-        <?php $lang->dependencies ?>:<br>
-        <div>
+    <li>
+        <?php echo Yii::t('plugin', 'Dependencies') ?>
+        <ul data-role="listview">
         <?php foreach ($depend as $dependency): ?>
-        &nbsp;&nbsp;- <?php echo $dependency ?><br>
+            <li><?php echo $dependency ?></li>
         <?php endforeach ?>
-        </div>
+        </ul>
     </li>
     <?php endif ?>
-    <li><?php $lang->datafolder ?>: <span class="value" id="plugin_datafolder"><?php echo $dataFolder ?></span></li>
+    <li>
+        <?php echo Yii::t('plugin', 'Datafolder') ?>:
+        <span class="value" id="plugin_datafolder"><?php echo $dataFolder ?></span>
+    </li>
 </ul>
-<script type="text/javascript">
-    $('#plugin .contentSlide').click(function(e){
-        $(e.target).children('div').toggle('fast');
-    });
-</script>
