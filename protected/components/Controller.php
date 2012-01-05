@@ -1,8 +1,6 @@
 <?php
     class Controller extends CController
     {
-        private $app;
-        private $user;
         private $langPath;
         private $languageAlreadySet = false;
         
@@ -35,7 +33,7 @@
             $app = Yii::app();
             $user = $app->user;
 
-            if (isset($_POST['language']))
+            if (isset($_GET['language']))
             {
                 if ($this->isLanguageAvailable($_GET['language']))
                 {
