@@ -187,7 +187,7 @@ window.AdminBukkit = (function(){
                 case 1:
                     return 'THE_END';
                 default:
-                    throw 'Unknown environment';
+                    return 'UNKNOWN';
             }
         }
 
@@ -197,6 +197,8 @@ window.AdminBukkit = (function(){
                     return 'SURVIVAL';
                 case 1:
                     return 'CREATIVE';
+                default:
+                    return 'UNKNOWN';
             }
         }
     };
@@ -204,4 +206,4 @@ window.AdminBukkit = (function(){
     return new AdminBukkit();
 })();
 
-var $AB = AdminBukkit;
+window.$AB = window.AdminBukkit;
