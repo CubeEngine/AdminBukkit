@@ -58,7 +58,7 @@ function ApiRequest(controller, action)
                         __APIREQUESTS_ENABLED = false;
                         if (confirm(AdminBukkit.t('generic', 'The server isn\'t reachable (anymore).\nCheck your server info and the server.\n\nBack to the main page?')))
                         {
-                            AdminBukkit.redirectTo(BASE_PATH + '/index.php');
+                            AdminBukkit.redirectTo(BASE_PATH);
                         }
                     }
                     else

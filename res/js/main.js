@@ -1,6 +1,6 @@
-$.mobile.loadingMessage = $AB.t('generic', 'Loading...');
-$.mobile.pageloadErrorMessage = $AB.t('generic', 'The page could not be loaded!');
-$.mobile.listview.prototype.options.filterPlaceholder = $AB.t('generic', 'Search...');
+$.mobile.loadingMessage = AdminBukkit.t('generic', 'Loading...');
+$.mobile.pageloadErrorMessage = AdminBukkit.t('generic', 'The page could not be loaded!');
+$.mobile.listview.prototype.options.filterPlaceholder = AdminBukkit.t('generic', 'Search...');
 
 $(window).unload(function(){
     $.mobile.showPageLoadingMsg();
@@ -11,12 +11,21 @@ $(function(){
         e.preventDefault();
     });
     $('a[target=_blank], a[href^=http]').click(function(e){
-        if (confirm($AB.t('generic', 'Do you want to open this link in a new window?')))
+        e.preventDefault();
+        if (confirm(AdminBukkit.t('generic', 'Do you want to open this link in a new window?')))
         {
             window.open(this.href);
         }
-        e.preventDefault();
     });
     $('*[title]').on('taphold', AdminBukkit.tooltipHandler);
-    $('div#container').on('swiperight', history.back);
+    $('div[data-role=header]').on('taphold', function(){
+        AdminBukkit.redirectTo(BASE_PATH);
+    })
+    $('div#container')
+        .on('swiperight', function(){
+            history.back();
+        })
+        .on('swipeleft', function(){
+            history.forward();
+        });
 });
