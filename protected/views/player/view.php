@@ -86,7 +86,7 @@
                 }
                 else
                 {
-                    redirectTo('<?php echo $this->createUrl('player/list') ?>?_message=' + urlencode('<?php echo Yii::t('player', 'Player left the game.') ?>'));
+                    AdminBukkit.redirectTo('<?php echo $this->createUrl('player/list') ?>?_message=' + AdminBukkit.urlencode('<?php echo Yii::t('player', 'Player left the game.') ?>'));
                 }
         }
     });
@@ -137,7 +137,7 @@
             clearInterval(playerIntervalID);
         }
     }).bind('pagecreate', function(){
-        $('#player_toolbar_button').click(function(){
+        $('#toolbar_player_view_refresh').click(function(){
             request.execute();
             return false;
         });

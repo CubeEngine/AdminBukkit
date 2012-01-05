@@ -31,7 +31,7 @@
             $this->id = 'player_view';
             $this->title = $player;
             $this->backButton = new BackToolbarButton();
-            $this->utilButton = new ToolbarButton('view_refresh', Yii::t('generic', 'Refresh'));
+            $this->utilButton = new ToolbarButton('player_view_refresh', Yii::t('generic', 'Refresh'));
 
             $this->render('view', array(
                 'server' => $this->user->getCurrentServer(),
