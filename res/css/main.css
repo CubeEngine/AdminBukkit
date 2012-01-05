@@ -41,6 +41,58 @@ ul[data-role=listview] span.value {
 }
 
 /**
+ * ChatColors
+ */
+ .chatcolor-black {
+     color: #000;
+ }
+ .chatcolor-dark-blue {
+     color: #009;
+ }
+ .chatcolor-dark-green {
+     color: #090;
+ }
+ .chatcolor-teal {
+     color: #099;
+ }
+ .chatcolor-dark-red {
+     color: #800;
+ }
+ .chatcolor-purple {
+     color: #909;
+ }
+ .chatcolor-gold {
+     color: #F90;
+ }
+ .chatcolor-gray {
+     color: #CCC;
+ }
+ .chatcolor-dark-gray {
+     color: #999;
+ }
+ .chatcolor-blue {
+     color: #00F;
+ }
+ .chatcolor-bright-green {
+     color: #0F0;
+ }
+ .chatcolor-aqua {
+     color: #0FF;
+ }
+ .chatcolor-red {
+     color: #F00;
+ }
+ .chatcolor-pink {
+     color: #F0F;
+ }
+ .chatcolor-yellow {
+     color: #FF0;
+ }
+ .chatcolor-white {
+     color: #FFF;
+ }
+
+/**
  * Page - player
  */
 #player_primary_info {

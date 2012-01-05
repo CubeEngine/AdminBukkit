@@ -106,67 +106,16 @@ window.AdminBukkit = (function(){
             var regex = /§([0-9a-f])/i;
             var counter = 0;
             var last = '';
-
-            /**
-             * @todo rework for classes
-             */
+            
             function parse(match) {
                 if (last != match[1]) {
-                    var color = '';
                     last = match[1];
-                    switch (match[1]) {
-                        case '0':
-                            color = '#000';
-                            break;
-                        case '1':
-                            color = '#009';
-                            break;
-                        case '2':
-                            color = '#090';
-                            break;
-                        case '3':
-                            color = '#099';
-                            break;
-                        case '4':
-                            color = '#800';
-                            break;
-                        case '5':
-                            color = '#909';
-                            break;
-                        case '6':
-                            color = '#F90';
-                            break;
-                        case '7':
-                            color = '#CCC';
-                            break;
-                        case '8':
-                            color = '#999';
-                            break;
-                        case '9':
-                            color = '#00F';
-                            break;
-                        case 'a':
-                            color = '#0F0';
-                            break;
-                        case 'b':
-                            color = '#0FF';
-                            break;
-                        case 'c':
-                            color = '#F00';
-                            break;
-                        case 'd':
-                            color = '#F0F';
-                            break;
-                        case 'e':
-                            color = '#FF0';
-                            break;
-                        case 'f':
-                            color = '#000'; // white -> black for readability
-                    }
-                    if (color) {
+                    try {
                         ++counter;
-                        return '<span style="color:' + color + ';">'
+                        return '<span class="' + this.getChatColorClassByChar(match[1]) + '">'
                     }
+                    catch (e)
+                    {}
                 }
                 return '';
             }
@@ -177,6 +126,63 @@ window.AdminBukkit = (function(){
 
             return string + (new Array(counter)).join('</span>');
         };
+
+        this.getChatColorClassByChar = function(colorChar) {
+            var colorName;
+            switch (colorChar) {
+                case '0':
+                    colorName = 'black';
+                    break;
+                case '1':
+                    colorName = 'dark-blue';
+                    break;
+                case '2':
+                    colorName = 'dark-green';
+                    break;
+                case '3':
+                    colorName = 'teal';
+                    break;
+                case '4':
+                    colorName = 'dark-red';
+                    break;
+                case '5':
+                    colorName = 'purple';
+                    break;
+                case '6':
+                    colorName = 'gold';
+                    break;
+                case '7':
+                    colorName = 'gray';
+                    break;
+                case '8':
+                    colorName = 'dark-gray';
+                    break;
+                case '9':
+                    colorName = 'blue';
+                    break;
+                case 'a':
+                    colorName = 'bright-green';
+                    break;
+                case 'b':
+                    colorName = 'aqua';
+                    break;
+                case 'c':
+                    colorName = 'red';
+                    break;
+                case 'd':
+                    colorName = 'pink';
+                    break;
+                case 'e':
+                    colorName = 'yellow';
+                    break;
+                case 'f':
+                    colorName = 'white';
+                default:
+                    throw 'Unknown color character!';
+            }
+
+            return 'chatcolor-' + colorName;
+        }
         
         this.getEnvById = function(id) {
             switch (id) {
