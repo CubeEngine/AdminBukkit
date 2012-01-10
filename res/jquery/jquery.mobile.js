@@ -1,5 +1,5 @@
 /*
-* jQuery Mobile Framework Git Build: SHA1: 2ba27e0adc696ab318aca7c09fe93b1200c8bbf1 <> Date: Mon Jan 9 11:01:07 2012 -0800
+* jQuery Mobile Framework Git Build: SHA1: a19e5dd944068d5ff95a045980464160b7c3b416 <> Date: Tue Jan 10 13:50:58 2012 -0800
 * http://jquerymobile.com
 *
 * Copyright 2011 (c) jQuery Project
@@ -3502,9 +3502,6 @@ $.each({
 
 		initialHref: url.hrefNoHash,
 
-		// Flag for tracking if a Hashchange naturally occurs after each popstate + replace
-		hashchangeFired: false,
-
 		state: function() {
 			return {
 				hash: location.hash || "#" + self.initialFilePath,
@@ -3529,6 +3526,11 @@ $.each({
 			return url;
 		},
 
+		hashValueAfterReset: function( url ) {
+			var resetUrl = self.resetUIKeys( url );
+			return $.mobile.path.parseUrl( resetUrl ).hash;
+		},
+
 		// TODO sort out a single barrier to hashchange functionality
 		nextHashChangePrevented: function( value ) {
 			$.mobile.urlHistory.ignoreNextHashChange = value;
@@ -3543,12 +3545,14 @@ $.each({
 			if( self.onHashChangeDisabled ){
 				return;
 			}
-			
+
 			var href, state,
 				hash = location.hash,
 				isPath = $.mobile.path.isPath( hash ),
 				resolutionUrl = isPath ? location.href : $.mobile.getDocumentUrl();
+
 			hash = isPath ? hash.replace( "#", "" ) : hash;
+
 
 			// propulate the hash when its not available
 			state = self.state();
@@ -3576,23 +3580,42 @@ $.each({
 		// on popstate (ie back or forward) we need to replace the hash that was there previously
 		// cleaned up by the additional hash handling
 		onPopState: function( e ) {
-			var poppedState = e.originalEvent.state, holdnexthashchange = false;
+			var poppedState = e.originalEvent.state,
+				timeout, fromHash, toHash, hashChanged;
 
-			// if there's no state its not a popstate we care about, ie chrome's initial popstate
-			// or forward popstate
+			// if there's no state its not a popstate we care about, eg chrome's initial popstate
 			if( poppedState ) {
-				// disable any hashchange triggered by the browser
-				self.nextHashChangePrevented( true );
+				// the active url in the history stack will still be from the previous state
+				// so we can use it to verify if a hashchange will be fired from the popstate
+				fromHash = self.hashValueAfterReset( $.mobile.urlHistory.getActive().url );
 
-				// defer our manual hashchange until after the browser fired
-				// version has come and gone
-				setTimeout(function() {
-					// make sure that the manual hash handling takes place
-					self.nextHashChangePrevented( false );
+				// the hash stored in the state popped off the stack will be our currenturl or
+				// the url to which we wish to navigate
+				toHash = self.hashValueAfterReset( poppedState.hash.replace("#", "") );
 
-					// change the page based on the hash
-					$.mobile._handleHashChange( poppedState.hash );
-				}, 100);
+				// if the hashes of the urls are different we must assume that the browser
+				// will fire a hashchange
+				hashChanged = fromHash !== toHash;
+
+				// unlock hash handling once the hashchange caused be the popstate has fired
+				if( hashChanged ) {
+					$win.one( "hashchange.pushstate", function() {
+						self.nextHashChangePrevented( false );
+					});
+				}
+
+				// enable hash handling for the the _handleHashChange call
+				self.nextHashChangePrevented( false );
+
+				// change the page based on the hash
+				$.mobile._handleHashChange( poppedState.hash );
+
+				// only prevent another hash change handling if a hash change will be fired
+				// by the browser
+				if( hashChanged ) {
+					// disable hash handling until one of the above timers fires
+					self.nextHashChangePrevented( true );
+				}
 			}
 		},
 
