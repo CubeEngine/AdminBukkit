@@ -627,5 +627,27 @@
         {
             return array('id' => $this->id);
         }
+        
+        public static function loginUser($user)
+        {
+            $user = self::get($user);
+            if ($user !== null)
+            {
+                Yii::app()->user->login($user);
+            }
+            return $user;
+        }
+        
+        public function login()
+        {
+            Yii::app()->user->login($this);
+            return $this;
+        }
+        
+        public static function logout()
+        {
+            Yii::app()->user->logout();
+            return $this;
+        }
     }
 ?>

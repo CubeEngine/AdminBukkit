@@ -41,7 +41,7 @@
         {
             if ($this->user)
             {
-                Yii::app()->user->login($this->user);
+                $this->user->login();
                 return true;
             }
             return false;

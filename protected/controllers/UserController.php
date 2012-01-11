@@ -99,5 +99,20 @@
 
             $this->render('register', array('model' => $registerForm));
         }
+
+        public function actionDelete()
+        {
+            if (isset($_POST['ProfileDelete']['confirm']))
+            {
+                $this->user
+                        ->logout()
+                        ->delete();
+                $this->render('delete_success');
+            }
+            else
+            {
+                $this->render('delete', array('user' => $this->user));
+            }
+        }
     }
 ?>

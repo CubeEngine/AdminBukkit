@@ -16,10 +16,5 @@
         {
             $this->render('edit', array('user' => $this->user));
         }
-
-        public function actionDelete()
-        {
-            
-        }
     }
 ?>
