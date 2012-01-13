@@ -306,10 +306,30 @@
             $user = User::get($owner);
             if ($user !== null)
             {
-                $this->owner = $user;
+                if (!$user->equals($this->owner))
+                {
+                    $this->owner->removeServer($this);
+                    $this->owner = $user;
+                }
             }
 
             return $this;
+        }
+        
+        /**
+         * Checks whether the given user is a member of this server
+         *
+         * @param mixed $user a user identifier or instance
+         * @return bool true if the user is a member of this server
+         */
+        public function hasMember($user)
+        {
+            $user = User::get($user);
+            if ($user !== null)
+            {
+                return ($user->equals($this->owner) || in_array($user->getId(), $this->members));
+            }
+            return false;
         }
 
         /**
@@ -323,17 +343,18 @@
         }
 
         /**
+         * Resets all members
          *
          * @param int[] $members
          * @return Server
          */
         public function setMembers(array $members)
         {
-            $this->members = array();
+            $this->clearMembers();
             foreach ($members as $member)
             {
                 $user = User::get($member);
-                if ($user)
+                if ($user !== null)
                 {
                     $this->members[] = $user->getId();
                 }
@@ -349,6 +370,14 @@
          */
         public function clearMembers()
         {
+            foreach ($this->members as $member)
+            {
+                $user = User::get($member);
+                if ($user !== null)
+                {
+                    $user->removeServer($this);
+                }
+            }
             $this->members = array();
 
             return $this;
@@ -366,9 +395,9 @@
             if ($user !== null)
             {
                 $id = $user->getId();
-                if (!in_array($id, $this->members))
+                if (!$user->equals($this->owner) && !$this->hasMember($user))
                 {
-                    $this->members[] = $userId;
+                    $this->members[] = $id;
                 }
             }
 
@@ -386,6 +415,10 @@
             $user = User::get($user);
             if ($user !== null)
             {
+                if ($user->equals($this->owner))
+                {
+                    $this->owner = null;
+                }
                 $index = array_search($user->getId(), $this->members);
                 if ($index !== false)
                 {
@@ -453,12 +486,17 @@
          */
         public function equals($server)
         {
-            return (is_object($server) && ($server instanceof Server) && $this->id === $server->getId());
+            $server = self::get($server);
+            if ($server !== null)
+            {
+                return ($this->id === $server->getId());
+            }
+            return false;
         }
 
         public function __toString()
         {
-            return $this->alias . '(' . $this->host . ':' . $this->port . ')';
+            return $this->alias;
         }
     }
 ?>

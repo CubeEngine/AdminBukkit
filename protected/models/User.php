@@ -399,6 +399,38 @@
             
             return $this;
         }
+        
+        /**
+         * Gets a server from the user
+         *
+         * @param int $serverId the server to get
+         * @return Server the server
+         */
+        public function getServer($server)
+        {
+            $server = Server::get($server);
+            if ($this->hasServer($server))
+            {
+                return $server;
+            }
+            return null;
+        }
+        
+        /**
+         * Checks whether the suer is a member of the given server
+         *
+         * @param mixed $server a server id or instance
+         * @return bool true if the user is a member of the given server
+         */
+        public function hasServer($server)
+        {
+            $server = Server::get($server);
+            if ($server !== null)
+            {
+                return in_array($server->getId(), $this->servers);
+            }
+            return false;
+        }
 
         /**
          * Returns the IDs of all servers
@@ -422,7 +454,7 @@
             foreach ($servers as $server)
             {
                 $server = Server::get($server);
-                if ($server)
+                if ($server !== null)
                 {
                     $this->servers[] = $server->getId();
                 }
@@ -450,15 +482,18 @@
          */
         public function addServer($server)
         {
-            $server = $server = Server::get($server);
-            $serverId = null;
-            if ($server)
+            $server = Server::get($server);
+            if ($server !== null)
             {
-                $serverId = $server->getId();
-            }
-            if ($serverId !== null && !in_array($serverId, $this->servers))
-            {
-                $this->servers[] = $serverId;
+                $id = $server->getId();
+                if (!$server->hasMember($this))
+                {
+                    $server->addMember($this);
+                }
+                if (!$this->hasServer($server))
+                {
+                    $this->servers[] = $id;
+                }
             }
 
             return $this;
@@ -510,21 +545,6 @@
         {
             $this->currentServer = $server;
             return $this;
-        }
-        
-        /**
-         * Gets a server from the user
-         *
-         * @param int $serverId the server to get
-         * @return Server the server
-         */
-        public function getServer($serverId)
-        {
-            if (in_array($serverId, $this->servers))
-            {
-                return Server::get($serverId);
-            }
-            return null;
         }
 
         /**
@@ -618,7 +638,12 @@
          */
         public function equals($user)
         {
-            return (is_object($user) && ($user instanceof User) && $this->id === $user->getId());
+            $user = self::get($user);
+            if ($user !== null)
+            {
+                return ($this->id === $user->getId());
+            }
+            return false;
         }
 
         /**
