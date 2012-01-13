@@ -37,7 +37,7 @@
                     $this->host = $result['host'];
                     $this->port = $result['port'];
                     $this->authkey = $result['authkey'];
-                    $this->owner = User::get($result['owner']);
+                    $this->owner = $result['owner'];
                     if ($result['members'])
                     {
                         $this->members = explode(',', $result['members']);
@@ -114,6 +114,11 @@
          */
         public function save()
         {
+            $owner = User::get($this->owner);
+            if ($owner === null)
+            {
+                throw new CModelException('Can\'t save a server without a valid owner!');
+            }
             try
             {
                 $this->db->createCommand()->update(
@@ -123,7 +128,7 @@
                         'host' => $this->host,
                         'port' => $this->port,
                         'authkey' => $this->authkey,
-                        'owner' => User::get($this->owner)->getId(),
+                        'owner' => $owner->getId(),
                         'members' => implode(',', $this->members)
                     ),
                     'id = :id',
@@ -159,7 +164,7 @@
                     $this->host = $result['host'];
                     $this->port = $result['port'];
                     $this->authkey = $result['authkey'];
-                    $this->owner = User::get($result['owner']);
+                    $this->owner = $result['owner'];
                     if ($result['members'])
                     {
                         $this->members = explode(',', $result['members']);
@@ -292,7 +297,7 @@
          */
         public function getOwner()
         {
-            return $this->owner;
+            return User::get($this->owner);
         }
 
         /**
@@ -306,10 +311,14 @@
             $user = User::get($owner);
             if ($user !== null)
             {
+                $currentOwner = User::get($this->owner);
                 if (!$user->equals($this->owner))
                 {
-                    $this->owner->removeServer($this);
-                    $this->owner = $user;
+                    if ($currentOwner !== null)
+                    {
+                        $currentOwner->removeServer($this);
+                    }
+                    $this->owner = $user->getId();
                 }
             }
 
