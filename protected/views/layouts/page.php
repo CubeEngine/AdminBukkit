@@ -1,5 +1,5 @@
 <?php $this->beginContent('//layouts/main') ?>
-<div id="<?php echo $this->id ?>" data-role="page" data-title="AdminBukkit - <?php echo $this->title ?>" data-theme="a">
+<div id="<?php echo $this->id ?>" data-role="page" data-dom-cache="true" data-title="AdminBukkit - <?php echo $this->title ?>" data-theme="a">
     <div data-role="header">
         <?php echo $this->backButton ?>
         <h1><?php echo $this->title ?></h1>
