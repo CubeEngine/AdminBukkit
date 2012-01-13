@@ -1,10 +1,6 @@
-<script type="text/javascript">
-    var player = '<?php echo $player ?>';
-</script>
-
 <div id="player_primary_info">
     <div id="player_head">
-        <img alt="" src="<?php echo $this->createUrl('player/head') ?>?size=80&amp;player=<?php echo $player ?>">
+        <img alt="" src="">
     </div>
     <div id="player_names">
         <div id="player_displayname">
@@ -59,16 +55,20 @@
 <div data-role="controlgroup">
     <a href="" id="player_world" data-role="button"><?php echo Yii::t('player', 'World') ?>: <span id="player_world_name"><?php echo Yii::t('generic', 'Loading...') ?></span></a>
     <a id="ban_ip" href="#" data-role="button"><?php echo Yii::t('player', 'IP Address') ?>: <span id="player_ip"><?php echo Yii::t('generic', 'Loading...') ?></span></a>
-    <a href="<?php echo $this->createUrl('player/utils', array('player' => $player)) ?>" data-role="button" data-rel="dialog"><?php echo Yii::t('player', 'Utilities') ?></a>
+    <a href="<?php echo $this->createUrl('player/utils') ?>" data-role="button" data-rel="dialog"><?php echo Yii::t('player', 'Utilities') ?></a>
 </div>
 <script type="text/javascript" src="<?php echo $this->createUrl('javascript/translation', array('cat' => 'serverutils')) ?>"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl ?>/res/js/serverutils.js"></script>
 <script type="text/javascript">
     (function(){
+        var player = null;
         var playerIntervalID = null;
         var succeeded = false;
         var request = new ApiRequest('player', 'info');
-        request.data({player: player, format:'json'});
+        var requestData = {
+            player: player,
+            format:'json'
+        }
         request.ignoreFirstFail(true);
         request.onSuccess(refreshData);
         request.onFailure(function(error){
@@ -128,11 +128,20 @@
             $('#player_ip').text(data.ip);
         }
 
-        $('#player_view').bind('pageshow', function(){
+        $('#player_view').bind('pagebeforeshow', function(){
+            player = AdminBukkit.Registry.get('player.name');
+            if (!player) {
+                AdminBukkit.redirectTo(BASE_PATH + '/players');
+            }
+            requestData.player = player;
+            $('div#player_view div.ui-header h1.ui-title').text(player);
+            $('div#player_head img').first().attr('src', '<?php echo $this->createUrl('player/head') ?>?size=80&player=' + player);
+
+            request.data(requestData);
             request.execute();
             playerIntervalID = setInterval(request.execute, 10000);
         })
-        .bind('pagehide', function(){
+        .bind('pagebeforehide', function(){
             if (playerIntervalID)
             {
                 clearInterval(playerIntervalID);

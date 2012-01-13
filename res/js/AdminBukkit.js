@@ -3,6 +3,36 @@ window.AdminBukkit = (function(){
         var self = this;
         var languages = [];
 
+        this.Registry = (function(parentObj){
+            var self = this;
+            var parent = parentObj;
+            var values = {};
+
+            this.set = function(name, value) {
+                values[String(name)] = value;
+                return self;
+            }
+
+            this.get = function(name) {
+                return values[String(name)];
+            }
+
+            var reg = $.cookie('adminbukkit.registry');
+            if (reg) {
+                values = eval('(' + reg + ')');
+            }
+
+            $(window).unload(function(){
+                var converter = $.stringify;
+                if (JSON && JSON.stringify){
+                    converter = JSON.stringify;
+                }
+                $.cookie('adminbukkit.registry', converter(values));
+            })
+
+            return this;
+        })(self)
+
         var loadLanguage = function(cat) {
             $.ajax({
                 url: BASE_PATH + '/index.php/javascript/translation?cat=' + cat,

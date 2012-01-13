@@ -20,6 +20,7 @@
             var BASE_PATH = '<?php echo Yii::app()->request->baseUrl ?>';
         </script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/jquery/jquery.js" charset="utf-8"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/jquery/jquery.cookie.js" charset="utf-8"></script>
         <!--<script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.js" charset="utf-8"></script>-->
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/jquery/jquery.mobile.js" charset="utf-8"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl ?>/res/js/AdminBukkit.js" charset="utf-8"></script>

@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
     (function(){
-        var player = '<?php echo $player ?>';
+        var player = null;
 
         $('#player_utils').bind('pagecreate', function(){
             $('#player_utils_kick').click(function(){
@@ -74,6 +74,12 @@
                 player_deop(player);
                 return false;
             });
+        }).bind('pagebeforeshow', function(){
+            player = AdminBukkit.Registry.get('player.name');
+            if (!player) {
+                AdminBukkit.redirectTo(BASE_PATH + '/players');
+            }
+            $('div#player_utils div.ui-header h1.ui-title').text(player);
         });
     })();
 

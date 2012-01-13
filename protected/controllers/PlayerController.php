@@ -26,26 +26,23 @@
             ));
         }
 
-        public function actionView($player)
+        public function actionView()
         {
             $this->id = 'player_view';
-            $this->title = $player;
+            $this->title = '';
             $this->backButton = new BackToolbarButton();
             $this->utilButton = new ToolbarButton('player_view_refresh', Yii::t('generic', 'Refresh'));
 
             $this->render('view', array(
-                'server' => $this->user->getCurrentServer(),
-                'player' => $player
+                'server' => $this->user->getCurrentServer()
             ));
         }
 
-        public function actionUtils($player)
+        public function actionUtils()
         {
             $this->id = 'player_utils';
-            $this->title = $player;
             $this->render('utils', array(
-                'server' => $this->user->getCurrentServer(),
-                'player' => $player
+                'server' => $this->user->getCurrentServer()
             ));
         }
 

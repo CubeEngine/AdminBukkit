@@ -10,6 +10,16 @@
 </ul>
 <script type="text/javascript">
     (function(){
+
+        function linkHandler(e)
+        {
+            var currentPlayer = AdminBukkit.Registry.get('player.name');
+            var player = $(e.target).parents('li.ui-btn').first().find('a.ui-link-inherit').first().text();
+            if (!currentPlayer || currentPlayer != player) {
+                AdminBukkit.Registry.set('player.name', player);
+            }
+        }
+
         var requestData = {
             format: 'json'
         };
@@ -63,18 +73,22 @@
             {
                 players = players.sort(AdminBukkit.realSort);
                 $('#<?php echo $idPrefix ?>_playersonline').html(players.length);
+                var li, viewLink, utilLink, icon;
                 for (var i = 0; i < players.length; i++)
                 {
-                    var li = $('<li>');
-                    var mainLink = $('<a>');
-                    mainLink.text(players[i]);
-                    mainLink.attr('href', '<?php echo $this->createUrl('player/view') ?>?player=' + players[i]);
-                    var icon = $('<img>');
+                    li = $('<li>');
+                    viewLink = $('<a>');
+                    viewLink.text(players[i]);
+                    viewLink.attr('href', '<?php echo $this->createUrl('player/view') ?>');
+                    viewLink.click(linkHandler);
+                    icon = $('<img>');
                     icon.addClass('ui-li-icon');
                     icon.attr('src', '<?php echo $this->createUrl('player/head') ?>?size=16&player=' + players[i])
-                    mainLink.append(icon);
-                    li.append(mainLink);
-                    li.append($('<a href="<?php echo $this->createUrl('player/utils') ?>?player=' + players[i] + '" data-rel="dialog"></a>'));
+                    viewLink.append(icon);
+                    li.append(viewLink);
+                    utilLink = $('<a href="<?php echo $this->createUrl('player/utils') ?>" data-rel="dialog"></a>');
+                    utilLink.click(linkHandler);
+                    li.append(utilLink);
                     $list.append(li);
                 }
                 <?php if ($world): ?>
