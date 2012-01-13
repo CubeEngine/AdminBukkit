@@ -171,11 +171,11 @@
          * Creates a new user
          *
          * @param string $name the user name
-         * @param string $pass the password
+         * @param string $password the password
          * @param string $email the email address
          * @return User the new user
          */
-        public static function createUser($name, $pass, $email)
+        public static function createUser($name, $password, $email, array $servers = array(), $stats = true)
         {
             try
             {
@@ -190,13 +190,17 @@
 
                 Yii::app()->db->createCommand()->insert(self::$tableName, array(
                     'name' => $name,
-                    'password' => self::password($pass),
-                    'email' => $email
+                    'password' => self::password($password),
+                    'email' => $email,
+                    'servers' => implode(',', $servers)
                 ));
 
                 // Stats
-                $stat = new Statistic('user.register');
-                $stat->increment();
+                if ($stats)
+                {
+                    $stat = new Statistic('user.register');
+                    $stat->increment();
+                }
             }
             catch (CDbException $e)
             {
@@ -206,6 +210,17 @@
             }
 
             return self::get($name);
+        }
+        
+        public static function recreateUser(User $user, $password)
+        {
+            return self::createUser(
+                $user->getName(),
+                $password,
+                $user->getEmail(),
+                $user->getServers(),
+                false
+            );
         }
 
         public function authenticate()
