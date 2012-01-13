@@ -544,6 +544,14 @@
          */
         public function delete()
         {
+            foreach ($this->servers as $server)
+            {
+                $server = Server::get($server);
+                if ($server != null)
+                {
+                    $server->removeMember($this);
+                }
+            }
             $this->db->createCommand()->delete('users', 'id = :id', array(':id' => $this->id));
             unset(self::$usersByEmail[$this->email]);
             unset(self::$usersByName[$this->name]);

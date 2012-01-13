@@ -37,7 +37,7 @@
                     $this->host = $result['host'];
                     $this->port = $result['port'];
                     $this->authkey = $result['authkey'];
-                    $this->owner = $result['owner'];
+                    $this->owner = User::get($result['owner']);
                     if ($result['members'])
                     {
                         $this->members = explode(',', $result['members']);
@@ -288,7 +288,7 @@
         /**
          * Returns the server owner's ID
          *
-         * @return int the owners ID
+         * @return User the owner
          */
         public function getOwner()
         {
@@ -303,23 +303,10 @@
          */
         public function setOwner($owner)
         {
-            $userId = null;
-            if (is_object($owner) && $owner instanceof User)
+            $user = User::get($owner);
+            if ($user !== null)
             {
-                $userId = $owner->getId();
-            }
-            else
-            {
-                try
-                {
-                    $userId = User::get($owner)->getId();
-                }
-                catch (CException $e)
-                {}
-            }
-            if ($userId !== null)
-            {
-                $this->owner = $userId;
+                $this->owner = $user;
             }
 
             return $this;
@@ -375,26 +362,14 @@
          */
         public function addMember($user)
         {
-            $userId = null;
+            $user = User::get($user);
             if ($user !== null)
             {
-                if (is_object($user) && $user instanceof User)
+                $id = $user->getId();
+                if (!in_array($id, $this->members))
                 {
-                    $userId = $user->getId();
+                    $this->members[] = $userId;
                 }
-                else
-                {
-                    try
-                    {
-                        $userId = User::get($user)->getId();
-                    }
-                    catch (CException $e)
-                    {}
-                }
-            }
-            if ($userId !== null && !in_array($userId, $this->members))
-            {
-                $this->members[] = $userId;
             }
 
             return $this;
@@ -408,20 +383,15 @@
          */
         public function removeMember($user)
         {
-            $userId = null;
+            $user = User::get($user);
             if ($user !== null)
             {
-                if (is_object($user) && $user instanceof User)
+                $index = array_search($user->getId(), $this->members);
+                if ($index !== false)
                 {
-                    $userId = $user->getId();
-                }
-                elseif (is_int($user) || is_numeric($user))
-                {
-                    $userId = User::get($user)->getId();
+                    unset($this->members[$index]);
                 }
             }
-
-            unset($this->members[array_search($userId, $this->members)]);
 
             return $this;
         }
@@ -433,6 +403,18 @@
          */
         public function delete()
         {
+            if ($this->owner !== null)
+            {
+                $this->owner->removeServer($this);
+            }
+            foreach ($this->members as $member)
+            {
+                $user = User::get($member);
+                if ($user !== null)
+                {
+                    $user->removeServer($this);
+                }
+            }
             $this->db->createCommand()->delete(self::$tableName, 'id = :id', array(':id' => $this->id));
             unset(self::$servers[$this->id]);
 
