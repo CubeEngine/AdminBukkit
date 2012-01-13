@@ -635,23 +635,41 @@
         {
             return array('id' => $this->id);
         }
-        
+
+        /**
+         * Logs the given user in.
+         *
+         * @param mixed $user the users identifier or a User instance
+         * @return User the logged in user
+         */
         public static function loginUser($user)
         {
             $user = self::get($user);
             if ($user !== null)
             {
-                Yii::app()->user->login($user);
+                $user->login();
             }
             return $user;
         }
-        
+
+        /**
+         * Logs the user in.
+         * This depends on the Yii Framework!
+         *
+         * @return User fluent interface
+         */
         public function login()
         {
             Yii::app()->user->login($this);
             return $this;
         }
-        
+
+        /**
+         * Logs the user out.
+         * This depends on the Yii Framework!
+         *
+         * @return User fluent interface
+         */
         public static function logout()
         {
             Yii::app()->user->logout();
