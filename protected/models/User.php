@@ -19,6 +19,8 @@
         private $loginIp;
         private $isAuthenticated;
 
+        private static $current = null;
+
         const ERR_NOT_FOUND = 1;
         const ERR_WRONG_PASS = 2;
         const ERR_NAME_USED = 3;
@@ -150,21 +152,30 @@
         }
 
         /**
-         * Returns the currently logged in user
+         * Sets the current user.
+         * This can only be done once!
          *
-         * @todo needed with Yii ?
-         * @return User the currently logged in user
+         * @staticvar boolean $set
+         * @param mixed $user user id or instance
          */
-        public static function currentlyLoggedIn()
+        public static function setCurrent($user)
         {
-            if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user'] instanceof User)
+            static $set = false;
+            if (!$set)
             {
-                return $_SESSION['user'];
+                self::$current = self::get($user);
+                $set = true;
             }
-            else
-            {
-                return null;
-            }
+        }
+
+        /**
+         * Returns the current user;
+         *
+         * @return User the curren user
+         */
+        public static function getCurrent()
+        {
+            return self::$current;
         }
 
         /**

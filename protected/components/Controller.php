@@ -11,10 +11,18 @@
         public $backButton;
         public $utilButton;
 
+        /**
+         *
+         * @var CWebApplication
+         */
+        protected $app;
+
         public function init()
         {
             parent::init();
 
+            $this->app = Yii::app();
+            User::setCurrent($this->app->user->getId());
             if (!$this->languageAlreadySet)
             {
                 $this->langPath = Yii::getPathOfAlias('application.messages') . '/';

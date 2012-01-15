@@ -10,7 +10,7 @@
         {
             parent::init();
 
-            $this->user = User::get(Yii::app()->user->getId());
+            $this->user = User::getCurrent();
         }
         
         public function filters()

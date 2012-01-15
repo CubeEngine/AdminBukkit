@@ -10,6 +10,13 @@
             header('Pragma: cache');
             header('Cache-Control: max-age=' . $cacheLifetime);
         }
+
+        public function actions()
+        {
+            return array(
+                'api' => 'application.controllers.javascript.ApiAction',
+            );
+        }
         
         public function actionIndex()
         {}
@@ -41,6 +48,34 @@
         public function actionItems()
         {
             $this->renderPartial('items');
+        }
+
+        public function actionJson()
+        {
+            header(JSONUtils::CONTENT_TYPE);
+
+            $server = $this->app->request->getParam('server', null);
+            $fullUsers = $this->app->request->getParam('users', null) !== null;
+            if ($server !== null)
+            {
+                $server = trim($server);
+                if (is_numeric($server))
+                {
+                    $server = $this->user->getServer($server);
+                }
+                elseif ($server == 'current')
+                {
+                    $server = $this->user->getCurrentServer();
+                }
+                if ($server !== null)
+                {
+                    echo JSONUtils::encode(JSONUtils::serializeServer($server, $fullUsers));
+                }
+            }
+            else
+            {
+                echo 'null';
+            }
         }
     }
 ?>

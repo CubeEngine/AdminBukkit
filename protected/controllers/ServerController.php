@@ -1,4 +1,6 @@
 <?php
+    Yii::import('application.components.JSONUtils');
+
     class ServerController extends AccessControlledController
     {
         public $defaultAction = 'view';

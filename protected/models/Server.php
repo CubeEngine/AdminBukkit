@@ -301,6 +301,27 @@
         }
 
         /**
+         * Checks whether the given user is the owner of this server
+         *
+         * @param User $user
+         * @return bool true if the given user is the owner
+         */
+        public function isOwnedBy(User $user)
+        {
+            return $user->equals($this->owner);
+        }
+
+        /**
+         * Checks whether this server has a owner
+         *
+         * @return bool true if this server has a owner
+         */
+        public function hasOwner()
+        {
+            return (User::get($this->owner) !== null);
+        }
+
+        /**
          * Sets the server owner
          *
          * @param User $owner the new server owner
@@ -336,7 +357,7 @@
             $user = User::get($user);
             if ($user !== null)
             {
-                return ($user->equals($this->owner) || in_array($user->getId(), $this->members));
+                return ($this->isOwnedBy($user) || in_array($user->getId(), $this->members));
             }
             return false;
         }
@@ -404,7 +425,7 @@
             if ($user !== null)
             {
                 $id = $user->getId();
-                if (!$user->equals($this->owner) && !$this->hasMember($user))
+                if (!$this->isOwnedBy($user) && !$this->hasMember($user))
                 {
                     $this->members[] = $id;
                 }
@@ -424,7 +445,7 @@
             $user = User::get($user);
             if ($user !== null)
             {
-                if ($user->equals($this->owner))
+                if ($this->isOwnedBy($user))
                 {
                     $this->owner = null;
                 }
@@ -445,9 +466,9 @@
          */
         public function delete()
         {
-            if ($this->owner !== null)
+            if ($this->hasOwner())
             {
-                $this->owner->removeServer($this);
+                $this->getOwner()->removeServer($this);
             }
             foreach ($this->members as $member)
             {
