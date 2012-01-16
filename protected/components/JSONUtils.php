@@ -12,7 +12,7 @@
             if ($user !== null)
             {
                 $servers = $user->getServers();
-                $currentServer = $user->getCurrentServer();
+                $currentServer = $user->getSelectedServer();
                 if ($serializeServers)
                 {
                     foreach ($servers as $index => &$server)
@@ -25,7 +25,8 @@
                 return array(
                     'id' => $user->getId(),
                     'name' => $user->getName(),
-                    'email' => $user->getEmail(),
+                    'email' => ($user->equals(User::getCurrent()) ? $user->getEmail() : null),
+                    'loginip' => ($user->equals(User::getCurrent()) ? $user->getLoginIp() : null),
                     'servers' => $servers,
                     'currenserver' => $currentServer
                 );

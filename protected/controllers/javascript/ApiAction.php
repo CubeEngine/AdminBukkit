@@ -38,7 +38,7 @@
                 }
                 elseif ($server == 'current')
                 {
-                    $server = User::getCurrent()->getCurrentServer();
+                    $server = User::getCurrent()->getSelectedServer();
                 }
                 if ($server !== null)
                 {

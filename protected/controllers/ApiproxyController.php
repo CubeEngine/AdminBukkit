@@ -25,7 +25,7 @@
 
             try
             {
-                $server = $user->getCurrentServer();
+                $server = $user->getSelectedServer();
                 if (!$server)
                 {
                     header('HTTP/1.1 400 Bad Request');

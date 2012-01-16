@@ -511,8 +511,8 @@
         /**
          * Checks whether another server equals this one
          *
-         * @param Server $server
-         * @return bool whether the servers are equal
+         * @param mixed $server server id or instance
+         * @return bool true if the servers are equal
          */
         public function equals($server)
         {

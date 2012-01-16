@@ -10,7 +10,7 @@
             $this->backButton = new BackToolbarButton();
             $this->utilButton = new ToolbarButton('world_list_refresh', Yii::t('generic', 'Refresh'));
 
-            $this->render('list', array('server' => $this->user->getCurrentServer()));
+            $this->render('list', array('server' => $this->user->getSelectedServer()));
         }
 
         public function actionView($world)
@@ -21,7 +21,7 @@
             $this->utilButton = new ToolbarButton('world_view_refresh', Yii::t('generic', 'Refresh'));
 
             $this->render('view', array(
-                'server' => $this->user->getCurrentServer(),
+                'server' => $this->user->getSelectedServer(),
                 'world' => $world
             ));
         }
@@ -32,14 +32,14 @@
             $this->title = $world;
 
             $this->render('utils', array(
-                'server' => $this->user->getCurrentServer(),
+                'server' => $this->user->getSelectedServer(),
                 'world' => $world
             ));
         }
 
         public function actionAdd()
         {
-            $this->render('add', array('server' => $this->user->getCurrentServer()));
+            $this->render('add', array('server' => $this->user->getSelectedServer()));
         }
     }
 ?>

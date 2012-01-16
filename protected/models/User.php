@@ -15,8 +15,7 @@
         
         private $password;
 
-        private $currentServer;
-        private $loginIp;
+        private $selectedServer;
         private $isAuthenticated;
 
         private static $current = null;
@@ -42,7 +41,7 @@
                 }
                 $this->db = Yii::app()->db;
                 $result = $this->db->createCommand()
-                        ->select(array('id', 'name', 'email', 'servers', 'currentserver'))
+                        ->select(array('id', 'name', 'email', 'servers', 'selectedserver'))
                         ->from(self::$tableName)
                         ->where($idField . ' = :id', array(':id' => $id))
                         ->limit(1)
@@ -65,8 +64,7 @@
                     $this->servers = array();
                 }
                 $this->password = null;
-                $this->currentServer = Server::get($result['currentserver']);
-                $this->loginIp = $_SERVER['REMOTE_ADDR'];
+                $this->selectedServer = Server::get($result['selectedserver']);
                 $this->isAuthenticated = false;
             }
             catch (CDbException $e)
@@ -271,7 +269,7 @@
                 'name' => $this->name,
                 'email' => $this->email,
                 'servers' => implode(',', $this->servers),
-                'currentserver' => ($this->currentServer ? $this->currentServer->getId() : null)
+                'selectedserver' => ($this->selectedServer ? $this->selectedServer->getId() : null)
             );
             if ($this->password !== null)
             {
@@ -306,7 +304,7 @@
             try
             {
                 $result = $this->db->createCommand()
-                        ->select(array('name', 'email', 'servers', 'currentserver'))
+                        ->select(array('name', 'email', 'servers', 'selectedserver'))
                         ->from('users')
                         ->where('id = :id', array(':id' => $this->id))
                         ->limit(1)
@@ -320,7 +318,7 @@
                     {
                         $this->servers = explode(',', $result['servers']);
                     }
-                    $this->currentServer = Server::get($result['currentserver']);
+                    $this->selectedServer = Server::get($result['selectedserver']);
                 }
             }
             catch (CDbException $e)
@@ -556,9 +554,9 @@
          *
          * @return Server the currently selected server
          */
-        public function getCurrentServer()
+        public function getSelectedServer()
         {
-            return $this->currentServer;
+            return $this->selectedServer;
         }
 
         /**
@@ -567,9 +565,9 @@
          * @param Server $server the server to set
          * @return User fluent interface
          */
-        public function setCurrentServer(Server $server)
+        public function setSelectedServer(Server $server)
         {
-            $this->currentServer = $server;
+            $this->selectedServer = $server;
             return $this;
         }
 
@@ -580,7 +578,21 @@
          */
         public function getLoginIp()
         {
-            return $this->loginIp;
+            return Yii::app()->user->getState('loginip');
+        }
+
+        /**
+         * Sets the login IP
+         *
+         * @return User fluent interface
+         */
+        public function setLoginIp()
+        {
+            if ($this->getLoginIp() === null)
+            {
+                Yii::app()->user->getState('loginip', Yii::app()->request->getUserHostAddress());
+            }
+            return $this;
         }
 
         /**
@@ -640,7 +652,7 @@
         public function serialize()
         {
             $this->save();
-            return serialize(array($this->id, $this->loginIp));
+            return serialize(array($this->id));
         }
 
         /**
@@ -652,7 +664,6 @@
         {
             $data = unserialize($serialized);
             $this->id = $data[0];
-            $this->loginIp = $data[1];
             $this->refresh();
         }
 
@@ -712,6 +723,7 @@
         public function login()
         {
             Yii::app()->user->login($this);
+            $this->setLoginIp();
             return $this;
         }
 
@@ -724,6 +736,7 @@
         public static function logout()
         {
             Yii::app()->user->logout();
+            Yii::app()->user->setState('loginip', null);
             return $this;
         }
     }

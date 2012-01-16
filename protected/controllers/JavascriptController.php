@@ -65,7 +65,7 @@
                 }
                 elseif ($server == 'current')
                 {
-                    $server = $this->user->getCurrentServer();
+                    $server = $this->user->getSelectedServer();
                 }
                 if ($server !== null)
                 {

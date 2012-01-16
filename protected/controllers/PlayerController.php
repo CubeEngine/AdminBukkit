@@ -20,7 +20,7 @@
             $this->utilButton = new ToolbarButton($idPrefix . '_playerlist_refresh', Yii::t('generic', 'Refresh'));
 
             $this->render('list', array(
-                'server' => $this->user->getCurrentServer(),
+                'server' => $this->user->getSelectedServer(),
                 'world' => $world,
                 'idPrefix' => $idPrefix
             ));
@@ -34,7 +34,7 @@
             $this->utilButton = new ToolbarButton('player_view_refresh', Yii::t('generic', 'Refresh'));
 
             $this->render('view', array(
-                'server' => $this->user->getCurrentServer()
+                'server' => $this->user->getSelectedServer()
             ));
         }
 
@@ -42,7 +42,7 @@
         {
             $this->id = 'player_utils';
             $this->render('utils', array(
-                'server' => $this->user->getCurrentServer()
+                'server' => $this->user->getSelectedServer()
             ));
         }
 

@@ -7,7 +7,7 @@
 
         public function actionView($id = null)
         {
-            $server = $this->user->getCurrentServer();
+            $server = $this->user->getSelectedServer();
             $serverSelected = true;
             if ($id !== null)
             {
@@ -49,7 +49,7 @@
 
         public function actionEdit($id = null)
         {
-            $server = $this->user->getCurrentServer();
+            $server = $this->user->getSelectedServer();
             if ($id !== null)
             {
                 $server = Server::get($id);
@@ -88,7 +88,7 @@
 
         public function actionDelete($id = null)
         {
-            $server = $this->user->getCurrentServer();
+            $server = $this->user->getSelectedServer();
             if ($id !== null)
             {
                 $server = Server::get($id);
@@ -147,7 +147,7 @@
             $this->backButton = new BackToolbarButton();
             $this->utilButton = new ToolbarButton('server_info_refresh', Yii::t('generic', 'Refresh'));
             
-            $server = $this->user->getCurrentServer();
+            $server = $this->user->getSelectedServer();
             if ($id !== null)
             {
                 $server = Server::get($id);
@@ -166,7 +166,7 @@
             if ($server !== null)
             {
                 $this->title = Yii::t('server', 'Server selected');
-                $this->user->setCurrentServer($server)->save();
+                $this->user->setSelectedServer($server)->save();
             }
             else
             {
@@ -185,7 +185,7 @@
             $this->backButton = new BackToolbarButton();
             $this->utilButton = new ToolbarButton('autorefreshing', Yii::t('server', 'Refreshing off'));
 
-            $this->render('console', array('server' => $this->user->getCurrentServer()));
+            $this->render('console', array('server' => $this->user->getSelectedServer()));
         }
 
         public function actionPlayerbans()
@@ -194,7 +194,7 @@
             $this->title = Yii::t('server', 'Playerbans');
             $this->utilButton = new ToolbarButton('server_banplayer', Yii::t('server', 'Ban'));
 
-            $this->render('popups/playerbans', array('server' => $this->user->getCurrentServer()));
+            $this->render('popups/playerbans', array('server' => $this->user->getSelectedServer()));
         }
 
         public function actionIpbans()
@@ -203,7 +203,7 @@
             $this->title = Yii::t('server', 'IP Bans');
             $this->utilButton = new ToolbarButton('server_banip', Yii::t('server', 'Ban'));
 
-            $this->render('popups/ipbans', array('server' => $this->user->getCurrentServer()));
+            $this->render('popups/ipbans', array('server' => $this->user->getSelectedServer()));
         }
 
         public function actionWhitelist()
@@ -212,7 +212,7 @@
             $this->title = Yii::t('server', 'Whitelist');
             $this->utilButton = new ToolbarButton('server_addwhitelist', Yii::t('server', 'Add'));
 
-            $this->render('popups/whitelist', array('server' => $this->user->getCurrentServer()));
+            $this->render('popups/whitelist', array('server' => $this->user->getSelectedServer()));
         }
 
         public function actionOperators()
@@ -221,7 +221,7 @@
             $this->title = Yii::t('server', 'Operators');
             $this->utilButton = new ToolbarButton('server_op', Yii::t('server', 'Op'));
 
-            $this->render('popups/operators', array('server' => $this->user->getCurrentServer()));
+            $this->render('popups/operators', array('server' => $this->user->getSelectedServer()));
         }
     }
 ?>

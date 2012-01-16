@@ -9,7 +9,7 @@
             $this->title = Yii::t('plugin', 'Pluginlist');
             $this->backButton = new BackToolbarButton();
             $this->utilButton = new ToolbarButton('plugin_list_refresh', Yii::t('generic', 'Refresh'));
-            $this->render('list', array('server' => $this->user->getCurrentServer()));
+            $this->render('list', array('server' => $this->user->getSelectedServer()));
         }
 
         public function actionView($plugin)
@@ -19,7 +19,7 @@
             $this->backButton = new BackToolbarButton();
             //$this->utilButton = new ToolbarButton('plugin_list_refresh', Yii::t('generic', 'Refresh'));
             
-            $server = $this->user->getCurrentServer();
+            $server = $this->user->getSelectedServer();
             $api = new ApiBukkit($server->getHost(), $server->getPort(), $server->getAuthKey());
             $response = $api->request('plugin', 'info', array(
                 'format' => 'json',

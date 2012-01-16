@@ -9,10 +9,10 @@
         <?php echo Yii::t('profile', 'Email-address') ?>:
         <span class="value"><?php echo $user->getEmail() ?></span>
     </li>
-    <?php if ($user->getCurrentServer() != null): ?>
+    <?php if ($user->getSelectedServer() != null): ?>
         <li>
-            <a href="<?php echo $this->createUrl('server/view', array('id' => $user->getCurrentServer()->getId())) ?>">
-                <?php echo Yii::t('profile', 'Current server') ?>: <span class="value"><?php echo $user->getCurrentServer()->getAlias() ?></span>
+            <a href="<?php echo $this->createUrl('server/view', array('id' => $user->getSelectedServer()->getId())) ?>">
+                <?php echo Yii::t('profile', 'Current server') ?>: <span class="value"><?php echo $user->getSelectedServer()->getAlias() ?></span>
             </a>
         </li>
     <?php endif ?>
