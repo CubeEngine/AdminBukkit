@@ -7,6 +7,16 @@
 </ul>
 <script type="text/javascript">
     (function(){
+
+        function linkHandler(e)
+        {
+            var currentWorld = AdminBukkit.Registry.get('world.name');
+            var world = $(e.target).parents('li.ui-btn').first().find('a.ui-link-inherit').first().text();
+            if (!currentWorld || currentWorld != world) {
+                AdminBukkit.Registry.set('world.name', world);
+            }
+        }
+        
         var oldData = null;
         var list = $('#world_worldlist');
         var request = new ApiRequest('world', 'list');
@@ -33,13 +43,15 @@
                 for (var i = 0; i < worlds.length; i++)
                 {
                     var li = $('<li>');
-                    var mainLink = $('<a>');
-                    mainLink.text(worlds[i]);
-                    mainLink.attr('href', '<?php echo $this->createUrl('world/view') ?>?world=' + worlds[i]);
-                    li.append(mainLink);
-                    var minorLink = $('<a>');
-                    minorLink.attr('href', '<?php echo $this->createUrl('world/utils') ?>?world=' + worlds[i]);
-                    li.append($('<a href="<?php echo $this->createUrl('world/utils') ?>?world=' + worlds[i] + '" data-rel="dialog"></a>'));
+                    var viewLink = $('<a>');
+                    viewLink.text(worlds[i]);
+                    viewLink.attr('href', '<?php echo $this->createUrl('world/view') ?>');
+                    viewLink.click(linkHandler);
+                    li.append(viewLink);
+                    var utilLink = $('<a data-rel="dialog">');
+                    utilLink.attr('href', '<?php echo $this->createUrl('world/utils') ?>');
+                    utilLink.click(linkHandler);
+                    li.append(utilLink);
                     list.append(li);
                 }
                 list.listview('refresh');

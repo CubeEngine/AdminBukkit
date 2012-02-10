@@ -27,16 +27,20 @@
         <?php echo Yii::t('world', 'Thunder duration:') ?> <span class="value"><span id="world_view_thunder"><?php echo Yii::t('generic', 'Loading...') ?></span> <?php echo Yii::t('world', 'second(s)') ?></span>
     </li>
     <li>
-        <a href="<?php echo $this->createUrl('player/list', array('world' => $world)) ?>"><?php echo Yii::t('world', 'Players:') ?> <span class="value" id="world_view_players"><?php echo Yii::t('generic', 'Loading...') ?></span></a>
+        <a href="<?php echo $this->createUrl('player/list') ?>"><?php echo Yii::t('world', 'Players:') ?> <span class="value" id="world_view_players"><?php echo Yii::t('generic', 'Loading...') ?></span></a>
     </li>
 </ul>
 <div data-role="controlgroup">
     
-    <a data-role="button" href="<?php echo $this->createUrl('world/utils', array('world' => $world)) ?>" data-rel="dialog"><?php echo Yii::t('world', 'Utilities') ?></a>
+    <a data-role="button" href="<?php echo $this->createUrl('world/utils') ?>" data-rel="dialog"><?php echo Yii::t('world', 'Utilities') ?></a>
 </div>
 <script type="text/javascript">
     (function(){
-        var world = '<?php echo $world ?>';
+        var world = null;
+        var requestData = {
+            world: world,
+            format: 'json'
+        };
 
         var succeeded = false;
         var request = new ApiRequest('world', 'info');
@@ -61,10 +65,7 @@
                     }
             }
         });
-        request.data({
-            world: world,
-            format: 'json'
-        });
+        request.data(requestData);
 
         function refreshData(data)
         {
@@ -85,9 +86,17 @@
             $('#world_view_players').text(data.players);
         }
 
-        $('#world_view').bind('pageshow', function(){
+        $('#world_view').bind('pagebeforeshow', function(){
+            world = AdminBukkit.Registry.get('world.name');
+            if (!world) {
+                AdminBukkit.redirectTo(BASE_PATH + '/worlds');
+            }
+            requestData.world = world;
+            $('div#world_view div.ui-header h1.ui-title').text(world);
+            
             request.execute();
         }).bind('pagecreate', function(){
+            
             $('#toolbar_world_view_refresh').click(function(){
                 request.execute();
                 return false;

@@ -13,27 +13,25 @@
             $this->render('list', array('server' => $this->user->getSelectedServer()));
         }
 
-        public function actionView($world)
+        public function actionView()
         {
             $this->id = 'world_view';
-            $this->title = $world;
+            $this->title = '';
             $this->backButton = new BackToolbarButton();
             $this->utilButton = new ToolbarButton('world_view_refresh', Yii::t('generic', 'Refresh'));
 
             $this->render('view', array(
-                'server' => $this->user->getSelectedServer(),
-                'world' => $world
+                'server' => $this->user->getSelectedServer()
             ));
         }
 
-        public function actionUtils($world)
+        public function actionUtils()
         {
             $this->id = 'world_utils';
-            $this->title = $world;
+            $this->title = '';
 
             $this->render('utils', array(
-                'server' => $this->user->getSelectedServer(),
-                'world' => $world
+                'server' => $this->user->getSelectedServer()
             ));
         }
 
